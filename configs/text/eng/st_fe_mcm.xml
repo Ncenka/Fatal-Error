@@ -1,0 +1,224 @@
+<string_table>
+	<string id="ui_mcm_menu_fatal_error">
+		<text>Fatal Error</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_pda_frying">
+		<text>PDA Frying</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_devices_frying">
+		<text>Device Frying</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_pda_other_settings">
+		<text>Other Settings</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay">
+		<text>Frequency of checking PDA for "frying" (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay_desc">
+		<text>The time interval during a surge or psi storm after what game will try to break your PDA or Devices.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die">
+		<text>Chance for Devices to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra">
+		<text>Chance for Devices to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation">
+		<text>Factor for Devices to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_desc">
+		<text>Chance that Devices will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra_desc">
+		<text>Chance that Devices will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for Devices is 0.10, then chance for Devices to break will equal 1%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die">
+		<text>Chance of PDA 0.1 to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die">
+		<text>Chance of PDA 1.0 to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die">
+		<text>Chance of PDA 2.0 to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die">
+		<text>Chance of PDA 3.1 to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die">
+		<text>Chance of Military PDA to fry (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error">
+		<text>Chance of PDA 0.1 to BSOD (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error">
+		<text>Chance of PDA 1.0 to BSOD (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error">
+		<text>Chance of PDA 2.0 to BSOD (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error">
+		<text>Chance of PDA 3.1 to BSOD (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error">
+		<text>Chance of Military PDA to BSOD (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error_desc">
+		<text>Chance that PDA 0.1 will temporary break after an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error_desc">
+		<text>Chance that PDA 1.0 will temporary break after an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error_desc">
+		<text>Chance that PDA 2.0 will temporary break after an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error_desc">
+		<text>Chance that PDA 3.1 will temporary break after an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error_desc">
+		<text>Chance that Military PDA will temporary break after an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra">
+		<text>Chance of PDA 0.1 to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra">
+		<text>Chance of PDA 1.0 to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra">
+		<text>Chance of PDA 2.0 to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra">
+		<text>Chance of PDA 3.1 to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra">
+		<text>Chance of Military PDA to fry from electric damage (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra_desc">
+		<text>Chance that the PDA 0.1 will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra_desc">
+		<text>Chance that the PDA 1.0 will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra_desc">
+		<text>Chance that the PDA 2.0 will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra_desc">
+		<text>Chance that the PDA 3.1 will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra_desc">
+		<text>Chance that the Military PDA will break from damage from Electras and Pulse anomalies.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_desc">
+		<text>Chance that the PDA 0.1 will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_desc">
+		<text>Chance that the PDA 1.0 will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_desc">
+		<text>Chance that the PDA 2.0 will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_desc">
+		<text>Chance that the PDA 3.1 will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_desc">
+		<text>Chance that the Military PDA will break during an emission or psi storm.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_radiation">
+		<text>Factor for PDA 0.1 to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_radiation">
+		<text>Factor for PDA 1.0 to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_radiation">
+		<text>Factor for PDA 2.0 to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_radiation">
+		<text>Factor for PDA 3.1 to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_radiation">
+		<text>Factor for Military PDA to fry from radiation (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda0_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for PDA is 1, then chance for PDA 0.1 to break will equal 10%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda1_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for PDA is 0.75, then chance for PDA 1.0 to break will equal 7%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda2_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for PDA is 0.50, then chance for PDA 2.0 to break will equal 5%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda3_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for PDA is 0.25, then chance for PDA 3.1 to break will equal 2%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_milspec_to_die_radiation_desc">
+		<text>For example, if Accumulated Radiation is 10, and Factor for PDA is 0.10, then chance for Military PDA to break will equal 1%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry">
+		<text>Minimal Amount of Accumulated Radiation</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry_desc">
+		<text>If Accumulated Radiation is more than Minimal Amount of Accumulated Radiation, then game will try to break your PDA or Devices.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay">
+		<text>Frequency of checking for breaking from radiation (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay_desc">
+		<text>If Accumulated Radiation is more than Minimal Amount of Accumulated Radiation, then game will try to break your PDA or Devices every this amount of seconds.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale">
+		<text>Glitch scale for PDA from radiation.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale_desc">
+		<text>For example, 1 - a lot of glitch from minor dose of radiation, 0 - no glitch even at the centre of Reactor No. 4.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale">
+		<text>Accumulated Radiation scale</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale_desc">
+		<text>Scales how much Accumulated Radiation you get.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower">
+		<text>Accumulated Radiation lower amount</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower_desc">
+		<text>The amount of Accumulated Radiation you lose over time.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min">
+		<text>Minimal time for reboot (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min_desc">
+		<text>The minimal time for reboot after emission or psi storm. Must be lower than Maximum time for reboot.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max">
+		<text>Maximum time for reboot (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max_desc">
+		<text>The maximum time for reboot after emission or psi storm. Must be higher than Minimal time for reboot.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage">
+		<text>Chance for PDA to get damaged (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage_desc">
+		<text>The chance for PDA to get damaged after receiving physical damage.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius">
+		<text>PDA "Beep" radius</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius_desc">
+		<text>If there are stalkers within this radius, the PDA will emit an audible signal. Works only on later PDA models.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key">
+		<text>Key to reboot PDA</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key_desc">
+		<text>Select key for rebooting PDA.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value">
+		<text>Passive glitch for PDA</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value_desc">
+		<text>Passive glitch for a PDA that will always be present.</text>
+	</string>
+</string_table>
