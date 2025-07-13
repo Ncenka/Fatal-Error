@@ -1,0 +1,36 @@
+[logic@stalker_fe_danila_extremist]
+active = beh@fe_danila_extremist
+suitable = {=check_npc_name(fe_danila_extremist)} true
+prior = 2000
+   
+[beh@general]
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+turn_on_campfire = false
+invulnerable = {=actor_true_enemy} false, {+pda_quest_daniil} false, true
+meet = meet
+target = waypoint
+
+[meet]
+close_anim = threat_na {+pda_quest_daniil_ambush_begin -pda_quest_daniil_ambush_end}, guard
+close_victim = {+pda_quest_daniil_ambush} actor, {+pda_quest_daniil} nil, actor
+close_distance = 5 {-pda_quest_daniil}, 5 {+pda_quest_daniil_ambush}, 0
+use = {=actor_true_enemy} false, true
+use = {=actor_true_enemy} false, true
+trade_enable = false
+allow_break = {-pda_quest_daniil_ambush} true, false
+
+[beh@fe_danila_extremist]:beh@general
+pt1 = 88860000,binocular | pos:360.33401489258,33.370468139648,330.36413574219 look:360.34449284244,33.370468139648,329.37986004353
+path_end = loop
+on_info = {+pda_quest_daniil -pda_quest_daniil_return} beh@fe_danila_extremist_1
+
+[beh@fe_danila_extremist_1]:beh@general
+pt1 = 1000,guard | pos:376.98675537109,-5.1932330131531,361.4469909668 look:377.24397945404,-5.1932330131531,362.38527816534
+path_end = beh@fe_danila_extremist_2
+
+[beh@fe_danila_extremist_2]:beh@general
+pt1 = 88860000,guard | pos:376.98675537109,-5.1932330131531,361.4469909668 look:377.24397945404,-5.1932330131531,362.38527816534
+on_actor_dist_le = 5 | %+pda_quest_daniil_ambush%
+on_info = {+pda_quest_daniil_return} beh@fe_danila_extremist

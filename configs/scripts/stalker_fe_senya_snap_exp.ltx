@@ -1,0 +1,31 @@
+[logic]
+active = beh@fe_senya_snap
+suitable = {=check_npc_name(fe_senya_snap_exp)} true
+prior = 2000
+   
+[beh@general]
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+turn_on_campfire = false
+invulnerable = {=actor_true_enemy} false, true
+meet = meet
+target = waypoint
+
+[meet]
+close_distance = 0
+use = {=actor_true_enemy} false, true
+use_wpn = {=actor_true_enemy} false, true
+trade_enable = false
+allow_break = false
+
+[beh@fe_senya_snap]:beh@general
+pt1 = 88860000,zat_b100_heli_2_serch | pos:346.46215820312,15.097068786621,-23.097871780396 look:345.49668508768,15.097068786621,-23.288244977593
+path_end = loop
+on_info = {+fe_refused_darkscape_danilla -fe_darkscape_fail_dialog} %=send_tip(fe_darkscape_fail:renegade)% beh@fe_senya_snap_fail
+on_info2 = {+fe_darkscape_fail_dialog} beh@fe_senya_snap_fail
+
+[beh@fe_senya_snap_fail]:beh@general
+pt1 = 88860000,zat_b100_heli_2_serch | pos:346.46215820312,15.097068786621,-23.097871780396 look:345.49668508768,15.097068786621,-23.288244977593 
+path_end = loop
+on_info = {-fe_darkscape_fail_dialog} %=play_sound(fe_darkscape_fail) +fe_darkscape_fail_dialog%

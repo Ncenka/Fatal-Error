@@ -1,0 +1,29 @@
+#include "stalker_fe_darkscape_mercs_general.ltx"
+
+[logic@stalker_fe_darkscape_mercs_4_1]
+active = beh@fe_darkscape_sniper
+suitable = {=check_npc_name(fe_darkscape_merc_4_1)} true
+prior = 5000
+on_death = death
+on_hit = hit
+
+[beh@fe_darkscape_sniper_default]:beh@mercs
+pt1 = 1000,hide | pos:455.03378295898,20.256860733032,282.63421630859 look:454.12621039152,20.256860733032,282.29736188054
+path_end = loop
+
+[beh@fe_darkscape_sniper_battle]:beh@mercs
+pt1 = 1000,hide | pos:429.85229492188,17.932926177979,279.11639404297 look:429.62506334484,17.932926177979,278.18854594231
+path_end = loop
+
+[beh@fe_darkscape_sniper]:beh@mercs
+pt1 = 1000,hide | pos:455.03378295898,20.256860733032,282.63421630859 look:454.12621039152,20.256860733032,282.29736188054
+path_end = loop
+
+;;--==========================< Choose Correct Dialog >=============================--
+on_info = {=check_npc_name(fe_darkscape_merc_4_1) +fe_darkscape_merc_battle_0 -fe_darkscape_merc_battle_1} %=send_tip(fe_darkscape_merc_battle_0:isg)%  beh@fe_darkscape_bravo_1
+
+;;--==========================< Dialog Darkscape Merc Battle >=============================--
+
+[beh@fe_darkscape_bravo_1]:beh@fe_darkscape_sniper_default
+on_signal = sound_end | {=check_npc_name(fe_darkscape_merc_4_1)} %+fe_darkscape_merc_battle_1% beh@fe_darkscape_sniper_battle
+on_info = {=check_npc_name(fe_darkscape_merc_4_1)} %=play_sound(fe_darkscape_battle_1)%

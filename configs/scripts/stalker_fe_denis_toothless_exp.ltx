@@ -1,0 +1,24 @@
+[logic]
+active = beh@fe_denis_toothless
+suitable = {=check_npc_name(fe_denis_toothless_exp)} true
+prior = 2000
+   
+[beh@general]
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+turn_on_campfire = false
+invulnerable = {=actor_true_enemy} false, true
+meet = meet
+target = waypoint
+
+[meet]
+close_distance = 0
+use = {=actor_true_enemy} false, true
+use_wpn = {=actor_true_enemy} false, true
+trade_enable = false
+allow_break = false
+
+[beh@fe_denis_toothless]:beh@general
+pt1 = 88860000,hide | pos:354.1164855957,14.932726860046,-30.057048797607 look:354.62003928423,14.932726860046,-30.92100071907
+path_end = loop
