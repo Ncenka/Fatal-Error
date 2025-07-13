@@ -1,0 +1,398 @@
+<string_table>
+	<string id="fe_senya_podkidnoy_1_title">
+		<text>Unknown PDA</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_descr">
+		<text>I found a broken, discharged, blocked and obviously outdated PDA model in a mine in a Red Forest, which presumably belongs to the stalker Senya Snap - I need to find out who it is, or at least find out what is in the PDA. Maybe one of the technicians can help? Or someone who sells information?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_1_descr">
+		<text>I've taken this PDA out of my backpack so far, but if I want to figure out what happened, it's better to carry it with me.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_2_descr">
+		<text>Danila Extremist advised me to contact Nitro - he will be able to get the encryption key of the PDA and thus I may be able to find Senya Snap.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_3_descr">
+		<text>Nitro was able to get the encryption key of Senya Snap's PDA and detect the PDA signal with the same key. Senya Snap - I'm coming.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_4_descr">
+		<text>Due to the fact that I sold the PDA, I will not be able to get the encryption keys of Seni Snap's PDA - now it will be almost impossible to find it...</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_5_descr">
+		<text>Danila Extremist is dead - that was my only hope to find Senya Snap - now it will be almost impossible...</text>
+	</string>
+	<string id="fe_senya_podkidnoy_1_6_descr">
+		<text>I sold the PDA of Senya Snap, but before that I turned to a technician and pulled out information from there - I can still find out what happened.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_2_title">
+		<text>Unknown PDA - Sultan</text>
+	</string>
+	<string id="fe_senya_podkidnoy_2_descr">
+		<text>From the information that the technician got from the PDA, as well as from the information that I bought from the merchant, it follows that I need to contact the Sultan - everything leads to him.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_2_1_descr">
+		<text>The technician was able to get a recording from Senya Snap's PDA, in which the Sultan is mentioned - maybe he knows something?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_2_2_descr">
+		<text>From the information I bought from the merchant, it follows that Senya Snap was in the Sultan's brigade - maybe he knows something?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_3_title">
+		<text>Unknown PDA - Parcel</text>
+	</string>
+	<string id="fe_senya_podkidnoy_3_descr">
+		<text>The technician was able to get a recording from the PDA: "Shoo, Danka Extremist, the Sultan has adjusted the job, it's not a big deal, but the pay is good - I go a little bit at night looking into the Red Forest, he said there is a tank somewhere in this ass, there will be a parcel somewhere nearby - need to deliver it to him personally. It's a bit annoying to go there for the first time, the guys from the brigade say, "dude, this place sucks," but I fucking hate these people. Long story short, tomorrow morning bring your ass to the Army Warehouses, to the village, where the Tower is, I'll spend the night there." - where should I start looking?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_3_1_descr">
+		<text>The sultan said that Senya Snap was supposed to bring him a parcel from the Red Forest, but he never showed up. He asked me to find it if possible and deliver it to him. The parcel itself should be somewhere near the tank, unless, of course, Senya Snap took it.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_3_2_descr">
+		<text>The sultan said that Senya Snap was supposed to bring him a parcel from the Red Forest, but he never showed up. He asked me to find it if possible and deliver it to him. The parcel itself should be somewhere near the tank, unless, of course, Senya Snap took it. Also, the technician was able to get a recording from the PDA - "Shoo, Danka Extremist, the Sultan has adjusted the job, it's not a big deal, but the pay is good - I go a little bit at night looking into the Red Forest, he said there is a tank somewhere in this ass, there will be a parcel somewhere nearby - need to deliver it to him personally. It's a bit annoying to go there for the first time, the guys from the brigade say, "dude, this place sucks," but I fucking hate these people. Long story short, tomorrow morning bring your ass to the Army Warehouses, to the village, where the Tower is, I'll spend the night there." - where should I start looking?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_3_3_descr">
+		<text>I found a parcel - it's very heavy... I can return it to the Sultan, he will surely be pleased... Or maybe I should open it and take the contents for myself?</text>
+	</string>
+	<string id="fe_senya_podkidnoy_4_title">
+		<text>Unknown PDA - Danila Extremist</text>
+	</string>
+	<string id="fe_senya_podkidnoy_4_descr">
+		<text>From the entry in the PDA and the information that I bought, it follows that Danila Extremist is a friend of the Senya Snap - maybe he can help find him? It is known that he signed a contract with scientists, so it's worth looking for him on Yantar or Jupiter.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_4_1_descr">
+		<text>In the entry in the PDA of Senya Snap, Danila Extremist is mentioned - who is this? I need to find out about him.</text>
+	</string>
+	<string id="fe_senya_podkidnoy_4_2_descr">
+		<text>From the information I bought, it follows that Danila Extremist is a friend of the Senya Snap - maybe he can help me find him? It is known that he signed a contract with scientists, so it's worth looking for him on Yantar or Jupiter.</text>
+	</string>
+	<string id="pda_quest_techicnian_1">
+		<text>I found a PDA here, old and damaged - would you like to take a look?</text>
+	</string>
+	<string id="pda_quest_techicnian_2">
+		<text>Hmm, why not... Let's see... The model is very old, it's almost impossible to find them now - I haven't seen them for several years. The condition is just disgusting to be honest! It says "Senya Snap" on the back - probably the owner, I think I heard something about him once... I'll connect it to the Universal Charger... So... Oh! It works! But, there's a Fatal Error - either something inside is broken, or the OS is corrupted - it's hard to say, it barely works. I can't fix it, that's for sure, but if there's something on it, I can try to get it. But, given the model and its general condition, it won't be easy - sorry, man, but you'll have to pay at least 10,000 rubles.</text>
+	</string>
+	<string id="pda_quest_techicnian_3">
+		<text>It's a deal. \n%c[d_orange][10,000 rubles]</text>
+	</string>
+	<string id="pda_quest_techicnian_4">
+		<text>So, I upload my hacker script to it... It's working. Hmm, a huge number of different coordinates throughout the Zone... \n\pAnd an entry - "Shoo, Danka Extremist, the Sultan has adjusted the job, it's not a big deal, but the pay is good - I go a little bit at night looking into the Red Forest, he said there is a tank somewhere in this ass, there will be a parcel somewhere nearby - need to deliver it to him personally. It's a bit annoying to go there for the first time, the guys from the brigade say, "dude, this place sucks," but I fucking hate these people. Long story short, tomorrow morning bring your ass to the Army Warehouses, to the village, where the Tower is, I'll spend the night there.".\n\nI'll send them all on your PDA. As for this PDA, you can keep it. Well, or return it to the owner, if he is still alive.</text>
+	</string>
+	<string id="pda_quest_techicnian_5">
+		<text>Listen, I'm broke right now, I'll come back about it later.</text>
+	</string>
+	<string id="pda_quest_techicnian_6">
+		<text>Okay, come back as soon as you have extra rubles.</text>
+	</string>
+	<string id="pda_quest_find_senya_1">
+		<text>Nitro, I have an unusual request - I need to get the encryption keys from this PDA and try to find an active PDA with the same key.</text>
+	</string>
+	<string id="pda_quest_find_senya_2">
+		<text>Wow! I haven't been approached with such requests for a long time. I see this is an old PDA, the key should be simple - I'll do it for 1,000 rubles.</text>
+	</string>
+	<string id="pda_quest_find_senya_3">
+		<text>Here. \n%c[d_orange][1,000 rubles]</text>
+	</string>
+	<string id="pda_quest_find_senya_4">
+		<text>So, first I'll give myself ROOT... And now access to the firmware... And... I found it - copy it. And now we insert this key into my program... There's a signal on the fucking Generators! I'll send the coordinates to your PDA. And man - be careful there if you're going there, it's the northernmost part of the Zone - not everyone comes back from there with a clear head.</text>
+	</string>
+	<string id="pda_quest_find_senya_5">
+		<text>Damn, I'm broke right now, I'll come back later.</text>
+	</string>
+	<string id="pda_quest_find_senya_6">
+		<text>Seriously? You don't have a spare thousand? Well okay.</text>
+	</string>
+	<string id="pda_quest_informant_1">
+		<text>I need information - I found a PDA in a Red Forest, with an inscription on the back - "Senya Snap" - do you know something about him?</text>
+	</string>
+	<string id="pda_quest_informant_2">
+		<text>Senya Snap? I've heard about this asshole - it's hard to find bastards like him in the Zone, but he's been missing for a long time. I'll tell you what, I'll take this PDA for 25,000 rubles. without further ado, some people really want to get information about him. If you're thinking of looking for it, I'll tell you for 15,000 rubles - But keep in mind, here you're crossing the road to very dangerous people and I won't take a PDA.</text>
+	</string>
+	<string id="pda_quest_informant_3">
+		<text>Okay, take the PDA, I don't need any problems.</text>
+	</string>
+	<string id="pda_quest_informant_4">
+		<text>Here the money - it's nice to deal with a reasonable person.</text>
+	</string>
+	<string id="pda_quest_informant_5">
+		<text>I'm willing to take the risk and pay for the information.  \n%c[d_orange][15,000 rubles]</text>
+	</string>
+	<string id="pda_quest_informant_6">
+		<text>Oh, you don't know what you're getting yourself into... Well, listen, Senya Snap is a Renegade, but even among them there are almost no such scumbags. As soon as he left the Swamps, he joined the Sultan's brigade, and he did some jobs for him. And then... Fuck knows what's next, he never introduced himself by his real name and constantly molded other people's pathes on his suit - and then shot stalkers in the back. The last time he was seen in the North, in an Army Nosorog with a bunch of cool guns and equipment, he was gathering a group of stalkers for a expedition to the very center of the Zone... And then, no one else heard anything about him or those who were with him... You can try asking Sultan if he knows anything useful about him. Oh, yes, he had a friend, Danila Extremist, with a bad reputation too, he can tell you something, but I have no idea where to look for him. The last I heard, he signed a contract with scientists.</text>
+	</string>
+	<string id="pda_quest_informant_7">
+		<text>I'll probably come back later about that.</text>
+	</string>
+	<string id="pda_quest_informant_8">
+		<text>Well, whatever you want, but it's better to get rid of this PDA as soon as possible.</text>
+	</string>
+	<string id="pda_quest_sultan_1">
+		<text>Hello Sultan, I need to dig up some information on the map from your brigade - Senya Snap - have you heard about this sucker?</text>
+	</string>
+	<string id="pda_quest_sultan_2">
+		<text>You don't beat around the bush - yes, I know this asshole, he was with my brigade - he betrayed me a bastard! I sent him to get some expensive things, but he disappeared! And why the hell you're interested in him, aren't you? What do you know about him?</text>
+	</string>
+	<string id="pda_quest_sultan_3">
+		<text>I found his PDA in the Red Forest, I was looking for him to find out what happened - but the situation seems interesting here.</text>
+	</string>
+	<string id="pda_quest_sultan_4">
+		<text>What you say? You find his PDA? Situation seems interesting? Listen, this guy betrayed me over for a lot of money! He was supposed to bring a parcel from the Red Forest! Denis Toothless was supposed to leave it at the tank somewhere - he left the parcel and went for away, his job was done - but Senya Snap did not get in touch with me, bitch! We thought we'd find a shopper in the sales markets, but he's probably got brains, he doesn't sell everything in one gulp. Or even hid it somewhere...</text>
+	</string>
+	<string id="pda_quest_sultan_5">
+		<text>Listen Sultan, I can try to look for this parcel for you, I'm sure it's hidden somewhere, your things are not missing.</text>
+	</string>
+	<string id="pda_quest_sultan_6">
+		<text>Oh-oh-oh! That's good to hear! Only, a lot of people were already looking, but no one found it. But okay, maybe you're a farce. Long story short, he was supposed to bring it to me from the Red Forest, there's a tank there - Denis Toothless left a parcel there. You can try to look there, in case Senya Snap actually didn't even pick it up, but died somewhere on the way to it - although my guys have already searched everything there. If you can't find it, scour through the Army warning, that's the only place this motherfucker from the Red Forest could have gone. I don't know where he could have hidden it in the Army Warehouses, so look for extra leads. Maybe you can pull something out from his PDA. Well, if you don't find it on the Army ones... Well, the whole South of the Zone is at your disposal! But if you do find it, I promise you, my brother, you'll wipe your ass with money! Good luck with your search.</text>
+	</string>
+	<string id="pda_quest_sultan_7">
+		<text>Why do you think he dumped you? Maybe this sucker died somewhere.</text>
+	</string>
+	<string id="pda_quest_sultan_8">
+		<text>Bullshit! If he had died somewhere, they would have found his stupid ass - I immediately sent the boys in the morning as he disappeared! But they didn't find a damn thing! He's alive, I bet my ass!</text>
+	</string>
+	<string id="pda_quest_sultan_case_0">
+		<text>Sultan, open the champagne! I found your parcel!</text>
+	</string>
+	<string id="pda_quest_sultan_case_1">
+		<text>Holy shit! This is it! I didn't believed that you would find it! Let's see if everything is in place...</text>
+	</string>
+	<string id="pda_quest_sultan_case_2">
+		<text>Listen, Sultan, you told me that there would be enough money to wipe my ass with them - where are they?</text>
+	</string>
+	<string id="pda_quest_sultan_case_3">
+		<text>*Opens the case*</text>
+	</string>
+	<string id="pda_quest_sultan_case_4">
+		<text>So what?</text>
+	</string>
+	<string id="pda_quest_sultan_case_5">
+		<text>You stupid bitch! Fuck the fucking rocks here! What the fuck did you bring me!? You couldn't have thoughts in your fucking head of opening it and looking!? Fuck, what kind of fuckers! Fuck! Fuck! Fuck!</text>
+	</string>
+	<string id="pda_quest_sultan_case_6">
+		<text>Sultan, well, I didn't know, and it's inappropriate to look through other people's parcels!</text>
+	</string>
+	<string id="pda_quest_sultan_case_7">
+		<text>Get the fuck out of here, fucker!</text>
+	</string>
+	<string id="pda_quest_sultan_case_8">
+		<text>Okay, okay, I'm leaving, don't fuss!</text>
+	</string>
+	<string id="pda_quest_daniil_1_0">
+		<text>Are you Danila Extremist?</text>
+	</string>
+	<string id="pda_quest_daniil_1_1">
+		<text>No, but I know him. Who's asking?</text>
+	</string>
+	<string id="pda_quest_daniil_1_2">
+		<text>I'm asking, I think he can help me with something.</text>
+	</string>
+	<string id="pda_quest_daniil_1_3">
+		<text>What's the deal? I can tell him personally, he won't talk to you.</text>
+	</string>
+	<string id="pda_quest_daniil_1_4">
+		<text>I found the PDA of a stalker he knows, and I think he can help me find him..</text>
+	</string>
+	<string id="pda_quest_daniil_1_5">
+		<text>What kind of stalker is he dead?</text>
+	</string>
+	<string id="pda_quest_daniil_1_6">
+		<text>Am I fucking know alive or dead? It says Senya Snap on the back.</text>
+	</string>
+	<string id="pda_quest_daniil_1_7">
+		<text>Senya? I know him... It's not safe to talk about this here, come with me, I'll take you to Danila.</text>
+	</string>
+	<string id="pda_quest_daniil_1_8">
+		<text>Okay..</text>
+	</string>
+	<string id="pda_quest_daniil_2_0">
+		<text>Are we there yet? I don't see him anywhere.</text>
+	</string>
+	<string id="pda_quest_daniil_2_1">
+		<text>Here it is, right in front of you - the last thing you will see in your filthy life!</text>
+	</string>
+	<string id="pda_quest_daniil_2_2">
+		<text>*Draw your weapon*</text>
+	</string>
+	<string id="pda_quest_daniil_2_3">
+		<text>Okay, man, take it easy!</text>
+	</string>
+	<string id="pda_quest_daniil_2_4">
+		<text>Shut up, you trash! Where did you find this PDA!?</text>
+	</string>
+	<string id="pda_quest_daniil_2_5">
+		<text>The mine in the Red Forest - was lying there all battered and discharged.</text>
+	</string>
+	<string id="pda_quest_daniil_2_6">
+		<text>Okay... What else do you know?</text>
+	</string>
+	<string id="pda_quest_daniil_2_7">
+		<text>I know about the parcel that Senya Snap was supposed to deliver to the Sultan.</text>
+	</string>
+	<string id="pda_quest_daniil_2_8">
+		<text>I know that you know Senya Snap, that's why I've been looking for you.</text>
+	</string>
+	<string id="pda_quest_daniil_2_9">
+		<text>That's all I know!</text>
+	</string>
+	<string id="pda_quest_daniil_2_10">
+		<text>You're lying! Fuck you!</text>
+	</string>
+	<string id="pda_quest_daniil_2_11">
+		<text>Well, I know Senya Snap - why do you need him?</text>
+	</string>
+	<string id="pda_quest_daniil_2_12">
+		<text>The Sultan? Oh, so you're from him - you fucked!</text>
+	</string>
+	<string id="pda_quest_daniil_2_13">
+		<text>No, wait!</text>
+	</string>
+	<string id="pda_quest_daniil_2_14">
+		<text>I... I don't fucking know anymore! I think I want to give him back his PDA, but I think I want to figure out what's going on here!</text>
+	</string>
+	<string id="pda_quest_daniil_2_15">
+		<text>Senya hasn't been in touch for several days, and his group has been found dead - we're being hunted, and then you show up with his fucking old PDA, which he fucked up in the Red Forest when he took that fucking case!</text>
+	</string>
+	<string id="pda_quest_daniil_2_16">
+		<text>Man, put the gun down, we're not enemies to each other.</text>
+	</string>
+	<string id="pda_quest_daniil_2_17">
+		<text>Okay... Okay... So you want to find him? Hm... There's nothing for you to do, get involved in this kind of bullshit? Ugh.</text>
+	</string>
+	<string id="pda_quest_daniil_2_18">
+		<text>So, is there any way you can help me find him?</text>
+	</string>
+	<string id="pda_quest_daniil_2_19">
+		<text>In fact, no - he was assembling a group to scout the approaches to the Chernobyl NPP - the group is dead, but he is missing - he is not in touch. Consider yourself looking for a needle in a haystack... Although I have a thought - you still have his old PDA, don't you?</text>
+	</string>
+	<string id="pda_quest_daniil_2_20">
+		<text>Unfortunately, I sold it.</text>
+	</string>
+	<string id="pda_quest_daniil_2_21">
+		<text>Yes, I have it with me.</text>
+	</string>
+	<string id="pda_quest_daniil_2_22">
+		<text>Yes, I have it in my hiding place somewhere.</text>
+	</string>
+	<string id="pda_quest_daniil_2_23">
+		<text>Heck! Then I won't be able to help you in any way - I had the idea to get the encryption keys from his old PDA and try to detect an active PDA with the same key... Well, that's all my powers are - sorry stalker, I can't help you in any way - you just have to look for him all over the North.</text>
+	</string>
+	<string id="pda_quest_daniil_2_24">
+		<text>Damn... Okay, thanks for that, too. Good luck.</text>
+	</string>
+	<string id="pda_quest_daniil_2_25">
+		<text>Wonderful. Listen, you can try to get the encryption keys from his old PDA and try to find an active PDA with the same key - Nitro will be able to cope with this in no time. If everything goes well, you can get his exact coordinates - if, of course, his PDA is active...</text>
+	</string>
+	<string id="pda_quest_daniil_2_26">
+		<text>Understood, I'll go to the Nitro immediately. Where can I find you later?</text>
+	</string>
+	<string id="pda_quest_daniil_2_27">
+		<text>Оh stalker, I'm tired of the Zone - I think I've been trampling on the zone for years. The whole case thing... Anyway, don't look for me, I'll be out of here in a couple of days. And Senya... It seems to me that he disappeared for a reason... Things that he told me before... His dead group, butchered like dogs... Monolith... Be on your guard, stalker, most likely only one of you will survive.</text>
+	</string>
+	<string id="pda_quest_daniil_2_28">
+		<text>Well, good luck to you, Danila Extremist.</text>
+	</string>
+	<string id="pda_quest_senya_1">
+		<text>Don't move, bitch! Put the gun and the PDA on the ground! If you move, I'll blow your brains out!</text>
+	</string>
+	<string id="pda_quest_senya_2">
+		<text>Okay, okay! Just don't shoot!</text>
+	</string>
+	<string id="pda_quest_senya_3">
+		<text>Listen, man, we can sort this out!</text>
+	</string>
+	<string id="pda_quest_senya_4">
+		<text>Go fuck yourself!</text>
+	</string>
+	<string id="pda_quest_senya_5">
+		<text>Who are you, you bastard!? What the fuck are you doing here!?</text>
+	</string>
+	<string id="pda_quest_senya_6">
+		<text>Stalker! Just a stalker! I'm exploring this place!</text>
+	</string>
+	<string id="pda_quest_senya_7">
+		<text>You lying! No one in their good state of mind would go explore this place! You cooked!</text>
+	</string>
+	<string id="pda_quest_senya_8">
+		<text>There's a bloodsucker behind you!</text>
+	</string>
+	<string id="pda_quest_senya_9">
+		<text>*Draw your weapon*</text>
+	</string>
+	<string id="pda_quest_senya_10">
+		<text>Senya Snap - I've been looking for you! I found your PDA in the Red Forest!</text>
+	</string>
+	<string id="pda_quest_senya_11">
+		<text>What!? You... Are fucking inasane!? Because of some fucking PDA, you went through the whole fucking Zone!? What do you want!?</text>
+	</string>
+	<string id="pda_quest_senya_12">
+		<text>What happened at the mine in the Red Forest?</text>
+	</string>
+	<string id="pda_quest_senya_13">
+		<text>Who the hell knows! My whole head started buzzing, and the electronics died because of the Emission! And then there was this fucking controller in a raincoat... After that, everything is a blur - I only remember from the moment where I got to the Army Warehouses!</text>
+	</string>
+	<string id="pda_quest_senya_14">
+		<text>What was in the case?</text>
+	</string>
+	<string id="pda_quest_senya_15">
+		<text>What do you think!? Artifacts! 30 kilograms of artifacts! Danila and I opened it for the sake of interest and almost lost consciousness! There were artifacts there that I had never even heard of! We decided to dump the Sultan and began carefully selling them one at a time so that he could not find us! Having sold half of the artifacts, we got 250 grands, while the Sultan gave only 15 for the work!</text>
+	</string>
+	<string id="pda_quest_senya_16">
+		<text>What are you going to do next? Why are you even here!?</text>
+	</string>
+	<string id="pda_quest_senya_17">
+		<text>Monolith... Great Monolith! He... He called me when we opened the case! And every day he called more and more! He promised me everything I wanted! He promised me that he would be able to get Her back... And when I gathered a group to scout the approaches to the Chernobyl NPP, he told me to kill them all - and I killed them all - five people! Cut their throats at night! And then he called me again... And I couldn't resist him!</text>
+	</string>
+	<string id="pda_quest_senya_18">
+		<text>What does your friend Danila have to do with it?</text>
+	</string>
+	<string id="pda_quest_senya_19">
+		<text>We agreed to meet at the Army Warehouses, at the tower - buddies after all. And as soon as we met, we decided to open the case... After we started selling the artifacts, he signed a contract with the scientists - this way we could hide their sale, and also find out details about what awaits us at the Chernobyl NPP - he received information from the scientists as best he could - but then Monolith called me and I went alone, without him!</text>
+	</string>
+	<string id="pda_quest_senya_20">
+		<text>Listen, man, put the gun down! You don't need to do this!</text>
+	</string>
+	<string id="pda_quest_senya_21">
+		<text>Everyone wants to live! Why the fuck did I need you!? Kiss my ass, abortion victim!</text>
+	</string>
+	<string id="pda_quest_senya_22">
+		<text>Don't do this!</text>
+	</string>
+	<string id="pda_quest_saharov_0">
+		<text>Hello Professor Sakharov, I'm looking for a stalker who recently signed a contract with you - Danila Extremist - do you know where I can find him?</text>
+	</string>
+	<string id="pda_quest_saharov_1">
+		<text>I'm sorry, but there are definitely no such people in our bunker, I know all my employees and stalkers. Try asking around on Jupiter, maybe they can tell you something about him.</text>
+	</string>
+	<string id="pda_quest_saharov_2">
+		<text>I'm sorry, but there are definitely no such people in our bunker, I know all my employees and stalkers. Also, information about our employees is only available to our employees, so don't expect anyone to tell you anything.</text>
+	</string>
+	<string id="pda_quest_ecolog_jup_0">
+		<text>Hello Professor Herman, I'm looking for a stalker who recently signed a contract with you - Danila Extremist - do you know where I can find him?</text>
+	</string>
+	<string id="pda_quest_ecolog_jup_1">
+		<text>Yes, we have such a stalker, who recently signed a contract, and has already done so much for us - a wonderful young man! You can find him at the Cement Factory, he's supposed to be watching the local fauna right now.</text>
+	</string>
+	<string id="pda_quest_ecolog_jup_2">
+		<text>I'm sorry, but what makes you think that I will provide information about our employees? Information about our employees is available only to our employees - sign a contract with us and you will have access to it.</text>
+	</string>
+	<string id="pda_quest_informant_kulon_0">
+		<text>I have an unusual PDA, it belonged to the stalker Senya Snap - interested?</text>
+	</string>	
+	<string id="pda_quest_informant_kulon_1">
+		<text>Let me see... Hmm... I have no doubt that this is his PDA, but there is a problem - it is encrypted - and this model of PDA cannot be decrypted without deleting all the data on it. It's sad - I'm sure there is an incredible amount of information there. You can keep it, it's useless to me.</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_0">
+		<text>I have an unusual PDA - can you decipher it?</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_1">
+		<text>Let me see... Hmm, no, I can't - this model is not decipherable - i can only reset all the data. However, the model is very rare and very good - for only 5,000 rubles I can make it "work" for you.</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_2">
+		<text>Okay, here. \n%c[d_orange][5,000 rubles]</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_3">
+		<text>So, I'll upload my script to it... I'll give myself an Administrator... And now I'll reset it to factory settings... Hmm, it asks for the factory password - this is the first time I've seen this. Maybe 12345? Oh, it worked - here you go.</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_4">
+		<text>Hmm, I'll come back later.</text>
+	</string>
+	<string id="pda_quest_techicnian_kulon_5">
+		<text>Okay, whatever you want.</text>
+	</string>
+</string_table>

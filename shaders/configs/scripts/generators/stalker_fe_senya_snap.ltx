@@ -1,0 +1,32 @@
+[logic@stalker_fe_senya_snap]
+active = beh@fe_senya_snap
+suitable = {=check_npc_name(fe_senya_snap)} true
+prior = 2000
+   
+[beh@general]
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+turn_on_campfire = false
+invulnerable = {=actor_true_enemy} false, true
+meet = meet
+target = waypoint
+
+[meet]
+close_anim = threat_na
+close_victim = actor
+close_distance = 10
+use = {=actor_true_enemy} false, self {+fe_senya_snap_dialog}
+use = {=actor_true_enemy} false, self {+fe_senya_snap_dialog}
+trade_enable = false
+allow_break = false
+
+[beh@fe_senya_snap]:beh@general
+pt1 = 88860000,threat_danger | pos:-153.51837158203,30.706260681152,-298.60131835938 look:-153.44188635796,30.706260681152,-297.60831338167
+path_end = loop
+on_actor_dist_le = 10 | {-fe_senya_snap_dialog} remark@send_info
+
+[remark@send_info]
+target = story | actor
+anim = threat_na
+on_timer = 500 | %+fe_senya_snap_dialog% beh@fe_senya_snap
