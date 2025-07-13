@@ -1,0 +1,75 @@
+-- спасибо Босс за совет юзать этот скрипт
+local trade_table = {
+	{
+		[1] = {
+			["device_pda_0"] = 1,
+			["fe_batteries_aa"] = 5,
+			["fe_batteries_d"] = 5,
+			["fe_batteries_f"] = 5,
+			["fe_batteries_universal_charger"] = 1,
+			["detector_geiger2"] = 1,
+		},
+		[2] = {
+			["tool_fix_pda"] = 1,
+		},
+	},
+}
+
+local traders = {
+	["mar_base_owl_stalker_trader"] 					= { chance = 90, idx = 1 },
+	["red_greh_trader"] 								= { chance = 90, idx = 1 },
+	["pri_monolith_monolith_trader_stalker"] 			= { chance = 90, idx = 1 },
+	["zat_stancia_trader_merc"] 						= { chance = 90, idx = 1 },
+	["mil_smart_terrain_7_10_freedom_trader_stalker"] 	= { chance = 90, idx = 1 },
+	["trader_monolith_kbo"] 							= { chance = 90, idx = 1 },
+	["cit_killers_merc_trader_stalker"] 				= { chance = 90, idx = 1 },
+	["jup_a6_freedom_trader_ashot"] 					= { chance = 90, idx = 1 },
+	["zat_b30_owl_stalker_trader"] 						= { chance = 90, idx = 1 },
+	["val_smart_terrain_7_4_bandit_trader_stalker"] 	= { chance = 90, idx = 1 },
+	["dasc_trade_mlr"] 									= { chance = 90, idx = 1 },
+	["m_trader"] 										= { chance = 90, idx = 1 },
+	
+	["zat_tech_mlr"]                               		= { chance = 90, idx = 2 },
+    ["esc_smart_terrain_5_7_loner_mechanic_stalker"] 	= { chance = 90, idx = 2 },
+    ["jup_b217_stalker_tech"]                    		= { chance = 90, idx = 2 },
+    ["jup_b6_scientist_tech"]                     		= { chance = 90, idx = 2 },
+    ["bar_visitors_stalker_mechanic"]             		= { chance = 90, idx = 2 },
+    ["mar_base_stalker_tech"]                     		= { chance = 90, idx = 2 },
+    ["cit_killers_merc_mechanic_stalker"]         		= { chance = 90, idx = 2 },
+    ["mil_smart_terrain_7_7_freedom_mechanic_stalker"] 	= { chance = 90, idx = 2 },
+    ["agr_smart_terrain_1_6_army_mechanic_stalker"] 	= { chance = 90, idx = 2 },
+    ["val_smart_terrain_7_3_bandit_mechanic_stalker"] 	= { chance = 90, idx = 2 },
+    ["pri_monolith_monolith_mechanic_stalker"]     		= { chance = 90, idx = 2 },
+    ["mechanic_army_yan_mlr"]                     		= { chance = 90, idx = 2 },
+    ["mechanic_monolith_kbo"]                     		= { chance = 90, idx = 2 },
+    ["jup_cont_mech_bandit"]                     		= { chance = 90, idx = 2 },
+}
+
+function fe_trade_spawn(npc)
+	local trader = npc:section()
+
+	if (not traders[trader]) then
+		return
+	end
+
+	local loot_table = traders[trader].chance >= math.random(100) and trade_table[traders[trader].idx]
+
+	if (not loot_table) then 
+		return 
+	end
+
+	local supply_level = clamp(trader_autoinject.supply_level(npc, true) or 0, 0, 5)
+
+	for k,v in pairs(loot_table) do
+		if supply_level >= k then
+			trader_autoinject.spawn_items(npc, loot_table[k], true)
+		end
+	end
+end
+
+
+TraderAuto = trader_autoinject.update
+function trader_autoinject.update(npc)
+    TraderAuto(npc)
+    fe_trade_spawn(npc)
+end
