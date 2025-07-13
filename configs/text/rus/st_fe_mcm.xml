@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="ui_mcm_menu_fatal_error">
+		<text>Fatal Error</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_pda_frying">
+		<text>Поломка КПК</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_devices_frying">
+		<text>Поломка устройств</text>
+	</string>
+	<string id="ui_mcm_menu_fatal_error_pda_other_settings">
+		<text>Другие параметры</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay">
+		<text>Частота проверки КПК на шанс "сгореть" (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay_desc">
+		<text>Промежуток времени, во время выброса или пси шторма, через который игра будет делать проверку для поломки КПК и устройств.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die">
+		<text>Шанс устройств сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra">
+		<text>Шанс устройств сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation">
+		<text>Коэффициент шанса устройств сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_desc">
+		<text>Шанс того, что устройство выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra_desc">
+		<text>Шанс того, что устройство выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.10, тогда шанс устройств сгореть будет равен 1%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die">
+		<text>Шанс КПК 0.1 сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die">
+		<text>Шанс КПК 1.0 сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die">
+		<text>Шанс КПК 2.0 сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die">
+		<text>Шанс КПК 3.1 сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die">
+		<text>Шанс Военного КПК сгореть (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error">
+		<text>Шанс BSOD для КПК 0.1 (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error">
+		<text>Шанс BSOD для КПК 1.0 (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error">
+		<text>Шанс BSOD для КПК 2.0 (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error">
+		<text>Шанс BSOD для КПК 3.1 (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error">
+		<text>Шанс BSOD для Военного КПК (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error_desc">
+		<text>Шанс того, что после выброса или пси шторма КПК 0.1 временно будет сломан.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error_desc">
+		<text>Шанс того, что после выброса или пси шторма КПК 1.0 временно будет сломан.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error_desc">
+		<text>Шанс того, что после выброса или пси шторма КПК 2.0 временно будет сломан.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error_desc">
+		<text>Шанс того, что после выброса или пси шторма КПК 3.1 временно будет сломан.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error_desc">
+		<text>Шанс того, что после выброса или пси шторма Военного КПК временно будет сломан.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra">
+		<text>Шанс КПК 0.1 сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra">
+		<text>Шанс КПК 1.0 сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra">
+		<text>Шанс КПК 2.0 сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra">
+		<text>Шанс КПК 3.1 сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra">
+		<text>Шанс Военного КПК сгореть от электрического воздействия (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra_desc">
+		<text>Шанс того, что КПК 0.1 выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra_desc">
+		<text>Шанс того, что КПК 1.0 выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra_desc">
+		<text>Шанс того, что КПК 2.0 выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra_desc">
+		<text>Шанс того, что КПК 3.1 выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra_desc">
+		<text>Шанс того, что Военного КПК выйдет из строя из-за воздействия электрических аномалий.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_desc">
+		<text>Шанс того, что КПК 0.1 выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_desc">
+		<text>Шанс того, что КПК 1.0 выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_desc">
+		<text>Шанс того, что КПК 2.0 выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_desc">
+		<text>Шанс того, что КПК 3.1 выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_desc">
+		<text>Шанс того, что Военного КПК выйдет из строя во время выброса или пси шторма.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_radiation">
+		<text>Коэффициент шанса КПК 0.1 сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_radiation">
+		<text>Коэффициент шанса КПК 1.0 сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_radiation">
+		<text>Коэффициент шанса КПК 2.0 сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_radiation">
+		<text>Коэффициент шанса КПК 3.1 сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_radiation">
+		<text>Коэффициент шанса Военного КПК сгореть от радиации (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda0_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 1, тогда шанс КПК 0.1 сгореть будет равен 10%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda1_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.75, тогда шанс КПК 1.0 сгореть будет равен 7%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda2_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.50, тогда шанс КПК 2.0 сгореть будет равен 5%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda3_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.25, тогда шанс КПК 3.1 сгореть будет равен 2%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_milspec_to_die_radiation_desc">
+		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.10, тогда шанс Военного КПК сгореть будет равен 1%.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry">
+		<text>Минимальное Количество Накопленной Радиации</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry_desc">
+		<text>Если Накопленная Радиация больше, чем Минимальное Количество Накопленной Радиации, тогда игра попробует сломать ваш КПК или устройство.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay">
+		<text>Частота проверки на шанс поломки от радиации (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay_desc">
+		<text>Если Накопленная Радиация больше, чем Минимальное Количество Накопленной Радиации, тогда игра попробует сломать ваш КПК или устройство через каждое ЭТО значение секунд.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale">
+		<text>Коэффициент шума для КПК от радиации</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale_desc">
+		<text>Например, 1 - огромное количество шума даже от маленькой дозы радиации, 0 - никакого шума, даже посреди Реактора №4 ЧАЭС.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale">
+		<text>Коэффициент Накопленной Радиации</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale_desc">
+		<text>По сути, количество Накопленной Радиации за единицу радиации. Чем больше, тем быстрее вы накапливаете радиацию, и наоборот.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower">
+		<text>Снижение Накопленной Радиации</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower_desc">
+		<text>Кол-во Накопленной Радиации, которая снизится через определённый промежуток времени.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min">
+		<text>Минимальное время перезагрузки (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min_desc">
+		<text>Минимальное время перезагрузки после выброса или пси-шторма. Должно быть меньше, чем Максимальное время перезагрузки.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max">
+		<text>Максимальное время перезагрузки (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max_desc">
+		<text>Максимальное время перезагрузки после выброса или пси-шторма. Должно быть больше, чем Минимальное время перезагрузки.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage">
+		<text>Шанс повреждения КПК (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage_desc">
+		<text>Шанс того, что после получения физического урона ваш КПК будет повреждён.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius">
+		<text>Радиус "Бипалки" КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius_desc">
+		<text>Если в этом радиусе есть сталкеры, КПК издаст звуковой сигнал. Работает только на поздних моделях КПК.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key">
+		<text>Клавиша перезагрузки КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key_desc">
+		<text>Выберите клавишу для перезагрузки КПК.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value">
+		<text>Пассивный шум КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value_desc">
+		<text>Пассивный шум для КПК, который будет присутствовать всегда.</text>
+	</string>
+</string_table>

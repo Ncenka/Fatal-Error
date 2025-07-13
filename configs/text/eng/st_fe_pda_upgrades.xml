@@ -1,0 +1,92 @@
+<string_table>
+	<string id="pda_start_1">
+		<text>I have a couple of questions about the PDA...</text>
+	</string>
+	<string id="pda_start_2">
+		<text>What exactly do you need?</text>
+	</string>
+	<string id="pda_start_3">
+		<text>Well, i changed my mind...</text>
+	</string>
+	<string id="pda_fix_screen_1">
+		<text>My PDA screen is broken - can you replace it?</text>
+	</string>
+	<string id="pda_fix_screen_2">
+		<text>What!? You can't break it! There's tempered glass in there, if you throw it against the wall, the brick will break! Okay, give it here... So... Well, the insides are intact, nothing serious, but replacing the screen will cost you 5,000 rubles! I can't imagine how you broke it!</text>
+	</string>
+	<string id="pda_fix_screen_3">
+		<text>Take the money for the screen. \n%c[d_orange][5,000 rubles]</text>
+	</string>
+	<string id="pda_fix_screen_4">
+		<text>That's great, here you go, it's as good as new now.</text>
+	</string>
+	<string id="pda_fix_screen_5">
+		<text>It's too expensive... I'll probably come back about it later..</text>
+	</string>
+	<string id="pda_fix_screen_6">
+		<text>"Too expensive"!? Although, what am I surprised about - breaking tempered glass...</text>
+	</string>
+	<string id="pda_fix_1">
+		<text>My PDA just don't work!</text>
+	</string>
+	<string id="pda_fix_2">
+		<text>Give it here... Yeah, I get it - it fried out, that happens sometimes, the voltage jumps - did you get caught by emission or hit by electra? Whatever the reason, I'll need to replace almost all the electrical components. Well, you're in trouble - you'll have to shell out at least 5,000 rubles and at max 40,000 rubles - depends on PDA model. And also, don't even ask me to fix anything other than regular stalker PDAs! There was a stalker once, he brought God knows what, some kind of ultra-modern PDA, a military model - i hate such models! They're so fancy that fixing them isn't worth a second of my time.</text>
+	</string>
+	<string id="pda_fix_9">
+		<text>Okay, take the money - fix my PDA 0.1. \n%c[d_orange][5,000 rubles]</text>
+	</string>
+	<string id="pda_fix_3">
+		<text>Oh, okay, here's the money - fix my PDA 1.0. \n%c[d_orange][10,000 rubles]</text>
+	</string>
+	<string id="pda_fix_4">
+		<text>Expensive, but fair - fix my PDA 2.0. \n%c[d_orange][20,000 rubles]</text>
+	</string>
+	<string id="pda_fix_5">
+		<text>Oh, so expensive, but there is not much choice - fix my PDA 3.1. \n%c[d_orange][40,000 rubles]</text>
+	</string>
+	<string id="pda_fix_6">
+		<text>How much!? I think I can do without a PDA for now...</text>
+	</string>
+	<string id="pda_fix_7">
+		<text>That's great! Here you go, it should work like new now!</text>
+	</string>
+	<string id="pda_fix_8">
+		<text>Well, as you wish, but you won't last long without PDA... If you have extra money, come back.</text>
+	</string>
+	<string id="st_pda_fix">
+		<text>The functionality of the PDA has been restored.</text>
+	</string>
+	<string id="st_pda_screen_fix">
+		<text>PDA screen has been replaced.</text>
+	</string>
+	<string id="st_no_map_zones_upgrade">
+		<text>Signal booster</text>
+	</string>
+	<string id="st_no_map_zones_upgrade_descr">
+		<text>Allows establishing a satellite connection without any issues, providing access to GPS almost anywhere.</text>
+	</string>
+		<string id="st_monolitch_hackers_upgrade">
+		<text>Communication channel encryptor</text>
+	</string>
+	<string id="st_monolitch_hackers_upgrade_descr">
+		<text>In areas controlled by the Monolith, PDAs do not work and display an error - it is said that Monolith members can track active PDAs in their territory and remotely disrupt their operation. However, the Communication channel encryptor protects the PDA from this fate.</text>
+	</string>
+		<string id="st_emission_upgrade">
+		<text>Foil shielding</text>
+	</string>
+	<string id="st_emission_upgrade_descr">
+		<text>Proper shielding with foil reduces the risk of the Emission and Psy-Storm affecting the device's sensitive components almost to zero, thereby increasing its survivability in the extreme conditions of the Zone.</text>
+	</string>
+	<string id="st_radiation_upgrade">
+		<text>Lead coating</text>
+	</string>
+	<string id="st_radiation_upgrade_descr">
+		<text>High doses of radiation can disrupt the device's operation or damage its components - diggers from the Scrapyard developed an effective shielding method to prevent any radiation-related damage.</text>
+	</string>
+		<string id="st_electra_upgrade">
+		<text>Cardan's current limiter</text>
+	</string>
+	<string id="st_electra_upgrade_descr">
+		<text>A special miniature current limiter for devices, designed by technician Cardan. Extremely expensive and impractical to install on most devices, but indispensable for expensive and fragile equipment.</text>
+	</string>
+</string_table>
