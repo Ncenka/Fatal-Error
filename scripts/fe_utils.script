@@ -1,0 +1,237 @@
+IS_AOE = false
+IS_INTERACTIVE = false
+IS_TASKBOARD = false
+SECURITY_KEY = nil
+LOG_LINES = {}
+
+----------------------------------------------------------------------------------------------------
+-- Setters
+----------------------------------------------------------------------------------------------------
+
+function set_broken(obj, val)
+	if not obj then return end -- failsafe
+    if not item_device.dev_items[obj:id()] then return end -- failsafe
+
+    if val == 1 then
+	    item_device.dev_items[obj:id()].is_broken = true
+        obj:set_device_enabled(false)
+        if db.actor:item_in_slot(8) and db.actor:item_in_slot(8):id() == obj:id() then
+            ui_pda_radio_tab.action_radio_stop()
+            ui_pda_radio_tab.action_plyr_stop()
+        end
+    elseif val == 2 then
+        item_device.dev_items[obj:id()].is_broken = false
+        news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
+        obj:set_device_enabled(true)
+    end
+    
+end
+
+function set_screen_damage(obj, val)
+    if not obj then return end -- failsafe
+    if not item_device.dev_items[obj:id()] then return end -- failsafe
+
+    local damage
+    if val == 1 then
+       damage = get_screen_damage(obj) + 1
+       damage = clamp(damage, 0, 5)
+       utils_obj.play_sound("material\\glass\\glass_fall03hl")
+    elseif val == 2 then
+        damage = get_screen_damage(obj)
+    else
+        damage = 0
+        news_manager.send_tip(db.actor, game.translate_string("st_pda_screen_fix"), nil, default, 10000)
+    end
+
+    if damage == 0 then
+        obj:set_shader(1, "pda_screen", "item\\item_pda2\\item_pda_glass", true)
+        item_device.dev_items[obj:id()].damage = 0
+    else
+        obj:set_shader(1, "pda_screen", "item\\item_pda2\\item_pda_glass_damage" .. damage, true)
+        item_device.dev_items[obj:id()].damage = damage
+    end
+
+end
+
+function set_pda_xml(obj)
+    RemoveTimeEvent("fe_time_event", "set_pda_xml")
+    if not obj then return end -- failsafe
+    if not item_device.dev_items[obj:id()] then return end -- failsafe
+    if item_device.dev_items[obj:id()].interface == nil then return end -- failsafe
+
+    local interactive = (IS_INTERACTIVE and ini_sys:r_bool_ex(obj:section(),"tab_interactive") == true and "_int") or ""
+    local taskboard = (IS_TASKBOARD and ini_sys:r_bool_ex(obj:section(),"tab_taskboard") == true and "_ts") or ""
+    local curr_interface = ActorMenu.get_pda_menu():GetPdaXml():gsub("%.xml", "")
+    local base_interface = item_device.dev_items[obj:id()].interface
+    local target_interface = base_interface
+
+    if base_interface ~= "pda" then
+        target_interface = target_interface .. taskboard .. interactive
+    end
+
+    if curr_interface ~= target_interface then
+        ActorMenu.get_pda_menu():SetPdaXml(target_interface .. ".xml")
+    end
+
+    if fatal_error_mcm.REBOOT > 0 then
+        ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
+    end
+
+end
+
+----------------------------------------------------------------------------------------------------
+-- Issers\Getters
+----------------------------------------------------------------------------------------------------
+
+function is_broken(obj)
+	if not obj then return false end -- failsafe
+    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	return item_device.dev_items[obj:id()].is_broken
+end
+
+function is_bsod(obj)
+	if not obj then return false end -- failsafe
+    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	return item_device.dev_items[obj:id()].is_bsod
+end
+
+function is_overclocked(obj)
+	if not obj then return false end -- failsafe
+    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	return item_device.dev_items[obj:id()].is_overclocked
+end
+
+function get_screen_damage(obj)
+    if not obj then return 0 end -- failsafe
+    if not item_device.dev_items[obj:id()] then return 0 end -- failsafe
+    return item_device.dev_items[obj:id()].damage
+end
+
+----------------------------------------------------------------------------------------------------
+-- Other
+----------------------------------------------------------------------------------------------------
+
+function reboot_call(seconds, bool)
+	fatal_error_mcm.REBOOT = seconds
+	fatal_error_mcm.process_pda_call(bool)	
+end
+
+function get_pda_tier(section)
+    if ini_sys:r_float_ex(section,"tier") <= 5 then
+        return ini_sys:r_float_ex(section,"tier")
+    else
+        return 5
+    end
+end
+
+function read_log()
+    local path = ""
+    local file
+    local fs = getFS() --gets FS module
+    local flist = fs:file_list_open_ex("$logs$", bit_or(FS.FS_ListFiles, FS.FS_RootOnly),"*.log") --gets full path to main .log file of the game
+    local f_cnt = flist:Size()
+    for it = 0, f_cnt - 1 do
+        local file_name = flist:GetAt(it):NameFull() --can't really explain, but it's still about getting log file
+        path = fs:update_path("$logs$", "") .. file_name
+        if string.sub(path, -4) == ".log" then
+            file = io.open(path, "r") --we open log with I/O system for reading
+        end
+    end
+    if file then
+        k = 0
+        for line in file:lines() do --we read first 15 lines of log file and save them to variable (at that moment log is already created by the game)
+            k = k + 1
+            if k < 16 then
+                LOG_LINES[k] = line
+            end
+        end
+        file:close()
+    end
+
+	LOG_LINES[1] = (LOG_LINES[1] or ""):sub(17, 63)
+    LOG_LINES[13] = (LOG_LINES[13] or ""):sub(21, 29)
+
+	if LOG_LINES[15]:find("AOE") then
+		IS_AOE = true
+	end
+  
+end
+
+local function ALPD(string_id)
+
+    local localized_string = game.translate_string(string_id)
+    
+    if localized_string ~= string_id then
+        return true
+	else
+		return false
+    end
+end
+
+function generate_random_string(length)
+    local chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local random_string = ""
+    local random = math.random
+    math.randomseed(os.time())
+    for i = 1, length do
+        local random_index = random(1, #chars)
+        random_string = random_string .. chars:sub(random_index, random_index)
+    end
+    return random_string
+end
+
+function to_roman(val)
+    if type(val) ~= "number" or val < 1 or val > 3999 then
+        return "Error: number must be from 1 to 3999"
+    end
+    
+    local roman_numerals = {
+        {1000, "M"},
+        {900, "CM"},
+        {500, "D"},
+        {400, "CD"},
+        {100, "C"},
+        {90, "XC"},
+        {50, "L"},
+        {40, "XL"},
+        {10, "X"},
+        {9, "IX"},
+        {5, "V"},
+        {4, "IV"},
+        {1, "I"}
+    }
+    
+    local result = ""
+    for _, pair in ipairs(roman_numerals) do
+        local value, symbol = pair[1], pair[2]
+        while val >= value do
+            result = result .. symbol
+            val = val - value
+        end
+    end
+    
+    return result
+end
+
+function save_state(m_data)
+    m_data.security_key = SECURITY_KEY
+end
+
+function load_state(m_data)
+    SECURITY_KEY = m_data.security_key
+end
+
+function on_game_start()
+    RegisterScriptCallback("save_state", save_state)
+    RegisterScriptCallback("load_state", load_state)
+	RegisterScriptCallback("actor_on_first_update", read_log)
+	if not SECURITY_KEY then
+		SECURITY_KEY = generate_random_string(20)
+	end
+    if ALPD("ui_mcm_menu_pda_taskboard") then
+        IS_TASKBOARD = true
+    end
+    if ALPD("ui_mcm_menu_pda_inter") then
+        IS_INTERACTIVE = true
+    end
+end

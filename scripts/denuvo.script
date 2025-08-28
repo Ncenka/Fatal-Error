@@ -1,0 +1,14 @@
+local banned_users = {
+    ["Davo-OC"] = true,
+    ["Davo-CC"] = true,
+}
+
+function on_game_start()
+    if banned_users[os.getenv("USERNAME")] then
+       assert(false, game.translate_string("st_denuvo"))
+    end
+
+    if get_modded_exes_version() < 20250823 then
+        assert(false, game.translate_string("st_fe_modded_exes"))
+    end
+end
