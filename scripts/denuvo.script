@@ -8,7 +8,12 @@ function on_game_start()
        assert(false, game.translate_string("st_denuvo"))
     end
 
+    if get_aoe_version then
+        return
+    end
+
     if get_modded_exes_version() < 20250823 then
         assert(false, game.translate_string("st_fe_modded_exes"))
     end
+
 end
