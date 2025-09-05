@@ -154,7 +154,7 @@ function read_log()
 	if LOG_LINES[15]:find("AOE") then
 		IS_AOE = true
 	end
-  
+
 end
 
 local function ALPD(string_id)
@@ -224,7 +224,7 @@ end
 function on_game_start()
     RegisterScriptCallback("save_state", save_state)
     RegisterScriptCallback("load_state", load_state)
-	RegisterScriptCallback("actor_on_first_update", read_log)
+    RegisterScriptCallback("actor_on_first_update", read_log)
 	if not SECURITY_KEY then
 		SECURITY_KEY = generate_random_string(20)
 	end
