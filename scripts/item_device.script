@@ -412,6 +412,7 @@ function on_game_start()
 	
 	RegisterScriptCallback("server_entity_on_unregister",se_device_on_unregister)
 	RegisterScriptCallback("actor_on_feeling_anomaly",on_anomaly_touch)
+	
 	RegisterScriptCallback("on_key_release",on_key_release)
 	RegisterScriptCallback("on_key_hold",on_key_hold)
 	
@@ -916,13 +917,14 @@ function device_binder:process_torch(id, section, condition)
 	end
 
 	if torch_active == id and fe_utils.is_broken(self.object) then
-		if self.N_V then
-			set_nightvision(section,false)
-			self.N_V = nil
-		end
 		if self.object:torch_enabled() then
 			self.object:enable_torch(false)
 		end
+	end
+
+	if self.N_V and fe_utils.is_broken(self.object) then
+		set_nightvision(section,false)
+		self.N_V = nil
 	end
 	
 -- Torch light flicker on event
