@@ -42,12 +42,6 @@ REBOOT = 0
 local reboot_protection = 0
 RADIATION_AMOUNT = 0
 
-local pda_list = { 
-"device_pda_0", "device_pda_getac", 
-"device_pda_1", "device_pda_2", 
-"device_pda_3", "device_pda_milspec",
-}
-
 ----------------------------------------------------------------------------------------------------
 -- Mod Configuration Menu
 ----------------------------------------------------------------------------------------------------
@@ -149,7 +143,7 @@ function break_device(damage_type, upgrade)
     
     local function inventory_iterator(actor, item)
         local section = item:section()
-        if (section:find("device_") or section:find("detector_")) 
+        if IsItem("device",section)
 			and not fe_utils.is_broken(item)
 			and ini_sys:r_bool_ex(section,"can_break") == true
 			and not section:find("glowstick")
@@ -385,12 +379,26 @@ function actor_on_before_hit(s_hit, bone_id)
 	
 	if damage_type_physical[s_hit.type] and math.random(0, 100) < settings.other.damage_chance then
 
-		for i, pda in ipairs(pda_list) do	
-			if db.actor:object(pda) and fe_utils.get_screen_damage(db.actor:object(pda)) < 5 and (test_trigger == 1 and tg > test_delay) then	
-				fe_utils.set_screen_damage(db.actor:object(pda), 1)
+		local available_devices = {}
+		local function inventory_iterator(actor, item)
+			local section = item:section()
+			if IsItem("device",section) and section:find("device_pda_")
+				and not fe_utils.is_broken(item)
+				and ini_sys:r_bool_ex(section,"can_break") == true
+			then
+				table.insert(available_devices, item)
+			end
+		end
+    	db.actor:iterate_inventory(inventory_iterator, db.actor)
+
+		if #available_devices > 0 then
+        	local pda = available_devices[math.random(1, #available_devices)]
+			if fe_utils.get_screen_damage(pda) < 5 and (test_trigger == 1 and tg > test_delay) then	
+				fe_utils.set_screen_damage(pda, 1)
 				test_trigger = 0 --Fucking ensure PDAs don't multiply!
 			end
 		end
+
 	end
 	
 	if s_hit.type == hit.shock then
@@ -412,22 +420,32 @@ function pda_break_bsod()
 		not (REBOOT > 0 or reboot_protection > 0)
 		and (xr_conditions.surge_started() or psi_storm_manager.is_started())
 	then 
+
+		local available_devices = {}
+		local function inventory_iterator(actor, item)
+			local section = item:section()
+			if IsItem("device",section) and section:find("device_pda_")
+				and not fe_utils.is_broken(item)
+				and ini_sys:r_bool_ex(section,"can_break") == true
+			then
+				table.insert(available_devices, item)
+			end
+		end
+    	db.actor:iterate_inventory(inventory_iterator, db.actor)
 	
-		for _, pda in ipairs(pda_list) do		
-			
-			if db.actor:object(pda) then
+		if #available_devices > 0 then
+
+			local pda = available_devices[math.random(1, #available_devices)]
+			local tier = fe_utils.get_pda_tier(pda)
+			local chance = settings.pda.break_chance.bsod[tier]
 				
-				local tier = fe_utils.get_pda_tier(pda)
-				local chance = settings.pda.break_chance.bsod[tier]
+			if fe_utils.is_overclocked(pda) then
+				chance = chance * 2
+			end
 				
-				if fe_utils.is_overclocked(db.actor:object(pda)) then
-					chance = chance * 2
-				end
-				
-				if (math.random(0, 100) < chance) then
-					item_device.dev_items[db.actor:object(pda):id()].is_bsod = true
-					process_pda_call()
-				end
+			if (math.random(0, 100) < chance) then
+				item_device.dev_items[pda:id()].is_bsod = true
+				process_pda_call()
 			end
 		end
 	end
