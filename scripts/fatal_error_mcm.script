@@ -164,7 +164,7 @@ function break_device(damage_type, upgrade)
 		local chance
 
 		if sec:find("device_pda_") then
-			local tier = fe_utils.get_pda_tier(sec)
+			local tier = fe_utils.get_pda_tier(obj)
         	chance = settings.pda.break_chance[damage_type][tier]
 			if fe_utils.is_overclocked(obj) then
            		chance = chance * 2
@@ -336,7 +336,7 @@ function geiger_check_device(obj_b, obj_d, slot_from, slot_to)
 end
 
 ----------------------------------------------------------------------------------------------------
--- Device \ PDA Damage + BSOD + Screen Damage
+-- Device \ PDA Electra Damage + BSOD + Screen Damage
 ----------------------------------------------------------------------------------------------------
 test_trigger = 0
 test_delay = 0
@@ -383,7 +383,6 @@ function actor_on_before_hit(s_hit, bone_id)
 		local function inventory_iterator(actor, item)
 			local section = item:section()
 			if IsItem("device",section) and section:find("device_pda_")
-				and not fe_utils.is_broken(item)
 				and ini_sys:r_bool_ex(section,"can_break") == true
 			then
 				table.insert(available_devices, item)
