@@ -221,14 +221,18 @@ function pda_bios_tab:On_interface_button()
 	local pda_xml = item_device.dev_items[pda_id].interface
 
 	if pda_xml == "pda" then
+		item_device.dev_items[pda_id].interface = "pda_zero"
+	elseif pda_xml == "pda_zero" then
 		item_device.dev_items[pda_id].interface = "pda_one"
 	elseif pda_xml == "pda_one" then
-		item_device.dev_items[pda_id].interface = "pda_zero"
+		item_device.dev_items[pda_id].interface = "pda_two"
 	else
 		item_device.dev_items[pda_id].interface = "pda"
 	end
 
-	fe_utils.reboot_call(math.random(2,5), true)
+	fatal_error_mcm.REBOOT = math.random(2,5)
+	ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
+	fe_utils.invoke("set_pda_xml", 1, function() fe_utils.set_pda_xml(pda) end)
 
 end
 
@@ -278,7 +282,7 @@ function pda_bios_tab:Reset()
 	self.detected_cpu:SetTextColor(GetARGB(255, 100, 200, 255))
     self.detected_cpu:Show(true)
 	
-	self.detected_cpu_cpu:SetText(fe_utils.LOG_LINES[1])
+	self.detected_cpu_cpu:SetText(fe_utils.LOG_LINES[1]:match(": (.*GHz)"))
 	self.detected_cpu_cpu:SetTextColor(GetARGB(255, 255, 255, 255))
     self.detected_cpu_cpu:Show(true)
 	
@@ -286,7 +290,7 @@ function pda_bios_tab:Reset()
 	self.me_version:SetTextColor(GetARGB(255, 100, 200, 255))
     self.me_version:Show(true)
 	
-	self.me_version_version:SetText("[" .. fe_utils.LOG_LINES[13] .. "]")
+	self.me_version_version:SetText("[" .. get_modded_exes_version() .. "]")
 	self.me_version_version:SetTextColor(GetARGB(255, 255, 255, 255))
     self.me_version_version:Show(true)
 	
@@ -392,12 +396,7 @@ function pda_bios_tab:Reset()
 		color = {255, 255, 255, 255}
 	end
 	pda_int = item_device.dev_items[pda_id].interface
-	if pda_int then
-		pda_int = string.upper(pda_int)
-	else
-		pda_int = "CRITICAL_ERROR"
-		color = {255, 255, 0, 0}
-	end
+	pda_int = string.upper(pda_int)
 	self.interface_interface:SetText("[" .. pda_int .. "]" .. " \\n" .. interface)
 	self.interface_interface:SetTextColor(GetARGB(color[1], color[2], color[3], color[4]))
     self.interface_interface:Show(true)

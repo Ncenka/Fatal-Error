@@ -244,6 +244,9 @@ local function on_key_release(key)
 	-- Night-Vision
 	if (bind == key_bindings.kNIGHT_VISION) then
 		if not fe_utils.is_broken(torch) then
+			if liz_fdda_redone_mcm then
+				z_vanilla_nvgs.play_animation = true
+			end
 			set_nightvision(torch and torch:section(), not nv_state)
 		end
 		
@@ -935,11 +938,11 @@ end
 
 function device_binder:process_glitch(id, section, condition)
 
-	local radiation_glitch_value = clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10)
+	local radiation_glitch_value = not self.object:has_upgrade("up_firsta_pda") and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
 	local damage_glitch_value = fe_utils.get_screen_damage(self.object) * 0.1
 	local overclock_glitch_value = 0 
 	local surge_psi_glitch_value = 0
-	local electra_glitch_value = fatal_error_mcm.ELECTRA_GLITCH_VALUE
+	local electra_glitch_value = not self.object:has_upgrade("up_firstc_pda") and fatal_error_mcm.ELECTRA_GLITCH_VALUE or 0
 
 	if fe_utils.is_overclocked(self.object) then
 		overclock_glitch_value = 0.15
@@ -947,21 +950,23 @@ function device_binder:process_glitch(id, section, condition)
 		overclock_glitch_value = 0
 	end
 
-	-- Emissions: the closer the wave, the higher the psi influnces
-	if GetEvent("surge", "state") then
-		local surge_time = GetEvent("surge", "time") or 0
-		surge_psi_glitch_value = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
-		surge_psi_glitch_value = clamp(surge_psi_glitch_value,0,1)
-		
-	-- Psi-storms: huge spike when a vortex hits the ground
-	elseif GetEvent("psi_storm", "state") then
-		if GetEvent("psi_storm", "vortex") then
-			surge_psi_glitch_value = 0.3 + (1 - 0.3) * math.random()
+	if not self.object:has_upgrade("up_firste_pda") then
+		-- Emissions: the closer the wave, the higher the psi influnces
+		if GetEvent("surge", "state") then
+			local surge_time = GetEvent("surge", "time") or 0
+			surge_psi_glitch_value = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
+			surge_psi_glitch_value = clamp(surge_psi_glitch_value,0,1)
+			
+		-- Psi-storms: huge spike when a vortex hits the ground
+		elseif GetEvent("psi_storm", "state") then
+			if GetEvent("psi_storm", "vortex") then
+				surge_psi_glitch_value = 0.3 + (1 - 0.3) * math.random()
+			else
+				surge_psi_glitch_value = 0.1 + (0.3 - 0.1) * math.random()
+			end
 		else
-			surge_psi_glitch_value = 0.1 + (0.3 - 0.1) * math.random()
+			surge_psi_glitch_value = 0
 		end
-	else
-		surge_psi_glitch_value = 0
 	end
 
 	self.object:set_psy_factor((radiation_glitch_value * fatal_error_mcm.settings.other.radiation.glitch_scale) + electra_glitch_value + damage_glitch_value + fatal_error_mcm.settings.other.passive_glitch_value + overclock_glitch_value + surge_psi_glitch_value)

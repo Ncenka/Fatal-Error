@@ -9,6 +9,7 @@ function on_game_start()
     end
 
     if get_aoe_version then
+        fe_utils.IS_AOE = true
         return
     end
 

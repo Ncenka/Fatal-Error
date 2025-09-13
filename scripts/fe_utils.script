@@ -54,10 +54,9 @@ function set_screen_damage(obj, val)
 end
 
 function set_pda_xml(obj)
-    RemoveTimeEvent("fe_time_event", "set_pda_xml")
     if not obj then return end -- failsafe
     if not item_device.dev_items[obj:id()] then return end -- failsafe
-    if item_device.dev_items[obj:id()].interface == nil then return end -- failsafe
+    if item_device.dev_items[obj:id()].interface == nil then item_device.dev_items[obj:id()].interface = "pda.xml" end -- fallback to default UI if UI is nil
 
     local interactive = (IS_INTERACTIVE and ini_sys:r_bool_ex(obj:section(),"tab_interactive") == true and "_int") or ""
     local taskboard = (IS_TASKBOARD and ini_sys:r_bool_ex(obj:section(),"tab_taskboard") == true and "_ts") or ""
@@ -71,6 +70,7 @@ function set_pda_xml(obj)
 
     if curr_interface ~= target_interface then
         ActorMenu.get_pda_menu():SetPdaXml(target_interface .. ".xml")
+        printf("$FE: PDA UI XML file set to: %s.xml", target_interface)
     end
 
     if fatal_error_mcm.REBOOT > 0 then
@@ -120,9 +120,13 @@ end
 -- Other
 ----------------------------------------------------------------------------------------------------
 
-function reboot_call(seconds, bool)
+function reboot_call(seconds)
 	fatal_error_mcm.REBOOT = seconds
-	fatal_error_mcm.process_pda_call(bool)	
+	fatal_error_mcm.process_pda_call()	
+end
+
+function invoke(name, time, action)
+	CreateTimeEvent("fe_time_event", name, time, function() action() return true end)
 end
 
 function read_log()
@@ -142,19 +146,12 @@ function read_log()
         k = 0
         for line in file:lines() do --we read first 15 lines of log file and save them to variable (at that moment log is already created by the game)
             k = k + 1
-            if k < 16 then
+            if k < 2 then
                 LOG_LINES[k] = line
             end
         end
         file:close()
     end
-
-	LOG_LINES[1] = (LOG_LINES[1] or ""):sub(17, 63)
-    LOG_LINES[13] = (LOG_LINES[13] or ""):sub(21, 29)
-
-	if LOG_LINES[15]:find("AOE") then
-		IS_AOE = true
-	end
 
 end
 
