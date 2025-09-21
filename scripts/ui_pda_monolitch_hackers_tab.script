@@ -17,10 +17,9 @@ function pda_monolitch_hackers_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               = CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
-	self.form				= xml:InitStatic("pda_text_tab",self)
-	self.picture			= xml:InitStatic("picture_base",self.form)
+	self.picture			= xml:InitStatic("picture_base",self)
 	self.picture:InitTexture ("ui\\ui_noise")
-	self.form_text 			= xml:InitTextWnd("pda_text_tab:state", self.form)
+	self.text 			= xml:InitTextWnd("text_center", self)
 end
 
 function pda_monolitch_hackers_tab:Update()
@@ -28,9 +27,9 @@ function pda_monolitch_hackers_tab:Update()
 end
 
 function pda_monolitch_hackers_tab:Reset()
-    self.form_text:SetText(game.translate_string("st_pda_monolitch_hackers"))
-    self.form_text:SetTextColor(GetARGB(255, 255, 255, 1))
-    self.form_text:Show(true)
+    self.text:SetText(game.translate_string("st_pda_monolitch_hackers"))
+    self.text:SetTextColor(GetARGB(255, 255, 255, 1))
+    self.text:Show(true)
     local pda_menu = ActorMenu.get_pda_menu()
 	pda_menu:GetTabControl():Show(false)
 end

@@ -1,6 +1,4 @@
 IS_AOE = false
-IS_INTERACTIVE = false
-IS_TASKBOARD = false
 SECURITY_KEY = nil
 LOG_LINES = {}
 
@@ -8,9 +6,9 @@ LOG_LINES = {}
 -- Setters
 ----------------------------------------------------------------------------------------------------
 
-function set_broken(obj, val)
-	if not obj then return end -- failsafe
-    if not item_device.dev_items[obj:id()] then return end -- failsafe
+function set_broken(obj, val) 
+	if not failsafe(obj) then return end -- failsafe
+    if not val then val = 2 end -- failsafe
 
     if val == 1 then
 	    item_device.dev_items[obj:id()].is_broken = true
@@ -27,9 +25,15 @@ function set_broken(obj, val)
     
 end
 
+function set_bsod(obj, val)
+    if not failsafe(obj) then return end -- failsafe
+    if not val then val = false end -- failsafe
+
+    item_device.dev_items[obj:id()].is_bsod = val
+end
+
 function set_screen_damage(obj, val)
-    if not obj then return end -- failsafe
-    if not item_device.dev_items[obj:id()] then return end -- failsafe
+    if not failsafe(obj) then return end -- failsafe
 
     local damage
     if val == 1 then
@@ -54,23 +58,15 @@ function set_screen_damage(obj, val)
 end
 
 function set_pda_xml(obj)
-    if not obj then return end -- failsafe
-    if not item_device.dev_items[obj:id()] then return end -- failsafe
-    if item_device.dev_items[obj:id()].interface == nil then item_device.dev_items[obj:id()].interface = "pda.xml" end -- fallback to default UI if UI is nil
+    if not failsafe(obj) then return end -- failsafe
+    if item_device.dev_items[obj:id()].interface == nil then item_device.dev_items[obj:id()].interface = "pda" end -- fallback to default UI if UI is nil
 
-    local interactive = (IS_INTERACTIVE and ini_sys:r_bool_ex(obj:section(),"tab_interactive") == true and "_int") or ""
-    local taskboard = (IS_TASKBOARD and ini_sys:r_bool_ex(obj:section(),"tab_taskboard") == true and "_ts") or ""
     local curr_interface = ActorMenu.get_pda_menu():GetPdaXml():gsub("%.xml", "")
     local base_interface = item_device.dev_items[obj:id()].interface
-    local target_interface = base_interface
 
-    if base_interface ~= "pda" then
-        target_interface = target_interface .. taskboard .. interactive
-    end
-
-    if curr_interface ~= target_interface then
-        ActorMenu.get_pda_menu():SetPdaXml(target_interface .. ".xml")
-        printf("$FE: PDA UI XML file set to: %s.xml", target_interface)
+    if curr_interface ~= base_interface then
+        ActorMenu.get_pda_menu():SetPdaXml(base_interface .. ".xml")
+        printf("$FE: PDA UI XML file set to: %s.xml", base_interface)
     end
 
     if fatal_error_mcm.REBOOT > 0 then
@@ -84,31 +80,27 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function is_broken(obj)
-	if not obj then return false end -- failsafe
-    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	if not failsafe(obj) then return false end -- failsafe
 	return item_device.dev_items[obj:id()].is_broken
 end
 
 function is_bsod(obj)
-	if not obj then return false end -- failsafe
-    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	if not failsafe(obj) then return false end -- failsafe
 	return item_device.dev_items[obj:id()].is_bsod
 end
 
 function is_overclocked(obj)
-	if not obj then return false end -- failsafe
-    if not item_device.dev_items[obj:id()] then return false end -- failsafe
+	if not failsafe(obj) then return false end -- failsafe
 	return item_device.dev_items[obj:id()].is_overclocked
 end
 
 function get_screen_damage(obj)
-    if not obj then return 0 end -- failsafe
-    if not item_device.dev_items[obj:id()] then return 0 end -- failsafe
+    if not failsafe(obj) then return 0 end -- failsafe
     return item_device.dev_items[obj:id()].damage
 end
 
 function get_pda_tier(obj)
-    if not obj then return 5 end -- failsafe
+    if not failsafe(obj) then return 5 end -- failsafe
     if ini_sys:r_float_ex(obj:section(),"tier") <= 5 then
         return ini_sys:r_float_ex(obj:section(),"tier")
     else
@@ -119,6 +111,11 @@ end
 ----------------------------------------------------------------------------------------------------
 -- Other
 ----------------------------------------------------------------------------------------------------
+
+function failsafe(obj)
+    if not obj or not item_device.dev_items[obj:id()] then return false end
+    return true
+end
 
 function reboot_call(seconds)
 	fatal_error_mcm.REBOOT = seconds
@@ -155,24 +152,11 @@ function read_log()
 
 end
 
-local function ALPD(string_id)
-
-    local localized_string = game.translate_string(string_id)
-    
-    if localized_string ~= string_id then
-        return true
-	else
-		return false
-    end
-end
-
 function generate_random_string(length)
     local chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     local random_string = ""
-    local random = math.random
-    math.randomseed(os.time())
     for i = 1, length do
-        local random_index = random(1, #chars)
+        local random_index = math.random(1, #chars)
         random_string = random_string .. chars:sub(random_index, random_index)
     end
     return random_string
@@ -220,16 +204,26 @@ function load_state(m_data)
 end
 
 function on_game_start()
+
     RegisterScriptCallback("save_state", save_state)
     RegisterScriptCallback("load_state", load_state)
     RegisterScriptCallback("actor_on_first_update", read_log)
+
 	if not SECURITY_KEY then
 		SECURITY_KEY = generate_random_string(20)
 	end
-    if ALPD("ui_mcm_menu_pda_taskboard") then
-        IS_TASKBOARD = true
+
+    mac_mcm.add_blocked_tabs({"eptReboot","eptBSOD","eptBroken","eptMonolith","eptMonolithHackers","eptBlocked","eptBios","eptBiosBoot","eptBiosDebug",})
+    mac_mcm.add_app("app_bios", {name = "BIOS", texture = "settings", tab = "eptBios"})
+    exec_console_cmd("g_3d_pda 1")
+    
+    if get_aoe_version then
+        IS_AOE = true
+        return
     end
-    if ALPD("ui_mcm_menu_pda_inter") then
-        IS_INTERACTIVE = true
+
+    if get_modded_exes_version() < 20250823 then
+        assert(false, game.translate_string("st_fe_modded_exes"))
     end
+
 end

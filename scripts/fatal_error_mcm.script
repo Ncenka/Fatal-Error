@@ -41,6 +41,7 @@ local delays = {
 REBOOT = 0
 local reboot_protection = 0
 RADIATION_AMOUNT = 0
+ELECTRA_GLITCH_VALUE = 0
 
 ----------------------------------------------------------------------------------------------------
 -- Mod Configuration Menu
@@ -99,38 +100,36 @@ function on_mcm_load()
 end
 
 function on_option_change()
-	if (ui_mcm) then 
 	
-		local pda_tiers = {"pda0", "pda1", "pda2", "pda3", "milspec"}
+	local pda_tiers = {"pda0", "pda1", "pda2", "pda3", "milspec"}
 		
-		for i, tier in ipairs(pda_tiers) do	
-			settings.pda.break_chance.emission[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die")
-			settings.pda.break_chance.electra[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_electra")
-			settings.pda.break_chance.radiation[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_radiation")
-			settings.pda.break_chance.bsod[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_timed_error")
-		end
-
-		settings.devices.break_chance.emission = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die")
-		settings.devices.break_chance.electra = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_electra")
-		settings.devices.break_chance.radiation = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_radiation")
-
-		delays.emission = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/pda_can_sgoret_delay")
-		delays.radiation = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/fry_pda_from_radiation_delay")
-		
-		settings.other.passive_glitch_value = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/passive_glitch_value")
-		settings.other.radiation.glitch_scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_glitch_scale")
-		settings.other.radiation.amount_to_fry = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_to_fry")
-		settings.other.radiation.scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_scale")
-		settings.other.radiation.amount_lower = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_lower")
-		settings.other.damage_chance = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_pda_to_damage")
-		settings.other.break_head_device = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_device_to_break")
-		settings.other.reboot_min_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_min")
-		settings.other.reboot_max_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_max")		
-		settings.other.beep_radius = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/beep_radius")
-		settings.reboot_key = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/reboot_key")
-		settings.light_reboot = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/light_reboot")
-
+	for i, tier in ipairs(pda_tiers) do	
+		settings.pda.break_chance.emission[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die")
+		settings.pda.break_chance.electra[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_electra")
+		settings.pda.break_chance.radiation[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_radiation")
+		settings.pda.break_chance.bsod[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_timed_error")
 	end
+
+	settings.devices.break_chance.emission = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die")
+	settings.devices.break_chance.electra = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_electra")
+	settings.devices.break_chance.radiation = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_radiation")
+
+	delays.emission = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/pda_can_sgoret_delay")
+	delays.radiation = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/fry_pda_from_radiation_delay")
+		
+	settings.other.passive_glitch_value = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/passive_glitch_value")
+	settings.other.radiation.glitch_scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_glitch_scale")
+	settings.other.radiation.amount_to_fry = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_to_fry")
+	settings.other.radiation.scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_scale")
+	settings.other.radiation.amount_lower = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_lower")
+	settings.other.damage_chance = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_pda_to_damage")
+	settings.other.break_head_device = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_device_to_break")
+	settings.other.reboot_min_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_min")
+	settings.other.reboot_max_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_max")		
+	settings.other.beep_radius = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/beep_radius")
+	settings.reboot_key = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/reboot_key")
+	settings.light_reboot = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/light_reboot")
+
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -446,7 +445,8 @@ function pda_break_bsod()
 				
 			if (math.random(0, 100) < chance) then
 				printf("$FE: PDA generation %s, BSOD chance: %s%", tier, chance)
-				item_device.dev_items[pda:id()].is_bsod = true
+				fe_utils.set_bsod(pda, true)
+
 				process_pda_call()
 			end
 		end
@@ -503,7 +503,7 @@ end
 
 function process_pda_call()
 	
-	local list_of_error_sections = {
+	local error_tabs = {
 		["eptReboot"] = true,
 		["eptBSOD"] = true,
 		["eptBroken"] = true,
@@ -601,7 +601,7 @@ function process_pda_call()
 		then
 			ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")
 			
-		elseif list_of_error_sections[tab] then
+		elseif error_tabs[tab] then
 			ActorMenu.get_pda_menu():SetActiveSubdialog("eptTasks")
 		end
 	end
@@ -650,7 +650,7 @@ function update_count()
 	local cnt = 0
 	local pos = db.actor:position()
 	local pda = db.actor:item_in_slot(8)
-	if pda and pda:condition() > 0.05 and db.actor:has_info("bios_can_beep") and not fe_utils.is_broken(pda) then
+	if pda and pda:condition() > 0.05 and db.actor:has_info("bios_can_beep") and not fe_utils.is_broken(pda) and not fe_utils.is_bsod(pda) then
 		local can_beep = ini_sys:r_bool_ex(pda:section(),"can_beep")
 		if can_beep == true then
 			for i=1,#db.OnlineStalkers do
@@ -749,8 +749,6 @@ function electra_glitch_lower()
 	end
 end
 
-ELECTRA_GLITCH_VALUE = 0
-
 function on_game_start()
 	RegisterScriptCallback("actor_on_update", electra_glitch_lower)
 	RegisterScriptCallback("actor_on_update", update_count)
@@ -766,5 +764,4 @@ function on_game_start()
     RegisterScriptCallback("load_state", load_state)
 	RegisterScriptCallback("on_option_change", on_option_change)
 	RegisterScriptCallback("actor_on_sleep", reduce_radiation_on_sleep)
-	exec_console_cmd("g_3d_pda 1")
 end

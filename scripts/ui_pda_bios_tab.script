@@ -41,9 +41,8 @@ function pda_bios_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               		= CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
-	self.form						= xml:InitStatic("pda_empty_tab",self)
 	
-	self.picture					= xml:InitStatic("picture_base",self.form)
+	self.picture					= xml:InitStatic("picture_base",self)
 	
 	if fe_utils.IS_AOE == true then
 		self.picture:InitTexture ("ui\\mnogopotok_dark")
@@ -340,7 +339,7 @@ function pda_bios_tab:Reset()
 	self.taskboard:SetTextColor(GetARGB(255, 100, 200, 255))
     self.taskboard:Show(true)
 	
-	if fe_utils.IS_TASKBOARD then
+	if ui_pda_taskboard_tab then
 		taskboard = "[Enabled]"
 	else
 		taskboard = "[Disabled]"
@@ -358,7 +357,7 @@ function pda_bios_tab:Reset()
 	self.interact:SetTextColor(GetARGB(255, 100, 200, 255))
     self.interact:Show(true)
 	
-	if fe_utils.IS_INTERACTIVE then
+	if pda_inter_gui then
 		interact = "[Enabled]"
 	else
 		interact = "[Disabled]"

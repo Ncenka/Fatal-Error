@@ -7,6 +7,17 @@ NO_MAP_ZONES = {
 	["grimwood"] = true,
 }
 
+NO_MAP_ZONES_UNDERGROUND = {
+	["jupiter_underground"] = true,
+	["labx8"] = true,
+	["l03u_agr_underground"] = true,
+	["l04u_labx18"] = true,
+	["l08u_brainlab"] = true,
+	["l10u_bunker"] = true,
+	["l12u_control_monolith"] = true,
+	["l13u_warlab"] = true,
+}
+
 function create_overrides_fatal_error_v1()
 	
 	local fe_main = pda.set_active_subdialog
@@ -16,36 +27,22 @@ function create_overrides_fatal_error_v1()
 		local msg_comm_off = game.translate_string("st_fe_map_off")
 		local msg_comm_on = game.translate_string("st_fe_map_on")
 		local actor_elevation = db.actor:position()
-		local levelname = level.name()
 		local base_elevation = 20
 		local pda = db.actor:item_in_slot(8)
 	
 		if not pda then return fe_main(section) end
-	
-		local no_map_zones_underground = {
-			["jupiter_underground"] = true,
-			["labx8"] = true,
-			["l03u_agr_underground"] = true,
-			["l04u_labx18"] = true,
-			["l08u_brainlab"] = true,
-			["l10u_bunker"] = true,
-			["l12u_control_monolith"] = true,
-			["l13u_warlab"] = true,
-		}
 
-		local overclock = fe_utils.is_overclocked(pda)
+		local overclock = fe_utils.is_overclocked(pda) and 10 or 0
 
-		if levelname == "l11_hospital" then 
+		if level.name() == "l11_hospital" then 
 			base_elevation = 30		
-		elseif levelname == "l10_red_forest" then 
+		elseif level.name() == "l10_red_forest" then 
 			base_elevation = 19
 		end
 		
-		if overclock then
-			base_elevation = base_elevation - 10
-		end
+		base_elevation = base_elevation - overclock
 		
-		if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[levelname]) then
+		if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[level.name()]) then
 			if base_elevation < actor_elevation.y and message == 0 then
 				message = 1
 				dynamic_news_helper.send_tip(msg_comm_on,msg_header_comm,1,3,"communication","welcome","gr")
@@ -120,12 +117,12 @@ function create_overrides_fatal_error_v1()
 			end
 			
 		elseif section == "eptTasks" then
-			if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[levelname]) and not (base_elevation < actor_elevation.y) then
+			if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[level.name()]) and not (base_elevation < actor_elevation.y) then
 				return ui_pda_no_map_tab.get_ui()
 				
 			elseif 
 				not (pda:has_upgrade("up_secona_pda") or overclock)
-				and (no_map_zones_underground[levelname]) 
+				and (NO_MAP_ZONES_UNDERGROUND[level.name()]) 
 			then
 				return ui_pda_no_map_underground_tab.get_ui()
 				

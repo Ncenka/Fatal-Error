@@ -1,7 +1,3 @@
-----------------------------------------------------------------------------------------------------
--- Other
-----------------------------------------------------------------------------------------------------
-
 local SINGLETON = nil
 local text = {}
 local full_text
@@ -25,9 +21,8 @@ function pda_bios_debug_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               		= CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
-	self.form						= xml:InitStatic("pda_empty_tab",self)
 	
-	self.picture					= xml:InitStatic("picture_base",self.form)
+	self.picture					= xml:InitStatic("picture_base",self)
 	
 	if fe_utils.IS_AOE == true then
 		self.picture:InitTexture ("ui\\mnogopotok_dark")

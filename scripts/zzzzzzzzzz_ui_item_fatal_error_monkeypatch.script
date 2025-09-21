@@ -1,22 +1,3 @@
-----------------------------------------------------------------------------------------------------
--- Auto-Localization-Patch-Detector
-----------------------------------------------------------------------------------------------------
-
-local function ALPD(string_id)
-
-    local localized_string = game.translate_string(string_id)
-    
-    if localized_string ~= string_id then
-        return true
-	else
-		return false
-    end
-end
-
-----------------------------------------------------------------------------------------------------
--- Monkeypatch
-----------------------------------------------------------------------------------------------------
-
 function create_overrides_fatal_error_v2()	
 	local fe_override_one = ui_item.build_desc_footer
     ui_item.build_desc_footer = function (obj, sec, str)
@@ -75,6 +56,8 @@ function create_overrides_fatal_error_v2()
 					unit = game.translate_string("st_batt_aaa")
 				elseif (battery == "batteries_aa") then
 					unit = game.translate_string("st_batt_aa")
+				elseif (battery == "batteries_c") then
+					unit = game.translate_string("st_batt_c")
 				elseif (battery == "batteries_d") then
 					unit = game.translate_string("st_batt_d")
 				elseif (battery == "batteries_f") then
@@ -99,7 +82,7 @@ function create_overrides_fatal_error_v2()
 		-- Interactive
 		if IsItem("device",sec) and not sec:find("itm_pda_") then
 			local tab_interactive = ini_sys:r_bool_ex(sec,"tab_interactive")
-			if tab_interactive == false and ALPD("ui_mcm_menu_pda_inter") then
+			if tab_interactive == false and pda_inter_gui then
 				local unit = game.translate_string("st_interactive_unavaible")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
@@ -108,7 +91,7 @@ function create_overrides_fatal_error_v2()
 		-- Taskboard
 		if IsItem("device",sec) and not sec:find("itm_pda_") then
 			local tab_taskboard = ini_sys:r_bool_ex(sec,"tab_taskboard")
-			if tab_taskboard == false and ALPD("ui_mcm_menu_pda_taskboard") then
+			if tab_taskboard == false and ui_pda_taskboard_tab then
 				local unit = game.translate_string("st_taskboard_unavaible")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
