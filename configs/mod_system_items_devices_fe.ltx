@@ -84,6 +84,7 @@ cost                                                   = 50000
 tab_interactive 									   = true
 show_map_squads										   = faction
 show_player											   = 2
+battery 											   = batteries_c
 snd_draw                             	               = device\pda\pda_draw
 snd_holster                          	 		       = device\pda\pda_holster
 interface                                              = pda
@@ -151,10 +152,10 @@ can_break                                              = false
 ;;--==========================< Head Devices - Batteries >=============================--
 
 ![device_torch_dummy]
-battery 											   = batteries_dead
+battery 											   = batteries_aa
 
 ![device_torch_nv_1]
-battery 											   = batteries_aa
+battery 											   = batteries_c
 
 ![device_torch_nv_2]
 battery 											   = batteries_d
@@ -165,14 +166,14 @@ battery 											   = batteries_f
 ;;--==========================< Hand Devices >=============================--
 
 ![detector_simple]
-battery 											   = batteries_dead
+battery 											   = batteries_aa
 upgrades								               = up_gr_firstab_pda
 installed_upgrades           			               =			
 upgrade_scheme							               = upgrade_scheme_pda
 repair_type                                            = device
 
 ![detector_advanced]
-battery 											   = batteries_aa
+battery 											   = batteries_c
 
 ![detector_elite]
 battery 											   = batteries_d
@@ -218,7 +219,7 @@ custom_ui_pos                                          = -0.0281,-0.0101,0.0375
 custom_ui_rot                                          = 0,63,0
 custom_ui_func										   = ui_dosimeter.get_UI
 custom_ui_bone										   = cover
-battery 											   = batteries_aa
+battery 											   = batteries_c
 inv_weight                                             = 0.30
 inv_grid_scale                                         = 1
 upgrades								               =
@@ -267,17 +268,37 @@ inv_grid_scale                  = 1
 inv_name			            = st_batteries_aa
 inv_name_short		            = st_batteries_aa
 description			        	= st_batteries_aa_descr
-inv_grid_x			            = 1
+icons_texture	                = ui\actor_items\fe_batteries_icons
+inv_grid_width                  = 1
+inv_grid_height                 = 1
+inv_grid_x                      = 0
+inv_grid_y                      = 0
 cost    		                = 2200
 inv_weight   	                = 0.250
 amper_amount					= 1100
+
+[batteries_c]:batteries_dead
+inv_name			            = st_batteries_c
+inv_name_short		            = st_batteries_c
+description			            = st_batteries_c_descr
+icons_texture	                = ui\actor_items\fe_batteries_icons
+inv_grid_width                  = 1
+inv_grid_height                 = 1
+inv_grid_x                      = 4
+inv_grid_y                      = 0
+cost				            = 3800
+inv_weight   	                = 0.300
+amper_amount					= 3800
 
 [batteries_d]:batteries_dead
 inv_name			            = st_batteries_d
 inv_name_short		            = st_batteries_d
 description			        	= st_batteries_d_descr
-inv_grid_x         				= 17
-inv_grid_y         				= 43
+icons_texture	                = ui\actor_items\fe_batteries_icons
+inv_grid_width                  = 1
+inv_grid_height                 = 1
+inv_grid_x                      = 1
+inv_grid_y                      = 0
 cost    		                = 8000
 inv_weight   	                = 0.375
 amper_amount					= 8000
@@ -286,7 +307,11 @@ amper_amount					= 8000
 inv_name			            = st_batteries_f
 inv_name_short		            = st_batteries_f
 description			            = st_batteries_f_descr
-inv_grid_x			            = 2
+icons_texture	                = ui\actor_items\fe_batteries_icons
+inv_grid_width                  = 1
+inv_grid_height                 = 1
+inv_grid_x                      = 2
+inv_grid_y                      = 0
 cost				            = 10500
 inv_weight   	                = 0.800
 amper_amount					= 10500
@@ -296,8 +321,11 @@ visual                          = dynamics\devices\dev_upd\dev_universalpowerdev
 inv_name			            = st_batteries_universal_charger
 inv_name_short		            = st_batteries_universal_charger
 description			            = st_batteries_universal_charger_descr
-inv_grid_x        				= 18
-inv_grid_y        				= 9
+icons_texture	                = ui\actor_items\fe_batteries_icons
+inv_grid_width                  = 1
+inv_grid_height                 = 1
+inv_grid_x                      = 3
+inv_grid_y                      = 0
 cost				            = 20000
 inv_weight   	                = 0.500
 amper_amount					= 5000

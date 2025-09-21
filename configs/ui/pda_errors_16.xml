@@ -1,12 +1,7 @@
 <w>
-	<pda_text_tab x="0" y="0" width="819" height="768" stretch="1">
-		<state x="0" y="0" width="819" height="768" stretch="1">
+	<text_center x="0" y="0" width="819" height="768" stretch="1">
 			<text complex_mode="1" r="200" g="200" b="200" vert_align="c" align="c" font="letterica25"/>
-		</state>
-	</pda_text_tab>
-	
-	<pda_empty_tab x="0" y="0" width="819" height="750" stretch="1">
-	</pda_empty_tab>
+	</text_center>
 	
 	<picture_base x="15" y="0" width="800" height="750" stretch="1">
 	</picture_base>
@@ -184,8 +179,9 @@
 	
 	<picture_no_map x="0" y="90" width="819" height="700" stretch="1">
 	</picture_no_map>
-	
-	<btn_settings x="675" y="60" width="25" height="22" stretch="1">
+
+	<btn_settings x="675" y="58" width="25" height="25" stretch="1">
 		<texture>settings</texture>
 	</btn_settings>
+
 </w>
