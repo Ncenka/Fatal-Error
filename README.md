@@ -22,7 +22,7 @@ Moddb link: https://www.moddb.com/mods/stalker-anomaly/addons/fatal-error-by-nce
 <p><img src="https://media.moddb.com/images/members/5/4252/4251450/profile/Fdsagdshgdhj.jpg" alt="" width="447" height="83" /></p>
 </center>
 <p><br /><iframe src="//www.youtube.com/embed/NLTEHxSCfso" width="600" height="338" allowfullscreen="allowfullscreen"></iframe></p>
-<p>Battery system:<br />1. Every Device now require it own battery type (AAA, AA, D or F) - see device description to find out.<br />2. Batteries can be charged\discharged by Universal Power Device (UPD) - simple drag battery or UPD on top of each other - you will quickly understand how to use it. Can be obtained by crafting or at 3 trade level. <br />3. Every battery type has a unique mAh value. For example, an F-type battery will last a very long time, but it costs a lot and is very hard to find.</p>
+<p>Battery system:<br />1. Every Device now require it own battery type (AAA, AA, C, D or F) - see device description to find out.<br />2. Batteries can be charged\discharged by Universal Power Device (UPD) - simple drag battery or UPD on top of each other - you will quickly understand how to use it. Can be obtained by crafting or at 3 trade level. <br />3. Every battery type has a unique mAh value. For example, an F-type battery will last a very long time, but it costs a lot and is very hard to find.</p>
 <center>
 <p><br /><img src="https://media.moddb.com/images/members/5/4252/4251450/profile/ui_icon_pda.jpg" alt="" width="300" height="440" /></p>
 </center>
