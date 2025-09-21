@@ -9,6 +9,9 @@
 	<string id="st_batt_aa">
 		<text>AA</text>
 	</string>
+	<string id="st_batt_c">
+		<text>C</text>
+	</string>
 	<string id="st_batt_d">
 		<text>D</text>
 	</string>
@@ -92,9 +95,6 @@
 	</string>
 	<string id="st_pda_gen">
 		<text>поколение:</text>
-	</string>
-	<string id="st_denuvo">
-		<text>Тупорылым долбаебам которые не имеют признаков социализации, обожают посасывать свой фимозик и растягивать его в людном месте запрещено открывать, играть, трогать, дышать, смотреть и как-либо взаимодействовать с любыми частями сталкера. Иди нахуй!!!!!!!!</text>
 	</string>
 	<string id="st_fe_modded_exes">
 		<text>Если вы это читаете, значит, ваша версия Modded Exes устарела и несовместима с аддоном Fatal Error. Теперь Fatal Error требует Modded Exes версии от 23 августа 2025 года (2025.8.23) или новее. Если вы используете AOEngine, попросите v2v3v4 обновить AOEngine до последней версии Modded Exes.</text>

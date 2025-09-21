@@ -8,6 +8,9 @@
 	<string id="st_batt_aa">
 		<text>AA</text>
 	</string>
+	<string id="st_batt_c">
+		<text>C</text>
+	</string>
 	<string id="st_batt_d">
 		<text>D</text>
 	</string>
@@ -91,9 +94,6 @@
 	</string>
 	<string id="st_pda_gen">
 		<text>generation:</text>
-	</string>
-	<string id="st_denuvo">
-		<text>Stupid idiots who have no signs of socialization, love to suck their phimosis and stretch it in a public place are forbidden to open, play, touch, breathe, look and interact in any way with any parts of the stalker. Go fuck yourself!!!!!!!!</text>
 	</string>
 	<string id="st_fe_modded_exes">
 		<text>If you're reading this, it means your Modded Exes are outdated and not compatible with the Fatal Error addon. Fatal Error now requires Modded Exes from August 23, 2025 (2025.8.23) or later. If you use AOEngine ask v2v3v4 to update it to latest Modded Exes version.</text>

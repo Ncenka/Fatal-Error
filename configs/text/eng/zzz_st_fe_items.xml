@@ -7,17 +7,17 @@
 		%c[ui_gray_3]PROPERTIES:\n
 		</text>
 	</string>
-	<string id="st_pda_mil_name">
-        <text>PDA (Military)</text>
-    </string>
 	<string id="st_pda_0_name">
         <text>PDA (Version 0.1)</text>
     </string>
 	<string id="st_pda_1_name">
-        <text>PDA (Version 1.0)</text>
+        <text>PDA (HP iPAQ h1945 Pocket PC)</text>
     </string>
 	<string id="st_pda_4_name">
-        <text>PDA (Version 4.0)</text>
+        <text>PDA (MilDEF DB6M)</text>
+    </string>
+	<string id="st_pda_mil_name">
+        <text>PDA (P37B)</text>
     </string>
 	<string id="st_pda_getac_name">
 		<text>PDA (GETAC PS535E)</text>
@@ -92,12 +92,21 @@
 		</text>
 	</string>
 	<string id="st_batteries_aa">
-		<text>Battery pack (AA)</text>
+	<text>Battery pack (AA)</text>
 	</string>
 	<string id="st_batteries_aa_descr">
-		<text>A standard battery, widely used in the Zone. It is suitable for most portable devices: modern PDAs, 1st generation NVGs, electronic compass meters and outdated detectors. They are reliable, but they discharge quite quickly in powerful devices.\n \n
+		<text>A standard power cell, widely used in the Zone. Suitable for most portable devices: PDAs, headlamps, electronic compasses, and outdated detectors. Reliable, but they drain fairly quickly in high-drain devices.\n \n
 		%c[ui_gray_3]PROPERTIES:\n
-		%c[d_blue] • %c[ui_gray_2] technological item\n
+		%c[d_blue] • %c[ui_gray_2] technological device\n
+		</text>
+	</string>
+	<string id="st_batteries_c">
+		<text>Battery pack (C)</text>
+	</string>
+	<string id="st_batteries_c_descr">
+		<text>A rather powerful power cell, common in the Zone, but still in high demand. Suitable for most portable devices: modern PDAs, 1st-gen NVGs, and detectors. Reliable, they last quite a long time in high-drain devices.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] technological device\n
 		</text>
 	</string>
 	<string id="st_batteries_d">
