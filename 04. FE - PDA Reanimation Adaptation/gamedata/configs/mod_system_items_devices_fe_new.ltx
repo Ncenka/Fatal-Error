@@ -1,0 +1,134 @@
+;;--==========================< Base PDA HUD >=============================
+
+![pda_hud]:hud_base,hud_low_interia
+inertion_offset_LRUD                               = 0.02,  0.02,  0.02, 0.02
+
+attach_place_idx                                   = 0
+item_visual                                        = dynamics\devices\dev_pda\dev_pda_hud.ogf
+hands_position                                     = 0,0,0.1
+hands_position_16x9                                = 0,0,0.1
+hands_orientation                                  = 0,0,0
+hands_orientation_16x9                             = 0,0,0
+
+aim_hud_offset_pos		                           = 0,-0.095,-0.2
+aim_hud_offset_rot		                           = -0.4,0,0
+gl_hud_offset_pos			                       = 0,0,0
+gl_hud_offset_rot			                       = 0,0,0
+
+aim_hud_offset_pos_16x9		                       = 0,-0.095,-0.2
+aim_hud_offset_rot_16x9		                       = -0.4,0,0
+gl_hud_offset_pos_16x9		                       = 0,0,0
+gl_hud_offset_rot_16x9			                   = 0,0,0
+
+pitch_offset_right						           = 0
+pitch_offset_up							           = 0
+pitch_offset_forward					           = 0
+
+item_position                                      = 0,0,0
+item_orientation                                   = 0,0,0
+
+anm_show                                 		   = pda_draw
+anm_show_empty							 		   = pda_draw_empty
+anm_idle                                 		   = pda_idle
+anm_hide                                 		   = pda_holster
+anm_hide_empty                           		   = pda_holster_empty
+anm_idle_aim                             		   = pda_idle_aim
+anm_idle_moving                          		   = pda_walk
+anm_idle_sprint                          		   = pda_run
+anm_empty								 		   = pda_dead
+
+;;--==========================< NPC PDA >=============================
+![itm_pda_common]:device_pda_0
+visual                                                 = dynamics\devices\dev_pda\dev_pda_1.ogf
+hud                                      			   = device_pda_1_hud
+
+![itm_pda_uncommon]:itm_pda_common
+visual                                                 = dynamics\devices\dev_pda\dev_pda_2.ogf
+hud                                      			   = device_pda_2_hud
+
+![itm_pda_rare]:itm_pda_uncommon
+visual                                                 = dynamics\devices\dev_pda\dev_pda_3.ogf
+hud  												   = device_pda_3_hud
+
+;;--==========================< PDA 0 >=============================--
+![device_pda_0]:device_pda_1
+visual                                                 = dynamics\devices\dev_pda\dev_pda_0.ogf
+hud                                      			   = device_pda_0_hud
+
+[device_pda_0_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_0_hud.ogf
+aim_hud_offset_pos		                               = 0,-0.1,-0.2
+aim_hud_offset_pos_16x9		                           = 0,-0.1,-0.2
+item_position                                          = 0.005,0,0.01
+
+;;--==========================< PDA Getac >=============================--
+
+![device_pda_getac]:device_pda_0
+visual                                                 = dynamics\devices\dev_pda\dev_pda_getac.ogf
+hud                                      			   = device_pda_getac_hud
+
+[device_pda_getac_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_getac_hud.ogf
+aim_hud_offset_pos		                               = 0.005,-0.1,-0.2
+aim_hud_offset_pos_16x9		                           = 0.005,-0.1,-0.2
+item_position                                          = 0.004,0,0.0065
+
+;;--==========================< PDA 1 >=============================--
+![device_pda_1]
+visual                                                 = dynamics\devices\dev_pda\dev_pda_1.ogf
+screen_off_delay						 		       = 0.6
+
+![device_pda_1_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_1_hud.ogf
+aim_hud_offset_pos		                               = 0,-0.1,-0.2
+aim_hud_offset_pos_16x9		                           = 0,-0.1,-0.2
+item_position                                          = 0.005,0,0.006
+
+;;--==========================< PDA 2 >=============================--
+![device_pda_2]:device_pda_1
+visual                                                 = dynamics\devices\dev_pda\dev_pda_2.ogf
+
+![device_pda_2_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_2_hud.ogf
+aim_hud_offset_pos		                               = 0,-0.1,-0.2
+aim_hud_offset_pos_16x9		                           = 0,-0.1,-0.2
+item_position                                          = 0.005,0,0.0075  
+
+;;--==========================< PDA 3 >=============================--
+![device_pda_3]:device_pda_2
+visual                                                 = dynamics\devices\dev_pda\dev_pda_3.ogf
+
+![device_pda_3_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_3_hud.ogf
+aim_hud_offset_pos		                               = 0,-0.103,-0.2
+aim_hud_offset_pos_16x9		                           = 0,-0.103,-0.2
+item_position                                          = 0.0075,0,0.0025
+
+;;--==========================< PDA 4 >=============================--
+
+![device_pda_4]:device_pda_3
+visual                                                 = dynamics\devices\dev_pda\dev_pda_4.ogf
+
+![device_pda_4_hud]
+item_position                                          = 0.0025,0,0.0025
+
+;;--==========================< PDA Military >=============================--
+![device_pda_milspec]:device_pda_3
+visual												   = dynamics\devices\dev_pda\dev_pda_milspec.ogf
+hud													   = device_pda_milspec_hud
+
+[device_pda_milspec_hud]:pda_hud
+item_visual											   = dynamics\devices\dev_pda\dev_pda_milspec_hud.ogf
+aim_hud_offset_pos     								   = 0.005,-0.095,-0.23
+aim_hud_offset_pos_16x9		                           = 0.005,-0.095,-0.23
+item_position                                          = 0,0,0.005
+
+;;--==========================< PDA Kulon >=============================--
+![device_pda_new]
+hud                                      			   = device_pda_new_hud
+
+[device_pda_new_hud]:pda_hud
+item_visual                                            = dynamics\devices\dev_pda\dev_pda_new_hud.ogf
+aim_hud_offset_pos		                               = 0.005,-0.095,-0.22
+aim_hud_offset_pos_16x9		                           = 0.005,-0.095,-0.22
+item_position                                          = 0,0.005,0
