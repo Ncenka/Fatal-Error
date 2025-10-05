@@ -281,9 +281,24 @@ function pda_bios_tab:Reset()
 	self.detected_cpu:SetTextColor(GetARGB(255, 100, 200, 255))
     self.detected_cpu:Show(true)
 	
-	self.detected_cpu_cpu:SetText(fe_utils.LOG_LINES[1]:match(": (.*GHz)"))
+	local cpu_model = fe_utils.LOG_LINES[1]:match(": (.-) [@[]")
+	local cpu_ghz = fe_utils.LOG_LINES[1]:match("@ (%d+%.%d+GHz)")
+	local cpu_mhz = fe_utils.LOG_LINES[1]:match(", (%d+%.%d+ mhz)")
+	local cpu_text
+	if cpu_model and cpu_ghz then
+		cpu_text = cpu_model .. " @ " .. cpu_ghz
+	elseif cpu_model and cpu_mhz then
+		local ghz_value = tonumber(cpu_mhz:match("(%d+%.%d+)")) / 1000
+		ghz_value = math.floor(ghz_value * 10 + 0.5) / 10
+		cpu_text = cpu_model .. " @ " .. string.format("%s0GHz", ghz_value)
+	else
+		cpu_text = "ERROR: UNABLE TO DETECT CPU"
+		fe_utils.ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_cpu") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "cpu_error")
+	end
+
+	self.detected_cpu_cpu:SetText(cpu_text)
 	self.detected_cpu_cpu:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.detected_cpu_cpu:Show(true)
+	self.detected_cpu_cpu:Show(true)
 	
 	self.me_version:SetText("Modded Exes Version: ")
 	self.me_version:SetTextColor(GetARGB(255, 100, 200, 255))

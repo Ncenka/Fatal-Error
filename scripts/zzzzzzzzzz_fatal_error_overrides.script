@@ -1,20 +1,9 @@
 ----------------------------------------------------------------------------------------------------
--- Auto-Localization-Patch-Detector
+-- Compatibility Patches
 ----------------------------------------------------------------------------------------------------
 
-local function ALPD(string_id)
-
-    local localized_string = game.translate_string(string_id)
-    
-    if localized_string ~= string_id then
-        return true
-	else
-		return false
-    end
-end
-
 function compatibility_patches()
-	if ALPD("ui_mcm_menu_pawsys") then
+	if tasks_placeable_waypoints then
 		tasks_placeable_waypoints.pda_defs = {
 			["device_pda_0"] = {
 				show_w              = false,
@@ -50,7 +39,7 @@ function compatibility_patches()
 			},
 		}
 	end
-	if ALPD("ui_mcm_menu_milpda") then
+	if item_milpda then
 		item_milpda.pda_defs = {
 			["device_pda_0"] = { 
 				obeybl				= true,		
@@ -118,6 +107,17 @@ function compatibility_patches()
 			},
 		}
 	end
+end
+
+----------------------------------------------------------------------
+-- ui_pda_taskboard_tab
+----------------------------------------------------------------------
+
+-- Just kill this feature
+if ui_pda_taskboard_tab then
+    function ui_pda_taskboard_tab.on_key_release()
+        return
+    end
 end
 
 ----------------------------------------------------------------------

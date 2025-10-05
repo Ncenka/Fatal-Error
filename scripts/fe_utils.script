@@ -75,6 +75,27 @@ function set_pda_xml(obj)
 
 end
 
+function set_apps(obj)
+    if not failsafe(obj) then return end -- failsafe
+
+    if mac_mcm.PDA_APPS.app_taskboard then mac_mcm.remove_app("app_taskboard") end 
+    if mac_mcm.PDA_APPS.app_interactive then mac_mcm.remove_app("app_interactive") end 
+    local taskboard = ui_pda_taskboard_tab and ini_sys:r_bool_ex(obj:section(),"tab_taskboard")
+    local interactive = pda_inter_gui and ini_sys:r_bool_ex(obj:section(),"tab_interactive")
+
+    if taskboard == true then
+        mac_mcm.add_app("app_taskboard", 
+            {name = "pda_btn_taskboard", texture = "app_taskboard", tab = "eptTaskboard", func = ui_pda_taskboard_tab.get_ui}
+        )
+    end
+    if interactive == true then
+        mac_mcm.add_app("app_interactive", 
+            {name = "pda_btn_interactive", texture = "app_interactive", tab = "eptInteractive", func = pda_inter_gui.start_PDAX}
+        ) 
+    end
+
+end
+
 ----------------------------------------------------------------------------------------------------
 -- Issers\Getters
 ----------------------------------------------------------------------------------------------------
@@ -109,22 +130,8 @@ function get_pda_tier(obj)
 end
 
 ----------------------------------------------------------------------------------------------------
--- Other
+-- Utilities
 ----------------------------------------------------------------------------------------------------
-
-function failsafe(obj)
-    if not obj or not item_device.dev_items[obj:id()] then return false end
-    return true
-end
-
-function reboot_call(seconds)
-	fatal_error_mcm.REBOOT = seconds
-	fatal_error_mcm.process_pda_call()	
-end
-
-function invoke(name, time, action)
-	CreateTimeEvent("fe_time_event", name, time, function() action() return true end)
-end
 
 function read_log()
     local path = ""
@@ -195,6 +202,41 @@ function to_roman(val)
     return result
 end
 
+function ffi_message(title, message, type, info)
+    printf("!FE: Calling FFI! Title: s%, Message: s%, Type: s%, Info: s%", title, message, type, info)
+    if db.actor:has_info(info) then return end -- show message only once.
+
+    give_info(info)
+    local ffi = require("ffi")
+	local lib = ffi.load("user32")  -- Windows DLL  
+	ffi.cdef[[  
+	    int MessageBoxA(void* hWnd, const char* text, const char* caption, int type);  
+	]]  
+	lib.MessageBoxA(nil, message, title, type)
+end
+
+----------------------------------------------------------------------------------------------------
+-- Helper functions
+----------------------------------------------------------------------------------------------------
+
+function failsafe(obj)
+    if not obj or not item_device.dev_items[obj:id()] then return false end
+    return true
+end
+
+function reboot_call(seconds)
+	fatal_error_mcm.REBOOT = seconds
+	fatal_error_mcm.process_pda_call()	
+end
+
+function invoke(name, time, action)
+	CreateTimeEvent("fe_time_event", name, time, function() action() return true end)
+end
+
+----------------------------------------------------------------------------------------------------
+-- Other
+----------------------------------------------------------------------------------------------------
+
 function save_state(m_data)
     m_data.security_key = SECURITY_KEY
 end
@@ -216,6 +258,10 @@ function on_game_start()
     mac_mcm.add_blocked_tabs({"eptReboot","eptBSOD","eptBroken","eptMonolith","eptMonolithHackers","eptBlocked","eptBios","eptBiosBoot","eptBiosDebug",})
     mac_mcm.add_app("app_bios", {name = "BIOS", texture = "settings", tab = "eptBios"})
     exec_console_cmd("g_3d_pda 1")
+
+    if not item_device.dev_items then
+        assert(false, game.translate_string("st_fe_item_device"))
+    end
     
     if get_aoe_version then
         IS_AOE = true

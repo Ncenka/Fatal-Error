@@ -192,7 +192,7 @@ end
 -- PDA Repairs
 ----------------------------------------------------------------------------------------------------
 
-function no_upgrade_for_no_pda()
+function check_pda()
 	return db.actor:item_in_slot(8)
 end
 
@@ -204,6 +204,19 @@ function fix_pda(cost, first_speaker, second_speaker)
 	fe_utils.set_broken(db.actor:item_in_slot(8), 2)
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, cost)
 	RADIATION_AMOUNT = 0
+end
+
+function fix_pda_check_bsod()
+	return fe_utils.is_bsod(db.actor:item_in_slot(8))
+end
+
+function fix_pda_bsod(first_speaker, second_speaker)
+	fe_utils.set_bsod(db.actor:item_in_slot(8), false)
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 2500)
+end
+
+function fix_pda_bsod_check_money()
+	return mlr_utils.have_money(2500)
 end
 
 function fix_pda_screen_check()
@@ -549,6 +562,7 @@ function process_pda_call()
 		
 	if pda then
 		
+		fe_utils.set_apps(pda)
 		fe_utils.set_pda_xml(pda)
 
 		local show_player = ini_sys:r_float_ex(pda:section(),"show_player")
@@ -680,13 +694,6 @@ function on_every_second()
 
 	RemoveTimeEvent("fe_time_event", "on_every_second")
 	CreateTimeEvent("fe_time_event", "on_every_second", 1, on_every_second)
-
-	--local ffi = require("ffi")
-	--local lib = ffi.load("user32")  -- Windows DLL  
-	--ffi.cdef[[  
-	--	int MessageBoxA(void* hWnd, const char* text, const char* caption, int type);  
-	--]]  
-	--lib.MessageBoxA(nil, "Sosal?", "Sosal?", 4 + 32 + 0)
 
 	if REBOOT > 0 then
 		REBOOT = REBOOT - 1

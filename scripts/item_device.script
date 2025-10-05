@@ -56,10 +56,12 @@ local pda_active = false
 local torch_active = false
 
 -- Night-visions
+nv_state = false
+
 local w_multi = 1024/(device().width)
 local h_multi = 768/(device().height)
 local nv_eff = {}
-local nv_state = false
+
 local nv_hud = { x = 0, y = 0, height = (device().height * h_multi), weight = (device().width * w_multi) }	-- HUD dimensions/position
 local ppe_effects = { -- PPE effects used for each NV. lum and id used for their ppe effects
 	["nightvision_1"] = { id = 3301, lum = 0.2 , ui = "wpn\\hud_nvg_gen1" },
@@ -231,6 +233,27 @@ local function on_key_hold(key)
 	end
 end
 
+local nv_change_state = false
+function on_key_press(key)
+	if z_beefs_nvgs then
+		local bind = dik_to_bind(key)
+
+		if (bind == key_bindings.kNIGHT_VISION) then
+			local torch = db.actor:item_in_slot(10)
+			CreateTimeEvent("nvg_keypress", "nvg_keypress_long", 0.5, function()
+				if not fe_utils.is_broken(torch) then
+					nv_change_state = true
+					if liz_fdda_redone_mcm then
+						z_beefs_nvgs.play_animation = true
+					end
+					set_nightvision(torch and torch:section(), not nv_state)
+				end
+				return true 
+			end)
+		end
+	end
+end
+
 local function on_key_release(key)
 
 	if (key == DIK_keys["DIK_LSHIFT"]) then
@@ -243,11 +266,23 @@ local function on_key_release(key)
 	
 	-- Night-Vision
 	if (bind == key_bindings.kNIGHT_VISION) then
-		if not fe_utils.is_broken(torch) then
-			if liz_fdda_redone_mcm then
-				z_vanilla_nvgs.play_animation = true
+
+		-- Beef's NVGs
+		if z_beefs_nvgs then
+			RemoveTimeEvent("nvg_keypress", "nvg_keypress_long")
+			if not nv_change_state then
+				z_beefs_nvgs.brightness_adjust()
+			end	
+			nv_change_state = false
+
+		-- Vanilla NVGs
+		else
+			if not fe_utils.is_broken(torch) then
+				if liz_fdda_redone_mcm then
+					z_vanilla_nvgs.play_animation = true
+				end
+				set_nightvision(torch and torch:section(), not nv_state)
 			end
-			set_nightvision(torch and torch:section(), not nv_state)
 		end
 		
 	-- Dosimeter keybind
@@ -416,6 +451,7 @@ function on_game_start()
 	RegisterScriptCallback("server_entity_on_unregister",se_device_on_unregister)
 	RegisterScriptCallback("actor_on_feeling_anomaly",on_anomaly_touch)
 	
+	RegisterScriptCallback("on_key_press",on_key_press)
 	RegisterScriptCallback("on_key_release",on_key_release)
 	RegisterScriptCallback("on_key_hold",on_key_hold)
 	
@@ -810,6 +846,10 @@ function device_binder:update(delta)
 			
 			-- No need to process unequipped devices
 			if dev_slot[id] then
+
+				if (self.N_V) then
+					self:process_nvgs()
+				end
 				
 				-- Light flicker on event for flashlights
 				if (self.type == "FLASH") then
@@ -818,7 +858,7 @@ function device_binder:update(delta)
 				
 				-- Glitch effect on event for PDA
 				if (self.type == "PDA") then
-					self:process_glitch(id, sec, cond)
+					self:process_glitch()
 				end
 			end
 		
@@ -936,7 +976,35 @@ function device_binder:process_torch(id, section, condition)
 	end
 end
 
-function device_binder:process_glitch(id, section, condition)
+function device_binder:process_nvgs()
+	if z_beefs_nvgs then
+		-- Emissions: the closer the wave, the higher the psi influnces
+		if GetEvent("surge", "state") then
+			local surge_time = GetEvent("surge", "time") or 0
+			local val_glitch = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
+			z_beefs_nvgs.nvg_glitch( clamp(val_glitch,0.0,0.9) )
+			nv_glitch_state = true
+		
+		-- Psi-storms: huge spike when a vortex hits the ground
+		elseif GetEvent("psi_storm", "state") then
+			if GetEvent("psi_storm", "vortex") then
+				z_beefs_nvgs.nvg_glitch(0.9)
+				nv_glitch_state = true
+			else
+				z_beefs_nvgs.nvg_glitch(0.2)
+				nv_glitch_state = true
+			end
+		-- NVG doesn't get affected in normal cases	
+		else
+			if nv_glitch_state then
+				z_beefs_nvgs.nvg_glitch(0.0)
+				nv_glitch_state = false
+			end
+		end
+	end
+end
+
+function device_binder:process_glitch()
 
 	local radiation_glitch_value = not self.object:has_upgrade("up_firsta_pda") and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
 	local damage_glitch_value = fe_utils.get_screen_damage(self.object) * 0.1
