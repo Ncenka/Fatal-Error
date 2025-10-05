@@ -1,0 +1,77 @@
+local add_functor = custom_functor_autoinject.add_functor
+
+function oa_battery_recycle()
+
+	local battery_func = {
+		check = function(obj, bag, mode)
+			local modes = {
+				["inventory"] = true,
+				["loot"] = true,
+			}
+			local bags = {
+				["actor_bag"] = true,
+				["npc_bag"] = true,
+			}
+			return (obj:section()=="batteries_dead" or obj:section()=="batteries_exo" or obj:section()=="batteries_aa" or obj:section()=="batteries_c" or obj:section()=="batteries_d" or obj:section()=="batteries_f") and modes[mode] and bags[bag]
+		end,
+		str = function(obj, bag, mode)
+			return "st_oa_recycle_batteries"
+		end,
+		func = function(obj, bag, mode)
+			local actor = obj:parent()
+			local total_power = 0
+			local target = ""
+			
+			if obj:section()=="batteries_dead" then 
+				target = "batteries_dead"
+			elseif obj:section()=="batteries_exo" then 
+				target = "batteries_exo"
+			elseif obj:section()=="batteries_aa" then
+				target = "batteries_aa"
+			elseif obj:section()=="batteries_c" then
+				target = "batteries_c"
+			elseif obj:section()=="batteries_d" then
+				target = "batteries_d"
+			elseif obj:section()=="batteries_f" then
+				target = "batteries_f"
+			end
+			
+			local function itr(npc, obj)
+				if obj:section()==target then		
+					local cond = obj:condition()			
+					total_power = total_power + cond
+				end
+			end	
+			
+			if IsStalker(actor) then
+				actor:iterate_ruck(itr, actor)
+			elseif IsInvbox(actor) then
+				actor:iterate_inventory_box(itr, actor)
+			end
+			
+			local function battery_recycle(npc, obj)
+				if obj:section()==target and total_power and total_power >= 1 then
+					obj:set_condition(1)
+					total_power = total_power -1
+				elseif obj:section()==target and total_power and total_power < 1 and 0 < total_power then
+					obj:set_condition(total_power)
+					total_power = nil
+				elseif obj:section()==target then
+					alife_release(obj)
+				end
+			end
+			
+			if IsStalker(actor) then
+				actor:iterate_ruck(battery_recycle, actor)
+			elseif IsInvbox(actor) then
+				actor:iterate_inventory_box(battery_recycle, actor)
+			end
+		end
+	}
+	add_functor("oa_recycle_batteries", battery_func.check, battery_func.str, nil, battery_func.func, true)
+end
+
+
+function on_game_start()
+	oa_battery_recycle()
+end
