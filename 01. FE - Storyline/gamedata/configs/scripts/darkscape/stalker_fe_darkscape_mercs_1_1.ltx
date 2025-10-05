@@ -1,0 +1,12 @@
+#include "stalker_fe_darkscape_mercs_general.ltx"
+
+[logic@stalker_fe_darkscape_mercs_1_1]
+active = beh@fe_darkscape_bridge2
+suitable = {=check_npc_name(fe_darkscape_merc_1_1)} true
+prior = 5000
+on_death = death
+on_hit = hit
+
+[beh@fe_darkscape_bridge2]:beh@mercs
+pt1 = 1000,hide | pos:361.43371582031,14.999302864075,294.94165039062 look:362.32901698351,14.999302864075,294.93540775683
+path_end = loop
