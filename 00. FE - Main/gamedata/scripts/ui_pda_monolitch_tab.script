@@ -1,0 +1,31 @@
+local SINGLETON = nil
+function get_ui()
+	SINGLETON = SINGLETON or pda_monolitch_tab()
+	SINGLETON:Reset()
+	return SINGLETON
+end
+
+class "pda_monolitch_tab" (CUIScriptWnd)
+function pda_monolitch_tab:__init() super()
+    self:InitControls()
+end
+
+function pda_monolitch_tab:__finalize()
+end
+
+function pda_monolitch_tab:InitControls()
+    self:SetWndRect(Frect():set(0,0,1024,768))
+	local xml               = CScriptXmlInit()
+	xml:ParseFile("pda_errors.xml")
+	self.picture			= xml:InitStatic("picture_base",self)
+	self.picture:InitTexture ("ui\\pda_monolith")
+end
+
+function pda_monolitch_tab:Update()
+	CUIScriptWnd.Update(self)
+end
+
+function pda_monolitch_tab:Reset()
+	local pda_menu = ActorMenu.get_pda_menu()
+	pda_menu:GetTabControl():Show(false)
+end
