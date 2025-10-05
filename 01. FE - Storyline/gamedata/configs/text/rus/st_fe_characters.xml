@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+		<string id="st_fe_senya_snap">
+		<text>Сеня Подкидной</text>
+	</string>
+	<string id="st_fe_danila_extremist">
+		<text>Данила Экстремист</text>
+	</string>
+	<string id="st_fe_denis_toothless">
+		<text>Денис Беззубый</text>
+	</string>
+	<string id="st_fe_unknown">
+		<text>Неизвестный</text>
+	</string>
+</string_table>

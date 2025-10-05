@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="fe_darkscape_quests_1_title">
+		<text>Чітка угода - Зустрітися з сталкерами</text>
+	</string>
+	<string id="fe_darkscape_quests_1_descr">
+		<text>Мені надійшло голосове повідомлення від Сені Підкидного - він каже, що є варіант "жорстко підняти бабло". Вони чекають мене на Кордоні, біля тунелю в Темну Лощину.</text>
+	</string>
+	<string id="fe_darkscape_quests_2_title_0">
+		<text>Чітка угода - Дістатися до місця угоди</text>
+	</string>
+	<string id="fe_darkscape_quests_2_descr_0">
+		<text>У Темній Лощині вночі буде угода біля зруйнованого Ж/Д мосту - якісь "опущені" будуть міняти різне спорядження на гроші та артефакти - нам воно потрібніше. Але спочатку треба дістатися до місця угоди.</text>
+	</string>
+	<string id="fe_darkscape_quests_2_descr_1">
+		<text>Чорт, засідка! Треба розібратися з цими найманцями - не час пялитись у КПК!</text>
+	</string>
+	<string id="fe_darkscape_quests_2_descr_2">
+		<text>З найманцями покінчено - тепер пора збирати хабар - контейнери мають бути прямо під мостом. Після цього мені слід поговорити про поділ хабара з Сенею Підкидним.</text>
+	</string>
+	<string id="fe_darkscape_quests_2_descr_3">
+		<text>Ніхто не повинен залишитись живим тут - треба завалити Сеню, Даника і Дениса, щоб ніхто не дізнався, що тут сталося. Весь цей хабар має належати мені! І тільки мені!</text>
+	</string>
+	<string id="fe_darkscape_quests_2_title_1">
+		<text>Чітка угода - Нейтралізувати найманців</text>
+	</string>
+	<string id="fe_darkscape_quests_2_title_2">
+		<text>Чітка угода - Знайти і зібрати контейнери</text>
+	</string>
+	<string id="fe_darkscape_quests_2_title_3">
+		<text>Чітка угода - Поговорити з Сенею Підкидним</text>
+	</string>
+	<string id="fe_darkscape_quests_2_title_4">
+		<text>Чітка угода - Усунути зайвих свідків</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_0">
+		<text>Гаразд, радий бачити, що прийшов - ось всі, Данила, Сеня і Дес Беззубий. Короче, проясню ситуацію - є варіант сильно наваритись на хабар, прям взагалі, кожному перепаде шмоток на касарів 50, блін. У Темній Лощині якісь опущені на ніч угоду планують - будуть міняти артефакти на шпалери і спорядження, ще сверху гривень накладуть - 4 контейнери з хабаром всього, якраз на кожного з нас. Сеня одного з них... скажемо так, випадково перехопив, і з інфи з КПК їх там повинно бути 8 чоловік. Ну, якщо рахувати цього жмурика, то 7. Темка ніби проста, в 4 рила спокійно захуяримо залетних. Ну що, ти з нами? Часу думати в тебе нема - або так, або ні.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_1">
+		<text>Я з вами, мужики.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_2">
+		<text>Чудово. Ось тобі рація, щоб розмовляти, а тепер слухай - ночі ми чекатимемо в тунелі, а звідти пошаройобимо до зруйнованого моста в Лощині. Шлях не близький і довгий, але на щастя, в Лощині є група сталкерів на лісопилці, можемо до них забігти, закупитись чимось. Як дійдемо до моста - швидко хуяримо залетних, ділимо хабар і розбігаємось. Ще додам - в Лощині майже немає зв’язку, тільки на високих місцях ловить, а "Усилювача сигналу" ні в кого з нас нема - так що запам'ятай мапу, поки є можливість. Ну добре, якщо ще щось треба буде сказати - скажу по дорозі.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_3">
+		<text>Все зрозумів - погнали, йопта.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_4">
+		<text>Мужики, зараз справ безліч, не можу з вами йти.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_5">
+		<text>Бля-я-я-я-ть, ну йобана в рот - ну ти нахуй і кидала. Катайся колбаскою тоді звідси, без тебе розберемось і хабар наваримо що пиздець, а ти ходи, об'єдки збирай.</text>
+	</string>
+	<string id="fe_start_darkscape_danilla_6">
+		<text>Гаразд, погнав я. Бувай.</text>
+	</string>
+	<string id="fe_start_darkscape_start_0">
+		<text>Ну що хлопці, сталкер з нами піде - ще одна волина не завадить. Сеня, що там по КПКшнику?</text>
+	</string>
+	<string id="fe_start_darkscape_start_1">
+		<text>Нічого нового, але прийшла малява, питають, де жмурика, де він. Пацани, до речі, імпортні, здається, англійською шпрехають. Треба батонами ворушити, а то накриють падли.</text>
+	</string>
+	<string id="fe_start_darkscape_start_2">
+		<text>Не сси, вони з Лощини хуй з'їдуть, або до братків, або прямо до нас. Все, короче, похуяримо в тунель і чекаємо ночі.</text>
+	</string>
+	<string id="fe_start_darkscape_0">
+		<text>Ось і ніч настала... Ненавиджу Лощину, підорське місце.</text>
+	</string>
+	<string id="fe_start_darkscape_1">
+		<text>Саме те для тебе, йопта. Лише б всяку хуйню кудлату не зустріти...</text>
+	</string>
+	<string id="fe_start_darkscape_2">
+		<text>В натурі... Сталкер - веди! Ми за тобою шканда... Блять... Хуй.</text>
+	</string>
+	<string id="fe_darkscape_hill_0">
+		<text>Слухай сталкер, звідси ловить заєбісь. Спробуй дістати КПКшник, перевір. Якщо буде зв'язок, то перевір мапу.</text>
+	</string>
+	<string id="fe_darkscape_phrase_stalker_camp_0">
+		<text>Там на лісопилці сталкери сидять, кіпішу не підіймаємо особливо, вони терпили, але проблем нам зараз взагалі не треба.</text>
+	</string>
+	<string id="fe_darkscape_phrase_stalker_camp_1">
+		<text>У мене вже все є, що треба. А ось ти сталкер, якщо що, зайди затарься, далі тільки жопа буде.</text>
+	</string>
+	<string id="fe_darkscape_phrase_bridge_0">
+		<text>До моста недалеко залишилось, думаю, пора світло наше вимикати. Йдемо, у всі очі лупимо.</text>
+	</string>
+	<string id="fe_darkscape_phrase_bridge_1">
+		<text>З нами бог...</text>
+	</string>
+	<string id="fe_darkscape_phrase_bridge_2">
+		<text>Пам'ятайте, ні слова по-пендоськи.</text>
+	</string>
+	<string id="fe_darkscape_merc_john_0">
+		<text>Alpha Actual to Alpha One Four - John, де ти, блять? Ти пізно! Угода вже розпочалася! Бачу, твій КПК активний - чому не відповідаєш!? </text>
+	</string>
+	<string id="fe_darkscape_merc_john_1">
+		<text>Шо вони пиздять там?</text>
+	</string>
+	<string id="fe_darkscape_merc_john_2">
+		<text>Угода почалася, треба поспішати, а то не хотілося б їх потім по всій Лощині ловити.</text>
+	</string>
+	<string id="fe_darkscape_phrase_merc_dead_0">
+		<text>Все, всіх захуяримо. Сталкер, шукай контейнери і йди до мене, будемо хабар ділити.</text>
+	</string>
+	<string id="fe_darkscape_phrase_merc_dead_1">
+		<text>Ух блять, останній раз так шмаляли років 5 тому.</text>
+	</string>
+	<string id="fe_darkscape_phrase_merc_dead_2">
+		<text>Так, це тобі не єбланів з Кордона гопати.</text>
+	</string>
+	<string id="fe_darkscape_merc_dialog_0">
+		<text>Bravo Actual, this is Alpha Actual - SITREP, over.</text>
+	</string>
+	<string id="fe_darkscape_merc_dialog_1">
+		<text>Alpha Actual, this is Bravo Actual - crossing Zone Perimeter, entering AO, all Green, ETA 5 Mikes, how copy, over.</text>
+	</string>
+	<string id="fe_darkscape_merc_dialog_2">
+		<text>Roger that Bravo, Break.</text>
+	</string>
+	<string id="fe_darkscape_merc_dialog_3">
+		<text>Bravo, be advised - we have one MIA in Cordon area, proceed with caution, over</text>
+	</string>
+	<string id="fe_darkscape_merc_dialog_4">
+		<text>Copy that, Bravo out.</text>
+	</string>
+	<string id="fe_darkscape_fail">
+		<text>Ну ти і кидала, сталкер - але нічо, ми і без тебе справимось - нам зато хабара більше достанеться.</text>
+	</string>
+	<string id="fe_darkscape_start">
+		<text>Так блять... Сука, воно залагало! Раз-раз блять, звук йде? А, похуй. Це... Сталкер, здорова, це Сеня Підкидний, пам’ятаєш мене? Ти мені від Данили Екстреміста посилку приносив. Не пам’ятаєш? Та похуй. Короче, слухай, є варіант жорстко підняти бабло, прям взагалі - ти з нами? Ми чекаємо тебе на Кордоні, біля тунелю... Блять, тунеля в Лощину - поспішай конкретно, ми тебе вічно чекати не будемо! І це, ліхтарик візьми, або ПНБ, якщо багатий дохуя, вночі працювати будемо.</text>
+	</string>
+	<string id="fe_darkscape_merc_alert_0">
+		<text>Flash! Alpha, we have four unknown PDA signals approaching our position from Cordon area, the deal is compromised, prepare for contact!</text>
+	</string>
+	<string id="fe_darkscape_merc_alert_1">
+		<text>Roger that Alpha! All Bravo units prepare for combat! </text>
+	</string>
+	<string id="fe_darkscape_merc_battle_0">
+		<text>Light them up boys!</text>
+	</string>
+	<string id="fe_darkscape_merc_battle_1">
+		<text>Шухер пацани! Хуяримо їх!</text>
+	</string>
+	<string id="fe_darkscape_merc_battle_2">
+		<text>На мосту снайпер, єбальниками не світимо!</text>
+	</string>
+	<string id="fe_darkscape_merc_battle_3">
+		<text>Сука, нихуя у них снаряга і виучка, єбуть що піздець блять!</text>
+	</string>
+	<string id="fe_darkscape_merc_battle_4">
+		<text>This is for John, motherfuckers!</text>
+	</string>
+	<string id="fe_darkscape_merc_joke_0">
+		<text>Bravo, be advised, visual on four unknown armed men, over!</text>
+	</string>
+	<string id="fe_darkscape_merc_joke_1">
+		<text>Very funny Alpha, regroup under the bridge, all Green.</text>
+	</string>
+	<string id="fe_darkscape_cases_0">
+		<text>Все, контейнери у мене. Ну що, як ділимо?</text>
+	</string>
+	<string id="fe_darkscape_cases_1">
+		<text>Ну сталкер, диви, тут таке діло...</text>
+	</string>
+	<string id="fe_darkscape_cases_2">
+		<text>Яке діло, йопта?</text>
+	</string>
+	<string id="fe_darkscape_cases_3">
+		<text>Ах ти ж сука! Я з самого початку знав, що це наебалово! Пизда вам, хуєсоси! \n%c[d_orange][Напасти]</text>
+	</string>
+	<string id="fe_darkscape_cases_4">
+		<text>Контейнер з артефактами йде мені, це не обговорюється - вони потрібні мені, і не для бабла... Хоча, якщо вони не допоможуть, то загоню торговцю. Бабло йде Дьосу, він хоче снарягу, щоб тип-топ була. А ось решту можна і поділити - диви, я з КПКшника з самого початку знаю, що в контейнерах, так що на вибір у тебе наступне: \n\nВ цьому контейнері лежить снайперка, М24 під калібр .338 Lapua Magnum, одна з кращих в своєму класі, сам би хотів собі таку заіметь. \n\nНу а в тому контейнері снаряга - прекрасний комбез "Кочівник" і три кевларових пластини до нього, щоб кулі хавати без шкоди для здоров'я. \n\nНу так що, що береш?</text>
+	</string>
+	<string id="fe_darkscape_cases_5">
+		<text>Залишу собі "Кочівник" і кевлар до нього.</text>
+	</string>
+	<string id="fe_darkscape_cases_6">
+		<text>Давай снайперку, вона мені не завадить.</text>
+	</string>
+	<string id="fe_darkscape_cases_7">
+		<text>Ахуєнно ти це придумав - та мені легше вас заєбашити і все самому забрати! \n%c[d_orange][Напасти]</text>
+	</string>
+	<string id="fe_darkscape_cases_8">
+		<text>Хороший вибір! Гаразд сталкер, треба валити звідси як можна швидше, а то на звуки пострілів ще прийде хтось... Ми підемо своєю дорогою, а ти своєю. Бувай, і дякую за допомогу.</text>
+	</string>
+	<string id="fe_darkscape_cases_9">
+		<text>Бувай!</text>
+	</string>
+	<string id="fe_darkscape_end_0">
+		<text>Ну мужики, хто куди, а я до Бару, треба обмити хабар.</text>
+	</string>
+	<string id="fe_darkscape_end_1">
+		<text>Не впевнений, що тебе, такого уєбана, туди пустять, але я теж туди, бармен справу пропонував. Дес, ти з нами?</text>
+	</string>
+	<string id="fe_darkscape_end_2">
+		<text>Ні, мені Султан запропонував на Юпітер в бригаду піти, бандеролі носити, капусту обіцяє вище даху - а я шо, лох відмовлятись?</text>
+	</string>
+	<string id="fe_darkscape_end_3">
+		<text>Ладно Дес, давай.</text>
+	</string>
+	<string id="fe_darkscape_end_4">
+		 <text>Бува.</text>
+	</string>
+	<string id="fe_darkscape_end_5">
+		<text>Бувай!</text>
+	</string>
+	<string id="st_fe_speak_to_senya">
+		<text>Спочатку мені слід поговорити з Сенею Підкидним.</text>
+	</string>
+</string_table>
