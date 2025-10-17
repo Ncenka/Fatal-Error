@@ -37,11 +37,11 @@ function set_screen_damage(obj, val)
 
     local damage
     if val == 1 then
-       damage = get_screen_damage(obj) + 1
+       damage = get_damage(obj) + 1
        damage = clamp(damage, 0, 5)
        utils_obj.play_sound("material\\glass\\glass_fall03hl")
     elseif val == 2 then
-        damage = get_screen_damage(obj)
+        damage = get_damage(obj)
     else
         damage = 0
         news_manager.send_tip(db.actor, game.translate_string("st_pda_screen_fix"), nil, default, 10000)
@@ -57,6 +57,25 @@ function set_screen_damage(obj, val)
 
 end
 
+function set_damage(obj, val)
+    if not failsafe(obj) then return end -- failsafe
+    
+    local damage
+    if val == 1 then
+       damage = get_damage(obj) + 1
+       damage = clamp(damage, 0, 5)
+    elseif val == 2 then
+        damage = get_damage(obj)
+    elseif val == 3 then
+        damage = 0
+    else
+        damage = 0
+        news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
+    end
+    item_device.dev_items[obj:id()].damage = damage
+
+end
+
 function set_pda_xml(obj)
     if not failsafe(obj) then return end -- failsafe
     if item_device.dev_items[obj:id()].interface == nil then item_device.dev_items[obj:id()].interface = "pda" end -- fallback to default UI if UI is nil
@@ -66,7 +85,6 @@ function set_pda_xml(obj)
 
     if curr_interface ~= base_interface then
         ActorMenu.get_pda_menu():SetPdaXml(base_interface .. ".xml")
-        printf("$FE: PDA UI XML file set to: %s.xml", base_interface)
     end
 
     if fatal_error_mcm.REBOOT > 0 then
@@ -75,8 +93,11 @@ function set_pda_xml(obj)
 
 end
 
+local cache_obj
 function set_apps(obj)
     if not failsafe(obj) then return end -- failsafe
+    if cache_obj == obj:section() then return end
+    cache_obj = obj:section()
 
     if mac_mcm.PDA_APPS.app_taskboard then mac_mcm.remove_app("app_taskboard") end 
     if mac_mcm.PDA_APPS.app_interactive then mac_mcm.remove_app("app_interactive") end 
@@ -115,7 +136,7 @@ function is_overclocked(obj)
 	return item_device.dev_items[obj:id()].is_overclocked
 end
 
-function get_screen_damage(obj)
+function get_damage(obj)
     if not failsafe(obj) then return 0 end -- failsafe
     return item_device.dev_items[obj:id()].damage
 end
@@ -127,6 +148,26 @@ function get_pda_tier(obj)
     else
         return 5
     end
+end
+
+function get_surge_psi(obj)
+    if not failsafe(obj) then return 0 end -- failsafe
+    if obj:has_upgrade("up_firste_pda") then return 0 end
+    
+    local surge_psi = 0
+	if GetEvent("surge", "state") then
+		local surge_time = GetEvent("surge", "time") or 0
+		surge_psi = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
+		surge_psi = clamp(surge_psi,0,1)
+
+	elseif GetEvent("psi_storm", "state") then
+		if GetEvent("psi_storm", "vortex") then
+			surge_psi = 0.3 + (1 - 0.3) * math.random()
+		else
+			surge_psi = 0.1 + (0.3 - 0.1) * math.random()
+		end
+	end
+	return surge_psi
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -155,6 +196,8 @@ function read_log()
             end
         end
         file:close()
+    else
+        LOG_LINES[1] = "Error"
     end
 
 end
