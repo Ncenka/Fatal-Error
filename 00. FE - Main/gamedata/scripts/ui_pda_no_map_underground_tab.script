@@ -1,0 +1,33 @@
+local SINGLETON = nil
+function get_ui()
+	SINGLETON = SINGLETON or pda_no_map_underground_tab()
+	SINGLETON:Reset()
+	return SINGLETON
+end
+
+class "pda_no_map_underground_tab" (CUIScriptWnd)
+function pda_no_map_underground_tab:__init() super()
+    self:InitControls()
+end
+
+function pda_no_map_underground_tab:__finalize()
+end
+
+function pda_no_map_underground_tab:InitControls()
+    self:SetWndRect(Frect():set(0,0,1024,768))
+	local xml               = CScriptXmlInit()
+	xml:ParseFile("pda_errors.xml")
+	self.text 			= xml:InitTextWnd("text_center", self)
+end
+
+function pda_no_map_underground_tab:Update()
+	CUIScriptWnd.Update(self)
+end
+
+function pda_no_map_underground_tab:Reset()
+    self.text:SetText(game.translate_string("st_pda_no_map"))
+    self.text:SetTextColor(GetARGB(255, 255, 255, 1))
+    self.text:Show(true)
+    local pda_menu = ActorMenu.get_pda_menu()
+	pda_menu:GetTabControl():Show(false)
+end
