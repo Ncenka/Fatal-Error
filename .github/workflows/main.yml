@@ -11,7 +11,7 @@ on:
 jobs:
   archive:
     name: Create 7z Archive
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
