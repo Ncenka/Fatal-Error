@@ -33,8 +33,8 @@ jobs:
           --exclude='.github' \
           --exclude='.gitattributes' \
           --exclude='*.7z' \
-          --exclude='README.md' \  # если нужно исключить README
-          ./ fomod_structure/fomod/
+          --exclude='README.md' \
+          ./* fomod_structure/fomod/
         
         echo "📁 Содержимое папки fomod:"
         ls -la fomod_structure/fomod/
