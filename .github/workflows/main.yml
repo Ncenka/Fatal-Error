@@ -39,7 +39,7 @@ jobs:
     - name: Create 7z archive
       uses: edgarrc/action-7z@v1
       with:
-        args: 7z a -t7z -mx=9 fatal_error-${{ github.event.inputs.version }}.7z ./fomod/
+        args: 7z a -t7z -mx=9 fatal-error-${{ github.event.inputs.version }}.7z ./fomod/
         
     - name: Clean up
       run: rm -rf fomod
