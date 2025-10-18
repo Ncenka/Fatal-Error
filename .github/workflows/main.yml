@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version tag (e.g., v1.0.0)'
+        description: 'Version tag (format: v1.0.0)'
         required: true
         default: 'v1.0.0'
       description:
         description: 'Release description'
         required: false
-        default: 'Automatic release with build archive'
+        default: 'Automatic release'
 
 jobs:
   release:
@@ -21,17 +21,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Create 7z archive
+    - name: Create 7z archive of entire project
       uses: edgarrc/action-7z@v1
       with:
-        args: 7z a -t7z -mx=9 build-${{ github.event.inputs.version }}.7z ./build/
+        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./* -x!*.7z -x!.git/
         
-    - name: Create Release
+    - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ github.event.inputs.version }}
         name: Release ${{ github.event.inputs.version }}
-        body: ${{ github.event.inputs.description }}
-        files: build-${{ github.event.inputs.version }}.7z
+        body: |
+          ${{ github.event.inputs.description }}
+        files: project-${{ github.event.inputs.version }}.7z
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
