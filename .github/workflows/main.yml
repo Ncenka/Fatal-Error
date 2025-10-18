@@ -53,6 +53,6 @@ jobs:
         name: Release ${{ github.event.inputs.version }}
         body: |
           ${{ github.event.inputs.description }}
-        files: project-${{ github.event.inputs.version }}.7z
+        files: fatal-error-${{ github.event.inputs.version }}.7z
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
