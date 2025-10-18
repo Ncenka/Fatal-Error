@@ -23,8 +23,8 @@ jobs:
       
     - name: Prepare fomod structure
       run: |
-        # Создаем структуру
-        mkdir -p fomod_structure/fomod
+        # Создаем временную папку fomod
+        mkdir -p temp_fomod
         
         # Копируем только нужные файлы и папки
         # Исключаем .git, .github, .gitattributes и другие служебные файлы
@@ -34,18 +34,19 @@ jobs:
           --exclude='.gitattributes' \
           --exclude='*.7z' \
           --exclude='README.md' \
-          ./* fomod_structure/fomod/
+          ./* temp_fomod/
         
-        echo "📁 Содержимое папки fomod:"
-        ls -la fomod_structure/fomod/
+        echo "📁 Содержимое папки temp_fomod:"
+        ls -la temp_fomod/
       
     - name: Create 7z archive
       uses: edgarrc/action-7z@v1
       with:
-        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./fomod_structure/*
+        # Архивируем СОДЕРЖИМОЕ temp_fomod в корень архива с префиксом fomod/
+        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./temp_fomod/* -sfxfomod\\
         
     - name: Clean up
-      run: rm -rf fomod_structure
+      run: rm -rf temp_fomod
       
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
