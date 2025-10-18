@@ -34,7 +34,7 @@ local delays = {
     emission = 60,
 	radiation = 1,
 	bsod = 60,
-	shutdown = 5,
+	shutdown = 30,
 }
 
 REBOOT = 0

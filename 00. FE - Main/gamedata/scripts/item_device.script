@@ -758,7 +758,7 @@ function device_binder:__init(obj) super(obj)
 			is_bsod = false,
 			is_overclocked = false,
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
-			damage = 5,
+			damage = 0,
 		}
 		if obj:section():find("itm_pda") then
 			dev_items[obj:id()].damage = math.random(0,5)
