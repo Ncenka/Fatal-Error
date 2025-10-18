@@ -21,12 +21,32 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Create 7z archive with fomod as root
+    - name: Prepare fomod structure
+      run: |
+        # Создаем структуру
+        mkdir -p fomod_structure/fomod
+        
+        # Копируем только нужные файлы и папки
+        # Исключаем .git, .github, .gitattributes и другие служебные файлы
+        rsync -av \
+          --exclude='.git' \
+          --exclude='.github' \
+          --exclude='.gitattributes' \
+          --exclude='*.7z' \
+          --exclude='README.md' \  # если нужно исключить README
+          ./ fomod_structure/fomod/
+        
+        echo "📁 Содержимое папки fomod:"
+        ls -la fomod_structure/fomod/
+      
+    - name: Create 7z archive
       uses: edgarrc/action-7z@v1
       with:
-        # Архивируем всё, но добавляем префикс fomod/ для всех файлов
-        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./* -x!*.7z -x!.git/ -x!.github/ -x!.gitattributes -sfxfomod\\
+        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./fomod_structure/*
         
+    - name: Clean up
+      run: rm -rf fomod_structure
+      
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
