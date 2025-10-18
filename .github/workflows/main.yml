@@ -14,18 +14,31 @@ on:
 
 jobs:
   release:
-    name: Create Release with Archive
+    name: Create Release
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Create 7z archive of entire project
+    - name: Create directory structure for archive
+      run: |
+        # Создаем временную папку с нужной структурой
+        mkdir -p temp_archive/fomod
+        # Копируем все файлы и папки в fomod, исключая ненужное
+        find . -maxdepth 1 -type f -not -name '*.7z' -not -name '.gitattributes' -exec cp {} temp_archive/fomod/ \;
+        find . -maxdepth 1 -type d -not -name 'temp_archive' -not -name '.git' -not -name '.github' -exec cp -r {} temp_archive/fomod/ \;
+        echo "📁 Структура папки temp_archive:"
+        ls -la temp_archive/fomod/
+      
+    - name: Create 7z archive with fomod folder
       uses: edgarrc/action-7z@v1
       with:
-        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./* -x!*.7z -x!.git/
+        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./temp_archive/*
         
+    - name: Clean up temporary files
+      run: rm -rf temp_archive
+      
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
