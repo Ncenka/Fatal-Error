@@ -1,4 +1,3 @@
---test ver
 SETTINGS = {
     pda = {
         emission = {5, 4, 3, 2, 1},
