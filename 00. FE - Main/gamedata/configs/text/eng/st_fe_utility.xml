@@ -92,6 +92,9 @@
 	<string id="st_taskboard_unavaible">
 		<text>"Taskboard" feature is not available</text>
 	</string>
+	<string id="st_autocomplete_unavaible">
+		<text>does not support electronic money transfers</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>generation:</text>
 	</string>

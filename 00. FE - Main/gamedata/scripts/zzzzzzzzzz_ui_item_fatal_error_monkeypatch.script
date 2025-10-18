@@ -97,6 +97,15 @@ function create_overrides_fatal_error_v2()
 			end
 		end
 
+		-- Autocomplete
+		if IsItem("device",sec) and not sec:find("itm_pda_") then
+			local autocomplete = ini_sys:r_bool_ex(sec,"autocomplete")
+			if autocomplete == false and autocomplete_tasks_utils then
+				local unit = game.translate_string("st_autocomplete_unavaible")
+				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
+			end
+		end
+
 		-- Device Broken
 		if IsItem("device",sec) and fe_utils.is_broken(obj) then
 			local unit = game.translate_string("st_broken")			
@@ -104,7 +113,7 @@ function create_overrides_fatal_error_v2()
 		end
 		
 		-- Device Damaged
-		if IsItem("device",sec) and fe_utils.get_screen_damage(obj) > 0 then
+		if IsItem("device",sec) and fe_utils.get_damage(obj) > 0 then
 			local unit = game.translate_string("st_damaged")			
 			_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 		end
@@ -124,7 +133,7 @@ function create_overrides_fatal_error_v2()
 			_str = _str .. " " .. unit 
 		end
 		
-		if IsItem("device",sec) and fe_utils.get_screen_damage(obj) > 0 then
+		if IsItem("device",sec) and fe_utils.get_damage(obj) > 0 then
 			local unit = game.translate_string("st_damaged_header")			
 			_str = _str .. " " .. unit 
 		end

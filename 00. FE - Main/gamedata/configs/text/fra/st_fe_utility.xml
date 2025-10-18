@@ -95,10 +95,13 @@ Dernière révision: 19 septembre 2025
 		<text>Signal GPS capté.</text>
 	</string>
 	<string id="st_interactive_unavaible">
-		<text>Fonction "Interactive" non disponible</text>
+		<text>fonction "Interactive" non disponible</text>
 	</string>
 	<string id="st_taskboard_unavaible">
-		<text>Fonction "Taskboard" non disponible</text>
+		<text>fonction "Taskboard" non disponible</text>
+	</string>
+	<string id="st_autocomplete_unavaible">
+		<text>ne prend pas en charge les transferts d'argent électroniques</text>
 	</string>
 	<string id="st_pda_gen">
 		<text>génération:</text>

@@ -185,16 +185,8 @@ function pda_bios_tab:On_beep_button()
 	else
 		give_info("bios_can_beep")
 	end
-	if db.actor:has_info("bios_can_beep") then
-		beep = "[Enabled]"
-	else
-		beep = "[Disabled]"
-	end
-	if ini_sys:r_bool_ex(pda:section(),"can_beep") == true then
-		beep = beep .. " \\n" .. "[Supported]"
-	else
-		beep = beep .. " \\n" .. "[Unsupported]"
-	end
+    beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
+	beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
 	self.beep_enable:SetText(beep)
 end
 
@@ -203,36 +195,32 @@ function pda_bios_tab:On_razgon_button()
 	if item_device.dev_items[pda_id].is_overclocked == true then
 		item_device.dev_items[pda_id].is_overclocked = false
 		self.razgon_razgon:SetText("[Disabled]")
-		xr_sound.set_sound_play(AC_ID, "pda_alarm")
 	else
 		item_device.dev_items[pda_id].is_overclocked = true
 		self.razgon_razgon:SetText("[Enabled]")
-		xr_sound.set_sound_play(AC_ID, "pda_alarm")
 	end
+    xr_sound.set_sound_play(AC_ID, "pda_alarm")
 end
 
 function pda_bios_tab:On_interface_button()
+    if not pda:has_upgrade("up_thirda_pda") then return end
 
-	if not pda:has_upgrade("up_thirda_pda") then return end
+    local pda_id = pda:id()
+    xr_sound.set_sound_play(AC_ID, "pda_alarm")
+    
+    local interface_cycle = {
+        pda = "pda_zero",
+        pda_zero = "pda_one", 
+        pda_one = "pda_two",
+        pda_two = "pda"
+    }
+    
+    local current_interface = item_device.dev_items[pda_id].interface
+    item_device.dev_items[pda_id].interface = interface_cycle[current_interface] or "pda"
 
-	local pda_id = pda:id()
-	xr_sound.set_sound_play(AC_ID, "pda_alarm")
-	local pda_xml = item_device.dev_items[pda_id].interface
-
-	if pda_xml == "pda" then
-		item_device.dev_items[pda_id].interface = "pda_zero"
-	elseif pda_xml == "pda_zero" then
-		item_device.dev_items[pda_id].interface = "pda_one"
-	elseif pda_xml == "pda_one" then
-		item_device.dev_items[pda_id].interface = "pda_two"
-	else
-		item_device.dev_items[pda_id].interface = "pda"
-	end
-
-	fatal_error_mcm.REBOOT = math.random(2,5)
-	ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
-	fe_utils.invoke("set_pda_xml", 1, function() fe_utils.set_pda_xml(pda) end)
-
+    fatal_error_mcm.REBOOT = math.random(2,5)
+    ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
+    fe_utils.invoke("set_pda_xml", 1, function() fe_utils.set_pda_xml(pda) end)
 end
 
 function pda_bios_tab:Reset()
@@ -253,7 +241,7 @@ function pda_bios_tab:Reset()
 	pda_id = pda:id()
 	pda_sec = pda:section()
 
-	self.text1_l:SetText("System Time: ")
+	self.text1_l:SetText("System Time:")
 	self.text1_l:SetTextColor(GetARGB(255, 100, 200, 255))
     self.text1_l:Show(true)
 	
@@ -261,7 +249,7 @@ function pda_bios_tab:Reset()
 	self.text1_r:SetTextColor(GetARGB(255, 255, 255, 255))
     self.text1_r:Show(true)
 	
-	self.text2_l:SetText("System Date: ")
+	self.text2_l:SetText("System Date:")
 	self.text2_l:SetTextColor(GetARGB(255, 100, 200, 255))
     self.text2_l:Show(true)
 	
@@ -269,7 +257,7 @@ function pda_bios_tab:Reset()
 	self.text2_r:SetTextColor(GetARGB(255, 255, 255, 255))
     self.text2_r:Show(true)
 	
-	self.username:SetText("Username: ")
+	self.username:SetText("Username:")
 	self.username:SetTextColor(GetARGB(255, 100, 200, 255))
     self.username:Show(true)
 	
@@ -277,7 +265,7 @@ function pda_bios_tab:Reset()
 	self.username_username:SetTextColor(GetARGB(255, 255, 255, 255))
     self.username_username:Show(true)
 	
-	self.detected_cpu:SetText("Processor Information: ")
+	self.detected_cpu:SetText("Processor Information:")
 	self.detected_cpu:SetTextColor(GetARGB(255, 100, 200, 255))
     self.detected_cpu:Show(true)
 	
@@ -300,7 +288,7 @@ function pda_bios_tab:Reset()
 	self.detected_cpu_cpu:SetTextColor(GetARGB(255, 255, 255, 255))
 	self.detected_cpu_cpu:Show(true)
 	
-	self.me_version:SetText("Modded Exes Version: ")
+	self.me_version:SetText("Modded Exes Version:")
 	self.me_version:SetTextColor(GetARGB(255, 100, 200, 255))
     self.me_version:Show(true)
 	
@@ -308,7 +296,7 @@ function pda_bios_tab:Reset()
 	self.me_version_version:SetTextColor(GetARGB(255, 255, 255, 255))
     self.me_version_version:Show(true)
 	
-	self.pda_name:SetText("PDA Model: ")
+	self.pda_name:SetText("PDA Model:")
 	self.pda_name:SetTextColor(GetARGB(255, 100, 200, 255))
     self.pda_name:Show(true)
 	
@@ -316,7 +304,7 @@ function pda_bios_tab:Reset()
 	self.pda_name_name:SetTextColor(GetARGB(255, 255, 255, 255))
     self.pda_name_name:Show(true)
 	
-	self.oper_sys_name:SetText("Operating System: ")
+	self.oper_sys_name:SetText("Operating System:")
 	self.oper_sys_name:SetTextColor(GetARGB(255, 100, 200, 255))
     self.oper_sys_name:Show(true)
 	
@@ -324,20 +312,12 @@ function pda_bios_tab:Reset()
 	self.oper_sys_name_name:SetTextColor(GetARGB(255, 255, 255, 255))
     self.oper_sys_name_name:Show(true)
 	
-	self.beep:SetText("Beep Sound: ")
+	self.beep:SetText("Beep Sound:")
 	self.beep:SetTextColor(GetARGB(255, 100, 200, 255))
     self.beep:Show(true)
 	
-	if db.actor:has_info("bios_can_beep") then
-		beep = "[Enabled]"
-	else
-		beep = "[Disabled]"
-	end
-	if ini_sys:r_bool_ex(pda_sec,"can_beep") == true then
-		beep = beep .. " \\n" .. "[Supported]"
-	else
-		beep = beep .. " \\n" .. "[Unsupported]"
-	end
+	beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
+	beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
 	self.beep_enable:SetText(beep)
 	self.beep_enable:SetTextColor(GetARGB(255, 100, 200, 255))
     self.beep_enable:Show(true)
@@ -350,55 +330,35 @@ function pda_bios_tab:Reset()
 	self.s_key_key:SetTextColor(GetARGB(255, 255, 255, 255))
     self.s_key_key:Show(true)
 	
-	self.taskboard:SetText("Taskboard: ")
+	self.taskboard:SetText("Taskboard:")
 	self.taskboard:SetTextColor(GetARGB(255, 100, 200, 255))
     self.taskboard:Show(true)
 	
-	if ui_pda_taskboard_tab then
-		taskboard = "[Enabled]"
-	else
-		taskboard = "[Disabled]"
-	end
-	if ini_sys:r_bool_ex(pda_sec,"tab_taskboard") == true then
-		taskboard = taskboard .. " \\n" .. "[Supported]"
-	else
-		taskboard = taskboard .. " \\n" .. "[Unsupported]"
-	end
+	taskboard = ui_pda_taskboard_tab and "[Enabled]" or "[Disabled]"
+	taskboard = ini_sys:r_bool_ex(pda_sec,"tab_taskboard") == true and taskboard .. " \\n" .. "[Supported]" or taskboard .. " \\n" .. "[Unsupported]"
 	self.taskboard_task:SetText(taskboard)
 	self.taskboard_task:SetTextColor(GetARGB(255, 255, 255, 255))
     self.taskboard_task:Show(true)
 	
-	self.interact:SetText("Interactive: ")
+	self.interact:SetText("Interactive:")
 	self.interact:SetTextColor(GetARGB(255, 100, 200, 255))
     self.interact:Show(true)
 	
-	if pda_inter_gui then
-		interact = "[Enabled]"
-	else
-		interact = "[Disabled]"
-	end
-	if ini_sys:r_bool_ex(pda_sec,"tab_interactive") == true then
-		interact = interact .. " \\n" .. "[Supported]"
-	else
-		interact = interact .. " \\n" .. "[Unsupported]"
-	end
+	interact = pda_inter_gui and "[Enabled]" or "[Disabled]"
+	interact = ini_sys:r_bool_ex(pda_sec,"tab_interactive") == true and interact .. " \\n" .. "[Supported]" or interact .. " \\n" .. "[Unsupported]"
 	self.interact_interact:SetText(interact)
 	self.interact_interact:SetTextColor(GetARGB(255, 255, 255, 255))
     self.interact_interact:Show(true)
 	
-	self.razgon:SetText("Overclock: ")
+	self.razgon:SetText("Overclock:")
 	self.razgon:SetTextColor(GetARGB(255, 100, 200, 255))
     self.razgon:Show(true)
-	
-	if item_device.dev_items[pda_id].is_overclocked == true then
-		self.razgon_razgon:SetText("[Enabled]")
-	else
-		self.razgon_razgon:SetText("[Disabled]")
-	end
+
+	self.razgon_razgon:SetText(item_device.dev_items[pda_id].is_overclocked == true and "[Enabled]" or "[Disabled]")
 	self.razgon_razgon:SetTextColor(GetARGB(255, 100, 200, 255))
     self.razgon_razgon:Show(true)
 
-	self.interface:SetText("User Interface: ")
+	self.interface:SetText("User Interface:")
 	self.interface:SetTextColor(GetARGB(255, 100, 200, 255))
     self.interface:Show(true)
 
@@ -428,4 +388,5 @@ function pda_bios_tab:Reset()
 	
 	local pda_menu = ActorMenu.get_pda_menu()
 	pda_menu:GetTabControl():Show(false)
+
 end

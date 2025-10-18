@@ -3,235 +3,235 @@
 	<string id="ui_mcm_menu_fatal_error">
 		<text>Fatal Error</text>
 	</string>
-	<string id="ui_mcm_menu_fatal_error_pda_frying">
-		<text>Поломка КПК</text>
+	<string id="ui_mcm_menu_fe_pdas">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_menu_fatal_error_devices_frying">
-		<text>Поломка устройств</text>
+	<string id="ui_mcm_menu_fe_devices">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_menu_fatal_error_pda_other_settings">
-		<text>Другие параметры</text>
+	<string id="ui_mcm_menu_fe_other">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay">
-		<text>Частота проверки КПК на шанс "сгореть" (сек.)</text>
+	<string id="ui_mcm_fatal_error_fe_other_emission_delay">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" (пїЅпїЅпїЅ.)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_pda_can_sgoret_delay_desc">
-		<text>Промежуток времени, во время выброса или пси шторма, через который игра будет делать проверку для поломки КПК и устройств.</text>
+	<string id="ui_mcm_fatal_error_fe_other_emission_delay_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die">
-		<text>Шанс устройств сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra">
-		<text>Шанс устройств сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation">
-		<text>Коэффициент шанса устройств сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_desc">
-		<text>Шанс того, что устройство выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_electra_desc">
-		<text>Шанс того, что устройство выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_devices_frying_chance_for_devices_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.10, тогда шанс устройств сгореть будет равен 1%.</text>
+	<string id="ui_mcm_fatal_error_fe_devices_devices_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.10, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die">
-		<text>Шанс КПК I поколения сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die">
-		<text>Шанс КПК II поколения сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die">
-		<text>Шанс КПК III поколения сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die">
-		<text>Шанс КПК IV поколения сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die">
-		<text>Шанс КПК V поколения сгореть (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_emission">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error">
-		<text>Шанс BSOD для КПК I поколения (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_bsod">
+		<text>пїЅпїЅпїЅпїЅ BSOD пїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error">
-		<text>Шанс BSOD для КПК II поколения (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_bsod">
+		<text>пїЅпїЅпїЅпїЅ BSOD пїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error">
-		<text>Шанс BSOD для КПК III поколения (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_bsod">
+		<text>пїЅпїЅпїЅпїЅ BSOD пїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error">
-		<text>Шанс BSOD для КПК IV поколения (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_bsod">
+		<text>пїЅпїЅпїЅпїЅ BSOD пїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error">
-		<text>Шанс BSOD для КПК V поколения (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_bsod">
+		<text>пїЅпїЅпїЅпїЅ BSOD пїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_timed_error_desc">
-		<text>Шанс того, что после выброса или пси шторма КПК I поколения временно будет сломан.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_bsod_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_timed_error_desc">
-		<text>Шанс того, что после выброса или пси шторма КПК II поколения временно будет сломан.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_bsod_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_timed_error_desc">
-		<text>Шанс того, что после выброса или пси шторма КПК III поколения временно будет сломан.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_bsod_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_timed_error_desc">
-		<text>Шанс того, что после выброса или пси шторма КПК IV поколения временно будет сломан.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_bsod_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_timed_error_desc">
-		<text>Шанс того, что после выброса или пси шторма КПК V поколения временно будет сломан.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_bsod_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra">
-		<text>Шанс КПК I поколения сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra">
-		<text>Шанс КПК II поколения сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra">
-		<text>Шанс КПК III поколения сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra">
-		<text>Шанс КПК IV поколения сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra">
-		<text>Шанс КПК V поколения сгореть от электрического воздействия (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_electra">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_electra_desc">
-		<text>Шанс того, что КПК I поколения выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_electra_desc">
-		<text>Шанс того, что КПК II поколения выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_electra_desc">
-		<text>Шанс того, что КПК III поколения выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_electra_desc">
-		<text>Шанс того, что КПК IV поколения выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_electra_desc">
-		<text>Шанс того, что КПК V поколения выйдет из строя из-за воздействия электрических аномалий.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_electra_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_desc">
-		<text>Шанс того, что КПК I поколения выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_desc">
-		<text>Шанс того, что КПК II поколения выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_desc">
-		<text>Шанс того, что КПК III поколения выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_desc">
-		<text>Шанс того, что КПК IV поколения выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_desc">
-		<text>Шанс того, что КПК V поколения выйдет из строя во время выброса или пси шторма.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_emission_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda0_to_die_radiation">
-		<text>Коэффициент шанса КПК I поколения сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda1_to_die_radiation">
-		<text>Коэффициент шанса КПК II поколения сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda2_to_die_radiation">
-		<text>Коэффициент шанса КПК III поколения сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_pda3_to_die_radiation">
-		<text>Коэффициент шанса КПК IV поколения сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_for_milspec_to_die_radiation">
-		<text>Коэффициент шанса КПК V поколения сгореть от радиации (%)</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_radiation">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda0_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 1, тогда шанс КПК I поколения сгореть будет равен 10%.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda0_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ I пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda1_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.75, тогда шанс КПК II поколения сгореть будет равен 7%.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda1_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.75, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ II пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 7%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda2_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.50, тогда шанс КПК III поколения сгореть будет равен 5%.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda2_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.50, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ III пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 5%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_pda3_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.25, тогда шанс КПК IV поколения сгореть будет равен 2%.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda3_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.25, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IV пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 2%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_frying_chance_chance_for_milspec_to_die_radiation_desc">
-		<text>Например, если кол-во Накопленной радиации равно 10, и коэффициент равен 0.10, тогда шанс КПК V поколения сгореть будет равен 1%.</text>
+	<string id="ui_mcm_fatal_error_fe_pdas_pda4_radiation_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.10, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ V пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1%.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry">
-		<text>Минимальное Количество Накопленной Радиации</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_amount_to_fry">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_to_fry_desc">
-		<text>Если Накопленная Радиация больше, чем Минимальное Количество Накопленной Радиации, тогда игра попробует сломать ваш КПК или устройство.</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_amount_to_fry_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay">
-		<text>Частота проверки на шанс поломки от радиации (сек.)</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_delay">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ.)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_fry_pda_from_radiation_delay_desc">
-		<text>Если Накопленная Радиация больше, чем Минимальное Количество Накопленной Радиации, тогда игра попробует сломать ваш КПК или устройство через каждое ЭТО значение секунд.</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_delay_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale">
-		<text>Коэффициент шума для КПК от радиации</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_glitch_scale">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_glitch_scale_desc">
-		<text>Например, 1 - огромное количество шума даже от маленькой дозы радиации, 0 - никакого шума, даже посреди Реактора №4 ЧАЭС.</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_glitch_scale_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ4 пїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale">
-		<text>Коэффициент Накопленной Радиации</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_scale">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_scale_desc">
-		<text>По сути, количество Накопленной Радиации за единицу радиации. Чем больше, тем быстрее вы накапливаете радиацию, и наоборот.</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_scale_desc">
+		<text>пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower">
-		<text>Снижение Накопленной Радиации</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_amount_lower">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_radiation_amount_lower_desc">
-		<text>Кол-во Накопленной Радиации, которая снизится через определённый промежуток времени.</text>
+	<string id="ui_mcm_fatal_error_fe_other_radiation_amount_lower_desc">
+		<text>пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min">
-		<text>Минимальное время перезагрузки (сек.)</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_time_min">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ.)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_min_desc">
-		<text>Минимальное время перезагрузки после выброса или пси-шторма. Должно быть меньше, чем Максимальное время перезагрузки.</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_time_min_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max">
-		<text>Максимальное время перезагрузки (сек.)</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_time_max">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ.)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_timed_error_time_max_desc">
-		<text>Максимальное время перезагрузки после выброса или пси-шторма. Должно быть больше, чем Минимальное время перезагрузки.</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_time_max_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage">
-		<text>Шанс повреждения КПК (%)</text>
+	<string id="ui_mcm_fatal_error_fe_other_chance_for_pda_to_damage">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_pda_to_damage_desc">
-		<text>Шанс того, что после получения физического урона ваш КПК будет повреждён.</text>
+	<string id="ui_mcm_fatal_error_fe_other_chance_for_pda_to_damage_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_device_to_break">
-		<text>Шанс сломать устройство на голове (%)</text>
+	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (%)</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_chance_for_device_to_break_desc">
-		<text>Шанс того, что после получения физического урона в голову девайс на голове сломается.</text>
+	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_light_reboot">
-		<text>Оптимизированная перезагрузка КПК</text>
+	<string id="ui_mcm_fatal_error_fe_other_light_reboot">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_light_reboot_desc">
-		<text>Если у вас есть фризы во время перезагрузки или слабый ПК включите эту опцию.</text>
+	<string id="ui_mcm_fatal_error_fe_other_light_reboot_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius">
-		<text>Радиус "Бипалки" КПК</text>
+	<string id="ui_mcm_fatal_error_fe_other_beep_radius">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_beep_radius_desc">
-		<text>Если в этом радиусе есть сталкеры, КПК издаст звуковой сигнал. Работает только на поздних моделях КПК.</text>
+	<string id="ui_mcm_fatal_error_fe_other_beep_radius_desc">
+		<text>пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key">
-		<text>Клавиша перезагрузки КПК</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_key">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_reboot_key_desc">
-		<text>Выберите клавишу для перезагрузки КПК.</text>
+	<string id="ui_mcm_fatal_error_fe_other_reboot_key_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value">
-		<text>Пассивный шум КПК</text>
+	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fatal_error_pda_other_settings_passive_glitch_value_desc">
-		<text>Пассивный шум для КПК, который будет присутствовать всегда.</text>
+	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability_desc">
+		<text>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.</text>
 	</string>
 </string_table>

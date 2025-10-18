@@ -1,44 +1,20 @@
+function on_game_start()
+
+	RegisterScriptCallback("actor_on_item_drop",update_geiger)
+	RegisterScriptCallback("actor_on_item_take",update_geiger)
+	RegisterScriptCallback("actor_on_first_update",compatibility_patches)
+
+	if ui_pda_taskboard_tab then
+		UnregisterScriptCallback("on_key_release", ui_pda_taskboard_tab.on_key_release)
+	end
+
+end
+
 ----------------------------------------------------------------------------------------------------
 -- Compatibility Patches
 ----------------------------------------------------------------------------------------------------
 
 function compatibility_patches()
-	if tasks_placeable_waypoints then
-		tasks_placeable_waypoints.pda_defs = {
-			["device_pda_0"] = {
-				show_w              = false,
-				autotag             = false,
-			},
-			["device_pda_1"] = {
-				show_w              = true,
-				autotag             = true,
-			},
-			["device_pda_2"] = {
-				show_w              = true,
-				autotag             = true,    
-			},
-			["device_pda_3"] = {
-				show_w              = true,
-				autotag             = true,    
-			},
-			["device_pda_4"] = {
-				show_w              = true,
-				autotag             = true,
-			},
-			["device_pda_getac"] = {
-				show_w              = true,
-				autotag             = true,
-			},
-			["device_pda_milspec"] = {
-				show_w              = true,
-				autotag             = true,
-			},
-			["device_pda_new"] = {
-				show_w              = true,
-				autotag             = true,
-			},
-		}
-	end
 	if item_milpda then
 		item_milpda.pda_defs = {
 			["device_pda_0"] = { 
@@ -110,14 +86,48 @@ function compatibility_patches()
 end
 
 ----------------------------------------------------------------------
--- ui_pda_taskboard_tab
+-- msv_over_radiation_status_mcm
 ----------------------------------------------------------------------
 
--- Just kill this feature
-if ui_pda_taskboard_tab then
-    function ui_pda_taskboard_tab.on_key_release()
-        return
-    end
+if msv_over_radiation_status_mcm then
+	function msv_over_radiation_status_mcm.eval_geiger_requirement()
+		if msv_over_radiation_status_mcm.icon_msv_requirement > 0 then
+			local obj_geiger = (db.actor:object("detector_geiger") and db.actor:object("detector_geiger"):condition() > 0.05) or (db.actor:object("detector_geiger2") and db.actor:object("detector_geiger2"):condition() > 0.05)
+			if obj_geiger and msv_over_radiation_status_mcm.icon_msv_requirement > 1 then
+				return true
+			end
+			return obj_geiger
+		end
+		return true
+	end
+end
+
+----------------------------------------------------------------------
+-- autocomplete_tasks_utils
+----------------------------------------------------------------------
+
+if autocomplete_tasks_utils then
+	function autocomplete_tasks_utils.has_pda()
+		local pda = db.actor:item_in_slot(8)
+		if pda and ini_sys:r_bool_ex(pda:section(),"autocomplete") == true then
+			return true
+		end
+		return false
+	end
+end
+
+----------------------------------------------------------------------
+-- tasks_placeable_waypoints
+----------------------------------------------------------------------
+
+if tasks_placeable_waypoints then
+	function tasks_placeable_waypointspda_defs.valid_pda()
+		local pda = db.actor:item_in_slot(8)
+		if pda and ini_sys:r_bool_ex(pda:section(),"cartography") == true then
+			return true
+		end
+		return false
+	end
 end
 
 ----------------------------------------------------------------------
@@ -128,12 +138,6 @@ function update_geiger(item)
 	if item:section():find("detector_geiger") then
 		item_device.device_geiger = db.actor:object("detector_geiger") and "detector_geiger" or "detector_geiger2"
 	end
-end
-
-function on_game_start()
-	RegisterScriptCallback("actor_on_item_drop",update_geiger)
-	RegisterScriptCallback("actor_on_item_take",update_geiger)
-	RegisterScriptCallback("actor_on_first_update",compatibility_patches)
 end
 
 ----------------------------------------------------------------------

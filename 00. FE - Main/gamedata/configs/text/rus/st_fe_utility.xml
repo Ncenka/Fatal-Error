@@ -93,6 +93,9 @@
 	<string id="st_taskboard_unavaible">
 		<text>функци€ "ќбъ€влени€" недоступна</text>
 	</string>
+	<string id="st_autocomplete_unavaible">
+		<text>не поддерживает электронные денежные переводы</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>поколение:</text>
 	</string>

@@ -21,7 +21,7 @@ function pda_reboot_tab:InitControls()
 	
 	self.picture			= xml:InitStatic("picture_base",self)
 
-	if fatal_error_mcm.settings.light_reboot == true then
+	if fatal_error_mcm.SETTINGS.light_reboot == true then
 		self.picture:InitTexture ("ui\\reboot\\light_reboot")
 	else
 		self.picture:InitTexture ("ui\\reboot\\pda_reboot")

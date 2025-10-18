@@ -91,6 +91,9 @@
 	<string id="st_taskboard_unavaible">
 		<text>функція "Оголошення" недоступна</text>
 	</string>
+	<string id="st_autocomplete_unavaible">
+		<text>не підтримує електронні грошові перекази</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>покоління:</text>
 	</string>

@@ -1,25 +1,23 @@
-settings = {
+SETTINGS = {
     pda = {
-        break_chance = {
-            emission = {5, 4, 3, 2, 1},
-            electra = {25, 20, 15, 10, 5},
-            radiation = {1, 0.75, 0.50, 0.25, 0.10},
-            bsod = {25, 20, 15, 10, 5}
-        },
+        emission = {5, 4, 3, 2, 1},
+        electra = {25, 20, 15, 10, 5},
+        radiation = {1, 0.75, 0.50, 0.25, 0.10},
+        bsod = {25, 20, 15, 10, 5}
 	},
     devices = {
-        break_chance = {
-            emission = 5,
-            electra = 15,
-            radiation = 0.10
-        }
+        emission = 5,
+        electra = 15,
+        radiation = 0.10
     },
 	other = {
-		passive_glitch_value = 0.01,
+		devices_unreliability = 1,
 		damage_chance = 2,
 		break_head_device = 5,
 		reboot_min_time = 30,
 		reboot_max_time = 60,
+		shutdown_min_time = 5,
+		shutdown_max_time = 10,
 		beep_radius = 50,
         radiation = {
             amount_to_fry = 1,
@@ -35,7 +33,8 @@ settings = {
 local delays = {
     emission = 60,
 	radiation = 1,
-	bsod = 60
+	bsod = 60,
+	shutdown = 5,
 }
 
 REBOOT = 0
@@ -50,45 +49,47 @@ ELECTRA_GLITCH_VALUE = 0
 function on_mcm_load()
 	options = { 
 		id = "fatal_error", gr= {
-			{id = "fatal_error_pda_frying", sh = true, gr= {
-				{ id = "chance_for_pda0_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
-				{ id = "chance_for_pda1_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 4 },
-				{ id = "chance_for_pda2_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 3 },
-				{ id = "chance_for_pda3_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 2 },
-				{ id = "chance_for_milspec_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 1 },
-				{ id = "chance_for_pda0_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 25 },
-				{ id = "chance_for_pda1_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 20 },
-				{ id = "chance_for_pda2_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
-				{ id = "chance_for_pda3_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 10 },
-				{ id = "chance_for_milspec_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
-				{ id = "chance_for_pda0_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 1 },
-				{ id = "chance_for_pda1_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.75 },
-				{ id = "chance_for_pda2_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.50 },
-				{ id = "chance_for_pda3_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.25 },
-				{ id = "chance_for_milspec_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.10 },
-				{ id = "chance_for_pda0_to_timed_error", type="track", val = 2, min = 0, max = 100, step = 1, def = 25 },
-				{ id = "chance_for_pda1_to_timed_error", type="track", val = 2, min = 0, max = 100, step = 1, def = 20 },
-				{ id = "chance_for_pda2_to_timed_error", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
-				{ id = "chance_for_pda3_to_timed_error", type="track", val = 2, min = 0, max = 100, step = 1, def = 10 },
-				{ id = "chance_for_milspec_to_timed_error", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
+			{id = "fe_pdas", sh = true, gr= {
+				{ id = "pda0_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
+				{ id = "pda1_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 4 },
+				{ id = "pda2_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 3 },
+				{ id = "pda3_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 2 },
+				{ id = "pda4_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 1 },
+				{ id = "pda0_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 25 },
+				{ id = "pda1_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 20 },
+				{ id = "pda2_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
+				{ id = "pda3_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 10 },
+				{ id = "pda4_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
+				{ id = "pda0_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 1 },
+				{ id = "pda1_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.75 },
+				{ id = "pda2_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.50 },
+				{ id = "pda3_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.25 },
+				{ id = "pda4_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.10 },
+				{ id = "pda0_bsod", type="track", val = 2, min = 0, max = 100, step = 1, def = 25 },
+				{ id = "pda1_bsod", type="track", val = 2, min = 0, max = 100, step = 1, def = 20 },
+				{ id = "pda2_bsod", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
+				{ id = "pda3_bsod", type="track", val = 2, min = 0, max = 100, step = 1, def = 10 },
+				{ id = "pda4_bsod", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
 			},},
-			{id = "fatal_error_devices_frying", sh = true, gr= {
-				{ id = "chance_for_devices_to_die", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
-				{ id = "chance_for_devices_to_die_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
-				{ id = "chance_for_devices_to_die_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.10 },
+			{id = "fe_devices", sh = true, gr= {
+				{ id = "devices_emission", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
+				{ id = "devices_electra", type="track", val = 2, min = 0, max = 100, step = 1, def = 15 },
+				{ id = "devices_radiation", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.10 },
 			},},
-			{id = "fatal_error_pda_other_settings", sh = true, gr= {
-				{ id = "passive_glitch_value", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.01 },
-				{ id = "pda_can_sgoret_delay", type="track", val = 2, min = 10, max = 120, step = 10, def = 60 },
-				{ id = "fry_pda_from_radiation_delay", type="track", val = 2, min = 1, max = 60, step = 1, def = 1 },
+			{id = "fe_other", sh = true, gr= {
+				{ id = "devices_unreliability", type="track", val = 2, min = 0, max = 100, step = 1, def = 1 },
+				{ id = "emission_delay", type="track", val = 2, min = 10, max = 120, step = 10, def = 60 },
+				{ id = "radiation_delay", type="track", val = 2, min = 1, max = 60, step = 1, def = 1 },
 				{ id = "radiation_glitch_scale", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.1 },
 				{ id = "radiation_scale", type="track", val = 2, min = 0, max = 10, step = 0.01, def = 1 },
 				{ id = "radiation_amount_lower", type="track", val = 2, min = 0, max = 1, step = 0.01, def = 0.01 },
 				{ id = "radiation_amount_to_fry", type="track", val = 2, min = 1, max = 5, step = 0.5, def = 1 },
 				{ id = "chance_for_pda_to_damage", type="track", val = 2, min = 0, max = 100, step = 1, def = 2 },
 				{ id = "chance_for_device_to_break", type="track", val = 2, min = 0, max = 100, step = 1, def = 5 },
-				{ id = "timed_error_time_min", type="track", val = 2, min = 0, max = 600, step = 10, def = 30 },
-				{ id = "timed_error_time_max", type="track", val = 2, min = 0, max = 600, step = 10, def = 60 },
+				{ id = "reboot_time_min", type="track", val = 2, min = 0, max = 600, step = 10, def = 30 },
+				{ id = "reboot_time_max", type="track", val = 2, min = 0, max = 600, step = 10, def = 60 },
+				{ id = "shutdown_min_time", type="track", val = 2, min = 0, max = 60, step = 1, def = 5 },
+				{ id = "shutdown_max_time", type="track", val = 2, min = 0, max = 60, step = 1, def = 10 },
 				{ id = "beep_radius", type="track", val = 2, min = 5, max = 100, step = 1, def = 50 },
 				{ id = "reboot_key", type = "key_bind", val = 2, def = DIK_keys.DIK_M},
 				{ id = "light_reboot", type = "check", val = 1, def = false},
@@ -101,34 +102,36 @@ end
 
 function on_option_change()
 	
-	local pda_tiers = {"pda0", "pda1", "pda2", "pda3", "milspec"}
+	local pda_tiers = {"pda0", "pda1", "pda2", "pda3", "pda4"}
 		
 	for i, tier in ipairs(pda_tiers) do	
-		settings.pda.break_chance.emission[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die")
-		settings.pda.break_chance.electra[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_electra")
-		settings.pda.break_chance.radiation[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_die_radiation")
-		settings.pda.break_chance.bsod[i] = ui_mcm.get("fatal_error/fatal_error_pda_frying/chance_for_"..tier.."_to_timed_error")
+		SETTINGS.pda.emission[i] = ui_mcm.get("fatal_error/fe_pdas/"..tier.."_emission")
+		SETTINGS.pda.electra[i] = ui_mcm.get("fatal_error/fe_pdas/"..tier.."_electra")
+		SETTINGS.pda.radiation[i] = ui_mcm.get("fatal_error/fe_pdas/"..tier.."_radiation")
+		SETTINGS.pda.bsod[i] = ui_mcm.get("fatal_error/fe_pdas/"..tier.."_bsod")
 	end
 
-	settings.devices.break_chance.emission = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die")
-	settings.devices.break_chance.electra = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_electra")
-	settings.devices.break_chance.radiation = ui_mcm.get("fatal_error/fatal_error_devices_frying/chance_for_devices_to_die_radiation")
+	SETTINGS.devices.emission = ui_mcm.get("fatal_error/fe_devices/devices_emission")
+	SETTINGS.devices.electra = ui_mcm.get("fatal_error/fe_devices/devices_electra")
+	SETTINGS.devices.radiation = ui_mcm.get("fatal_error/fe_devices/devices_radiation")
 
-	delays.emission = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/pda_can_sgoret_delay")
-	delays.radiation = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/fry_pda_from_radiation_delay")
+	delays.emission = ui_mcm.get("fatal_error/fe_other/emission_delay")
+	delays.radiation = ui_mcm.get("fatal_error/fe_other/radiation_delay")
 		
-	settings.other.passive_glitch_value = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/passive_glitch_value")
-	settings.other.radiation.glitch_scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_glitch_scale")
-	settings.other.radiation.amount_to_fry = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_to_fry")
-	settings.other.radiation.scale = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_scale")
-	settings.other.radiation.amount_lower = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/radiation_amount_lower")
-	settings.other.damage_chance = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_pda_to_damage")
-	settings.other.break_head_device = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/chance_for_device_to_break")
-	settings.other.reboot_min_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_min")
-	settings.other.reboot_max_time = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/timed_error_time_max")		
-	settings.other.beep_radius = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/beep_radius")
-	settings.reboot_key = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/reboot_key")
-	settings.light_reboot = ui_mcm.get("fatal_error/fatal_error_pda_other_settings/light_reboot")
+	SETTINGS.other.devices_unreliability = ui_mcm.get("fatal_error/fe_other/devices_unreliability")
+	SETTINGS.other.radiation.glitch_scale = ui_mcm.get("fatal_error/fe_other/radiation_glitch_scale")
+	SETTINGS.other.radiation.amount_to_fry = ui_mcm.get("fatal_error/fe_other/radiation_amount_to_fry")
+	SETTINGS.other.radiation.scale = ui_mcm.get("fatal_error/fe_other/radiation_scale")
+	SETTINGS.other.radiation.amount_lower = ui_mcm.get("fatal_error/fe_other/radiation_amount_lower")
+	SETTINGS.other.damage_chance = ui_mcm.get("fatal_error/fe_other/chance_for_pda_to_damage")
+	SETTINGS.other.break_head_device = ui_mcm.get("fatal_error/fe_other/chance_for_device_to_break")
+	SETTINGS.other.reboot_min_time = ui_mcm.get("fatal_error/fe_other/reboot_time_min")
+	SETTINGS.other.reboot_max_time = ui_mcm.get("fatal_error/fe_other/reboot_time_max")
+	SETTINGS.other.shutdown_min_time = ui_mcm.get("fatal_error/fe_other/shutdown_min_time")
+	SETTINGS.other.shutdown_max_time = ui_mcm.get("fatal_error/fe_other/shutdown_max_time")
+	SETTINGS.other.beep_radius = ui_mcm.get("fatal_error/fe_other/beep_radius")
+	SETTINGS.reboot_key = ui_mcm.get("fatal_error/fe_other/reboot_key")
+	SETTINGS.light_reboot = ui_mcm.get("fatal_error/fe_other/light_reboot")
 
 end
 
@@ -161,16 +164,19 @@ function break_device(damage_type, upgrade)
         local obj = available_devices[math.random(1, #available_devices)]
 		local sec = obj:section()
 		local chance
+		local is_device
 
 		if sec:find("device_pda_") then
 			local tier = fe_utils.get_pda_tier(obj)
-        	chance = settings.pda.break_chance[damage_type][tier]
-			if fe_utils.is_overclocked(obj) then
-           		chance = chance * 2
-        	end
+        	chance = SETTINGS.pda[damage_type][tier]
 		else
-			chance = settings.devices.break_chance[damage_type]
+			chance = SETTINGS.devices[damage_type]
+			is_device = true
 		end
+
+		if fe_utils.is_overclocked(obj) then
+           	chance = chance * 2
+        end
         
         local radiation_scale = 1
         if damage_type == "radiation" then
@@ -178,12 +184,19 @@ function break_device(damage_type, upgrade)
         end
         
         if math.random(0, 100) < (radiation_scale * chance) then
-			printf("$FE: Breaking Device: %s", sec)
-			fe_utils.set_broken(obj, 1)
-            
-            if damage_type == "radiation" then
-                RADIATION_AMOUNT = RADIATION_AMOUNT * 0.50
-            end
+
+			if is_device and 75 > math.random(0, 100) and fe_utils.get_damage(obj) < 5 then
+				fe_utils.set_damage(obj, 1)
+			elseif is_device then
+				fe_utils.set_broken(obj, 1)
+				fe_utils.set_damage(obj, 2)
+			else
+				fe_utils.set_broken(obj, 1)
+			end
+				
+			if damage_type == "radiation" then
+				RADIATION_AMOUNT = RADIATION_AMOUNT * 0.50
+			end
         end
     end
 end
@@ -220,7 +233,7 @@ function fix_pda_bsod_check_money()
 end
 
 function fix_pda_screen_check()
-	return fe_utils.get_screen_damage(db.actor:item_in_slot(8)) > 0
+	return fe_utils.get_damage(db.actor:item_in_slot(8)) > 0
 end
 
 function fix_pda_screen(first_speaker, second_speaker)
@@ -318,13 +331,15 @@ end
 function pda_repair_kit(obj_b, obj_d, slot_from, slot_to)
 
 	local tool = obj_b:section()
-	local is_broken_or_damaged = fe_utils.is_broken(obj_d) or fe_utils.get_screen_damage(obj_d) > 0
+	local is_broken_or_damaged = fe_utils.is_broken(obj_d) or fe_utils.get_damage(obj_d) > 0
 
 	if is_broken_or_damaged and tool:find("tool_fix_pda") then
 		if fe_utils.is_broken(obj_d) then
 			fe_utils.set_broken(obj_d, 2)
-		else
+		elseif obj_d:section():find("pda") then
 			fe_utils.set_screen_damage(obj_d, 3)
+		else
+			fe_utils.set_damage(obj_d, 3)
 		end
 		alife_release(obj_b)
 		actor_effects.play_item_fx("craft_dummy")
@@ -377,20 +392,24 @@ function actor_on_before_hit(s_hit, bone_id)
 	}
 
 	local head_device = db.actor:item_in_slot(10)
-
 	if
 		head_bones[bone_id]
 		and damage_type_physical[s_hit.type]
 		and head_device
 		and not fe_utils.is_broken(head_device)
-		and math.random(0, 100) < settings.other.break_head_device
+		and math.random(0, 100) < SETTINGS.other.break_head_device
 	then
-		printf("$FE: Breaking Head Device: %s", head_device:section())
-		fe_utils.set_broken(head_device, 1)
-		utils_obj.play_sound("material\\glass\\glass_fall03hl")
+		if 25 > math.random(0 ,100) and fe_utils.get_damage(head_device) < 5 then
+			fe_utils.set_damage(head_device, 1)
+			utils_obj.play_sound("material\\glass\\glass_fall03hl")
+		else
+			fe_utils.set_broken(head_device, 1)
+			fe_utils.set_damage(head_device, 2)
+			utils_obj.play_sound("material\\glass\\glass_fall03hl")
+		end
 	end
 	
-	if damage_type_physical[s_hit.type] and math.random(0, 100) < settings.other.damage_chance then
+	if damage_type_physical[s_hit.type] and math.random(0, 100) < SETTINGS.other.damage_chance then
 
 		local available_devices = {}
 		local function inventory_iterator(actor, item)
@@ -405,8 +424,7 @@ function actor_on_before_hit(s_hit, bone_id)
 
 		if #available_devices > 0 then
         	local pda = available_devices[math.random(1, #available_devices)]
-			if fe_utils.get_screen_damage(pda) < 5 and (test_trigger == 1 and tg > test_delay) then
-				printf("$FE: %s damaged - amount %s", pda:section(), fe_utils.get_screen_damage(pda))	
+			if fe_utils.get_damage(pda) < 5 and (test_trigger == 1 and tg > test_delay) then
 				fe_utils.set_screen_damage(pda, 1)
 				test_trigger = 0 --Fucking ensure PDAs don't multiply!
 			end
@@ -416,11 +434,12 @@ function actor_on_before_hit(s_hit, bone_id)
 	
 	if s_hit.type == hit.shock then
 		break_device("electra","up_firstc_pda")
+		process_shutdown()
 		ELECTRA_GLITCH_VALUE = clamp(ELECTRA_GLITCH_VALUE + s_hit.power * 10, 0, 1)
 	end
 	
 	if s_hit.type == hit.radiation then
-		RADIATION_AMOUNT = clamp(RADIATION_AMOUNT + (s_hit.power * settings.other.radiation.scale), 0, 20)
+		RADIATION_AMOUNT = clamp(RADIATION_AMOUNT + (s_hit.power * SETTINGS.other.radiation.scale), 0, 20)
 	end
 end
 
@@ -450,16 +469,14 @@ function pda_break_bsod()
 
 			local pda = available_devices[math.random(1, #available_devices)]
 			local tier = fe_utils.get_pda_tier(pda)
-			local chance = settings.pda.break_chance.bsod[tier]
+			local chance = SETTINGS.pda.bsod[tier]
 				
 			if fe_utils.is_overclocked(pda) then
 				chance = chance * 2
 			end
 				
 			if (math.random(0, 100) < chance) then
-				printf("$FE: PDA generation %s, BSOD chance: %s%", tier, chance)
 				fe_utils.set_bsod(pda, true)
-
 				process_pda_call()
 			end
 		end
@@ -481,7 +498,7 @@ function pda_break_radiation()
 	RemoveTimeEvent("fe_time_event", "pda_break_radiation")
 	CreateTimeEvent("fe_time_event", "pda_break_radiation", delays.radiation, pda_break_radiation)
 
-	if RADIATION_AMOUNT > settings.other.radiation.amount_to_fry then 
+	if RADIATION_AMOUNT > SETTINGS.other.radiation.amount_to_fry then 
 		break_device("radiation","up_firsta_pda")
 	end
 end
@@ -491,13 +508,12 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function reboot_action(dik)
-	if dik == settings.reboot_key then
+	if dik == SETTINGS.reboot_key then
 		local obj = db.actor:active_item()
 		if obj then
 			local sec = obj:section()
 			if sec:find("device_pda_") and obj:condition() > 0.05 and not fe_utils.is_broken(obj) then
-				REBOOT = math.random(settings.other.reboot_min_time, settings.other.reboot_max_time)
-				printf("$FE: Reboot time set to: %s seconds", REBOOT)
+				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time)
 				alife_process_item(sec, obj:id(), {cond = obj:condition() - 0.01})
 				utils_obj.play_sound("device\\pda\\pda_dead")
 				obj:play_hud_motion("anm_empty", true, 1, 1, 0)
@@ -670,7 +686,7 @@ function update_count()
 			for i=1,#db.OnlineStalkers do
 				local id = db.OnlineStalkers[i]
 				local obj = db.storage[id] and db.storage[id].object or level.object_by_id(id)
-				if obj and IsStalker(obj) and obj:alive() and (pos:distance_to(obj:position()) <= settings.other.beep_radius) then
+				if obj and IsStalker(obj) and obj:alive() and (pos:distance_to(obj:position()) <= SETTINGS.other.beep_radius) then
 					cnt = cnt + 1
 					if (prev_cnt < cnt) then
 						xr_effects.play_snd(db.actor, nil, {[1] = "beeping\\contact_1"})
@@ -684,6 +700,49 @@ function update_count()
 		-- show number if count is bigger than 1
 		prev_cnt = cnt
 	end
+end
+
+----------------------------------------------------------------------------------------------------
+-- Shutdown
+----------------------------------------------------------------------------------------------------
+
+local cache_obj
+function enable_or_disable(obj, chance)
+	if not cache_obj then cache_obj = obj end
+	if cache_obj:id() ~= obj:id() then cache_obj:set_device_enabled(true) cache_obj = obj end
+	
+	if math.random(0, 100) < chance then
+		obj:set_device_enabled(false)
+		fe_utils.play_shutdown_sound()
+		CreateTimeEvent("fe_time_event", "process_shutdown", math.random(SETTINGS.other.shutdown_min_time, SETTINGS.other.shutdown_max_time), process_shutdown)
+	else
+		if obj:is_device_enabled() == false and not fe_utils.is_broken(obj) then
+			obj:set_device_enabled(true)
+		end
+		CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
+	end
+end
+
+function process_shutdown()
+	RemoveTimeEvent("fe_time_event", "process_shutdown")
+	local obj = db.actor:active_detector()
+	if (not obj or fe_utils.get_damage(obj) == 0) and db.actor:active_item() and db.actor:active_item():section():find("device_pda_") then 
+		obj = db.actor:active_item()
+	elseif not obj then
+		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)
+	end
+
+	if obj then
+		local radiation_chance = not obj:has_upgrade("up_firsta_pda") and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
+		local damage_chance = fe_utils.get_damage(obj) * 10
+		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
+		local electra_chance = not obj:has_upgrade("up_firstc_pda") and ELECTRA_GLITCH_VALUE * 50 or 0
+		local final_chance = math.floor(radiation_chance + damage_chance + surge_psi_chance + electra_chance + SETTINGS.other.devices_unreliability)
+		enable_or_disable(obj, final_chance)
+	else
+		CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
+	end
+
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -707,7 +766,7 @@ function on_every_second()
 	end
 
 	if RADIATION_AMOUNT > 0.01 then
-		RADIATION_AMOUNT = RADIATION_AMOUNT - settings.other.radiation.amount_lower
+		RADIATION_AMOUNT = RADIATION_AMOUNT - SETTINGS.other.radiation.amount_lower
 	elseif RADIATION_AMOUNT < 0.01 then
 		RADIATION_AMOUNT = 0
 	end
@@ -729,6 +788,7 @@ function actor_on_first_update()
 	CreateTimeEvent("fe_time_event", "pda_break_bsod", delays.bsod, pda_break_bsod)
 	CreateTimeEvent("fe_time_event", "pda_break_radiation", delays.radiation, pda_break_radiation)
 	CreateTimeEvent("fe_time_event", "pda_break_emission", delays.emission, pda_break_emission)
+	CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
 
 end
 
@@ -757,18 +817,24 @@ function electra_glitch_lower()
 end
 
 function on_game_start()
+
 	RegisterScriptCallback("actor_on_update", electra_glitch_lower)
 	RegisterScriptCallback("actor_on_update", update_count)
+
+	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+	RegisterScriptCallback("actor_on_first_update", process_pda_call)
+	RegisterScriptCallback("actor_on_first_update", on_option_change)
+
+	RegisterScriptCallback("ActorMenu_on_item_drag_drop", pda_repair_kit)
+	RegisterScriptCallback("ActorMenu_on_item_drag_drop", geiger_check_device)
+
+	RegisterScriptCallback("save_state", save_state)
+    RegisterScriptCallback("load_state", load_state)
 	RegisterScriptCallback("actor_on_before_hit", actor_on_before_hit)
 	RegisterScriptCallback("on_key_press", reboot_action)
 	RegisterScriptCallback("on_key_release", process_pda_button)
 	RegisterScriptCallback("actor_item_to_slot", process_pda_slot)
-	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
-	RegisterScriptCallback("actor_on_first_update", on_option_change)
-	RegisterScriptCallback("ActorMenu_on_item_drag_drop", pda_repair_kit)
-	RegisterScriptCallback("ActorMenu_on_item_drag_drop", geiger_check_device)
-	RegisterScriptCallback("save_state", save_state)
-    RegisterScriptCallback("load_state", load_state)
 	RegisterScriptCallback("on_option_change", on_option_change)
 	RegisterScriptCallback("actor_on_sleep", reduce_radiation_on_sleep)
+	
 end
