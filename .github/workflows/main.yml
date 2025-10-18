@@ -17,11 +17,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Create build directory (if doesn't exist)
-      run: |
-        if not exist "build" mkdir build
-        echo "Sample file" > build/sample.txt
-      
     - name: Create 7z archive
       uses: edgarrc/action-7z@v1
       with:
