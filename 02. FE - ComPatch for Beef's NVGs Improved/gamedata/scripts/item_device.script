@@ -733,9 +733,7 @@ class "device_binder" (object_binder)
 
 function device_binder:__init(obj) super(obj)
 	self.first_update = nil
-
 	if not dev_items[obj:id()] then
-
 		dev_items[obj:id()] = {
 			is_broken = false,
 			is_bsod = false,
@@ -743,18 +741,13 @@ function device_binder:__init(obj) super(obj)
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
 			damage = 0,
 		}
-
 		if obj:section():find("itm_pda") then
 			dev_items[obj:id()].damage = math.random(0,5)
 		elseif ini_sys:r_float_ex(obj:section(),"damage") then
 			dev_items[obj:id()].damage = ini_sys:r_float_ex(obj:section(),"damage")
 		end
-
 	end
-
 end
-
-local nv_glitch_state = false
 
 function device_binder:update(delta)
     object_binder.update(self, delta)
@@ -763,13 +756,12 @@ function device_binder:update(delta)
 	local id = obj:id()
 	local sec = obj:section()
 	local parent = obj:parent()
-	
+
 	if not self.first_update then
 		self.first_update = true
 
 		-- Process devices belongs to others
 		if parent and (parent:id() ~= AC_ID) then
-			
 			-- Process devices belongs to stalkers
 			if IsStalker(parent) then
 				
@@ -791,10 +783,10 @@ function device_binder:update(delta)
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
-		if dev_items[id] and fe_utils.is_broken(self.object) == true and self.object:is_device_enabled() == true then
-			self.object:set_device_enabled(false)
-		elseif dev_items[id] and fe_utils.is_broken(self.object) == false and self.object:is_device_enabled() == false then
-			self.object:set_device_enabled(true)
+		if dev_items[id] and fe_utils.is_broken(obj) == true and obj:is_device_enabled() == true then
+			obj:set_device_enabled(false)
+		elseif dev_items[id] and fe_utils.is_broken(obj) == false and obj:is_device_enabled() == false then
+			obj:set_device_enabled(true)
 		end
 		
 		-- set up stored power for device on first update
@@ -835,40 +827,18 @@ function device_binder:update(delta)
 			-- No need to process unequipped devices
 			if dev_slot[id] then
 				
-				if (self.N_V) then
-					-- Emissions: the closer the wave, the higher the psi influnces
-					if GetEvent("surge", "state") then
-						local surge_time = GetEvent("surge", "time") or 0
-						local val_glitch = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
-						z_beefs_nvgs.nvg_glitch( clamp(val_glitch,0.0,0.9) )
-						nv_glitch_state = true
-		
-					-- Psi-storms: huge spike when a vortex hits the ground
-					elseif GetEvent("psi_storm", "state") then
-						if GetEvent("psi_storm", "vortex") then
-							z_beefs_nvgs.nvg_glitch(0.9)
-							nv_glitch_state = true
-						else
-							z_beefs_nvgs.nvg_glitch(0.2)
-							nv_glitch_state = true
-						end
-					-- NVG doesn't get affected in normal cases	
+				-- Light flicker on event for flashlights
+				if (self.type == "FLASH") then
+					if dev_items[obj:id()].damage > 0 then
+						self:process_flicker(true)
 					else
-						if nv_glitch_state then
-						z_beefs_nvgs.nvg_glitch(0.0)
-							nv_glitch_state = false
-						end
+						self:process_flicker()
 					end
 				end
 				
-				-- Light flicker on event for flashlights
-				if (self.type == "FLASH") then
-					self:process_flicker()
-				end
-				
-				-- Glitch effect on event for PDA
-				if (self.type == "PDA") then
-					self:process_glitch(id, sec, cond)
+				-- Glitch effect on event for PDA or NVGs
+				if self.type == "PDA" or self.N_V then
+					self:process_glitch()
 				end
 			end
 		
@@ -940,7 +910,6 @@ function device_binder:process_torch(id, section, condition)
 		
 		-- if NV device ran out of power, turn NV off
 		if (self.N_V and (condition <= dev_critical[section])) then
-			nv_discharged = true
 			set_nightvision(section,false)
 			self.N_V = nil
 		end
@@ -980,48 +949,33 @@ function device_binder:process_torch(id, section, condition)
 		set_nightvision(section,false)
 		self.N_V = nil
 	end
-
+	
 -- Torch light flicker on event
 	if self.object:torch_enabled() then
-		self:process_flicker()
+		if dev_items[id].damage > 0 then
+			self:process_flicker(true)
+		else
+			self:process_flicker()
+		end
 	end
 end
 
-function device_binder:process_glitch(id, section, condition)
+function device_binder:process_glitch()
 
-	local radiation_glitch_value = not self.object:has_upgrade("up_firsta_pda") and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
-	local damage_glitch_value = fe_utils.get_screen_damage(self.object) * 0.1
-	local overclock_glitch_value = 0 
-	local surge_psi_glitch_value = 0
-	local electra_glitch_value = not self.object:has_upgrade("up_firstc_pda") and fatal_error_mcm.ELECTRA_GLITCH_VALUE or 0
+	local radiation_glitch = not self.object:has_upgrade("up_firsta_pda") and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
+	local damage_glitch = fe_utils.get_damage(self.object) * 0.1
+	local overclock_glitch = fe_utils.is_overclocked(self.object) and 0.15 or 0 
+	local surge_psi_glitch = fe_utils.get_surge_psi(self.object)
+	local electra_glitch = not self.object:has_upgrade("up_firstc_pda") and fatal_error_mcm.ELECTRA_GLITCH_VALUE or 0
+	local final_glitch
 
-	if fe_utils.is_overclocked(self.object) then
-		overclock_glitch_value = 0.15
-	else
-		overclock_glitch_value = 0
+	final_glitch = (radiation_glitch * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale) + electra_glitch + damage_glitch + (fatal_error_mcm.SETTINGS.other.devices_unreliability / 100) + overclock_glitch + surge_psi_glitch
+
+	if self.type == "PDA" then
+		self.object:set_psy_factor(final_glitch)
+	elseif self.N_V and z_beefs_nvgs then
+		z_beefs_nvgs.nvg_glitch(clamp(final_glitch, 0, 0.9))
 	end
-
-	if not self.object:has_upgrade("up_firste_pda") then
-		-- Emissions: the closer the wave, the higher the psi influnces
-		if GetEvent("surge", "state") then
-			local surge_time = GetEvent("surge", "time") or 0
-			surge_psi_glitch_value = (surge_time > 168) and normalize(surge_time, 220, 168) or normalize(surge_time, 20, 168)
-			surge_psi_glitch_value = clamp(surge_psi_glitch_value,0,1)
-			
-		-- Psi-storms: huge spike when a vortex hits the ground
-		elseif GetEvent("psi_storm", "state") then
-			if GetEvent("psi_storm", "vortex") then
-				surge_psi_glitch_value = 0.3 + (1 - 0.3) * math.random()
-			else
-				surge_psi_glitch_value = 0.1 + (0.3 - 0.1) * math.random()
-			end
-		else
-			surge_psi_glitch_value = 0
-		end
-	end
-
-	self.object:set_psy_factor((radiation_glitch_value * fatal_error_mcm.settings.other.radiation.glitch_scale) + electra_glitch_value + damage_glitch_value + fatal_error_mcm.settings.other.passive_glitch_value + overclock_glitch_value + surge_psi_glitch_value)
-	
 end
 
 function device_binder:process_flicker(force)
@@ -1070,17 +1024,17 @@ function device_binder:net_destroy()
 		self.N_V = nil
 		set_nightvision(self.object:section(),false)
 	end
-
+	
 	-- if working torch device disappear, clear id
 	if torch_active == self.object:id() then
 		torch_active = false
 	end
-
+	
 	-- if light source is flickering, turn it off
 	if self.flicker then
 		self:process_flicker(false)
 	end
-
+	
 	--print_dbg("[%s] destroyed: %s", self.object:name())
 	object_binder.net_destroy(self)
 end

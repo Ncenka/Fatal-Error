@@ -228,9 +228,9 @@
 		<text>Select key for rebooting PDA.</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability">
-		<text>Passive glitch for PDA</text>
+		<text>Unreliability of devices</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability_desc">
-		<text>Passive glitch for a PDA that will always be present.</text>
+		<text>When more then 0, even undamaged devices have a small chance to turn off for some time. This also causes passive glitchiness for PDAs.</text>
 	</string>
 </string_table>
