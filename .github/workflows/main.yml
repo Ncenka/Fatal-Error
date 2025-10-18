@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version tag (format: v1.0.0)'
+        description: 'Version tag'
         required: true
-        default: 'v1.0.0'
+        default: 'v1.7.9-auto-release'
       description:
         description: 'Release description'
         required: false
@@ -23,7 +23,6 @@ jobs:
       
     - name: Prepare fomod structure
       run: |
-        # Создаем папку fomod и сразу копируем в неё нужные файлы
         mkdir -p fomod
         rsync -av \
           --exclude='.git' \
@@ -40,8 +39,7 @@ jobs:
     - name: Create 7z archive
       uses: edgarrc/action-7z@v1
       with:
-        # Архивируем папку fomod так, чтобы она была в корне архива
-        args: 7z a -t7z -mx=9 project-${{ github.event.inputs.version }}.7z ./fomod/
+        args: 7z a -t7z -mx=9 fatal_error-${{ github.event.inputs.version }}.7z ./fomod/
         
     - name: Clean up
       run: rm -rf fomod
