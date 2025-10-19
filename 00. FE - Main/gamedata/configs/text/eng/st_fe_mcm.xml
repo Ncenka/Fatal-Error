@@ -233,4 +233,16 @@
 	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability_desc">
 		<text>When more then 0, even undamaged devices have a small chance to turn off for some time. This also causes passive glitchiness for PDAs.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_min_time">
+		<text>Minimum shutdown time (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_min_time_desc">
+		<text>Minimum device shutdown time. Must be less than the Maximum shutdown time.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time">
+		<text>Maximum shutdown time (sec.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
+		<text>Maximum device shutdown time. Must be greater than the Minimum shutdown time.</text>
+	</string>
 </string_table>

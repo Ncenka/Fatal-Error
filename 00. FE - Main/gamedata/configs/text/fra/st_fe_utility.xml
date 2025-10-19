@@ -103,6 +103,9 @@ Dernière révision: 19 septembre 2025
 	<string id="st_autocomplete_unavaible">
 		<text>ne prend pas en charge les transferts d'argent électroniques</text>
 	</string>
+	<string id="st_cartography_unavaible">
+		<text>ne prend pas en charge les fonctions cartographiques avancées</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>génération:</text>
 	</string>

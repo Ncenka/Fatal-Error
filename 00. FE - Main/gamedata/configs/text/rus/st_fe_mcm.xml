@@ -234,4 +234,16 @@
 	<string id="ui_mcm_fatal_error_fe_other_devices_unreliability_desc">
 		<text>При значении больше 0 даже неповреждённые устройства имеют небольшой шанс на некоторое время отключиться. Это также приводит к пассивному шуму для КПК, который будет присутствовать всегда.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_min_time">
+		<text>Минимальное время неисправности (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_min_time_desc">
+		<text>Минимальное время неисправности устройства. Должно быть меньше, чем Максимальное время неисправности.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
+		<text>Максимальное время неисправности (сек.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
+		<text>Максимальное время неисправности устройства. Должно быть больше, чем Минимальное время неисправности.</text>
+	</string>
 </string_table>

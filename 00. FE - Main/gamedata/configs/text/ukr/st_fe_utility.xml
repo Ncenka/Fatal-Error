@@ -94,6 +94,9 @@
 	<string id="st_autocomplete_unavaible">
 		<text>не підтримує електронні грошові перекази</text>
 	</string>
+	<string id="st_cartography_unavaible">
+		<text>не підтримує розширені картографічні функції</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>покоління:</text>
 	</string>

@@ -106,6 +106,15 @@ function create_overrides_fatal_error_v2()
 			end
 		end
 
+		-- PAW
+		if IsItem("device",sec) and not sec:find("itm_pda_") then
+			local cartography = ini_sys:r_bool_ex(sec,"cartography")
+			if cartography == false and tasks_placeable_waypoints then
+				local unit = game.translate_string("st_cartography_unavaible")
+				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
+			end
+		end
+
 		-- Device Broken
 		if IsItem("device",sec) and fe_utils.is_broken(obj) then
 			local unit = game.translate_string("st_broken")			

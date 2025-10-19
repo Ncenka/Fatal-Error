@@ -95,6 +95,9 @@
 	<string id="st_autocomplete_unavaible">
 		<text>does not support electronic money transfers</text>
 	</string>
+	<string id="st_cartography_unavaible">
+		<text>does not support advanced cartography functions</text>
+	</string>
 	<string id="st_pda_gen">
 		<text>generation:</text>
 	</string>
