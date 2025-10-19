@@ -709,7 +709,7 @@ end
 local cache_obj
 function enable_or_disable(obj, chance)
 	if not cache_obj then cache_obj = obj end
-	if cache_obj:id() ~= obj:id() then cache_obj:set_device_enabled(true) cache_obj = obj end
+	if cache_obj:id() ~= obj:id() and not fe_utils.is_broken(cache_obj) then cache_obj:set_device_enabled(true) cache_obj = obj end
 	
 	if math.random(0, 100) < chance then
 		obj:set_device_enabled(false)
@@ -732,7 +732,7 @@ function process_shutdown()
 		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)
 	end
 
-	if obj then
+	if obj and not fe_utils.is_broken(obj) then
 		local radiation_chance = not obj:has_upgrade("up_firsta_pda") and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
 		local damage_chance = fe_utils.get_damage(obj) * 10
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
@@ -740,6 +740,10 @@ function process_shutdown()
 		local final_chance = math.floor(radiation_chance + damage_chance + surge_psi_chance + electra_chance + SETTINGS.other.devices_unreliability)
 		enable_or_disable(obj, final_chance)
 	else
+		if cache_obj and not fe_utils.is_broken(cache_obj) then
+			cache_obj:set_device_enabled(true)
+			cache_obj = nil
+		end
 		CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
 	end
 
