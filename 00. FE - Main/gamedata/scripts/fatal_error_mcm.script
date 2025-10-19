@@ -716,7 +716,7 @@ function enable_or_disable(obj, chance)
 		fe_utils.play_shutdown_sound()
 		CreateTimeEvent("fe_time_event", "process_shutdown", math.random(SETTINGS.other.shutdown_min_time, SETTINGS.other.shutdown_max_time), process_shutdown)
 	else
-		if obj:is_device_enabled() == false and not fe_utils.is_broken(obj) then
+		if obj:is_device_enabled() == false then
 			obj:set_device_enabled(true)
 		end
 		CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
