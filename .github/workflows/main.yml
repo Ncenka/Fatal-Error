@@ -23,7 +23,6 @@ jobs:
       
     - name: Prepare fomod structure
       run: |
-        # Создаем папку fomod и сразу копируем в неё нужные файлы
         mkdir -p fomod
         rsync -av \
           --exclude='.git' \
