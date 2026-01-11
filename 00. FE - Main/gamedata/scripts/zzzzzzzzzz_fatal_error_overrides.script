@@ -121,7 +121,7 @@ end
 ----------------------------------------------------------------------
 
 if tasks_placeable_waypoints then
-	function tasks_placeable_waypointspda_defs.valid_pda()
+	function tasks_placeable_waypoints.valid_pda()
 		local pda = db.actor:item_in_slot(8)
 		if pda and ini_sys:r_bool_ex(pda:section(),"cartography") == true then
 			return true
