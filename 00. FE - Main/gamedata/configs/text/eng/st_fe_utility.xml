@@ -113,6 +113,9 @@
 	<string id="st_fe_error_cpu">
 		<text>Error: Failed to detect CPU.</text>
 	</string>
+	<string id="st_fe_error_storyline">
+    	<text>Error: Failed to execute a Storyline script or function. A reserve script has been initiated to try to fix the problem.</text>
+	</string>
 	<string id="st_fe_error_end">
 		<text>An error marker has been placed. This specific error will not reappear in your current playthrough. Please report this issue in the Fatal Error Addon topics on either the Anomaly or G.A.M.M.A. Discord servers. Remember to include your log file with the report.</text>
 	</string>

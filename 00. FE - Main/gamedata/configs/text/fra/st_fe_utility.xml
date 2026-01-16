@@ -121,6 +121,9 @@ Dernière révision: 19 septembre 2025
 	<string id="st_fe_error_cpu">
 		<text>Erreur : Échec de la détection du processeur.</text>
 	</string>
+	<string id="st_fe_error_storyline">
+    	<text>Erreur : Échec de l'exécution d'un script ou d'une fonction Storyline. Un script de secours a été lancé pour tenter de résoudre le problème.</text>
+	</string>
 	<string id="st_fe_error_end">
 		<text>Un marqueur d'erreur a été placé. Cette erreur spécifique ne réapparaîtra pas dans votre partie en cours. Veuillez signaler ce problème dans les sujets dédiés au Fatal Error sur les serveurs Discord d'Anomaly ou de G.A.M.M.A. N'oubliez pas d'inclure votre fichier journal avec le rapport.</text>
 	</string>

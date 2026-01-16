@@ -78,7 +78,7 @@ end
 --add not to enable
 function test()
 	if db.actor:has_info("fe_darkscape_quest_started") and not db.actor:has_info("fe_test") then
-		CreateTimeEvent("fe_time_event", "start_darkscape_quest_dialog", 30, start_darkscape_quest_dialog)
+		fe_utils.invoke("start_darkscape_quest_dialog", 30, function() start_darkscape_quest_dialog() end)
 		give_info("fe_test")
 	end
 end
@@ -270,7 +270,8 @@ function pda_quest_senya_21(first_speaker, second_speaker)
 end
 
 function start_darkscape_quest_dialog()
-	RemoveTimeEvent("fe_time_event", "start_darkscape_quest_dialog")
+	if db.actor:has_info("fe_darkscape_quest_started") then return end -- Never fire this again
+
 	give_info("fe_darkscape_quest_started")
 	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_start')
 	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
@@ -363,6 +364,12 @@ function fe_darkscape_end_1()
 	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
 	CreateTimeEvent("fe_time_event", "fe_darkscape_end_2", 8, fe_darkscape_end_2)
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_end_0"), nil, "renegade", 10000)
+
+	if get_story_squad("fe_darkscape_raid_squad") then
+		xr_effects.remove_squad(nil,nil,{"fe_darkscape_raid_squad"})
+		fe_utils.ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_storyline") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "fe_darkscape_raid_squad_error")
+	end
+
 end
 
 function fe_darkscape_end_2()
