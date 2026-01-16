@@ -760,11 +760,17 @@ function device_binder:__init(obj) super(obj)
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
 			damage = 0,
 		}
+		
 		if obj:section():find("itm_pda") then
 			dev_items[obj:id()].damage = math.random(0,5)
+			if math.random(0, 100) < 10 then
+				dev_items[obj:id()].is_broken = true
+			end
+
 		elseif ini_sys:r_float_ex(obj:section(),"damage") then
 			dev_items[obj:id()].damage = ini_sys:r_float_ex(obj:section(),"damage")
 		end
+
 	end
 end
 
