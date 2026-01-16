@@ -680,7 +680,12 @@ function update_count()
 	local cnt = 0
 	local pos = db.actor:position()
 	local pda = db.actor:item_in_slot(8)
-	if pda and pda:condition() > 0.05 and db.actor:has_info("bios_can_beep") and not fe_utils.is_broken(pda) and not fe_utils.is_bsod(pda) then
+	
+	if pda and pda:condition() > 0.05 and db.actor:has_info("bios_can_beep") 
+	and not fe_utils.is_broken(pda) 
+	and not fe_utils.is_bsod(pda) 
+	and not ini_sys:r_bool_ex(pda:section(),"encrypted") then
+
 		local can_beep = ini_sys:r_bool_ex(pda:section(),"can_beep")
 		if can_beep == true then
 			for i=1,#db.OnlineStalkers do
