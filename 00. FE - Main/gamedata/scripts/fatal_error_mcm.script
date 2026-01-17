@@ -528,7 +528,7 @@ function reboot_action(dik)
 		local obj = db.actor:active_item()
 		if obj then
 			local sec = obj:section()
-			if sec:find("device_pda_") and obj:condition() > 0.05 and not fe_utils.is_broken(obj) then
+			if sec:find("_pda") and obj:condition() > 0.05 and not fe_utils.is_broken(obj) then
 				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time)
 				alife_process_item(sec, obj:id(), {cond = obj:condition() - 0.01})
 				utils_obj.play_sound("device\\pda\\pda_dead")
@@ -634,6 +634,9 @@ function process_pda_call()
 	then
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")
 		
+	elseif pda:section():find("itm_pda_") then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptNPC")
+
 	elseif error_tabs[tab] then
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptTasks")
 	end
@@ -648,7 +651,7 @@ function process_pda_button(dik)
 end
 
 function process_pda_slot(obj)
-	if obj:section():find("_pda") and not obj:section():find("itm_pda_") then	
+	if obj:section():find("_pda") then	
 		process_pda_call()
 	end
 end

@@ -1,21 +1,29 @@
 ;;--==========================< NPC PDA >=============================--
 ![itm_pda_common]:device_pda_1
 upgrades								               =
-tier                                                   = 2
+description                                            = st_pda_mlr_descr
+inv_name                                               = st_pda_name
+inv_name_short                                         = st_pda_name
+cost                                                   = 0                                           
+!inv_weight                                           
+!use1_allow_db         					          	  
+!use1_functor                					       
+!use1_action_functor         					      
+!slot
 
-![itm_pda_uncommon]:itm_pda_common
-tier                                                   = 3
-battery 											   = batteries_с
-snd_draw                             	               = device\pda\pda_draw
-snd_holster                          	 		       = device\pda\pda_holster
-inv_weight   	                                       = 0.350
+![itm_pda_uncommon]:device_pda_2
+upgrades								               =
+description                                            = st_pda_mlr_descr
+inv_name                                               = st_pda_name
+inv_name_short                                         = st_pda_name
+cost                                                   = 0
 
-![itm_pda_rare]:itm_pda_uncommon
-tier                                                   = 4
-battery 											   = batteries_d
-snd_draw                             	               = device\pda\pda_draw3
-snd_holster                          	 		       = device\pda\pda_holster3
-inv_weight   	                                       = 0.350
+![itm_pda_rare]:device_pda_3
+upgrades								               =
+description                                            = st_pda_mlr_descr
+inv_name                                               = st_pda_name
+inv_name_short                                         = st_pda_name
+cost                                                   = 0
 
 [itm_pda_getac]:device_pda_getac
 encrypted                                              = true

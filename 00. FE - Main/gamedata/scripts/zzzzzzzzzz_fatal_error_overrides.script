@@ -2,7 +2,7 @@ function on_game_start()
 
 	RegisterScriptCallback("actor_on_item_drop",update_geiger)
 	RegisterScriptCallback("actor_on_item_take",update_geiger)
-	RegisterScriptCallback("actor_on_first_update",compatibility_patches)
+	RegisterScriptCallback("actor_item_to_slot", actor_item_to_slot)
 
 	if ui_pda_taskboard_tab then
 		UnregisterScriptCallback("on_key_release", ui_pda_taskboard_tab.on_key_release)
@@ -11,77 +11,105 @@ function on_game_start()
 end
 
 ----------------------------------------------------------------------------------------------------
--- Compatibility Patches
+-- ui_pda_npc_tab
 ----------------------------------------------------------------------------------------------------
 
-function compatibility_patches()
-	if item_milpda then
-		item_milpda.pda_defs = {
-			["device_pda_0"] = { 
-				obeybl				= true,		
-				show_e				= false, 	
-				show_n 				= false, 	
-				show_f 				= false, 	
-				show_k 				= false, 	
-				progmult 			= 0, 		
-			},
-			["device_pda_1"] = { 
-				obeybl				= true,		
-				show_e				= false, 	
-				show_n 				= false, 	
-				show_f 				= false, 	
-				show_k 				= false, 	
-				progmult 			= 0, 		
-			},
-			["device_pda_2"] = {
-				obeybl				= true,
-				show_e				= false,
-				show_n 				= false,
-				show_f 				= true,
-				show_k 				= true,
-				progmult 			= 0.1, 		
-			},
-			["device_pda_3"] = {
-				obeybl				= true,
-				show_e				= false,
-				show_n 				= true,
-				show_f 				= true,
-				show_k 				= true,
-				progmult 			= 0.5, 		
-			},
-			["device_pda_4"] = {
-				obeybl				= true,
-				show_e				= false,
-				show_n 				= true,
-				show_f 				= true,
-				show_k 				= true,
-				progmult 			= 1, 		
-			},
-			["device_pda_getac"] = {
-				obeybl				= true,
-				show_e				= true,
-				show_n 				= true,
-				show_f 				= true,
-				show_k 				= true,
-				progmult 			= 1, 		
-			},
-			["device_pda_milspec"] = {
-				obeybl				= true,
-				show_e				= true,
-				show_n 				= true,
-				show_f 				= true,
-				show_k 				= true,
-				progmult 			= 1, 		
-			},
-			["device_pda_new"] = {
-				obeybl				= true,
-				show_e				= true,
-				show_n 				= false,
-				show_f 				= false,
-				show_k 				= true,
-				progmult 			= 1, 		
-			},
-		}
+function ui_pda_npc_tab.menu_view(obj)
+	return
+end
+
+function ui_pda_npc_tab.use_view(obj)
+	return
+end
+
+function ui_pda_npc_tab.actor_on_update(actor, info)
+	UnregisterScriptCallback("actor_on_update",ui_pda_npc_tab.actor_on_update)
+	return
+end
+
+----------------------------------------------------------------------------------------------------
+-- item_milpda
+----------------------------------------------------------------------------------------------------
+
+if item_milpda then
+
+	item_milpda.pda_defs = {
+		["device_pda_0"] = { 
+			obeybl				= true,		
+			show_e				= false, 	
+			show_n 				= false, 	
+			show_f 				= false, 	
+			show_k 				= false, 	
+			progmult 			= 0, 		
+		},
+		["device_pda_1"] = { 
+			obeybl				= true,		
+			show_e				= false, 	
+			show_n 				= false, 	
+			show_f 				= false, 	
+			show_k 				= false, 	
+			progmult 			= 0, 		
+		},
+		["device_pda_2"] = {
+			obeybl				= true,
+			show_e				= false,
+			show_n 				= false,
+			show_f 				= true,
+			show_k 				= true,
+			progmult 			= 0.1, 		
+		},
+		["device_pda_3"] = {
+			obeybl				= true,
+			show_e				= false,
+			show_n 				= true,
+			show_f 				= true,
+			show_k 				= true,
+			progmult 			= 0.5, 		
+		},
+		["device_pda_4"] = {
+			obeybl				= true,
+			show_e				= false,
+			show_n 				= true,
+			show_f 				= true,
+			show_k 				= true,
+			progmult 			= 1, 		
+		},
+		["device_pda_getac"] = {
+			obeybl				= true,
+			show_e				= true,
+			show_n 				= true,
+			show_f 				= true,
+			show_k 				= true,
+			progmult 			= 1, 		
+		},
+		["device_pda_milspec"] = {
+			obeybl				= true,
+			show_e				= true,
+			show_n 				= true,
+			show_f 				= true,
+			show_k 				= true,
+			progmult 			= 1, 		
+		},
+		["device_pda_new"] = {
+			obeybl				= true,
+			show_e				= true,
+			show_n 				= false,
+			show_f 				= false,
+			show_k 				= true,
+			progmult 			= 1, 		
+		},
+	}
+
+	function item_milpda.view_pda(obj)
+		if not (obj and item_milpda.progressive_vis and (item_milpda.progress_gain_mode == 2)) then return end
+		item_milpda.check_for_pda_progress(obj,"read")
+	end
+
+end
+
+function actor_item_to_slot(obj)
+	if item_milpda and obj:section():find("itm_pda_") then	
+		item_milpda.view_pda(obj)
 	end
 end
 
