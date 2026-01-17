@@ -7,7 +7,7 @@ can_break                                              = false       ; Can Devic
 
 ;PDA Settings
 tier                                                   = 1           ; Generation of PDA.
-encrypted                                              = true        ; Make PDA Encrypted. Use this if you want to make player unable to use it (e.g. PDA for a quest).
+encrypted                                              = true        ; Does PDA encrypted by default? Use this if you want to make player unable to use it (e.g. PDA for a quest).
 tab_taskboard 										   = false       ; Does PDA support Taskboard addon?
 tab_interactive 									   = false       ; Does PDA support PDA Interactive addon?
 tab_relations 										   = false       ; Does PDA support Relations tab?
