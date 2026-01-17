@@ -804,7 +804,7 @@ function device_binder:update(delta)
 			end
 		end
 
-		if sec:find("device_pda") or sec:find("itm_pda") or ini_sys:r_float_ex(sec,"damage") then
+		if sec:find("device_pda") or sec:find("itm_pda") then
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
