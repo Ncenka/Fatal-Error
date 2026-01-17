@@ -300,7 +300,7 @@ function on_game_start()
 		SECURITY_KEY = generate_random_string(20)
 	end
 
-    mac_mcm.add_blocked_tabs({"eptReboot","eptBSOD","eptBroken","eptMonolith","eptMonolithHackers","eptBlocked","eptBios","eptBiosBoot","eptBiosDebug",})
+    mac_mcm.add_blocked_tabs({"eptReboot","eptBSOD","eptBroken","eptMonolith","eptMonolithHackers","eptBlocked","eptBios","eptBiosBoot","eptBiosDebug", "eptNPC"})
     mac_mcm.add_app("app_bios", {name = "BIOS", texture = "settings", tab = "eptBios"})
     exec_console_cmd("g_3d_pda 1")
 
