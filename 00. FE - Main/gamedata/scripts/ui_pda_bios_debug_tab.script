@@ -24,7 +24,7 @@ function pda_bios_debug_tab:InitControls()
 	
 	self.picture					= xml:InitStatic("picture_base",self)
 	
-	if fe_utils.IS_AOE == true then
+	if get_aoe_version then
 		self.picture:InitTexture ("ui\\mnogopotok_dark")
 	else
 		self.picture:InitTexture ("ui\\blue_screen")
@@ -72,8 +72,8 @@ function pda_bios_debug_tab:Reset()
 	self.upper_text:SetText("Monolith - OS Setup")
     self.upper_text:Show(true)
 	
-	if fe_utils.IS_AOE == false then
-		self.bottom_text:SetText("Version 1.7.9 Copyright (C) 2025 S.P.E.C.T.R. Development Team")
+	if not get_aoe_version then
+		self.bottom_text:SetText("Version 1.7.9 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
     	self.bottom_text:Show(true)
 	end
 	

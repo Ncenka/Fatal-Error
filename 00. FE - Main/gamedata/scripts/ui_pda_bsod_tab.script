@@ -18,7 +18,7 @@ function pda_bsod_tab:InitControls()
 	local xml               = CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
 	self.picture			= xml:InitStatic("picture_bsod",self)
-	if fe_utils.IS_AOE == true then
+	if get_aoe_version then
 		self.picture:InitTexture ("ui\\mnogopotok")
 	else
 		self.picture:InitTexture ("ui\\blue_death_screen")

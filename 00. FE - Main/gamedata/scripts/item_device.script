@@ -215,7 +215,7 @@ function on_item_drag_dropped(obj_b, obj_d, slot_from, slot_to)
 			alife_create_item(battery, db.actor, {cond = con_d})
 		end
 
-		if sec_d:find("device_pda_") then
+		if sec_d:find("_pda") then
 			fe_utils.reboot_call(10)
 		end
 		
@@ -804,7 +804,7 @@ function device_binder:update(delta)
 			end
 		end
 
-		if sec:find("device_pda") or sec:find("itm_pda") then
+		if sec:find("_pda") then
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
