@@ -803,6 +803,8 @@ function actor_on_first_update()
 	CreateTimeEvent("fe_time_event", "pda_break_emission", delays.emission, pda_break_emission)
 	CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
 
+	fe_utils.invoke("process_pda_call", 1, function() process_pda_call() end)
+
 end
 
 function save_state(m_data)
@@ -835,7 +837,6 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_update", update_count)
 
 	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
-	RegisterScriptCallback("actor_on_first_update", process_pda_call)
 	RegisterScriptCallback("actor_on_first_update", on_option_change)
 
 	RegisterScriptCallback("ActorMenu_on_item_drag_drop", pda_repair_kit)
