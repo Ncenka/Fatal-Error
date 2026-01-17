@@ -23,15 +23,14 @@ function create_overrides_fatal_error_v1()
 	local fe_main = pda.set_active_subdialog
     pda.set_active_subdialog = function (section)
 	
+		local pda = db.actor:item_in_slot(8)
+		if not pda then return fe_main(section) end
+
 		local msg_header_comm = game.translate_string("st_dyn_news_sender_com_centre")
 		local msg_comm_off = game.translate_string("st_fe_map_off")
 		local msg_comm_on = game.translate_string("st_fe_map_on")
 		local actor_elevation = db.actor:position()
 		local base_elevation = 20
-		local pda = db.actor:item_in_slot(8)
-	
-		if not pda then return fe_main(section) end
-
 		local overclock = fe_utils.is_overclocked(pda) and 10 or 0
 
 		if level.name() == "l11_hospital" then 

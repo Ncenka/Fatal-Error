@@ -182,7 +182,7 @@ function break_device(damage_type, upgrade)
 		local chance
 		local is_device
 
-		if sec:find("device_pda_") then
+		if sec:find("_pda") then
 			local tier = fe_utils.get_pda_tier(obj)
         	chance = SETTINGS.pda[damage_type][tier]
 		else
@@ -430,7 +430,7 @@ function actor_on_before_hit(s_hit, bone_id)
 		local available_devices = {}
 		local function inventory_iterator(actor, item)
 			local section = item:section()
-			if IsItem("device",section) and section:find("device_pda_")
+			if IsItem("device",section) and section:find("_pda")
 				and ini_sys:r_bool_ex(section,"can_break") == true
 			then
 				table.insert(available_devices, item)
@@ -472,7 +472,7 @@ function pda_break_bsod()
 		local available_devices = {}
 		local function inventory_iterator(actor, item)
 			local section = item:section()
-			if IsItem("device",section) and section:find("device_pda_")
+			if IsItem("device",section) and section:find("_pda")
 				and not fe_utils.is_broken(item)
 				and ini_sys:r_bool_ex(section,"can_break") == true
 			then
@@ -547,7 +547,10 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function process_pda_call()
-	
+
+	local pda = db.actor:item_in_slot(8)
+	if not pda then return end
+
 	local error_tabs = {
 		["eptReboot"] = true,
 		["eptBSOD"] = true,
@@ -586,70 +589,53 @@ function process_pda_call()
 		["greh"] = true,
 		["zombied"] = true,	
 	}
-
+		
+	local overclock = fe_utils.is_overclocked(pda)
 	local player_faction = get_actor_true_community()
 	local levelname = level.name()
 	local tab = ActorMenu.get_pda_menu():GetActiveSection()
-	local pda = db.actor:item_in_slot(8)
-		
-	if pda then
-		
-		fe_utils.set_apps(pda)
-		fe_utils.set_pda_xml(pda)
 
-		local show_player = ini_sys:r_float_ex(pda:section(),"show_player")
-		level.map_remove_object_spot(0, "actor_location")
-		level.map_remove_object_spot(0, "actor_location_p")
-		process_companion_icons(false)
+	fe_utils.set_apps(pda)
+	fe_utils.set_pda_xml(pda)
 
-		local overclock = fe_utils.is_overclocked(pda)
-		
-		if overclock then
-			show_player = 3
-		end
-		
-		if show_player >= 1 then
-			level.map_add_object_spot(0, "actor_location", "disable_hint")
-		end
-		
-		if show_player >= 2 then
-			level.map_add_object_spot(0, "actor_location_p", "disable_hint")
-		end
-		
-		if show_player >= 3 then
-			process_companion_icons(true) -- Companion icons
-		end
-		
-		if ini_sys:r_bool_ex(pda:section(),"encrypted") then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptBlocked")
-		
-		elseif REBOOT > 0 then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
+	level.map_remove_object_spot(0, "actor_location")
+	level.map_remove_object_spot(0, "actor_location_p")
+	process_companion_icons(false)
+	local show_player = ini_sys:r_float_ex(pda:section(),"show_player")
+	if overclock then show_player = 3 end
+	if show_player >= 1 then level.map_add_object_spot(0, "actor_location", "disable_hint") end
+	if show_player >= 2 then level.map_add_object_spot(0, "actor_location_p", "disable_hint") end
+	if show_player >= 3 then process_companion_icons(true) end
+	
+	if ini_sys:r_bool_ex(pda:section(),"encrypted") then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptBlocked")
+	
+	elseif REBOOT > 0 then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
 
-		elseif bios_tabs[tab] then
-			ActorMenu.get_pda_menu():SetActiveSubdialog(tab)
-			
-		elseif fe_utils.is_bsod(pda) then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptBSOD")
+	elseif bios_tabs[tab] then
+		ActorMenu.get_pda_menu():SetActiveSubdialog(tab)
 		
-		elseif 
-			not (reboot_protection > 0 or overclock) 
-			and (xr_conditions.surge_started() or psi_storm_manager.is_started())
-		then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptBroken")
+	elseif fe_utils.is_bsod(pda) then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptBSOD")
+	
+	elseif 
+		not (reboot_protection > 0 or overclock) 
+		and (xr_conditions.surge_started() or psi_storm_manager.is_started())
+	then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptBroken")
+	
+	elseif monolith[levelname] and not overclock then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolith")
+	
+	elseif 
+		not (pda:has_upgrade("up_seconc_pda") or no_jaming_factions[player_faction] or overclock)
+		and (monolith_hackers[levelname])
+	then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")
 		
-		elseif monolith[levelname] and not overclock then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolith")
-		
-		elseif 
-			not (pda:has_upgrade("up_seconc_pda") or no_jaming_factions[player_faction] or overclock)
-			and (monolith_hackers[levelname])
-		then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")
-			
-		elseif error_tabs[tab] then
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptTasks")
-		end
+	elseif error_tabs[tab] then
+		ActorMenu.get_pda_menu():SetActiveSubdialog("eptTasks")
 	end
 end
 
@@ -662,7 +648,7 @@ function process_pda_button(dik)
 end
 
 function process_pda_slot(obj)
-	if obj:section():find("pda_") and not obj:section():find("itm_pda_") then	
+	if obj:section():find("_pda") and not obj:section():find("itm_pda_") then	
 		process_pda_call()
 	end
 end
@@ -731,7 +717,7 @@ local cache_obj
 function process_shutdown()
 	RemoveTimeEvent("fe_time_event", "process_shutdown")
 	local obj = db.actor:active_detector()
-	if (not obj or fe_utils.is_broken(obj) or obj:condition() < 0.05) and db.actor:active_item() and db.actor:active_item():section():find("device_pda_") and db.actor:active_item():condition() > 0.05 then 
+	if (not obj or fe_utils.is_broken(obj) or obj:condition() < 0.05) and db.actor:active_item() and db.actor:active_item():section():find("_pda") and db.actor:active_item():condition() > 0.05 then 
 		obj = db.actor:active_item()
 	elseif not obj then
 		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)

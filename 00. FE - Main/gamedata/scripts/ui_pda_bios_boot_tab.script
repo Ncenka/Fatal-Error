@@ -104,7 +104,7 @@ function pda_bios_boot_tab:On_exit()
 end
 
 function pda_bios_boot_tab:On_safe_mode_exit()
-	fe_utils.set_bsod(db.actor:item_in_slot(8), false)
+	fe_utils.set_bsod(db.actor:active_item(), false)
 	fe_utils.reboot_call(30)
 end
 
