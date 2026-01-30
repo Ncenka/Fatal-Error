@@ -1,6 +1,6 @@
 ﻿<!-- Created with FOMOD Creation Tool 1.7.0.37 [http://www.nexusmods.com/fallout4/mods/6821] --> 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd"> 
-	<moduleName>Fatal Error v1.7.9.1 by Ncenka</moduleName> 
+	<moduleName>Fatal Error v1.7.9.2 by Ncenka</moduleName> 
 	<moduleImage path="fomod\images\1.jpg" /> 
 	<installSteps order="Explicit"> 
 		<installStep name="Main"> 
@@ -52,7 +52,6 @@
 						</plugin> 
 						<plugin name="PDA Reanimation Adaptation"> 
 							<description>Adaptation of PDA Reanimation addon for Fatal Error - YOU NEED TO DISABLE BASE "PDA Reanimation" OTHERWISE IT WILL BREAK PDA POSITION.&#13;&#10;
-&#13;&#10;
 DO NOT work with G.A.M.M.A and DO NOT work without "New PDA 3D Models".</description> 
 							<image path="fomod\images\8.jpg" /> 
 							<files> 
