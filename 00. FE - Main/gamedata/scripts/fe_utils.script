@@ -1,5 +1,5 @@
 SECURITY_KEY = nil
-LOG_LINES = {}
+CPU = nil
 
 ----------------------------------------------------------------------------------------------------
 -- Setters
@@ -173,32 +173,40 @@ end
 -- Utilities
 ----------------------------------------------------------------------------------------------------
 
-function read_log()
-    local path = ""
-    local file
-    local fs = getFS() --gets FS module
-    local flist = fs:file_list_open_ex("$logs$", bit_or(FS.FS_ListFiles, FS.FS_RootOnly),"*.log") --gets full path to main .log file of the game
-    local f_cnt = flist:Size()
-    for it = 0, f_cnt - 1 do
-        local file_name = flist:GetAt(it):NameFull() --can't really explain, but it's still about getting log file
-        path = fs:update_path("$logs$", "") .. file_name
-        if string.sub(path, -4) == ".log" then
-            file = io.open(path, "r") --we open log with I/O system for reading
-        end
-    end
-    if file then
-        k = 0
-        for line in file:lines() do --we read first 15 lines of log file and save them to variable (at that moment log is already created by the game)
-            k = k + 1
-            if k < 2 then
-                LOG_LINES[k] = line
+function get_cpu()
+    local fs = getFS()
+    local flist = fs:file_list_open_ex("$logs$", bit_or(FS.FS_ListFiles, FS.FS_RootOnly), "*.log")
+    
+    for i = 0, flist:Size() - 1 do
+        local filename = flist:GetAt(i):NameFull()
+        if filename:sub(-4) == ".log" then
+            local path = fs:update_path("$logs$", "") .. filename
+            local file = io.open(path, "r")
+            if file then
+                CPU = file:read("*l")
+                file:close()
+                
+                local cpu_model = CPU:match(": (.-) [@[]")
+                local cpu_ghz = CPU:match("@ (%d+%.%d+GHz)")
+                local cpu_mhz = CPU:match(", (%d+%.%d+ mhz)")
+                
+                if cpu_model and cpu_ghz then
+                    CPU = cpu_model .. " @ " .. cpu_ghz
+                elseif cpu_model and cpu_mhz then
+                    local mhz_value = tonumber(cpu_mhz:match("%d+%.%d+"))
+                    local ghz_value = math.floor(mhz_value / 100 + 0.5) / 10
+                    CPU = cpu_model .. " @ " .. ghz_value .. "GHz"
+                else
+                    CPU = "ERROR: UNABLE TO DETECT CPU"
+                    ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_cpu") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "cpu_error")
+                end
+                return
             end
         end
-        file:close()
-    else
-        LOG_LINES[1] = "Error"
     end
-
+    
+    CPU = "ERROR: UNABLE TO DETECT CPU"
+    ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_cpu") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "cpu_error")
 end
 
 function generate_random_string(length)
@@ -294,7 +302,7 @@ end
 function on_game_start()
     RegisterScriptCallback("save_state", save_state)
     RegisterScriptCallback("load_state", load_state)
-    RegisterScriptCallback("actor_on_first_update", read_log)
+    RegisterScriptCallback("actor_on_first_update", get_cpu)
 
 	if not SECURITY_KEY then
 		SECURITY_KEY = generate_random_string(20)

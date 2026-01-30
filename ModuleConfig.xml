@@ -208,6 +208,16 @@ DO NOT work with G.A.M.M.A and DO NOT work without "New PDA 3D Models".</descrip
 							<typeDescriptor> 
 								<type name="Optional"/> 
 							</typeDescriptor> 
+						</plugin>
+						<plugin name="DAR Dosimeter Enhanced"> 
+							<description></description> 
+							<image path="fomod\images\9.jpg" /> 
+							<files> 
+								<folder source="fomod\02. FE - ComPatch for DAR Dosimeter Enhanced" destination="" priority="0" /> 
+							</files> 
+							<typeDescriptor> 
+								<type name="Optional"/> 
+							</typeDescriptor> 
 						</plugin> 
 					</plugins> 
 				</group> 

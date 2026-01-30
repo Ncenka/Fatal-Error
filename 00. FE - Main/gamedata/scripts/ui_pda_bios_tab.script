@@ -240,6 +240,17 @@ function pda_bios_tab:Reset()
 	pda = db.actor:item_in_slot(8)
 	pda_id = pda:id()
 	pda_sec = pda:section()
+	local is_npc_pda = pda_sec:find("itm_pda_")
+	local npc_info = is_npc_pda and se_load_var(pda_id, nil, "bios_info")
+
+	if is_npc_pda and not npc_info then
+		npc_info = {
+            name = bios_list.NAME[math.random(#bios_list.NAME)],
+            cpu = bios_list.CPU[math.random(#bios_list.CPU)],
+            key = fe_utils.generate_random_string(20)
+        }
+        se_save_var(pda_id, nil, "bios_info", npc_info)
+	end
 
 	self.text1_l:SetText("System Time:")
 	self.text1_l:SetTextColor(GetARGB(255, 100, 200, 255))
@@ -261,7 +272,7 @@ function pda_bios_tab:Reset()
 	self.username:SetTextColor(GetARGB(255, 100, 200, 255))
     self.username:Show(true)
 	
-	self.username_username:SetText(os.getenv("USERNAME"))
+	self.username_username:SetText((is_npc_pda and npc_info.name) or os.getenv("USERNAME"))
 	self.username_username:SetTextColor(GetARGB(255, 255, 255, 255))
     self.username_username:Show(true)
 	
@@ -269,22 +280,9 @@ function pda_bios_tab:Reset()
 	self.detected_cpu:SetTextColor(GetARGB(255, 100, 200, 255))
     self.detected_cpu:Show(true)
 	
-	local cpu_model = fe_utils.LOG_LINES[1]:match(": (.-) [@[]")
-	local cpu_ghz = fe_utils.LOG_LINES[1]:match("@ (%d+%.%d+GHz)")
-	local cpu_mhz = fe_utils.LOG_LINES[1]:match(", (%d+%.%d+ mhz)")
-	local cpu_text
-	if cpu_model and cpu_ghz then
-		cpu_text = cpu_model .. " @ " .. cpu_ghz
-	elseif cpu_model and cpu_mhz then
-		local ghz_value = tonumber(cpu_mhz:match("(%d+%.%d+)")) / 1000
-		ghz_value = math.floor(ghz_value * 10 + 0.5) / 10
-		cpu_text = cpu_model .. " @ " .. string.format("%s0GHz", ghz_value)
-	else
-		cpu_text = "ERROR: UNABLE TO DETECT CPU"
-		fe_utils.ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_cpu") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "cpu_error")
-	end
+	local cpu_text = fe_utils.CPU
 
-	self.detected_cpu_cpu:SetText(cpu_text)
+	self.detected_cpu_cpu:SetText((is_npc_pda and npc_info.cpu) or cpu_text)
 	self.detected_cpu_cpu:SetTextColor(GetARGB(255, 255, 255, 255))
 	self.detected_cpu_cpu:Show(true)
 	
@@ -326,7 +324,7 @@ function pda_bios_tab:Reset()
 	self.s_key:SetTextColor(GetARGB(255, 100, 200, 255))
     self.s_key:Show(true)
 	
-	self.s_key_key:SetText(fe_utils.SECURITY_KEY)
+	self.s_key_key:SetText((is_npc_pda and npc_info.key) or fe_utils.SECURITY_KEY)
 	self.s_key_key:SetTextColor(GetARGB(255, 255, 255, 255))
     self.s_key_key:Show(true)
 	

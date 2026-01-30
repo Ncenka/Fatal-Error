@@ -103,7 +103,7 @@
 		<text>поколение:</text>
 	</string>
 	<string id="st_fe_modded_exes">
-		<text>Если вы это читаете, значит, ваша версия Modded Exes устарела и несовместима с аддоном Fatal Error. Теперь Fatal Error требует Modded Exes версии от 23 августа 2025 года (2025.8.23) или новее. Если вы используете AOEngine, попросите v2v3v4 обновить AOEngine до последней версии Modded Exes.</text>
+		<text>Если вы это читаете, значит, ваша версия Modded Exes устарела и несовместима с аддоном Fatal Error. Теперь Fatal Error требует Modded Exes версии от 23 августа 2025 года (2025.8.23) или новее. Если вы используете AOEngine, попросите v2v3v4 обновить AOEngine до последней версии Modded Exes. Ссылка на GitHub с самыми новыми Modded Exes: https://github.com/themrdemonized/xray-monolith</text>
 	</string>
 	<string id="st_fe_item_device">
 		<text>Если ты это читаешь, значит, ты неправильно установил аддон Fatal Error. Fatal Error должен перезаписывать ВСЁ (даже твой (и мой) любимый Beef's NVGs), в особенности item_device.script. Так что измени порядок загрузки в MO2 и попробуй запустить игру снова.</text>

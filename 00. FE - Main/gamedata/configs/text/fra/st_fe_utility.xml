@@ -110,7 +110,7 @@ Dernière révision: 19 septembre 2025
 		<text>génération:</text>
 	</string>
 	<string id="st_fe_modded_exes">
-		<text>Si tu lis ceci, cela signifie que tes Modded Exes sont obsolètes et incompatibles avec Fatal Error. Fatal Error exige les Modded Exes du 23 août 2025 (2025.8.23) ou plus récents. Si tu utilises AOEngine, demande à v2v3v4 de le mettre à jour.</text>
+		<text>Si tu lis ceci, cela signifie que tes Modded Exes sont obsolètes et incompatibles avec Fatal Error. Fatal Error exige les Modded Exes du 23 août 2025 (2025.8.23) ou plus récents. Si tu utilises AOEngine, demande à v2v3v4 de le mettre à jour. Lien vers les dernières Modded Exes: https://github.com/themrdemonized/xray-monolith</text>
 	</string>
 	<string id="st_fe_item_device">
 		<text>Si tu lis ceci, cela signifie que tu as mal installé l'addon Fatal Error. Fatal Error doit ÉCRASER TOUT (même tes (et mes) bien-aimées JVN de Beef), surtout item_device.script. Donc, change l'ordre de chargement de MO2 et réessaie de lancer le jeu.</text>

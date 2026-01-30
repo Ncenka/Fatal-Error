@@ -101,7 +101,7 @@
 		<text>покоління:</text>
 	</string>
 	<string id="st_fe_modded_exes">
-		<text>Якщо ви це читаєте, значить, ваша версія Modded Exes застаріла і несумісна із аддоном Fatal Error. Тепер Fatal Error потребує версію Modded Exes від 23 серпня 2025 року (2025.8.23) або новіше. Якщо ви використовуєте AOEngine, попросіть v2v3v4 оновити AOEngine до останньої версії Modded Exes.</text>
+		<text>Якщо ви це читаєте, значить, ваша версія Modded Exes застаріла і несумісна із аддоном Fatal Error. Тепер Fatal Error потребує версію Modded Exes від 23 серпня 2025 року (2025.8.23) або новіше. Якщо ви використовуєте AOEngine, попросіть v2v3v4 оновити AOEngine до останньої версії Modded Exes. Посилання на останні Modded Exes: https://github.com/themrdemonized/xray-monolith</text>
 	</string>
 	<string id="st_fe_item_device">
 		<text>Якщо ти це читаєш, значить, ти неправильно встановив додаток Fatal Error. Fatal Error має перезаписувати ВСЕ (навіть твої (і мої) улюблені НПО Біфа), особливо item_device.script. Тож зміни порядок завантаження в MO2 і спробуй запустити гру знову.</text>
