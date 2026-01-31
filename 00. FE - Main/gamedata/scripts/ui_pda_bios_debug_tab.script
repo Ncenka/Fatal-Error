@@ -73,7 +73,7 @@ function pda_bios_debug_tab:Reset()
     self.upper_text:Show(true)
 	
 	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
     	self.bottom_text:Show(true)
 	end
 	
