@@ -240,7 +240,7 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_min_time_desc">
 		<text>Минимальное время неисправности устройства. Должно быть меньше, чем Максимальное время неисправности.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
+	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time">
 		<text>Максимальное время неисправности (сек.)</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
