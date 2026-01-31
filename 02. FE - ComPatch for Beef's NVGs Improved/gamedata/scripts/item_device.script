@@ -741,11 +741,17 @@ function device_binder:__init(obj) super(obj)
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
 			damage = 0,
 		}
+		
 		if obj:section():find("itm_pda") then
 			dev_items[obj:id()].damage = math.random(0,5)
+			if math.random(0, 100) < 10 then dev_items[obj:id()].is_broken = true end
+			if math.random(0, 100) < 10 then dev_items[obj:id()].is_bsod = true end
+			if math.random(0, 100) < 10 then dev_items[obj:id()].is_overclocked = true end
+
 		elseif ini_sys:r_float_ex(obj:section(),"damage") then
 			dev_items[obj:id()].damage = ini_sys:r_float_ex(obj:section(),"damage")
 		end
+
 	end
 end
 
@@ -779,7 +785,7 @@ function device_binder:update(delta)
 			end
 		end
 
-		if sec:find("device_pda") or sec:find("itm_pda") or ini_sys:r_float_ex(sec,"damage") then
+		if sec:find("_pda") or sec:find("pda_") then
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
