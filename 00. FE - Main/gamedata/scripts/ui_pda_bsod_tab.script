@@ -10,9 +10,6 @@ function pda_bsod_tab:__init() super()
     self:InitControls()
 end
 
-function pda_bsod_tab:__finalize()
-end
-
 function pda_bsod_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               = CScriptXmlInit()
@@ -23,6 +20,7 @@ function pda_bsod_tab:InitControls()
 	else
 		self.picture:InitTexture ("ui\\blue_death_screen")
 	end
+	
 end
 
 function pda_bsod_tab:Update()
@@ -30,6 +28,4 @@ function pda_bsod_tab:Update()
 end
 
 function pda_bsod_tab:Reset()
-	local pda_menu = ActorMenu.get_pda_menu()
-	pda_menu:GetTabControl():Show(false)
 end

@@ -14,9 +14,6 @@ function pda_bios_debug_tab:__init() super()
 	self:InitCallbacks()
 end
 
-function pda_bios_debug_tab:__finalize()
-end
-
 function pda_bios_debug_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               		= CScriptXmlInit()
@@ -45,6 +42,10 @@ function pda_bios_debug_tab:InitControls()
 	self:Register(self.debug, "debug")
 	
 	self.debug_text = xml:InitTextWnd("bios:debug_text", self)
+
+	if not get_aoe_version then
+		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+	end
 	
 end
 
@@ -68,14 +69,6 @@ function pda_bios_debug_tab:On_boot()
 end
 
 function pda_bios_debug_tab:Reset()
-
-	self.upper_text:SetText("Monolith - OS Setup")
-    self.upper_text:Show(true)
-	
-	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
-    	self.bottom_text:Show(true)
-	end
 	
 	----------------------------------------------------------------------------------------------------
 	-- BIOS Options
@@ -84,10 +77,7 @@ function pda_bios_debug_tab:Reset()
 	full_text = table.concat(text, "\\n")
 	self.debug_text:SetText(full_text)
 	self.debug_text:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.debug_text:Show(true)
 	
-	local pda_menu = ActorMenu.get_pda_menu()
-	pda_menu:GetTabControl():Show(false)
 end
 
 function create_overrides_fatal_error_bios()

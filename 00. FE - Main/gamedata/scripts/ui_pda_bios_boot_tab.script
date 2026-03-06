@@ -6,7 +6,6 @@ local hint_text = {
 
 function get_ui()
 	SINGLETON = SINGLETON or pda_bios_boot_tab()
-	SINGLETON:Reset()
 	return SINGLETON
 end
 
@@ -14,9 +13,6 @@ class "pda_bios_boot_tab" (CUIScriptWnd)
 function pda_bios_boot_tab:__init() super()
     self:InitControls()
 	self:InitCallbacks()
-end
-
-function pda_bios_boot_tab:__finalize()
 end
 
 function pda_bios_boot_tab:InitControls()
@@ -58,6 +54,19 @@ function pda_bios_boot_tab:InitControls()
 	
 	self.hint = xml:InitTextWnd("bios:hint", self)
 	self.help = xml:InitTextWnd("bios:help", self)
+
+	if not get_aoe_version then
+		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+	end
+	
+	----------------------------------------------------------------------------------------------------
+	-- BIOS Options
+	----------------------------------------------------------------------------------------------------
+	
+	self.text1_l:SetText("Save & Default Boot")
+	
+	self.text2_l:SetText("Save & Safe Mode Boot")
+
 end
 
 function pda_bios_boot_tab:Update()
@@ -104,43 +113,7 @@ function pda_bios_boot_tab:On_exit()
 end
 
 function pda_bios_boot_tab:On_safe_mode_exit()
-	fe_utils.set_bsod(db.actor:active_item(), false)
+	if not z_pda_hacking then fe_utils.set_bsod(db.actor:active_item(), false) end
+	ui_pda_reboot_tab.OS_LOADING = true
 	fe_utils.reboot_call(30)
-end
-
-
-function pda_bios_boot_tab:Reset()
-
-	self.upper_text:SetText("Monolith - OS Setup")
-    self.upper_text:Show(true)
-	
-	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
-    	self.bottom_text:Show(true)
-	end
-	
-	----------------------------------------------------------------------------------------------------
-	-- BIOS Options
-	----------------------------------------------------------------------------------------------------
-	
-	self.text1_l:SetText("Save & Default Boot")
-	self.text1_l:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.text1_l:Show(true)
-	
-	self.text2_l:SetText("Save & Safe Mode Boot")
-	self.text2_l:SetTextColor(GetARGB(255, 100, 200, 255))
-	
-	----------------------------------------------------------------------------------------------------
-	-- BIOS Hints
-	----------------------------------------------------------------------------------------------------
-	
-	self.hint:Show(false)
-	self.hint:SetTextColor(GetARGB(255, 100, 200, 255))
-	
-	self.help:Show(true)
-	self.help:SetText("Item Specific Help")
-	self.hint:SetTextColor(GetARGB(255, 100, 200, 255))
-	
-	local pda_menu = ActorMenu.get_pda_menu()
-	pda_menu:GetTabControl():Show(false)
 end

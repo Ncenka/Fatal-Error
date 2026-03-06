@@ -1,4 +1,5 @@
 local SINGLETON = nil
+OS_LOADING = false
 function get_ui()
 	SINGLETON = SINGLETON or pda_reboot_tab()
 	SINGLETON:Reset()
@@ -11,21 +12,12 @@ function pda_reboot_tab:__init() super()
 	self:InitCallbacks()
 end
 
-function pda_reboot_tab:__finalize()
-end
-
 function pda_reboot_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               = CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
 	
 	self.picture			= xml:InitStatic("picture_base",self)
-
-	if fatal_error_mcm.SETTINGS.light_reboot == true then
-		self.picture:InitTexture ("ui\\reboot\\light_reboot")
-	else
-		self.picture:InitTexture ("ui\\reboot\\pda_reboot")
-	end
 	
 	self.settings = xml:Init3tButton("btn_settings", self)
 	self:Register(self.settings, "btn_settings")
@@ -35,13 +27,22 @@ function pda_reboot_tab:InitCallbacks()
 	self:AddCallback("btn_settings",    ui_events.BUTTON_CLICKED, self.On_settings,   self)
 end
 
-function pda_reboot_tab:Update()
-	CUIScriptWnd.Update(self)
-end
-
 function pda_reboot_tab:Reset()
-    local pda_menu = ActorMenu.get_pda_menu()
-	pda_menu:GetTabControl():Show(false)
+	if OS_LOADING == true then
+		self.picture:InitTexture ("ui\\os_loading\\os_loading")
+		sound_object("device\\pda_bsod_restored"):play_no_feedback(db.actor, sound_object.s3d, 0, db.actor:position(), 1.0, 1.0)
+		self.settings:Show(false)
+		fe_utils.invoke("os_loading", 8, function()
+			OS_LOADING = false 
+			self:Reset()
+		end)
+		return
+	elseif fatal_error_mcm.SETTINGS.light_reboot == true then
+		self.picture:InitTexture ("ui\\reboot\\light_reboot")
+	else
+		self.picture:InitTexture ("ui\\reboot\\pda_reboot")
+	end
+	self.settings:Show(true)
 end
 
 function pda_reboot_tab:On_settings()

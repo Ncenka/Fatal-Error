@@ -34,9 +34,6 @@ function pda_bios_tab:__init() super()
 	self:InitCallbacks()
 end
 
-function pda_bios_tab:__finalize()
-end
-
 function pda_bios_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
 	local xml               		= CScriptXmlInit()
@@ -123,6 +120,11 @@ function pda_bios_tab:InitControls()
 	
 	self.hint 				= xml:InitTextWnd("bios:hint", self)
 	self.help 				= xml:InitTextWnd("bios:help", self)
+
+	if not get_aoe_version then
+		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+	end
+
 end
 
 function pda_bios_tab:Update()
@@ -224,14 +226,6 @@ function pda_bios_tab:On_interface_button()
 end
 
 function pda_bios_tab:Reset()
-
-	self.upper_text:SetText("Monolith - OS Setup")
-    self.upper_text:Show(true)
-	
-	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
-    	self.bottom_text:Show(true)
-	end
 	
 	----------------------------------------------------------------------------------------------------
 	-- BIOS Options
@@ -253,112 +247,37 @@ function pda_bios_tab:Reset()
 	end
 
 	self.text1_l:SetText("System Time:")
-	self.text1_l:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.text1_l:Show(true)
-	
 	self.text1_r:SetText("[" .. os.date("%H:%M:%S") .. "]")
-	self.text1_r:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.text1_r:Show(true)
 	
 	self.text2_l:SetText("System Date:")
-	self.text2_l:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.text2_l:Show(true)
-	
 	self.text2_r:SetText("[" .. os.date("%m/%d/%Y") .. "]")
-	self.text2_r:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.text2_r:Show(true)
-	
-	self.username:SetText("Username:")
-	self.username:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.username:Show(true)
 	
 	self.username_username:SetText((is_npc_pda and npc_info.name) or os.getenv("USERNAME"))
-	self.username_username:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.username_username:Show(true)
-	
-	self.detected_cpu:SetText("Processor Information:")
-	self.detected_cpu:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.detected_cpu:Show(true)
 	
 	local cpu_text = fe_utils.CPU
-
 	self.detected_cpu_cpu:SetText((is_npc_pda and npc_info.cpu) or cpu_text)
-	self.detected_cpu_cpu:SetTextColor(GetARGB(255, 255, 255, 255))
-	self.detected_cpu_cpu:Show(true)
-	
-	self.me_version:SetText("Modded Exes Version:")
-	self.me_version:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.me_version:Show(true)
-	
+
 	self.me_version_version:SetText("[" .. get_modded_exes_version() .. "]")
-	self.me_version_version:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.me_version_version:Show(true)
-	
-	self.pda_name:SetText("PDA Model:")
-	self.pda_name:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.pda_name:Show(true)
-	
+
 	self.pda_name_name:SetText("[" .. string.upper(pda_sec) .. "]")
-	self.pda_name_name:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.pda_name_name:Show(true)
-	
-	self.oper_sys_name:SetText("Operating System:")
-	self.oper_sys_name:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.oper_sys_name:Show(true)
 	
 	self.oper_sys_name_name:SetText(os.getenv("OS") or "Unknown")
-	self.oper_sys_name_name:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.oper_sys_name_name:Show(true)
-	
-	self.beep:SetText("Beep Sound:")
-	self.beep:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.beep:Show(true)
 	
 	beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
 	beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
 	self.beep_enable:SetText(beep)
-	self.beep_enable:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.beep_enable:Show(true)
-	
-	self.s_key:SetText("Unique Security Key: ")
-	self.s_key:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.s_key:Show(true)
 	
 	self.s_key_key:SetText((is_npc_pda and npc_info.key) or fe_utils.SECURITY_KEY)
-	self.s_key_key:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.s_key_key:Show(true)
-	
-	self.taskboard:SetText("Taskboard:")
-	self.taskboard:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.taskboard:Show(true)
 	
 	taskboard = ui_pda_taskboard_tab and "[Enabled]" or "[Disabled]"
 	taskboard = ini_sys:r_bool_ex(pda_sec,"tab_taskboard") == true and taskboard .. " \\n" .. "[Supported]" or taskboard .. " \\n" .. "[Unsupported]"
 	self.taskboard_task:SetText(taskboard)
-	self.taskboard_task:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.taskboard_task:Show(true)
-	
-	self.interact:SetText("Interactive:")
-	self.interact:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.interact:Show(true)
 	
 	interact = pda_inter_gui and "[Enabled]" or "[Disabled]"
 	interact = ini_sys:r_bool_ex(pda_sec,"tab_interactive") == true and interact .. " \\n" .. "[Supported]" or interact .. " \\n" .. "[Unsupported]"
 	self.interact_interact:SetText(interact)
-	self.interact_interact:SetTextColor(GetARGB(255, 255, 255, 255))
-    self.interact_interact:Show(true)
-	
-	self.razgon:SetText("Overclock:")
-	self.razgon:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.razgon:Show(true)
 
 	self.razgon_razgon:SetText(item_device.dev_items[pda_id].is_overclocked == true and "[Enabled]" or "[Disabled]")
-	self.razgon_razgon:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.razgon_razgon:Show(true)
-
-	self.interface:SetText("User Interface:")
-	self.interface:SetTextColor(GetARGB(255, 100, 200, 255))
-    self.interface:Show(true)
 
 	if pda:has_upgrade("up_thirda_pda") then 
 		interface = "[Supported]"
@@ -371,20 +290,5 @@ function pda_bios_tab:Reset()
 	pda_int = string.upper(pda_int)
 	self.interface_interface:SetText("[" .. pda_int .. "]" .. " \\n" .. interface)
 	self.interface_interface:SetTextColor(GetARGB(color[1], color[2], color[3], color[4]))
-    self.interface_interface:Show(true)
-	
-	----------------------------------------------------------------------------------------------------
-	-- BIOS Hints
-	----------------------------------------------------------------------------------------------------
-	
-	self.hint:Show(false)
-	self.hint:SetTextColor(GetARGB(255, 100, 200, 255))
-	
-	self.help:Show(true)
-	self.help:SetText("Item Specific Help")
-	self.hint:SetTextColor(GetARGB(255, 100, 200, 255))
-	
-	local pda_menu = ActorMenu.get_pda_menu()
-	pda_menu:GetTabControl():Show(false)
 
 end
