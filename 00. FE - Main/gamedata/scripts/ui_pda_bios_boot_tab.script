@@ -56,7 +56,7 @@ function pda_bios_boot_tab:InitControls()
 	self.help = xml:InitTextWnd("bios:help", self)
 
 	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+		self.bottom_text:SetText("Version 1.7.9.3 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
 	end
 	
 	----------------------------------------------------------------------------------------------------

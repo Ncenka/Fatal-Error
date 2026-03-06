@@ -44,7 +44,7 @@ function pda_bios_debug_tab:InitControls()
 	self.debug_text = xml:InitTextWnd("bios:debug_text", self)
 
 	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.2 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
+		self.bottom_text:SetText("Version 1.7.9.3 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
 	end
 	
 end
