@@ -3,7 +3,7 @@ if not z_pda_hacking then return end
 script_table = {}
 local gc = game.translate_string
 local parse_keys = utils_data.parse_string_keys
-local bsod_tab = ui_pda_bsod_tab.pda_bsod_tab
+local monolith_tab = ui_pda_monolitch_hackers_tab.pda_monolitch_hackers_tab
 
 name_key = {
 	["CommandUp"] = "cmdup",
@@ -36,10 +36,9 @@ colors_argb = {
 }
 
 -- Override Reset to add hacking functionality
-local base_bsod_reset = bsod_tab.Reset
-function bsod_tab:Reset()
-	base_bsod_reset(self)
-
+local base_monolith_reset = monolith_tab.Reset
+function monolith_tab:Reset()
+	base_monolith_reset(self)
 	-- Reset hack components
 	if self.form_hack then
 		self.form_hack:Show(false)
@@ -51,9 +50,9 @@ function bsod_tab:Reset()
 		self.dark_overlay:Show(false)
 	end
 
-	RemoveTimeEvent("bsodhack", "setfail")
-	RemoveTimeEvent("bsodhack", "set_decrypt_bar")
-	RemoveTimeEvent("bsodhack", "unlockbsod")
+	RemoveTimeEvent("monolithhack", "setfail")
+	RemoveTimeEvent("monolithhack", "set_decrypt_bar")
+	RemoveTimeEvent("monolithhack", "unlockmonolith")
 
 	if self.snd_skey and self.snd_skey:playing() then
 		self.snd_skey:stop()
@@ -76,7 +75,7 @@ function bsod_tab:Reset()
 	self:InitHackUI(best_hack_device)
 end
 
-function bsod_tab:InitHackUI(best_hack_device)
+function monolith_tab:InitHackUI(best_hack_device)
 	local obj = db.actor:item_in_slot(8)
 	if not obj then return end
 	if not self.hack_xml then
@@ -92,10 +91,10 @@ function bsod_tab:InitHackUI(best_hack_device)
 	self:AddCallback("hack_button", ui_events.BUTTON_CLICKED, self.Start_Hack, self)
 	self.hack_button:InitTexture("bios_button")
 	self.hack_button:Show(true)
-	self.hack_button:TextControl():SetText("Start Recovery")
+
 
 	self.cmds_remaining = best_hack_device.commands
-	self.encryption_strength_base = 20 * ini_sys:r_float_ex(obj:section(), "tier")
+	self.encryption_strength_base = 100 - ini_sys:r_float_ex(obj:section(), "tier") * 5
 	self.encryption_strength = self.encryption_strength_base
 	self.encryption_strength_visual = self.encryption_strength_base
 	self.data_decrypted = 0
@@ -196,7 +195,7 @@ function bsod_tab:InitHackUI(best_hack_device)
 	self.decrypt_wnd.rarity_title = self.decrypt_wnd.rarity_title or
 	self.hack_xml:InitStatic("form:decrypt_wnd:rarity_title", self.decrypt_wnd)
 	self.decrypt_wnd.rarity_title:TextControl():SetFont(get_font("large"))
-	self.decrypt_wnd.rarity_title:TextControl():SetText(gc(get_actor_true_community()) ..
+	self.decrypt_wnd.rarity_title:TextControl():SetText(gc("monolith") ..
 	", " .. gc(ini_sys:r_string_ex(obj:section(), "inv_name_short")))
 
 	self.decrypt_wnd.decrypted = self.decrypt_wnd.decrypted or
@@ -236,8 +235,8 @@ function bsod_tab:InitHackUI(best_hack_device)
 	self:Generate_Scripts(best_hack_device.scripts)
 end
 
-base_update = bsod_tab.Update
-function bsod_tab:Update()
+base_update = monolith_tab.Update
+function monolith_tab:Update()
 	base_update(self)
 
 	if not (self.form_hack and self.form_hack:IsShown()) then return end
@@ -286,7 +285,7 @@ function bsod_tab:Update()
 	end
 end
 
-function bsod_tab:OnSelectScript()
+function monolith_tab:OnSelectScript()
 	if self.data_decrypted_target >= 100 then return end
 	if self.scripts_to_add > 0 then return end
 	if self.loaded_script and self.loaded_script.name == self.hack_script_list:GetSelectedItem().name then return end
@@ -334,7 +333,7 @@ function bsod_tab:OnSelectScript()
 	self:Write_Terminal(text)
 end
 
-function bsod_tab:OnSelectCommand()
+function monolith_tab:OnSelectCommand()
 	if self.data_decrypted_target >= 100 then return end
 	local item = self.command_list:GetSelectedItem()
 	if item.name ~= "CommandUp" and self.cmds_remaining <= 0 then return end
@@ -415,17 +414,17 @@ function bsod_tab:OnSelectCommand()
 	end
 end
 
-function bsod_tab:Start_Hack()
+function monolith_tab:Start_Hack()
 	self.hack_button:Show(false)
 	self.form_hack:Show(true)
 	self.hack_script_list:Show(true)
 end
 
-function bsod_tab:Change_Commands(change)
+function monolith_tab:Change_Commands(change)
 	if change < 0 then
 		self.cmd_wnd.number:SetText(self.cmds_remaining .. " -1")
 		self.cmds_remaining = self.cmds_remaining + change
-		CreateTimeEvent("bsodhack", "set_cmd_text", 0.4, function()
+		CreateTimeEvent("monolithhack", "set_cmd_text", 0.4, function()
 			self.cmd_wnd.number:SetText(self.cmds_remaining)
 			return true
 		end)
@@ -444,20 +443,20 @@ function bsod_tab:Change_Commands(change)
 	elseif change > 0 then
 		self.cmd_wnd.number:SetText(self.cmds_remaining .. " +" .. change)
 		self.cmds_remaining = self.cmds_remaining + change
-		CreateTimeEvent("bsodhack", "set_cmd_text", 0.4, function()
+		CreateTimeEvent("monolithhack", "set_cmd_text", 0.4, function()
 			self.cmd_wnd.number:SetText(self.cmds_remaining)
 			return true
 		end)
 	end
 end
 
-function bsod_tab:HackFailed()
+function monolith_tab:HackFailed()
 	self.script_wnd:Show(false)
 	self.hack_script_list:Show(false)
 	self.cmd_list_wnd:Show(false)
 	local obj = db.actor:active_item()
 
-	CreateTimeEvent("bsodhack", "darkoverlay", 1, function()
+	CreateTimeEvent("monolithhack", "darkoverlay", 1, function()
 		if self.snd_failed and settings.soundfx_volume > 0 then
 			self.snd_failed.volume = 1 * settings.soundfx_volume
 			self.snd_failed:play(db.actor, 0, sound_object.s2d)
@@ -469,17 +468,17 @@ function bsod_tab:HackFailed()
 		return true
 	end)
 
-	CreateTimeEvent("bsodhack", "setfail", 2, function()
+	CreateTimeEvent("monolithhack", "setfail", 2, function()
 		fe_utils.set_broken(obj, 1)
 		return true
 	end)
-	CreateTimeEvent("bsodhack", "set_fail", 3, function()
+	CreateTimeEvent("monolithhack", "set_fail", 3, function()
 		self:Reset()
 		return true
 	end)
 end
 
-function bsod_tab:Write_Terminal(text)
+function monolith_tab:Write_Terminal(text)
 	self.terminal_scroll:RemoveWindow(self.terminal.text_wnd)
 	self.terminal_scroll:Clear()
 
@@ -501,37 +500,37 @@ function bsod_tab:Write_Terminal(text)
 	self.terminal_scroll:ScrollToEnd()
 end
 
-function bsod_tab:Set_Data_Decrypted(data)
+function monolith_tab:Set_Data_Decrypted(data)
 	self.data_decrypted_target = clamp(data, self.data_decrypted_target, 100)
 	if self.data_decrypted_target == 100 then
 		self.script_wnd:Show(false)
 		self.hack_script_list:Show(false)
-		fe_utils.invoke("unlockbsod", 1, function()
+		if fatal_error_mcm.MONOLITH_HACKERS[level.name()] then
+			fatal_error_mcm.MONOLITH_HACKERS[level.name()] = false
+			news_manager.send_tip(db.actor, "Jammers disabled", nil, default, 10000)
+		end
+		fe_utils.invoke("unlockmonolith", 1, function()
 			self.dark_overlay:SetTextureColor(GetARGB(255, 0, 0, 0))
 			self.dark_overlay:Show(true)
 			self.snd_beep:play(db.actor, 0, sound_object.s2d)
 		end)
 	end
 
-	local obj = db.actor:active_item()
-
-	CreateTimeEvent("bsodhack", "set_decrypt_bar", 0, function()
+	CreateTimeEvent("monolithhack", "set_hack_bar", 0, function()
 		self.data_decrypted = z_pda_hacking.lerpup(self.data_decrypted, self.data_decrypted_target, 0.75)
 		self.decrypt_wnd.bar:SetProgressPos(self.data_decrypted)
 		self.decrypt_wnd.decrypted.pct_bg:TextControl():SetText(round_idp(self.data_decrypted, 1) .. "%")
 
 		if self.data_decrypted >= 100 then
 			if not self.skey_unlock then
-				fe_utils.invoke("hacked_bsod", 4, function()
+				fe_utils.invoke("hacked_monolith", 4, function()
 					ui_pda_reboot_tab.OS_LOADING = true
-					fe_utils.set_bsod(obj, false)
 					fe_utils.reboot_call(20)
 					self:Reset()
 				end)
 			else
-				fe_utils.invoke("hacked_bsod", 4, function()
-					fe_utils.set_bsod(obj, false)
-					fe_utils.reboot_call(1)
+				fe_utils.invoke("hacked_monolith", 4, function()
+					fe_utils.reboot_call(5)
 					self:Reset()
 				end)
 			end
@@ -543,10 +542,10 @@ function bsod_tab:Set_Data_Decrypted(data)
 	end)
 end
 
-function bsod_tab:Change_Encryption(change)
+function monolith_tab:Change_Encryption(change)
 	self.encryption_strength = self.encryption_strength - change
 
-	CreateTimeEvent("bsodhack", "set_encrypt", 0, function()
+	CreateTimeEvent("monolithhack", "set_encrypt", 0, function()
 		self.encryption_strength_visual = z_pda_hacking.lerpdown(self.encryption_strength_visual,
 			self.encryption_strength, 0.1)
 		self.decrypt_wnd.encr_str.pct:SetText(round_idp(self.encryption_strength_visual, 1) .. "%")
@@ -556,9 +555,9 @@ function bsod_tab:Change_Encryption(change)
 	end)
 end
 
-function bsod_tab:Generate_Scripts(count)
+function monolith_tab:Generate_Scripts(count)
 	self.scripts_to_add = self.scripts_to_add + count
-	CreateTimeEvent("bsodhack", "genscript", 0.1, function()
+	CreateTimeEvent("monolithhack", "genscript", 0.1, function()
 		local index = math.random(#script_table)
 
 		local script_name = script_table[index]
@@ -577,7 +576,7 @@ function bsod_tab:Generate_Scripts(count)
 
 		self.scripts_to_add = self.scripts_to_add - 1
 		if self.scripts_to_add == 0 then return true end
-		ResetTimeEvent("bsodhack", "genscript", 0.1)
+		ResetTimeEvent("monolithhack", "genscript", 0.1)
 	end)
 end
 

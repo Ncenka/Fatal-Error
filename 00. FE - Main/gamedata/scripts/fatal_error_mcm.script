@@ -37,6 +37,20 @@ local delays = {
 	shutdown = 30,
 }
 
+MONOLITH_HACKERS = {
+	["l10u_bunker"] = true,
+	["l12u_control_monolith"] = true,
+	["l13u_warlab"] = true,
+	["labx8"] = true,
+	["l10_radar"] = true,
+	["l11_hospital"] = true,
+	["l13_generators"] = true,
+	["l12_stancia_2"]  = true,
+	["l12_stancia"] = true,
+	["l11_pripyat"] = true,
+	["pripyat"] = true,
+}
+
 REBOOT = 0
 local reboot_protection = 0
 RADIATION_AMOUNT = 0
@@ -565,20 +579,6 @@ function process_pda_call()
 		["eptBiosBoot"] = true,
 		["eptBiosDebug"] = true,
 	}
-	
-	local monolith_hackers = {
-		["l10u_bunker"] = true,
-		["l12u_control_monolith"] = true,
-		["l13u_warlab"] = true,
-		["labx8"] = true,
-		["l10_radar"] = true,
-		["l11_hospital"] = true,
-		["l13_generators"] = true,
-		["l12_stancia_2"]  = true,
-		["l12_stancia"] = true,
-		["l11_pripyat"] = true,
-		["pripyat"] = true,
-	}
 
 	local monolith = {
 		["l12u_sarcofag"] = true,
@@ -630,7 +630,7 @@ function process_pda_call()
 	
 	elseif 
 		not (pda:has_upgrade("up_seconc_pda") or no_jaming_factions[player_faction] or overclock)
-		and (monolith_hackers[levelname])
+		and (MONOLITH_HACKERS[levelname])
 	then
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")
 		
@@ -809,18 +809,35 @@ end
 
 function save_state(m_data)
 	m_data.RADIATION_AMOUNT = RADIATION_AMOUNT or 0
+	m_data.ELECTRA_GLITCH_VALUE = ELECTRA_GLITCH_VALUE or 0
+	m_data.reboot_protection = reboot_protection or 0
+	m_data.MONOLITH_HACKERS = MONOLITH_HACKERS
 end
 
 function load_state(m_data)
 	RADIATION_AMOUNT = m_data.RADIATION_AMOUNT or 0
+	ELECTRA_GLITCH_VALUE = m_data.ELECTRA_GLITCH_VALUE or 0
+	reboot_protection = m_data.reboot_protection or 0
+	MONOLITH_HACKERS = m_data.MONOLITH_HACKERS or MONOLITH_HACKERS
 end
 
-function reduce_radiation_on_sleep(hours)
+function reduce_on_sleep(hours)
+
+	-- Process radiation first
     if RADIATION_AMOUNT > hours then
 		RADIATION_AMOUNT = RADIATION_AMOUNT - hours
 	else
 		RADIATION_AMOUNT = 0
 	end
+
+	-- Process and then electra
+	hours = hours * 0.1
+    if ELECTRA_GLITCH_VALUE > hours then
+		ELECTRA_GLITCH_VALUE = ELECTRA_GLITCH_VALUE - hours
+	else
+		ELECTRA_GLITCH_VALUE = 0
+	end
+
 end
 
 function electra_glitch_lower()
@@ -849,6 +866,6 @@ function on_game_start()
 	RegisterScriptCallback("on_key_release", process_pda_button)
 	RegisterScriptCallback("actor_item_to_slot", process_pda_slot)
 	RegisterScriptCallback("on_option_change", on_option_change)
-	RegisterScriptCallback("actor_on_sleep", reduce_radiation_on_sleep)
+	RegisterScriptCallback("actor_on_sleep", reduce_on_sleep)
 	
 end

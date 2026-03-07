@@ -38,6 +38,9 @@ function set_screen_damage(obj, val)
     local damage
     if val == 1 then
        damage = get_damage(obj) + 1
+       if damage > 5 then
+            set_broken(obj, 1)
+        end
        damage = clamp(damage, 0, 5)
        utils_obj.play_sound("material\\glass\\glass_fall03hl")
     elseif val == 2 then

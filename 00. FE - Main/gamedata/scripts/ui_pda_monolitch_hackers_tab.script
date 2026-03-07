@@ -1,6 +1,7 @@
 local SINGLETON = nil
 function get_ui()
 	SINGLETON = SINGLETON or pda_monolitch_hackers_tab()
+	SINGLETON:Reset()
 	return SINGLETON
 end
 
@@ -18,4 +19,11 @@ function pda_monolitch_hackers_tab:InitControls()
 	self.text 			= xml:InitTextWnd("text_center", self)
 	self.text:SetText(game.translate_string("st_pda_monolitch_hackers"))
     self.text:SetTextColor(GetARGB(255, 255, 255, 0))
+end
+
+function pda_monolitch_hackers_tab:Update()
+	CUIScriptWnd.Update(self)
+end
+
+function pda_monolitch_hackers_tab:Reset()
 end

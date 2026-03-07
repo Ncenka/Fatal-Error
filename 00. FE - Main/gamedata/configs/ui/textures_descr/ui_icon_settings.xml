@@ -14,9 +14,9 @@
 	</file>
   
 	<file name="ui\bios_button">
-		<texture id="bios_button_e" x="-1" y="0" width="201" height="48" />
-		<texture id="bios_button_h" x="-1" y="50" width="201" height="48" />
-		<texture id="bios_button_t" x="-1" y="100" width="201" height="48" />
-		<texture id="bios_button_d" x="-1" y="0" width="201" height="48" />
+		<texture id="bios_button_e" x="-1" y="0" width="201" height="50" />
+		<texture id="bios_button_h" x="-1" y="50" width="201" height="50" />
+		<texture id="bios_button_t" x="-1" y="100" width="201" height="50" />
+		<texture id="bios_button_d" x="-1" y="0" width="201" height="50" />
 	</file>
 </w>
