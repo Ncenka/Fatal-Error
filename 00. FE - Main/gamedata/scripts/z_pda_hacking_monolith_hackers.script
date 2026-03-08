@@ -94,7 +94,7 @@ function monolith_tab:InitHackUI(best_hack_device)
 
 
 	self.cmds_remaining = best_hack_device.commands
-	self.encryption_strength_base = 100 - ini_sys:r_float_ex(obj:section(), "tier") * 5
+	self.encryption_strength_base = 25 - ini_sys:r_float_ex(obj:section(), "tier") * 5
 	self.encryption_strength = self.encryption_strength_base
 	self.encryption_strength_visual = self.encryption_strength_base
 	self.data_decrypted = 0
@@ -507,12 +507,12 @@ function monolith_tab:Set_Data_Decrypted(data)
 		self.hack_script_list:Show(false)
 		if fatal_error_mcm.MONOLITH_HACKERS[level.name()] then
 			fatal_error_mcm.MONOLITH_HACKERS[level.name()] = false
-			news_manager.send_tip(db.actor, "Jammers disabled", nil, default, 10000)
 		end
 		fe_utils.invoke("unlockmonolith", 1, function()
 			self.dark_overlay:SetTextureColor(GetARGB(255, 0, 0, 0))
 			self.dark_overlay:Show(true)
 			self.snd_beep:play(db.actor, 0, sound_object.s2d)
+			news_manager.send_tip(db.actor, gc("st_fe_mon_jam_dis") .. " " .. gc(level.name()) .. ".", nil, default, 10000)
 		end)
 	end
 

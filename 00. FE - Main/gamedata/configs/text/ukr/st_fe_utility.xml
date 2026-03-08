@@ -85,6 +85,9 @@
 	<string id="st_fe_map_on">
 		<text>GPS сигнал встановлено.</text>
 	</string>
+	<string id="st_fe_mon_jam_dis">
+		<text>Глушилка "Моноліта" відключена в локації:</text>
+	</string>
 	<string id="st_interactive_unavaible">
 		<text>функція "Інтерактив" недоступна</text>
 	</string>

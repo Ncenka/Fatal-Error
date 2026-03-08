@@ -94,6 +94,9 @@ Dernière révision: 19 septembre 2025
 	<string id="st_fe_map_on">
 		<text>Signal GPS capté.</text>
 	</string>
+	<string id="st_fe_mon_jam_dis">
+		<text>Le brouilleur Monolith est désactivé à l'emplacement:</text>
+	</string>
 	<string id="st_interactive_unavaible">
 		<text>fonction "Interactive" non disponible</text>
 	</string>

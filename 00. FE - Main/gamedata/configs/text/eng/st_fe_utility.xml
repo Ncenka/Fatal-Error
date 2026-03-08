@@ -86,6 +86,9 @@
 	<string id="st_fe_map_on">
 		<text>GPS signal established.</text>
 	</string>
+	<string id="st_fe_mon_jam_dis">
+		<text>The Monolith jammer is disabled in the location:</text>
+	</string>
 	<string id="st_interactive_unavaible">
 		<text>"Interactive" feature is not available</text>
 	</string>
