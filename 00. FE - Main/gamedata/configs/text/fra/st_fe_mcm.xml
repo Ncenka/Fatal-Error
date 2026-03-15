@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="windows-1252"?>
-
 <string_table>
-
-<!--
-F.R.I.T.E.S | Thundard
-Derni?re r?vision: 19 septembre 2025
--->
-
 <string id="ui_mcm_menu_fatal_error">
 		<text>Erreur fatale</text>
 	</string>
@@ -253,5 +246,34 @@ Derni?re r?vision: 19 septembre 2025
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Temps maximal de défaut de l'appareil. Doit être supérieur au Temps minimal de défaut.</text>
 	</string>
+	
+	<!--
+    Milspec PDA
+	-->
+	
+	<string id="ui_mcm_menu_cfg_device_pda_0">
+        <text>PDA 0.1</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_1">
+        <text>PDA HP iPAQ h1945 Pocket PC</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_2">
+        <text>PDA 2.0</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_3">
+        <text>PDA 3.1</text>
+    </string>
+    <string id="ui_mcm_menu_cfg_device_pda_4">
+        <text>PDA MilDEF DB6M</text>
+    </string>
+	 <string id="ui_mcm_menu_cfg_device_pda_milspec">
+        <text>PDA Advantech P37B</text>
+    </string>
+    <string id="ui_mcm_menu_cfg_device_pda_getac">
+        <text>PDA GETAC PS535E</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_new">
+        <text>PDA MT-55 Kulon</text>
+    </string>
 	
 </string_table>

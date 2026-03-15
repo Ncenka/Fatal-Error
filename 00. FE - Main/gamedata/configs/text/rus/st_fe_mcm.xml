@@ -246,4 +246,34 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Максимальное время неисправности устройства. Должно быть больше, чем Минимальное время неисправности.</text>
 	</string>
+	
+	<!--
+    Milspec PDA
+	-->
+	
+	<string id="ui_mcm_menu_cfg_device_pda_0">
+        <text>КПК 0.1</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_1">
+        <text>КПК HP iPAQ h1945 Pocket PC</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_2">
+        <text>КПК 2.0</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_3">
+        <text>КПК 3.1</text>
+    </string>
+    <string id="ui_mcm_menu_cfg_device_pda_4">
+        <text>КПК MilDEF DB6M</text>
+    </string>
+	 <string id="ui_mcm_menu_cfg_device_pda_milspec">
+        <text>КПК Advantech P37B</text>
+    </string>
+    <string id="ui_mcm_menu_cfg_device_pda_getac">
+        <text>КПК GETAC PS535E</text>
+    </string>
+	<string id="ui_mcm_menu_cfg_device_pda_new">
+        <text>КПК MT-55 Кулон</text>
+    </string>
+	
 </string_table>
