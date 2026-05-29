@@ -716,8 +716,8 @@ end
 ----------------------------------------------------------------------------------------------------
 -- Shutdown
 ----------------------------------------------------------------------------------------------------
-
-local cache_obj
+local cache_obj = nil
+local cache_obj_id = nil
 function process_shutdown()
 	RemoveTimeEvent("fe_time_event", "process_shutdown")
 	local obj = db.actor:active_detector()
@@ -729,8 +729,21 @@ function process_shutdown()
 
 	if obj and not fe_utils.is_broken(obj) and obj:condition() > 0.05 then
 
-		if not cache_obj then cache_obj = obj end
-		if cache_obj:id() ~= obj:id() and not fe_utils.is_broken(cache_obj) then cache_obj:set_device_enabled(true) cache_obj = obj end
+		if not cache_obj then 
+			cache_obj = obj 
+			cache_obj_id = obj:id() 
+		end
+
+		if not level.object_by_id(cache_obj_id) then
+			cache_obj = nil
+			cache_obj_id = nil
+		end
+		
+		if cache_obj and cache_obj_id ~= obj:id() and not fe_utils.is_broken(cache_obj) then 
+			cache_obj:set_device_enabled(true) 
+			cache_obj = obj
+			cache_obj_id = obj:id() 
+		end
 
 		local radiation_chance = not obj:has_upgrade("up_firsta_pda") and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
 		local damage_chance = fe_utils.get_damage(obj) * 10
@@ -749,9 +762,16 @@ function process_shutdown()
 			CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
 		end
 	else
+
+		if not level.object_by_id(cache_obj_id) then
+			cache_obj = nil
+			cache_obj_id = nil
+		end
+
 		if cache_obj and not fe_utils.is_broken(cache_obj) then
 			cache_obj:set_device_enabled(true)
 			cache_obj = nil
+			cache_obj_id = nil 
 		end
 		CreateTimeEvent("fe_time_event", "process_shutdown", delays.shutdown, process_shutdown)
 	end
