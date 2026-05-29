@@ -178,7 +178,7 @@ end
 
 function get_cpu()
     local fs = getFS()
-    local flist = fs:file_list_open_ex("$logs$", bit_or(FS.FS_ListFiles, FS.FS_RootOnly), "*.log")
+    local flist = fs:file_list_open_ex("$logs$", bit_or(FS.FS_ListFiles, FS.FS_RootOnly), "xray_*.log")
     
     for i = 0, flist:Size() - 1 do
         local filename = flist:GetAt(i):NameFull()
