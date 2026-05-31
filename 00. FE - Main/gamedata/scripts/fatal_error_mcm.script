@@ -718,8 +718,22 @@ end
 ----------------------------------------------------------------------------------------------------
 local cache_obj = nil
 local cache_obj_id = nil
+
 function process_shutdown()
 	RemoveTimeEvent("fe_time_event", "process_shutdown")
+
+	-- To fix an issue where NPC PDA turn off while hacking and brick the PDA
+	local function check_encrypted(obj)
+		if item_device.device_npc_pda[obj:section()] then
+			local info = se_load_var(obj:id(), obj:name(), "info")
+			if info and (info.state == "encrypted") then
+				return true
+			end
+		else
+			return false
+		end
+	end
+
 	local obj = db.actor:active_detector()
 	if (not obj or fe_utils.is_broken(obj) or obj:condition() < 0.05) and db.actor:active_item() and db.actor:active_item():section():find("_pda") and db.actor:active_item():condition() > 0.05 then 
 		obj = db.actor:active_item()
@@ -727,7 +741,7 @@ function process_shutdown()
 		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)
 	end
 
-	if obj and not fe_utils.is_broken(obj) and obj:condition() > 0.05 then
+	if obj and not fe_utils.is_broken(obj) and obj:condition() > 0.05 and not (z_pda_hacking and check_encrypted(obj)) then
 
 		if not cache_obj then 
 			cache_obj = obj 
