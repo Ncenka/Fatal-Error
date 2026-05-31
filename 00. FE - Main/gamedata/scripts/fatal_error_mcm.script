@@ -718,7 +718,6 @@ end
 ----------------------------------------------------------------------------------------------------
 local cache_obj = nil
 local cache_obj_id = nil
-
 function process_shutdown()
 	RemoveTimeEvent("fe_time_event", "process_shutdown")
 
