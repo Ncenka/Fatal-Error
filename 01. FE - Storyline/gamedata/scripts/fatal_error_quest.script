@@ -47,7 +47,7 @@ function ensure_correct_logic()
 end
 
 function spawn_pda_in_red_forest()	
-	if level.name() == "l10_red_forest" and not db.actor:has_info("fe_spawn_pda_in_red_forest") then
+	if xr_conditions.actor_week_in_zone(nil, nil, {4}) and level.name() == "l10_red_forest" and not db.actor:has_info("fe_spawn_pda_in_red_forest") then
 		alife_create_item("pda_senya_podkidnoy",{vector():set(175.64205932617, -0.18985162675381, -201.87174987793),116095,2801}, {cond = 0})
 		give_info("fe_spawn_pda_in_red_forest")
 	end
@@ -77,9 +77,8 @@ end
 
 --add not to enable
 function test()
-	if db.actor:has_info("fe_darkscape_quest_started") and not db.actor:has_info("fe_test") then
+	if xr_conditions.actor_week_in_zone(nil, nil, {2}) and not db.actor:has_info("fe_darkscape_quest_started") then
 		fe_utils.invoke("start_darkscape_quest_dialog", 30, function() start_darkscape_quest_dialog() end)
-		give_info("fe_test")
 	end
 end
 

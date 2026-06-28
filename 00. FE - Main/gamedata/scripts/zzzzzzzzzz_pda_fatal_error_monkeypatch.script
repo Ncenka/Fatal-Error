@@ -114,6 +114,9 @@ function create_overrides_fatal_error_v1()
 			if ini_sys:r_bool_ex(pda:section(),"tab_ranking") == false then
 				return ui_pda_no_tab.get_ui()
 			end
+
+		elseif section == "eptMilitaryDatabase" then
+        	return ui_pda_all_npcs_tab.get_ui()
 			
 		elseif section == "eptTasks" then
 			if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[level.name()]) and not (base_elevation < actor_elevation.y) then

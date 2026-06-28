@@ -5,6 +5,20 @@
 		<texture id="settings_t" x="0" y="256" width="256" height="257" />
 		<texture id="settings_d" x="0" y="256" width="256" height="257" />
 	</file>
+	
+	<file name="ui\database_back">
+		<texture id="database_back_e" x="0" y="0" width="256" height="257" />
+		<texture id="database_back_h" x="256" y="0" width="256" height="257" />
+		<texture id="database_back_t" x="0" y="256" width="256" height="257" />
+		<texture id="database_back_d" x="0" y="256" width="256" height="257" />
+	</file>
+	
+	<file name="ui\afu_database">
+		<texture id="afu_database_e" x="0" y="0" width="256" height="257" />
+		<texture id="afu_database_h" x="256" y="0" width="256" height="257" />
+		<texture id="afu_database_t" x="0" y="256" width="256" height="257" />
+		<texture id="afu_database_d" x="0" y="256" width="256" height="257" />
+	</file>
   
 	<file name="ui\bios_button_colors">
 		<texture id="bios_button_colors_e" x="0" y="0" width="5" height="5" />

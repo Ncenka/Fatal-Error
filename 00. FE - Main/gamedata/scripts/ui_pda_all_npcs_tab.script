@@ -1,0 +1,367 @@
+local gts = game.translate_string
+
+local SINGLETON = nil
+
+function get_ui()
+    SINGLETON = SINGLETON or pda_all_npcs_tab()
+    SINGLETON:Reset()
+    return SINGLETON
+end
+
+class "pda_all_npcs_tab" (CUIScriptWnd)
+
+function pda_all_npcs_tab:__init() 
+    super()
+    self:InitControls()
+    self:InitCallbacks()
+end
+
+function pda_all_npcs_tab:InitControls()
+    self:SetWndRect(Frect():set(0, 0, 1024, 768))
+    
+    local xml = CScriptXmlInit()
+    xml:ParseFile("pda_npc_all.xml")
+
+    self.picture_base = xml:InitStatic("picture_base",self)
+    self.picture_base:InitTexture("ui\\green_screen")
+
+    self.upper_text = xml:InitTextWnd("picture_base:upper_text", self)
+    self.bottom_text = xml:InitTextWnd("picture_base:bottom_text", self)
+
+    self.insignia = xml:InitStatic("picture_base:insignia",self)
+    self.insignia:InitTexture("ui\\afu_green")
+
+    self.insignia_2 = xml:InitStatic("picture_base:insignia_2",self)
+    self.insignia_2:InitTexture("ui\\afu_green")
+    
+    self.database = xml:InitStatic("database",self)
+    self.database:InitTexture("ui\\military_database")
+    
+    self.scroll_view = xml:InitScrollView("database:npc_list", self)
+    self.scroll_view:SetAutoDelete(true)
+    
+    self.filter_button = xml:Init3tButton("database:filter_button", self)
+    self:Register(self.filter_button, "filter_button")
+    self.filter_button:TextControl():SetText("All")
+
+    self.back_button = xml:Init3tButton("database:back_button", self)
+    self:Register(self.back_button, "back_button")
+    
+    self.reset_button = xml:Init3tButton("database:reset_button", self)
+    self:Register(self.reset_button, "reset_button")
+    
+    self.rank_filter_button = xml:Init3tButton("database:rank_filter_button", self)
+    self:Register(self.rank_filter_button, "rank_filter_button")
+    self.rank_filter_button:TextControl():SetText((gts("ui_st_rank") .. ": " .. "All"))
+    
+    self.rep_filter_button = xml:Init3tButton("database:rep_filter_button", self)
+    self:Register(self.rep_filter_button, "rep_filter_button")
+    self.rep_filter_button:TextControl():SetText(gts("ui_st_reputation") .. ": " .. "Any")
+
+    self.factions_list = {}
+    self.current_faction_index = 0
+    self.pending_filter_index = nil
+    
+    self.rank_levels = {"novice","trainee","experienced","professional","veteran","expert","master","legend"}
+    self.current_rank_index = 0
+    self.pending_rank_index = nil
+    
+    self.rep_ranges = {
+        {name = "terrible", min = -9999, max = -1500},
+        {name = "really_bad", min = -1499, max = -1000},
+        {name = "very_bad", min = -999, max = -500},
+        {name = "bad", min = -499, max = -1},
+        {name = "neutral", min = 0, max = 499},
+        {name = "good", min = 500, max = 999},
+        {name = "very_good", min = 1000, max = 1499},
+        {name = "really_good", min = 1500, max = 1999},
+        {name = "excellent", min = 2000, max = 9999}
+    }
+    self.current_rep_index = 0
+    self.pending_rep_index = nil
+    
+    self.npc_items = {}
+    self.all_npcs = {}
+end
+
+function pda_all_npcs_tab:InitCallbacks()
+    self:AddCallback("filter_button", ui_events.BUTTON_CLICKED, self.OnFilterButtonClick, self)
+    self:AddCallback("back_button", ui_events.BUTTON_CLICKED, self.OnBackButtonClick, self)
+    self:AddCallback("reset_button", ui_events.BUTTON_CLICKED, self.OnResetButtonClick, self)
+    self:AddCallback("rank_filter_button", ui_events.BUTTON_CLICKED, self.OnRankFilterClick, self)
+    self:AddCallback("rep_filter_button", ui_events.BUTTON_CLICKED, self.OnRepFilterClick, self)
+end
+
+function pda_all_npcs_tab:OnFilterButtonClick()
+    self.current_faction_index = self.current_faction_index + 1
+    if self.current_faction_index > #self.factions_list then
+        self.current_faction_index = 0
+    end
+    self.pending_filter_index = self.current_faction_index
+    self:Reset()
+end
+
+function pda_all_npcs_tab:OnResetButtonClick()
+    self.current_faction_index = 0
+    self.pending_filter_index = 0
+    self.current_rank_index = 0
+    self.pending_rank_index = 0
+    self.current_rep_index = 0
+    self.pending_rep_index = 0
+    self:UpdateFilterButton()
+    self:UpdateRankButton()
+    self:UpdateRepButton()
+    self:Reset()
+end
+
+function pda_all_npcs_tab:OnBackButtonClick()
+    ActorMenu.get_pda_menu():SetActiveSubdialog("eptLauncher")
+end
+
+function pda_all_npcs_tab:OnRankFilterClick()
+    self.current_rank_index = self.current_rank_index + 1
+    if self.current_rank_index > #self.rank_levels then
+        self.current_rank_index = 0
+    end
+    self.pending_rank_index = self.current_rank_index
+    self:UpdateRankButton()
+    self:ApplyFilter()
+end
+
+function pda_all_npcs_tab:OnRepFilterClick()
+    self.current_rep_index = self.current_rep_index + 1
+    if self.current_rep_index > #self.rep_ranges then
+        self.current_rep_index = 0
+    end
+    self.pending_rep_index = self.current_rep_index
+    self:UpdateRepButton()
+    self:ApplyFilter()
+end
+
+function pda_all_npcs_tab:UpdateFilterButton()
+    if self.current_faction_index == 0 then
+        self.filter_button:TextControl():SetText("All")
+    else
+        local faction = self.factions_list[self.current_faction_index]
+        self.filter_button:TextControl():SetText(gts("ui_st_community") .. ": " .. gts(faction))
+    end
+end
+
+function pda_all_npcs_tab:UpdateRankButton()
+    if self.current_rank_index == 0 then
+        self.rank_filter_button:TextControl():SetText(gts("ui_st_rank") .. ": " .. "All")
+    else
+        local rank = self.rank_levels[self.current_rank_index]
+        self.rank_filter_button:TextControl():SetText(gts("ui_st_rank") .. ": " .. gts("st_rank_" .. rank))
+    end
+end
+
+function pda_all_npcs_tab:UpdateRepButton()
+    if self.current_rep_index == 0 then
+        self.rep_filter_button:TextControl():SetText(gts("ui_st_reputation") .. ": " .. "Any")
+    else
+        local rep = self.rep_ranges[self.current_rep_index]
+        self.rep_filter_button:TextControl():SetText(gts("ui_st_reputation") .. ": " .. gts("st_reputation_" .. rep.name))
+    end
+end
+
+function pda_all_npcs_tab:ApplyFilter()
+    for _, item in ipairs(self.npc_items) do
+        self.scroll_view:RemoveWindow(item)
+    end
+    self.npc_items = {}
+    
+    local idx = 0
+    local filter_faction = nil
+    local filter_rank = nil
+    local filter_rep_range = nil
+    
+    if self.current_faction_index > 0 then
+        filter_faction = self.factions_list[self.current_faction_index]
+    end
+    
+    if self.current_rank_index > 0 then
+        filter_rank = self.rank_levels[self.current_rank_index]
+    end
+    
+    if self.current_rep_index > 0 then
+        filter_rep_range = self.rep_ranges[self.current_rep_index]
+    end
+    
+    for _, se_obj in ipairs(self.all_npcs) do
+        local community = se_obj:community()
+        local rank_name = ranks.get_se_obj_rank_name(se_obj)
+        local rep_value = se_obj:reputation() or 0
+        
+        local faction_match = (filter_faction == nil or community == filter_faction)
+        local rank_match = (filter_rank == nil or rank_name == filter_rank)
+        
+        local rep_match = true
+        if filter_rep_range ~= nil then
+            rep_match = (rep_value >= filter_rep_range.min and rep_value <= filter_rep_range.max)
+        end
+        
+        if faction_match and rank_match and rep_match then
+            idx = idx + 1
+            local item = ui_all_npc_item(self, se_obj, idx)
+            self.scroll_view:AddWindow(item)
+            table.insert(self.npc_items, item)
+        end
+    end
+end
+
+function pda_all_npcs_tab:Reset()
+    for _, item in ipairs(self.npc_items) do
+        self.scroll_view:RemoveWindow(item)
+    end
+    self.npc_items = {}
+    self.all_npcs = {}
+    
+    local excluded_factions = {
+        ["zombied"] = true,
+        ["trader"] = true,
+        ["monolith"] = true,
+        ["isg"] = true,
+        ["greh"] = true,
+    }
+    
+    local allowed_factions = {
+        ["stalker"]   = true,
+        ["csky"]      = true,
+        ["army"]      = true,
+        ["killer"]    = true,
+        ["ecolog"]    = true,
+        ["dolg"]      = true,
+        ["freedom"]   = true,
+        ["bandit"]    = true,
+        ["renegade"]  = true,
+    }
+    
+    local sim = alife()
+    local npcs_list = {}
+    local factions_set = {}
+    
+    for i = 1, 65534 do
+        local se_obj = sim:object(i)
+        if se_obj and IsStalker(nil, se_obj:clsid()) and se_obj:alive() then
+            local community = se_obj:community()
+            if not excluded_factions[community] then
+                table.insert(npcs_list, se_obj)
+                if allowed_factions[community] then
+                    factions_set[community] = true
+                end
+            end
+        end
+    end
+    
+    self.factions_list = {}
+    for faction, _ in pairs(factions_set) do
+        table.insert(self.factions_list, faction)
+    end
+    
+    table.sort(self.factions_list, function(a, b)
+        return gts(a) < gts(b)
+    end)
+    
+    table.sort(npcs_list, function(a, b)
+        local comm_a = gts(a:community())
+        local comm_b = gts(b:community())
+        if comm_a == comm_b then
+            return a:character_name() < b:character_name()
+        end
+        return comm_a < comm_b
+    end)
+    
+    self.all_npcs = npcs_list
+    
+    if self.pending_filter_index ~= nil then
+        self.current_faction_index = self.pending_filter_index
+        self.pending_filter_index = nil
+    else
+        self.current_faction_index = 0
+    end
+    
+    if self.pending_rank_index ~= nil then
+        self.current_rank_index = self.pending_rank_index
+        self.pending_rank_index = nil
+    else
+        self.current_rank_index = 0
+    end
+    
+    if self.pending_rep_index ~= nil then
+        self.current_rep_index = self.pending_rep_index
+        self.pending_rep_index = nil
+    else
+        self.current_rep_index = 0
+    end
+    
+    self:UpdateFilterButton()
+    self:UpdateRankButton()
+    self:UpdateRepButton()
+    self:ApplyFilter()
+end
+
+class "ui_all_npc_item" (CUIListBoxItem)
+
+function ui_all_npc_item:__init(parent, se_obj, index)
+    super(parent, index)
+    
+    self.se_obj = se_obj
+    self:SetWndSize(vector2():set(720, 72))
+    
+    local obj = level.object_by_id(se_obj.id) or se_obj
+    
+    self.icon = self:AddIconField(1)
+    self.icon:SetWndPos(vector2():set(8, 8))
+    self.icon:SetWndSize(vector2():set(60, 60))
+    self.icon:SetStretchTexture(true)
+    
+    self.icon:InitTexture(obj:character_icon() or "ui\\ui_noise")
+    
+    self.number = self:AddTextField(string.format("%d.", index), 1)
+    self.number:SetFont(GetFontLetterica18Russian())
+    self.number:SetWndPos(vector2():set(78, 6))
+    self.number:SetWndSize(vector2():set(40, 20))
+    self.number:SetTextColor(GetARGB(255, 200, 200, 200))
+
+    self.name = self:AddTextField(se_obj:character_name(), 1)
+    self.name:SetFont(GetFontLetterica18Russian())
+    self.name:SetWndPos(vector2():set(100, 6))
+    self.name:SetWndSize(vector2():set(360, 20))
+
+    self.community = self:AddTextField(gts("ui_st_community") .. ": " .. gts(se_obj:community()), 1)
+    self.community:SetFont(GetFontLetterica16Russian())
+    self.community:SetWndPos(vector2():set(100, 22))
+    self.community:SetWndSize(vector2():set(360, 18))
+    self.community:SetTextColor(GetARGB(255, 255, 255, 1))
+    
+    if game_relations.is_factions_enemies(db.actor:character_community(), se_obj:community()) then
+        self.community:SetTextColor(GetARGB(255, 255, 1, 1))
+    elseif game_relations.is_factions_friends(db.actor:character_community(), se_obj:community()) then
+        self.community:SetTextColor(GetARGB(255, 1, 255, 1))
+    end
+
+    self.rank = self:AddTextField(gts("ui_st_rank") .. ": " .. gts("st_rank_" .. ranks.get_se_obj_rank_name(se_obj)), 1)
+    self.rank:SetFont(GetFontLetterica16Russian())
+    self.rank:SetWndPos(vector2():set(100, 34))
+    self.rank:SetWndSize(vector2():set(360, 18))
+
+    self.reputation = self:AddTextField(gts("ui_st_reputation") .. ": " .. gts(utils_obj.get_reputation_name(se_obj:reputation())), 1)
+    self.reputation:SetFont(GetFontLetterica16Russian())
+    self.reputation:SetWndPos(vector2():set(100, 46))
+    self.reputation:SetWndSize(vector2():set(360, 18))
+    
+    if se_obj:reputation() >= 500 then
+        self.reputation:SetTextColor(GetARGB(255, 1, 255, 1))
+    elseif se_obj:reputation() <= -500 then
+        self.reputation:SetTextColor(GetARGB(255, 255, 1, 1))
+    else
+        self.reputation:SetTextColor(GetARGB(255, 255, 255, 1))
+    end
+
+    local location_text = dynamic_news_helper.GetPointDescription(se_obj) or "Unknown"
+    self.location = self:AddTextField(location_text, 1)
+    self.location:SetFont(GetFontLetterica16Russian())
+    self.location:SetWndPos(vector2():set(100, 58))
+    self.location:SetWndSize(vector2():set(360, 18))
+end
