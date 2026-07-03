@@ -105,6 +105,7 @@ function set_apps(obj)
     if mac_mcm.PDA_APPS.app_interactive then mac_mcm.remove_app("app_interactive") end 
     local taskboard = ui_pda_taskboard_tab and ini_sys:r_bool_ex(obj:section(),"tab_taskboard")
     local interactive = pda_inter_gui and ini_sys:r_bool_ex(obj:section(),"tab_interactive")
+    local database = ini_sys:r_bool_ex(obj:section(),"tab_database")
 
     if taskboard == true then
         mac_mcm.add_app("app_taskboard", 
@@ -114,6 +115,12 @@ function set_apps(obj)
     if interactive == true then
         mac_mcm.add_app("app_interactive", 
             {name = "pda_btn_interactive", texture = "app_interactive", tab = "eptInteractive", func = pda_inter_gui.start_PDAX}
+        ) 
+    end
+
+    if database == true then
+        mac_mcm.add_app("app_military_database", 
+            {name = "st_database", texture = "afu_database", tab = "eptMilitaryDatabase"}
         ) 
     end
 
@@ -313,7 +320,6 @@ function on_game_start()
 
     mac_mcm.add_blocked_tabs({"eptReboot","eptBSOD","eptBroken","eptMonolith","eptMonolithHackers","eptBlocked","eptBios","eptBiosBoot","eptBiosDebug", "eptNPC", "eptMilitaryDatabase"})
     mac_mcm.add_app("app_bios", {name = "BIOS", texture = "settings", tab = "eptBios"})
-    mac_mcm.add_app("app_military_database", {name = "st_database", texture = "afu_database", tab = "eptMilitaryDatabase"})
     exec_console_cmd("g_3d_pda 1")
 
     if not item_device.dev_items then

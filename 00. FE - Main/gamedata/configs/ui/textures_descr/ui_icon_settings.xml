@@ -33,4 +33,18 @@
 		<texture id="bios_button_t" x="-1" y="100" width="201" height="50" />
 		<texture id="bios_button_d" x="-1" y="0" width="201" height="50" />
 	</file>
+
+	<file name="ui\database_button_colors">
+		<texture id="database_button_colors_e" x="0" y="0" width="5" height="5" />
+		<texture id="database_button_colors_h" x="0" y="35" width="5" height="5" />
+		<texture id="database_button_colors_t" x="0" y="55" width="5" height="5" />
+		<texture id="database_button_colors_d" x="0" y="0" width="5" height="5" />
+	</file>
+  
+	<file name="ui\database_button">
+		<texture id="database_button_e" x="-1" y="0" width="201" height="50" />
+		<texture id="database_button_h" x="-1" y="50" width="201" height="50" />
+		<texture id="database_button_t" x="-1" y="100" width="201" height="50" />
+		<texture id="database_button_d" x="-1" y="0" width="201" height="50" />
+	</file>
 </w>

@@ -1,15 +1,18 @@
 SETTINGS = {
+
     pda = {
         emission = {5, 4, 3, 2, 1},
         electra = {25, 20, 15, 10, 5},
         radiation = {1, 0.75, 0.50, 0.25, 0.10},
         bsod = {25, 20, 15, 10, 5}
 	},
+
     devices = {
         emission = 5,
         electra = 15,
         radiation = 0.10
     },
+
 	other = {
 		devices_unreliability = 1,
 		damage_chance = 2,
@@ -19,6 +22,7 @@ SETTINGS = {
 		shutdown_min_time = 5,
 		shutdown_max_time = 10,
 		beep_radius = 50,
+		light_reboot = false,
         radiation = {
             amount_to_fry = 1,
             glitch_scale = 0.1,
@@ -27,7 +31,9 @@ SETTINGS = {
         },
     },
 	reboot_key = DIK_keys.DIK_M,
-	light_reboot = false,
+
+	censor_aoe = false,
+	censor_insignia = false
 }
 
 local delays = {
@@ -123,7 +129,15 @@ function on_mcm_load()
                     {id = "reboot_key", type = "key_bind", val = 2, def = DIK_keys.DIK_M},
                     {id = "light_reboot", type = "check", val = 1, def = false}
                 }
-            }
+            },
+			{
+                id = "fe_special",
+                sh = true,
+                gr = {
+					{id = "censor_aoe", type = "check", val = 1, def = false},
+					{id = "censor_insignia", type = "check", val = 1, def = false}
+				}
+			}
         }
     }
     
@@ -161,7 +175,10 @@ function on_option_change()
     SETTINGS.other.shutdown_max_time = ui_mcm.get("fatal_error/fe_other/shutdown_max_time")
     SETTINGS.other.beep_radius = ui_mcm.get("fatal_error/fe_other/beep_radius")
     SETTINGS.reboot_key = ui_mcm.get("fatal_error/fe_other/reboot_key")
-    SETTINGS.light_reboot = ui_mcm.get("fatal_error/fe_other/light_reboot")
+    SETTINGS.other.light_reboot = ui_mcm.get("fatal_error/fe_other/light_reboot")
+
+	SETTINGS.censor_aoe = ui_mcm.get("fatal_error/fe_special/censor_aoe")
+	SETTINGS.censor_insignia = ui_mcm.get("fatal_error/fe_special/censor_insignia")
 	
 end
 
@@ -429,7 +446,7 @@ function actor_on_before_hit(s_hit, bone_id)
 		and not fe_utils.is_broken(head_device)
 		and math.random(0, 100) < SETTINGS.other.break_head_device
 	then
-		if 25 > math.random(0 ,100) and fe_utils.get_damage(head_device) < 5 then
+		if 75 > math.random(0 ,100) and fe_utils.get_damage(head_device) < 5 then
 			fe_utils.set_damage(head_device, 1)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		else

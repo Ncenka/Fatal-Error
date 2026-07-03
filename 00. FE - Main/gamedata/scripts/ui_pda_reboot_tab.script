@@ -37,7 +37,7 @@ function pda_reboot_tab:Reset()
 			self:Reset()
 		end)
 		return
-	elseif fatal_error_mcm.SETTINGS.light_reboot == true then
+	elseif fatal_error_mcm.SETTINGS.other.light_reboot == true then
 		self.picture:InitTexture ("ui\\reboot\\light_reboot")
 	else
 		self.picture:InitTexture ("ui\\reboot\\pda_reboot")
