@@ -1,6 +1,9 @@
 local gts = game.translate_string
 
 local SINGLETON = nil
+local hovered_npc = nil
+local target_id
+local tm = task_manager.get_task_manager()
 
 function get_ui()
     SINGLETON = SINGLETON or pda_all_npcs_tab()
@@ -194,10 +197,13 @@ function pda_all_npcs_tab:ApplyFilter()
         filter_rep_range = self.rep_ranges[self.current_rep_index]
     end
     
-    for _, se_obj in ipairs(self.all_npcs) do
-        local community = se_obj:community()
-        local rank_name = ranks.get_se_obj_rank_name(se_obj)
-        local rep_value = se_obj:reputation() or 0
+    for _, npc in ipairs(self.all_npcs) do
+        local obj = npc.obj
+        local id = npc.id
+        
+        local community = obj:community()
+        local rank_name = ranks.get_se_obj_rank_name(obj)
+        local rep_value = obj:reputation() or 0
         
         local faction_match = (filter_faction == nil or community == filter_faction)
         local rank_match = (filter_rank == nil or rank_name == filter_rank)
@@ -209,7 +215,7 @@ function pda_all_npcs_tab:ApplyFilter()
         
         if faction_match and rank_match and rep_match then
             idx = idx + 1
-            local item = ui_all_npc_item(self, se_obj, idx)
+            local item = ui_all_npc_item(self, obj, idx, id)
             self.scroll_view:AddWindow(item)
             table.insert(self.npc_items, item)
         end
@@ -247,12 +253,16 @@ function pda_all_npcs_tab:Reset()
     local npcs_list = {}
     local factions_set = {}
     
-    for i = 1, 65534 do
-        local se_obj = sim:object(i)
+    for id = 1, 65534 do
+        local se_obj = sim:object(id)
         if se_obj and IsStalker(nil, se_obj:clsid()) and se_obj:alive() then
             local community = se_obj:community()
             if not excluded_factions[community] then
-                table.insert(npcs_list, se_obj)
+                table.insert(npcs_list, {
+                    obj = se_obj,
+                    id = id
+                })
+                
                 if allowed_factions[community] then
                     factions_set[community] = true
                 end
@@ -270,10 +280,10 @@ function pda_all_npcs_tab:Reset()
     end)
     
     table.sort(npcs_list, function(a, b)
-        local comm_a = gts(a:community())
-        local comm_b = gts(b:community())
+        local comm_a = gts(a.obj:community())
+        local comm_b = gts(b.obj:community())
         if comm_a == comm_b then
-            return a:character_name() < b:character_name()
+            return a.obj:character_name() < b.obj:character_name()
         end
         return comm_a < comm_b
     end)
@@ -291,26 +301,37 @@ function pda_all_npcs_tab:Reset()
     self:ApplyFilter()
 end
 
+function pda_all_npcs_tab:Update()
+    hovered_npc = nil
+    if self.npc_items then
+        for _, item in ipairs(self.npc_items) do
+            if item.npc_button and item.npc_button:IsCursorOverWindow() then
+                hovered_npc = item.id
+                break
+            end
+        end
+    end
+    CUIScriptWnd.Update(self)
+end
+
 class "ui_all_npc_item" (CUIListBoxItem)
 
-function ui_all_npc_item:__init(parent, se_obj, index)
+function ui_all_npc_item:__init(parent, obj, index, id)
     super(parent, index)
 
     local xml = CScriptXmlInit()
     xml:ParseFile("pda_npc_all.xml")
-    self.se_obj = se_obj
+    self.id = id
     self:SetWndSize(vector2():set(720, 72))
 
     self.npc_button = xml:Init3tButton("npc_button", self)
-    --self:Register(self.npc_button, "npc_button")
-    --self:InitCallbacks()
     
     self.icon = self:AddIconField(1)
     self.icon:SetWndPos(vector2():set(8, 8))
     self.icon:SetWndSize(vector2():set(60, 60))
     self.icon:SetStretchTexture(true)
     
-    self.icon:InitTexture(se_obj:character_icon() or "ui\\ui_noise")
+    self.icon:InitTexture(obj:character_icon() or "ui\\ui_noise")
     
     self.number = self:AddTextField(string.format("%d.", index), 1)
     self.number:SetFont(GetFontLetterica18Russian())
@@ -318,45 +339,179 @@ function ui_all_npc_item:__init(parent, se_obj, index)
     self.number:SetWndSize(vector2():set(40, 20))
     self.number:SetTextColor(GetARGB(255, 200, 200, 200))
 
-    self.name = self:AddTextField(se_obj:character_name(), 1)
+    self.name = self:AddTextField(obj:character_name(), 1)
     self.name:SetFont(GetFontLetterica18Russian())
     self.name:SetWndPos(vector2():set(100, 6))
     self.name:SetWndSize(vector2():set(360, 20))
 
-    self.community = self:AddTextField(gts("ui_st_community") .. ": " .. gts(se_obj:community()), 1)
+    self.community = self:AddTextField(gts("ui_st_community") .. ": " .. gts(obj:community()), 1)
     self.community:SetFont(GetFontLetterica16Russian())
     self.community:SetWndPos(vector2():set(100, 22))
     self.community:SetWndSize(vector2():set(360, 18))
     self.community:SetTextColor(GetARGB(255, 255, 255, 1))
     
-    if game_relations.is_factions_enemies(db.actor:character_community(), se_obj:community()) then
+    if game_relations.is_factions_enemies(db.actor:character_community(), obj:community()) then
         self.community:SetTextColor(GetARGB(255, 255, 1, 1))
-    elseif game_relations.is_factions_friends(db.actor:character_community(), se_obj:community()) then
+    elseif game_relations.is_factions_friends(db.actor:character_community(), obj:community()) then
         self.community:SetTextColor(GetARGB(255, 1, 255, 1))
     end
 
-    self.rank = self:AddTextField(gts("ui_st_rank") .. ": " .. gts("st_rank_" .. ranks.get_se_obj_rank_name(se_obj)), 1)
+    self.rank = self:AddTextField(gts("ui_st_rank") .. ": " .. gts("st_rank_" .. ranks.get_se_obj_rank_name(obj)), 1)
     self.rank:SetFont(GetFontLetterica16Russian())
     self.rank:SetWndPos(vector2():set(100, 34))
     self.rank:SetWndSize(vector2():set(360, 18))
 
-    self.reputation = self:AddTextField(gts("ui_st_reputation") .. ": " .. gts(utils_obj.get_reputation_name(se_obj:reputation())), 1)
+    self.reputation = self:AddTextField(gts("ui_st_reputation") .. ": " .. gts(utils_obj.get_reputation_name(obj:reputation())), 1)
     self.reputation:SetFont(GetFontLetterica16Russian())
     self.reputation:SetWndPos(vector2():set(100, 46))
     self.reputation:SetWndSize(vector2():set(360, 18))
     
-    if se_obj:reputation() >= 500 then
+    if obj:reputation() >= 500 then
         self.reputation:SetTextColor(GetARGB(255, 1, 255, 1))
-    elseif se_obj:reputation() <= -500 then
+    elseif obj:reputation() <= -500 then
         self.reputation:SetTextColor(GetARGB(255, 255, 1, 1))
     else
         self.reputation:SetTextColor(GetARGB(255, 255, 255, 1))
     end
 
-    local location_text = dynamic_news_helper.GetPointDescription(se_obj) or "Unknown"
+    local location_text = dynamic_news_helper.GetPointDescription(obj) or "Unknown"
     self.location = self:AddTextField(location_text, 1)
     self.location:SetFont(GetFontLetterica16Russian())
     self.location:SetWndPos(vector2():set(100, 58))
     self.location:SetWndSize(vector2():set(360, 18))
+end
 
+function on_tracking_key_press(dik)
+    if dik ~= DIK_keys.MOUSE_1 then return end
+    if hovered_npc == nil then return end
+    if not db.actor:item_in_slot(8) then return end
+    if ActorMenu.get_pda_menu():GetActiveSection() ~= "eptMilitaryDatabase" then return end
+
+    local se_obj = hovered_npc and alife_object(hovered_npc)
+    if not (se_obj:alive()) then
+		actor_menu.set_msg(1,game.translate_string("stalker_search_signal_lost"),4)
+        return
+	end
+
+    -- Cancel task if selecting same NPC
+    if hovered_npc == target_id then
+        target_id = nil
+        tm:set_task_cancelled("tracking_stalker_task")
+
+    -- If no NPC is being tracked just start task
+    elseif hovered_npc and not target_id then
+        target_id = hovered_npc
+        task_manager.get_task_manager():give_task("tracking_stalker_task")
+    
+    -- Workaround: cancel task if already tracking NPC, and then start new
+    elseif hovered_npc ~= target_id then
+        target_id = nil
+        tm:set_task_cancelled("tracking_stalker_task")
+        fe_utils.invoke("database_tracking", 0.25, function() 
+            target_id = hovered_npc
+            task_manager.get_task_manager():give_task("tracking_stalker_task") 
+        end)
+    end
+
+end
+		
+--Took from Track Stalkers Using Their Names
+
+---------------------------< Effects >---------------------------
+xr_effects.setup_tracking_stalker_task = function(actor,npc,p)
+-- p[1]: task_id
+-- p[2]: true = scan all factions except for p[4], false = scan listed factions (p[4]+)
+-- p[3]: true = scan npcs in current and connected levels only, false = scan all
+-- p[4]+: factions that can be targetted; can be list
+
+	local sim = alife()
+
+	
+	if (target_id == nil or target_id == AC_ID) then
+		printf("! %s - no target found for task",p[1])
+		return
+	end
+	
+	local se_target = alife_object(target_id)
+	if not (se_target) then
+		printe("! %s - no server object could be retrieved for (%s)",p[1],target_id)
+		return
+	end
+	
+	local target_squad = se_target and se_target.group_id and se_target.group_id ~= 65535 and alife_object(se_target.group_id)
+	if target_squad then
+		sim_offline_combat.task_squads[target_squad.id] = true
+	end
+	
+	-- Save var
+	local level_target = sim:level_name(game_graph():vertex(se_target.m_game_vertex_id):level_id())
+	local function postpone_for_next_frame(target_id)
+		local news_caption = game.translate_string(task_manager.task_ini:r_string_ex(p[1], "title")) or "error"
+		local news_text = game.translate_string("st_mm_new_game_name") .. " " .. se_target:character_name() .. "\\n " .. game.translate_string("st_mm_new_game_faction_2") .. " " .. game.translate_string(se_target:community()) .. "\\n " .. game.translate_string("st_location") .. " " .. game.translate_string(level_target)
+		db.actor:give_talk_message2(news_caption, news_text, se_target:character_icon(), "iconed_answer_item")
+		return true
+	end
+	CreateTimeEvent(0,"setup_tracking_stalker_task",0,postpone_for_next_frame,target_id)
+end 
+
+
+---------------------------< Task functor >---------------------------
+task_functor.tracking_stalker_task_target_functor = function(task_id,field,p,tsk)
+	if (field == "target") then
+		if (tsk) then
+			return target_id
+		end
+	end
+end
+
+---------------------------< Task Status functor >---------------------------
+task_status_functor.tracking_stalker_task_status_functor = function(tsk,task_id)
+
+	if (tsk.stage == 0) then
+		
+		local id = target_id
+		
+		if not (id) then
+			actor_menu.set_msg(1,"ERROR: id not found",4)
+			printdbg("ERROR: id not found")
+			return "fail"
+		end
+		
+		local se_obj = id and alife_object(id)
+		if not (se_obj) then
+			actor_menu.set_msg(1,"ERROR: id is not alife_object",4)
+			printdbg("ERROR: id is not alife_object")
+			return "fail"
+		end
+		
+		if not (IsStalker(nil,se_obj:clsid())) then
+			actor_menu.set_msg(1,"ERROR: id is not a stalker?!",4)
+			printdbg("ERROR: id is not a stalker?")
+			return "fail"
+		end
+		
+		if not (se_obj:alive()) then
+			actor_menu.set_msg(1,game.translate_string("stalker_search_signal_lost"),4)
+			tm:set_task_cancelled("tracking_stalker_task") --cancel task
+		end
+		
+	elseif (tsk.stage == 254) then
+		actor_menu.set_msg(1,"ERROR: the hell's 254??",4)
+		printdbg("ERROR: the hell's 254??")
+		return "fail"
+	end
+end
+
+local function save_state(m_data)
+	m_data.target_id = target_id
+end
+
+local function load_state(m_data)
+	target_id = m_data.target_id
+end
+
+function on_game_start()
+	RegisterScriptCallback("save_state",save_state)
+	RegisterScriptCallback("load_state",load_state)
+    RegisterScriptCallback("on_key_press", on_tracking_key_press)
 end

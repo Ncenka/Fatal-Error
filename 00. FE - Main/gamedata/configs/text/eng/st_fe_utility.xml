@@ -104,6 +104,24 @@
 	<string id="st_pda_gen">
 		<text>generation:</text>
 	</string>
+	<string id="st_any">
+		<text>any</text>
+	</string>
+	<string id="st_anys">
+		<text>any</text>
+	</string>
+	<string id="st_all">
+		<text>all</text>
+	</string>
+	<string id="stalker_search_signal_lost">
+		<text>PDA signal lost</text>
+	</string>
+	<string id="stalker_search_title">
+		<text>PDA Signal</text>
+	</string>
+	<string id="stalker_search_description">
+		<text>Tracking active signal of a PDA registered under selected name.</text>
+	</string>
 	<string id="st_fe_modded_exes">
 		<text>If you're reading this, it means your Modded Exes are outdated and not compatible with the Fatal Error addon. Fatal Error now requires Modded Exes from August 23, 2025 (2025.8.23) or later. If you use AOEngine ask v2v3v4 to update it to latest Modded Exes version. Link to the latest Modded Exes: https://github.com/themrdemonized/xray-monolith</text>
 	</string>

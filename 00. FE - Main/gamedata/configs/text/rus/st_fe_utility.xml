@@ -105,6 +105,7 @@
 	<string id="st_pda_gen">
 		<text>поколение:</text>
 	</string>
+	
 	<string id="st_any">
 		<text>любой</text>
 	</string>
@@ -114,6 +115,16 @@
 	<string id="st_all">
 		<text>все</text>
 	</string>
+	<string id="stalker_search_signal_lost">
+		<text>Сигнал КПК потерян.</text>
+	</string>
+	<string id="stalker_search_title">
+		<text>Сигнал КПК</text>
+	</string>
+	<string id="stalker_search_description">
+		<text>Отслеживается активный сигнал КПК, зарегистрированного под выбранным именем.</text>
+	</string>
+	
 	<string id="st_fe_modded_exes">
 		<text>Если вы это читаете, значит, ваша версия Modded Exes устарела и несовместима с аддоном Fatal Error. Теперь Fatal Error требует Modded Exes версии от 23 августа 2025 года (2025.8.23) или новее. Если вы используете AOEngine, попросите v2v3v4 обновить AOEngine до последней версии Modded Exes. Ссылка на GitHub с самыми новыми Modded Exes: https://github.com/themrdemonized/xray-monolith</text>
 	</string>
