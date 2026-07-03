@@ -382,13 +382,18 @@ function ui_all_npc_item:__init(parent, obj, index, id)
 end
 
 function on_tracking_key_press(dik)
-    if dik ~= DIK_keys.MOUSE_1 then return end
-    if hovered_npc == nil then return end
-    if not db.actor:item_in_slot(8) then return end
-    if ActorMenu.get_pda_menu():GetActiveSection() ~= "eptMilitaryDatabase" then return end
+    if not dik == DIK_keys.MOUSE_1
+        and not hovered_npc ~= nil
+        and not db.actor:item_in_slot(8)
+        and not ActorMenu.get_pda_menu():GetActiveSection() == "eptMilitaryDatabase"
+        and not db.actor:active_item()
+        and not db.actor:active_item():section():find("_pda")
+        and not db.actor:active_item():condition() > 0.05
+    then return end
+
 
     local se_obj = hovered_npc and alife_object(hovered_npc)
-    if not (se_obj:alive()) then
+    if not se_obj:alive() then
 		actor_menu.set_msg(1,game.translate_string("stalker_search_signal_lost"),4)
         return
 	end
