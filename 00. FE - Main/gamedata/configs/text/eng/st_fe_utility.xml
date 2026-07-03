@@ -105,13 +105,13 @@
 		<text>generation:</text>
 	</string>
 	<string id="st_any">
-		<text>any</text>
+		<text>Any</text>
 	</string>
 	<string id="st_anys">
-		<text>any</text>
+		<text>Any</text>
 	</string>
 	<string id="st_all">
-		<text>all</text>
+		<text>All</text>
 	</string>
 	<string id="stalker_search_signal_lost">
 		<text>PDA signal lost</text>

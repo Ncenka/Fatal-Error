@@ -6,13 +6,6 @@
 		<texture id="settings_d" x="0" y="256" width="256" height="257" />
 	</file>
 	
-	<file name="ui\database_back">
-		<texture id="database_back_e" x="0" y="0" width="256" height="257" />
-		<texture id="database_back_h" x="256" y="0" width="256" height="257" />
-		<texture id="database_back_t" x="0" y="256" width="256" height="257" />
-		<texture id="database_back_d" x="0" y="256" width="256" height="257" />
-	</file>
-	
 	<file name="ui\afu_database">
 		<texture id="afu_database_e" x="0" y="0" width="256" height="257" />
 		<texture id="afu_database_h" x="256" y="0" width="256" height="257" />
@@ -34,17 +27,46 @@
 		<texture id="bios_button_d" x="-1" y="0" width="201" height="50" />
 	</file>
 
-	<file name="ui\database_button_colors">
+	<file name="ui\database\database_button_colors">
 		<texture id="database_button_colors_e" x="0" y="0" width="5" height="5" />
 		<texture id="database_button_colors_h" x="0" y="35" width="5" height="5" />
 		<texture id="database_button_colors_t" x="0" y="55" width="5" height="5" />
 		<texture id="database_button_colors_d" x="0" y="0" width="5" height="5" />
 	</file>
   
-	<file name="ui\database_button">
+	<file name="ui\database\database_back">
+		<texture id="database_back_e" x="0" y="0" width="256" height="257" />
+		<texture id="database_back_h" x="256" y="0" width="256" height="257" />
+		<texture id="database_back_t" x="0" y="256" width="256" height="257" />
+		<texture id="database_back_d" x="0" y="256" width="256" height="257" />
+	</file>
+
+	<file name="ui\database\database_button">
 		<texture id="database_button_e" x="-1" y="0" width="201" height="50" />
 		<texture id="database_button_h" x="-1" y="50" width="201" height="50" />
 		<texture id="database_button_t" x="-1" y="100" width="201" height="50" />
 		<texture id="database_button_d" x="-1" y="0" width="201" height="50" />
 	</file>
+
+	<file name="ui\database\database_button_colors_blue">
+		<texture id="database_button_colors_blue_e" x="0" y="0" width="5" height="5" />
+		<texture id="database_button_colors_blue_h" x="0" y="35" width="5" height="5" />
+		<texture id="database_button_colors_blue_t" x="0" y="55" width="5" height="5" />
+		<texture id="database_button_colors_blue_d" x="0" y="0" width="5" height="5" />
+	</file>
+
+	<file name="ui\database\database_back_blue">
+		<texture id="database_back_blue_e" x="0" y="0" width="256" height="257" />
+		<texture id="database_back_blue_h" x="256" y="0" width="256" height="257" />
+		<texture id="database_back_blue_t" x="0" y="256" width="256" height="257" />
+		<texture id="database_back_blue_d" x="0" y="256" width="256" height="257" />
+	</file>
+  
+	<file name="ui\database\database_button_blue">
+		<texture id="database_button_blue_e" x="-1" y="0" width="201" height="50" />
+		<texture id="database_button_blue_h" x="-1" y="50" width="201" height="50" />
+		<texture id="database_button_blue_t" x="-1" y="100" width="201" height="50" />
+		<texture id="database_button_blue_d" x="-1" y="0" width="201" height="50" />
+	</file>
+
 </w>

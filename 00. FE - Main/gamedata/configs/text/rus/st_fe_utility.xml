@@ -107,13 +107,13 @@
 	</string>
 	
 	<string id="st_any">
-		<text>любой</text>
+		<text>Любой</text>
 	</string>
 	<string id="st_anys">
-		<text>любая</text>
+		<text>Любая</text>
 	</string>
 	<string id="st_all">
-		<text>все</text>
+		<text>Все</text>
 	</string>
 	<string id="stalker_search_signal_lost">
 		<text>Сигнал КПК потерян.</text>

@@ -608,7 +608,6 @@ function process_pda_call()
 	}
 		
 	local overclock = fe_utils.is_overclocked(pda)
-	local player_faction = get_actor_true_community()
 	local levelname = level.name()
 	local tab = ActorMenu.get_pda_menu():GetActiveSection()
 
@@ -646,7 +645,7 @@ function process_pda_call()
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolith")
 	
 	elseif 
-		not (pda:has_upgrade("up_seconc_pda") or no_jaming_factions[player_faction] or overclock)
+		not (pda:has_upgrade("up_seconc_pda") or no_jaming_factions[get_actor_true_community()] or overclock)
 		and (MONOLITH_HACKERS[levelname])
 	then
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptMonolithHackers")

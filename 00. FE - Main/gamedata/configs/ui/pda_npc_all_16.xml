@@ -17,34 +17,26 @@
     <database x="45" y="90" width="730" height="600" stretch="1">
         <npc_list x="250" y="100" width="515" height="580" always_show_scroll="0" scroll_bar_offset="5" vert_interval="20"/>
         
-        <back_button x="45" y="55" width="25" height="25" stretch="1">
-            <texture>database_back</texture>
-        </back_button>
+        <back_button x="45" y="55" width="25" height="25" stretch="1"/>
 
         <filter_button x="70" y="100" width="150" height="30" stretch="1">
-            <texture>database_button</texture>
             <text align="c" vert_align="c" font="letterica18"/>
         </filter_button>
 
         <rank_filter_button x="70" y="140" width="150" height="30" stretch="1">
-            <texture>database_button</texture>
             <text align="c" vert_align="c" font="letterica18"/>
         </rank_filter_button>
 
         <rep_filter_button x="70" y="180" width="150" height="30" stretch="1">
-            <texture>database_button</texture>
             <text align="c" vert_align="c" font="letterica18"/>
         </rep_filter_button>
 
         <reset_button x="70" y="220" width="150" height="30" stretch="1">
-            <texture>database_button</texture>
             <text align="c" vert_align="c" font="letterica18"/>
         </reset_button>
 
     </database>
 
-    <npc_button x="4" y="-2" width="503" height="80" stretch="1">
-			<texture>database_button_colors</texture>
-	</npc_button>
+    <npc_button x="4" y="-2" width="503" height="80" stretch="1"/>
 
 </w>
