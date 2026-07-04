@@ -6,9 +6,14 @@ local taskboard
 local interact
 local interface
 local color
+local immersive_bios = false
+local year = "2026"
+
 local hint_text = {
-    text1_l = "Current system time (read-only).",
-    text2_l = "Current system date (read-only).",
+
+    -- BIOS tab hints
+    text1_l_bios = "Current system time (read-only).",
+    text2_l_bios = "Current system date (read-only).",
     username = "Current user account name.",
     detected_cpu = "Processor model and specifications.",
     me_version = "Version of modified game executables. Must be 20250823 or higher.",
@@ -19,135 +24,212 @@ local hint_text = {
     taskboard = "Taskboard addon status and PDA compatibility.",
     interact = "PDA Interactive addon status and PDA compatibility.",
     razgon = "WARNING: Overclocking this device may result in:\\n \\n   1. Increased power consumption\\n   2. System instability\\n   3. Potential hardware damage \\n \\nPotential benefits:\\n \\n   1. Improved signal processing\\n   2. Protection from Fatal Errors",
-	interface = "PDA User Interface XML File. Software update required to install custom User Interface.",
+    interface = "PDA User Interface XML File. Software update required to install custom User Interface.",
+
+    -- Boot tab hints
+    text1_l_boot = "Save all configuration changes and exit BIOS to start the operating system with selected settings.",
+    text2_l_boot = "Save all configuration changes and exit BIOS to start the operating system with selected settings in Safe Mode.",
 }
 
 function get_ui()
-	SINGLETON = SINGLETON or pda_bios_tab()
-	SINGLETON:Reset()
-	return SINGLETON
+    SINGLETON = SINGLETON or pda_bios_tab()
+    SINGLETON:Reset()
+    return SINGLETON
 end
 
 class "pda_bios_tab" (CUIScriptWnd)
 function pda_bios_tab:__init() super()
+    self.current_tab = "bios"
     self:InitControls()
-	self:InitCallbacks()
+    self:InitCallbacks()
+    self:ShowTab("bios")
 end
 
 function pda_bios_tab:InitControls()
     self:SetWndRect(Frect():set(0,0,1024,768))
-	local xml               		= CScriptXmlInit()
-	xml:ParseFile("pda_bios.xml")
-	
-	self.picture					= xml:InitStatic("picture_base",self)
-	
-	if get_aoe_version and not fatal_error_mcm.SETTINGS.censor_aoe then
-		self.picture:InitTexture ("ui\\mnogopotok_dark")
-	else
-		self.picture:InitTexture ("ui\\blue_screen")
-	end
-	
-	self.picture2					= xml:InitStatic("bios",self)
-	self.picture2:InitTexture ("ui\\bios_setup1")
-	self.upper_text 		= xml:InitTextWnd("bios:upper_text", self)
-	self.bottom_text 		= xml:InitTextWnd("bios:bottom_text", self)
-	
-	self.main = xml:Init3tButton("bios:main", self)
-	self:Register(self.main, "main")
-	
-	self.boot = xml:Init3tButton("bios:boot", self)
-	self:Register(self.boot, "boot")
+    local xml = CScriptXmlInit()
+    xml:ParseFile("pda_bios.xml")
+    
+    self.picture = xml:InitStatic("picture_base", self)
+    
+    if get_aoe_version and not fatal_error_mcm.SETTINGS.censor_aoe then
+        self.picture:InitTexture("ui\\mnogopotok_dark")
+    else
+        self.picture:InitTexture("ui\\blue_screen")
+    end
+    
+    self.picture2 = xml:InitStatic("bios", self)
+    self.picture2:InitTexture("ui\\bios_setup")
+    self.upper_text = xml:InitTextWnd("bios:upper_text", self)
+    self.bottom_text = xml:InitTextWnd("bios:bottom_text", self)
+    
+    -- Navigation buttons
+    self.main = xml:Init3tButton("bios:main", self)
+    self:Register(self.main, "main")
+    
+    self.boot = xml:Init3tButton("bios:boot", self)
+    self:Register(self.boot, "boot")
+    
+    if DEV_DEBUG or DEV_DEBUG_DEV then
+        self.debug = xml:Init3tButton("bios:debug", self)
+        self:Register(self.debug, "debug")
+    end
+    
+    -- Boot tab controls
+    self.boot_button_1 = xml:Init3tButton("bios:button_1", self)
+    self:Register(self.boot_button_1, "exit")
+    self.boot_text1_l = xml:InitTextWnd("bios:text1_l", self)
+    
+    self.boot_button_2 = xml:Init3tButton("bios:button_2", self)
+    self:Register(self.boot_button_2, "safe_mode_exit")
+    self.boot_text2_l = xml:InitTextWnd("bios:text2_l", self)
+    
+    -- BIOS tab controls
+    self.bios_button_1 = xml:Init3tButton("bios:button_1", self)
+    self.bios_text1_l = xml:InitTextWnd("bios:text1_l", self)
+    self.bios_text1_r = xml:InitTextWnd("bios:text1_r", self)
+    
+    self.bios_button_2 = xml:Init3tButton("bios:button_2", self)
+    self.bios_text2_l = xml:InitTextWnd("bios:text2_l", self)
+    self.bios_text2_r = xml:InitTextWnd("bios:text2_r", self)
+    
+    self.username_button = xml:Init3tButton("bios:username_button", self)
+    self.username = xml:InitTextWnd("bios:username", self)
+    self.username_username = xml:InitTextWnd("bios:username_username", self)
+    
+    self.detected_cpu_button = xml:Init3tButton("bios:detected_cpu_button", self)
+    self.detected_cpu = xml:InitTextWnd("bios:detected_cpu", self)
+    self.detected_cpu_cpu = xml:InitTextWnd("bios:detected_cpu_cpu", self)
+    
+    self.me_version_button = xml:Init3tButton("bios:me_version_button", self)
+    self.me_version = xml:InitTextWnd("bios:me_version", self)
+    self.me_version_version = xml:InitTextWnd("bios:me_version_version", self)
+    
+    self.pda_name_button = xml:Init3tButton("bios:pda_name_button", self)
+    self.pda_name = xml:InitTextWnd("bios:pda_name", self)
+    self.pda_name_name = xml:InitTextWnd("bios:pda_name_name", self)
+    
+    self.oper_sys_name_button = xml:Init3tButton("bios:oper_sys_name_button", self)
+    self.oper_sys_name = xml:InitTextWnd("bios:oper_sys_name", self)
+    self.oper_sys_name_name = xml:InitTextWnd("bios:oper_sys_name_name", self)
+    
+    self.beep_button = xml:Init3tButton("bios:beep_button", self)
+    self:Register(self.beep_button, "beep_button")
+    self.beep = xml:InitTextWnd("bios:beep", self)
+    self.beep_enable = xml:InitTextWnd("bios:beep_enable", self)
+    
+    self.s_key_button = xml:Init3tButton("bios:s_key_button", self)
+    self.s_key = xml:InitTextWnd("bios:s_key", self)
+    self.s_key_key = xml:InitTextWnd("bios:s_key_key", self)
+    
+    self.taskboard_button = xml:Init3tButton("bios:taskboard_button", self)
+    self.taskboard = xml:InitTextWnd("bios:taskboard", self)
+    self.taskboard_task = xml:InitTextWnd("bios:taskboard_task", self)
+    
+    self.interact_button = xml:Init3tButton("bios:interact_button", self)
+    self.interact = xml:InitTextWnd("bios:interact", self)
+    self.interact_interact = xml:InitTextWnd("bios:interact_interact", self)
+    
+    self.razgon_button = xml:Init3tButton("bios:razgon_button", self)
+    self:Register(self.razgon_button, "razgon_button")
+    self.razgon = xml:InitTextWnd("bios:razgon", self)
+    self.razgon_razgon = xml:InitTextWnd("bios:razgon_razgon", self)
+    
+    self.interface_button = xml:Init3tButton("bios:interface_button", self)
+    self:Register(self.interface_button, "interface_button")
+    self.interface = xml:InitTextWnd("bios:interface", self)
+    self.interface_interface = xml:InitTextWnd("bios:interface_interface", self)
+    
+    self.hint = xml:InitTextWnd("bios:hint", self)
+    self.help = xml:InitTextWnd("bios:help", self)
+    
+    -- Group controls by tab for easy show/hide
+    self.bios_controls = {
+        self.bios_button_1, self.bios_text1_l, self.bios_text1_r,
+        self.bios_button_2, self.bios_text2_l, self.bios_text2_r,
+        self.username_button, self.username, self.username_username,
+        self.detected_cpu_button, self.detected_cpu, self.detected_cpu_cpu,
+        self.me_version_button, self.me_version, self.me_version_version,
+        self.pda_name_button, self.pda_name, self.pda_name_name,
+        self.oper_sys_name_button, self.oper_sys_name, self.oper_sys_name_name,
+        self.beep_button, self.beep, self.beep_enable,
+        self.s_key_button, self.s_key, self.s_key_key,
+        self.taskboard_button, self.taskboard, self.taskboard_task,
+        self.interact_button, self.interact, self.interact_interact,
+        self.razgon_button, self.razgon, self.razgon_razgon,
+        self.interface_button, self.interface, self.interface_interface,
+    }
+    
+    self.boot_controls = {
+        self.boot_button_1, self.boot_text1_l,
+        self.boot_button_2, self.boot_text2_l,
+    }
 
-	if DEV_DEBUG or DEV_DEBUG_DEV then
-		self.debug = xml:Init3tButton("bios:debug", self)
-		self:Register(self.debug, "debug")
-	end
-	
-	self.button_1 = xml:Init3tButton("bios:button_1", self)
-	self.text1_l 		= xml:InitTextWnd("bios:text1_l", self)
-	self.text1_r 	= xml:InitTextWnd("bios:text1_r", self)
-	
-	self.button_2 = xml:Init3tButton("bios:button_2", self)
-	self.text2_l 		= xml:InitTextWnd("bios:text2_l", self)
-	self.text2_r 	= xml:InitTextWnd("bios:text2_r", self)
-	
-	self.username_button = xml:Init3tButton("bios:username_button", self)
-	self.username 			= xml:InitTextWnd("bios:username", self)
-	self.username_username 	= xml:InitTextWnd("bios:username_username", self)
-	
-	self.detected_cpu_button = xml:Init3tButton("bios:detected_cpu_button", self)
-	self.detected_cpu 		= xml:InitTextWnd("bios:detected_cpu", self)
-	self.detected_cpu_cpu 	= xml:InitTextWnd("bios:detected_cpu_cpu", self)
-	
-	self.me_version_button = xml:Init3tButton("bios:me_version_button", self)
-	self.me_version 		= xml:InitTextWnd("bios:me_version", self)
-	self.me_version_version = xml:InitTextWnd("bios:me_version_version", self)
-	
-	self.pda_name_button = xml:Init3tButton("bios:pda_name_button", self)
-	self.pda_name 			= xml:InitTextWnd("bios:pda_name", self)
-	self.pda_name_name		= xml:InitTextWnd("bios:pda_name_name", self)
-	
-	self.oper_sys_name_button = xml:Init3tButton("bios:oper_sys_name_button", self)
-	self.oper_sys_name 		= xml:InitTextWnd("bios:oper_sys_name", self)
-	self.oper_sys_name_name	= xml:InitTextWnd("bios:oper_sys_name_name", self)
-	
-	self.beep_button		= xml:Init3tButton("bios:beep_button", self)
-	self:Register(self.beep_button, "beep_button")
-	self.beep 				= xml:InitTextWnd("bios:beep", self)
-	self.beep_enable		= xml:InitTextWnd("bios:beep_enable", self)
-	
-	self.s_key_button 		= xml:Init3tButton("bios:s_key_button", self)
-	self.s_key 				= xml:InitTextWnd("bios:s_key", self)
-	self.s_key_key			= xml:InitTextWnd("bios:s_key_key", self)
-	
-	self.taskboard_button 	= xml:Init3tButton("bios:taskboard_button", self)
-	self.taskboard 			= xml:InitTextWnd("bios:taskboard", self)
-	self.taskboard_task 	= xml:InitTextWnd("bios:taskboard_task", self)
-	
-	self.interact_button 	= xml:Init3tButton("bios:interact_button", self)
-	self.interact 			= xml:InitTextWnd("bios:interact", self)
-	self.interact_interact	= xml:InitTextWnd("bios:interact_interact", self)
-	
-	self.razgon_button 		= xml:Init3tButton("bios:razgon_button", self)
-	self:Register(self.razgon_button, "razgon_button")
-	self.razgon 			= xml:InitTextWnd("bios:razgon", self)
-	self.razgon_razgon		= xml:InitTextWnd("bios:razgon_razgon", self)
+    if not get_aoe_version or fatal_error_mcm.SETTINGS.censor_aoe then
+        self.bottom_text:SetText("Version" .. fe_utils.VERSION .. " Copyright (C) " .. year .. " S.P.E.C.T.R. Development Team")
+    end
+end
 
-	self.interface_button 	= xml:Init3tButton("bios:interface_button", self)
-	self:Register(self.interface_button, "interface_button")
-	self.interface 			= xml:InitTextWnd("bios:interface", self)
-	self.interface_interface = xml:InitTextWnd("bios:interface_interface", self)
-	
-	self.hint 				= xml:InitTextWnd("bios:hint", self)
-	self.help 				= xml:InitTextWnd("bios:help", self)
+function pda_bios_tab:ShowTab(tab)
+    self.current_tab = tab
+    
+    if tab == "bios" then
+        for _, ctrl in ipairs(self.bios_controls) do
+            ctrl:Show(true)
+        end
+        for _, ctrl in ipairs(self.boot_controls) do
+            ctrl:Show(false)
+        end
+        -- Update BIOS-specific data
+        self:UpdateBiosData()
+    else -- boot
+        for _, ctrl in ipairs(self.bios_controls) do
+            ctrl:Show(false)
+        end
+        for _, ctrl in ipairs(self.boot_controls) do
+            ctrl:Show(true)
+        end
+        -- Update boot-specific text
+        self.boot_text1_l:SetText("Save & Default Boot")
+        self.boot_text2_l:SetText("Save & Safe Mode Boot")
+    end
+end
 
-	if not get_aoe_version then
-		self.bottom_text:SetText("Version 1.7.9.5 Copyright (C) 2026 S.P.E.C.T.R. Development Team")
-	end
-
+function pda_bios_tab:UpdateBiosData()
+    if not immersive_bios then
+        self.bios_text1_r:SetText("[" .. os.date("%H:%M:%S") .. "]")
+    end
+    
+    self.bios_text2_r:SetText(immersive_bios and "[" .. game.CTime().dateToString(game.get_game_time()) .. "]" or "[" .. os.date("%m/%d/%Y") .. "]")
 end
 
 function pda_bios_tab:Update()
-	CurrentTime = os.date("%H:%M:%S")
-	self.text1_r:SetText("[" .. CurrentTime .. "]")
-	
-	local elements = {
-        { button = self.button_1, 				id = "text1_l" },
-        { button = self.button_2, 				id = "text2_l" },
-        { button = self.username_button,    	id = "username" },
-        { button = self.detected_cpu_button,    id = "detected_cpu" },
-        { button = self.me_version_button,   	id = "me_version" },
-        { button = self.pda_name_button,    	id = "pda_name" },
-        { button = self.oper_sys_name_button,   id = "oper_sys_name" },
-        { button = self.beep_button,    		id = "beep" },
-        { button = self.s_key_button,    		id = "s_key" },
-        { button = self.taskboard_button,    	id = "taskboard" },
-        { button = self.interact_button,    	id = "interact" },
-        { button = self.razgon_button,    		id = "razgon" },
-		{ button = self.interface_button,    	id = "interface" },
-    }
-	
-	local hint_shown = false
+    local elements = {}
+    
+    if self.current_tab == "bios" then
+        elements = {
+            { button = self.bios_button_1, id = "text1_l_bios" },
+            { button = self.bios_button_2, id = "text2_l_bios" },
+            { button = self.username_button, id = "username" },
+            { button = self.detected_cpu_button, id = "detected_cpu" },
+            { button = self.me_version_button, id = "me_version" },
+            { button = self.pda_name_button, id = "pda_name" },
+            { button = self.oper_sys_name_button, id = "oper_sys_name" },
+            { button = self.beep_button, id = "beep" },
+            { button = self.s_key_button, id = "s_key" },
+            { button = self.taskboard_button, id = "taskboard" },
+            { button = self.interact_button, id = "interact" },
+            { button = self.razgon_button, id = "razgon" },
+            { button = self.interface_button, id = "interface" },
+        }
+    else -- boot
+        elements = {
+            { button = self.boot_button_1, id = "text1_l_boot" },
+            { button = self.boot_button_2, id = "text2_l_boot" },
+        }
+    end
+    
+    local hint_shown = false
     for _, elem in ipairs(elements) do
         if elem.button:IsCursorOverWindow() then
             self.hint:SetText(hint_text[elem.id])
@@ -156,57 +238,70 @@ function pda_bios_tab:Update()
             break
         end
     end
-	
-	if not hint_shown then
+    
+    if not hint_shown then
         self.hint:Show(false)
     end
-	
-	CUIScriptWnd.Update(self)
+    
+    CUIScriptWnd.Update(self)
 end
 
 function pda_bios_tab:InitCallbacks()
-	self:AddCallback("beep_button",			ui_events.BUTTON_CLICKED, self.On_beep_button,		self)
-	self:AddCallback("razgon_button",		ui_events.BUTTON_CLICKED, self.On_razgon_button,	self)
-	self:AddCallback("interface_button",	ui_events.BUTTON_CLICKED, self.On_interface_button,	self)
-	self:AddCallback("boot",				ui_events.BUTTON_CLICKED, self.On_boot,				self)
-	self:AddCallback("debug",				ui_events.BUTTON_CLICKED, self.On_debug,			self)
+    self:AddCallback("main", ui_events.BUTTON_CLICKED, self.On_main, self)
+    self:AddCallback("boot", ui_events.BUTTON_CLICKED, self.On_boot, self)
+    self:AddCallback("debug", ui_events.BUTTON_CLICKED, self.On_debug, self)
+    self:AddCallback("exit", ui_events.BUTTON_CLICKED, self.On_exit, self)
+    self:AddCallback("safe_mode_exit", ui_events.BUTTON_CLICKED, self.On_safe_mode_exit, self)
+    self:AddCallback("beep_button", ui_events.BUTTON_CLICKED, self.On_beep_button, self)
+    self:AddCallback("razgon_button", ui_events.BUTTON_CLICKED, self.On_razgon_button, self)
+    self:AddCallback("interface_button", ui_events.BUTTON_CLICKED, self.On_interface_button, self)
+end
+
+function pda_bios_tab:On_main()
+    self:ShowTab("bios")
 end
 
 function pda_bios_tab:On_boot()
-	ActorMenu.get_pda_menu():SetActiveSubdialog("eptBiosBoot")
+    self:ShowTab("boot")
 end
 
-function pda_bios_tab:On_debug()
-	ActorMenu.get_pda_menu():SetActiveSubdialog("eptBiosDebug")
+function pda_bios_tab:On_exit()
+    fe_utils.reboot_call(15)
+end
+
+function pda_bios_tab:On_safe_mode_exit()
+    if not z_pda_hacking then fe_utils.set_bsod(db.actor:active_item(), false) end
+    ui_pda_reboot_tab.OS_LOADING = true
+    fe_utils.reboot_call(30)
 end
 
 function pda_bios_tab:On_beep_button()
-	xr_sound.set_sound_play(AC_ID, "pda_alarm")
-	if db.actor:has_info("bios_can_beep") then
-		disable_info("bios_can_beep")
-	else
-		give_info("bios_can_beep")
-	end
+    xr_sound.set_sound_play(AC_ID, "pda_alarm")
+    if db.actor:has_info("bios_can_beep") then
+        disable_info("bios_can_beep")
+    else
+        give_info("bios_can_beep")
+    end
     beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
-	beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
-	self.beep_enable:SetText(beep)
+    beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
+    self.beep_enable:SetText(beep)
 end
 
 function pda_bios_tab:On_razgon_button()
-	local pda_id = pda:id()
-	if item_device.dev_items[pda_id].is_overclocked == true then
-		item_device.dev_items[pda_id].is_overclocked = false
-		self.razgon_razgon:SetText("[Disabled]")
-	else
-		item_device.dev_items[pda_id].is_overclocked = true
-		self.razgon_razgon:SetText("[Enabled]")
-	end
+    local pda_id = pda:id()
+    if item_device.dev_items[pda_id].is_overclocked == true then
+        item_device.dev_items[pda_id].is_overclocked = false
+        self.razgon_razgon:SetText("[Disabled]")
+    else
+        item_device.dev_items[pda_id].is_overclocked = true
+        self.razgon_razgon:SetText("[Enabled]")
+    end
     xr_sound.set_sound_play(AC_ID, "pda_alarm")
 end
 
 function pda_bios_tab:On_interface_button()
     if not pda:has_upgrade("up_thirda_pda") then return end
-
+    
     local pda_id = pda:id()
     xr_sound.set_sound_play(AC_ID, "pda_alarm")
     
@@ -219,76 +314,93 @@ function pda_bios_tab:On_interface_button()
     
     local current_interface = item_device.dev_items[pda_id].interface
     item_device.dev_items[pda_id].interface = interface_cycle[current_interface] or "pda"
-
+    
     fatal_error_mcm.REBOOT = math.random(2,5)
     ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
     fe_utils.invoke("set_pda_xml", 1, function() fe_utils.set_pda_xml(pda) end)
 end
 
 function pda_bios_tab:Reset()
-	
-	----------------------------------------------------------------------------------------------------
-	-- BIOS Options
-	----------------------------------------------------------------------------------------------------
-	
-	pda = db.actor:item_in_slot(8)
-	pda_id = pda:id()
-	pda_sec = pda:section()
-	local is_npc_pda = pda_sec:find("itm_pda_")
-	local npc_info = is_npc_pda and se_load_var(pda_id, nil, "bios_info")
-
-	if is_npc_pda and not npc_info then
-		npc_info = {
+    pda = db.actor:item_in_slot(8)
+    pda_id = pda:id()
+    pda_sec = pda:section()
+    local is_npc_pda = pda_sec:find("itm_pda_")
+    local npc_info = is_npc_pda and se_load_var(pda_id, nil, "bios_info")
+    
+    if is_npc_pda and not npc_info then
+        npc_info = {
             name = bios_list.NAME[math.random(#bios_list.NAME)],
             cpu = bios_list.CPU[math.random(#bios_list.CPU)],
             key = fe_utils.generate_random_string(20)
         }
         se_save_var(pda_id, nil, "bios_info", npc_info)
-	end
+    end
+    
+    -- BIOS tab data
+    if immersive_bios then
+        hint_text.text1_l_bios = "Available random-access memory."
+        self.bios_text1_l:SetText("Installed Physical Memory (RAM):")
+        self.bios_text1_r:SetText("[" .. 2^(fe_utils.get_pda_tier(pda) - 1) .. " GB]")
+    else
+        self.bios_text1_l:SetText("System Time:")
+        self.bios_text1_r:SetText("[" .. os.date("%H:%M:%S") .. "]")
+    end
+    
+    self.bios_text2_l:SetText("System Date:")
+    self.bios_text2_r:SetText(immersive_bios and "[" .. game.CTime().dateToString(game.get_game_time()) .. "]" or "[" .. os.date("%m/%d/%Y") .. "]")
+    
+    self.username_username:SetText((is_npc_pda and npc_info.name) or immersive_bios and alife():actor():character_name() or os.getenv("USERNAME"))
+    
+    local cpu_text = fe_utils.CPU
+    self.detected_cpu_cpu:SetText((is_npc_pda and npc_info.cpu) or cpu_text)
+    
+    self.me_version_version:SetText("[" .. get_modded_exes_version() .. "]")
+    
+    self.pda_name_name:SetText("[" .. string.upper(pda_sec) .. "]")
+    
+    self.oper_sys_name_name:SetText(os.getenv("OS") or "Unknown")
+    
+    beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
+    beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
+    self.beep_enable:SetText(beep)
+    
+    self.s_key_key:SetText((is_npc_pda and npc_info.key) or fe_utils.SECURITY_KEY)
+    
+    taskboard = ui_pda_taskboard_tab and "[Enabled]" or "[Disabled]"
+    taskboard = ini_sys:r_bool_ex(pda_sec,"tab_taskboard") == true and taskboard .. " \\n" .. "[Supported]" or taskboard .. " \\n" .. "[Unsupported]"
+    self.taskboard_task:SetText(taskboard)
+    
+    interact = pda_inter_gui and "[Enabled]" or "[Disabled]"
+    interact = ini_sys:r_bool_ex(pda_sec,"tab_interactive") == true and interact .. " \\n" .. "[Supported]" or interact .. " \\n" .. "[Unsupported]"
+    self.interact_interact:SetText(interact)
+    
+    self.razgon_razgon:SetText(item_device.dev_items[pda_id].is_overclocked == true and "[Enabled]" or "[Disabled]")
+    
+    if pda:has_upgrade("up_thirda_pda") then 
+        interface = "[Supported]"
+        color = {255, 100, 200, 255}
+    else
+        interface = "[Unsupported]"
+        color = {255, 255, 255, 255}
+    end
+    pda_int = item_device.dev_items[pda_id].interface
+    pda_int = string.upper(pda_int)
+    self.interface_interface:SetText("[" .. pda_int .. "]" .. " \\n" .. interface)
+    self.interface_interface:SetTextColor(GetARGB(color[1], color[2], color[3], color[4]))
+    
+    -- Boot tab data
+    self.boot_text1_l:SetText("Save & Default Boot")
+    self.boot_text2_l:SetText("Save & Safe Mode Boot")
+    
+    -- Restore current tab
+    self:ShowTab(self.current_tab or "bios")
+end
 
-	self.text1_l:SetText("System Time:")
-	self.text1_r:SetText("[" .. os.date("%H:%M:%S") .. "]")
-	
-	self.text2_l:SetText("System Date:")
-	self.text2_r:SetText("[" .. os.date("%m/%d/%Y") .. "]")
-	
-	self.username_username:SetText((is_npc_pda and npc_info.name) or os.getenv("USERNAME"))
-	
-	local cpu_text = fe_utils.CPU
-	self.detected_cpu_cpu:SetText((is_npc_pda and npc_info.cpu) or cpu_text)
+function actor_on_first_update()
+    immersive_bios = fatal_error_mcm.SETTINGS.other.immersive_bios
+    year = fatal_error_mcm.SETTINGS.other.immersive_bios and "2018" or "2026"
+end
 
-	self.me_version_version:SetText("[" .. get_modded_exes_version() .. "]")
-
-	self.pda_name_name:SetText("[" .. string.upper(pda_sec) .. "]")
-	
-	self.oper_sys_name_name:SetText(os.getenv("OS") or "Unknown")
-	
-	beep = db.actor:has_info("bios_can_beep") and "[Enabled]" or "[Disabled]"
-	beep = ini_sys:r_bool_ex(pda_sec,"can_beep") == true and beep .. " \\n" .. "[Supported]" or beep .. " \\n" .. "[Unsupported]"
-	self.beep_enable:SetText(beep)
-	
-	self.s_key_key:SetText((is_npc_pda and npc_info.key) or fe_utils.SECURITY_KEY)
-	
-	taskboard = ui_pda_taskboard_tab and "[Enabled]" or "[Disabled]"
-	taskboard = ini_sys:r_bool_ex(pda_sec,"tab_taskboard") == true and taskboard .. " \\n" .. "[Supported]" or taskboard .. " \\n" .. "[Unsupported]"
-	self.taskboard_task:SetText(taskboard)
-	
-	interact = pda_inter_gui and "[Enabled]" or "[Disabled]"
-	interact = ini_sys:r_bool_ex(pda_sec,"tab_interactive") == true and interact .. " \\n" .. "[Supported]" or interact .. " \\n" .. "[Unsupported]"
-	self.interact_interact:SetText(interact)
-
-	self.razgon_razgon:SetText(item_device.dev_items[pda_id].is_overclocked == true and "[Enabled]" or "[Disabled]")
-
-	if pda:has_upgrade("up_thirda_pda") then 
-		interface = "[Supported]"
-		color = {255, 100, 200, 255}
-	else
-		interface = "[Unsupported]"
-		color = {255, 255, 255, 255}
-	end
-	pda_int = item_device.dev_items[pda_id].interface
-	pda_int = string.upper(pda_int)
-	self.interface_interface:SetText("[" .. pda_int .. "]" .. " \\n" .. interface)
-	self.interface_interface:SetTextColor(GetARGB(color[1], color[2], color[3], color[4]))
-
+function on_game_start()
+    RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
 end

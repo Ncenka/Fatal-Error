@@ -6,6 +6,26 @@ local target_id
 local tm = task_manager.get_task_manager()
 local faction_color = ""
 
+local excluded_factions = {
+    ["zombied"] = true,
+    ["trader"] = true,
+    ["monolith"] = true,
+    ["greh"] = true,
+}
+
+local allowed_factions = {
+    ["stalker"]   = true,
+    ["csky"]      = true,
+    ["army"]      = true,
+    ["killer"]    = true,
+    ["ecolog"]    = true,
+    ["dolg"]      = true,
+    ["freedom"]   = true,
+    ["bandit"]    = true,
+    ["renegade"]  = true,
+    ["isg"]       = false,
+}
+
 function get_ui()
     SINGLETON = SINGLETON or pda_all_npcs_tab()
     SINGLETON:Reset()
@@ -234,26 +254,6 @@ function pda_all_npcs_tab:Reset()
     end
     self.npc_items = {}
     self.all_npcs = {}
-    
-    local excluded_factions = {
-        ["zombied"] = true,
-        ["trader"] = true,
-        ["monolith"] = true,
-        ["isg"] = true,
-        ["greh"] = true,
-    }
-    
-    local allowed_factions = {
-        ["stalker"]   = true,
-        ["csky"]      = true,
-        ["army"]      = true,
-        ["killer"]    = true,
-        ["ecolog"]    = true,
-        ["dolg"]      = true,
-        ["freedom"]   = true,
-        ["bandit"]    = true,
-        ["renegade"]  = true,
-    }
     
     local sim = alife()
     local npcs_list = {}
@@ -519,6 +519,8 @@ local function load_state(m_data)
 	target_id = m_data.target_id
 end
 
+---------------------------< FE >---------------------------
+
 function actor_on_first_update()
 
     local western_factions = {
@@ -528,6 +530,8 @@ function actor_on_first_update()
 
     if western_factions[get_actor_true_community()] then
         faction_color = "_blue"
+        allowed_factions["isg"] = true
+        allowed_factions["army"] = false
     end
     
 end

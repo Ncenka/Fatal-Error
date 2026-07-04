@@ -56,12 +56,6 @@ function create_overrides_fatal_error_v1()
 			
 		elseif section == "eptBios" then
 			return ui_pda_bios_tab.get_ui()
-			
-		elseif section == "eptBiosBoot" then
-			return ui_pda_bios_boot_tab.get_ui()
-
-		elseif section == "eptBiosDebug" then
-			return ui_pda_bios_debug_tab.get_ui()
 		
 		elseif section == "eptReboot" then
 			return ui_pda_reboot_tab.get_ui()
