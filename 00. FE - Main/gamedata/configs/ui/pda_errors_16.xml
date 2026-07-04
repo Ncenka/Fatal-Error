@@ -1,6 +1,6 @@
 <w>
 	<text_center x="0" y="0" width="819" height="768" stretch="1">
-			<text complex_mode="1" r="200" g="200" b="200" vert_align="c" align="c" font="letterica25"/>
+			<text complex_mode="1" r="255" g="255" b="0" vert_align="c" align="c" font="letterica25"/>
 	</text_center>
 	
 	<picture_base x="15" y="0" width="800" height="750" stretch="1">

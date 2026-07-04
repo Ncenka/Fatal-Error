@@ -246,6 +246,12 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Максимальний час несправності пристрою. Має бути більшим, ніж Мінімальний час несправності.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
+		<text>Імерсивний BIOS</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
+		<text>Змінює екран BIOS для відображення більш ігрової інформації замість реальної, такої як ім'я користувача, час, дата копірайту тощо.</text>
+	</string>
 	
 	<!--
     Milspec PDA

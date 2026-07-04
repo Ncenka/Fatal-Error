@@ -594,10 +594,6 @@ function process_pda_call()
 		["eptBlocked"] = true,
 	}
 
-	local bios_tabs = {
-		["eptBios"] = true,
-	}
-
 	local monolith = {
 		["l12u_sarcofag"] = true,
 	}
@@ -630,7 +626,7 @@ function process_pda_call()
 	elseif REBOOT > 0 then
 		ActorMenu.get_pda_menu():SetActiveSubdialog("eptReboot")
 
-	elseif bios_tabs[tab] then
+	elseif tab == "eptBios" then
 		ActorMenu.get_pda_menu():SetActiveSubdialog(tab)
 		
 	elseif fe_utils.is_bsod(pda) then

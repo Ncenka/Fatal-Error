@@ -70,11 +70,6 @@ function pda_bios_tab:InitControls()
     self.boot = xml:Init3tButton("bios:boot", self)
     self:Register(self.boot, "boot")
     
-    if DEV_DEBUG or DEV_DEBUG_DEV then
-        self.debug = xml:Init3tButton("bios:debug", self)
-        self:Register(self.debug, "debug")
-    end
-    
     -- Boot tab controls
     self.boot_button_1 = xml:Init3tButton("bios:button_1", self)
     self:Register(self.boot_button_1, "exit")
@@ -249,7 +244,6 @@ end
 function pda_bios_tab:InitCallbacks()
     self:AddCallback("main", ui_events.BUTTON_CLICKED, self.On_main, self)
     self:AddCallback("boot", ui_events.BUTTON_CLICKED, self.On_boot, self)
-    self:AddCallback("debug", ui_events.BUTTON_CLICKED, self.On_debug, self)
     self:AddCallback("exit", ui_events.BUTTON_CLICKED, self.On_exit, self)
     self:AddCallback("safe_mode_exit", ui_events.BUTTON_CLICKED, self.On_safe_mode_exit, self)
     self:AddCallback("beep_button", ui_events.BUTTON_CLICKED, self.On_beep_button, self)

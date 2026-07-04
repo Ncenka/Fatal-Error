@@ -246,6 +246,12 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Temps maximal de défaut de l'appareil. Doit être supérieur au Temps minimal de défaut.</text>
 	</string>
+	 <string id="ui_mcm_fatal_error_fe_other_immersive_bios">
+		<text>BIOS Immersif</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
+		<text>Modifie l'écran du BIOS pour afficher des informations plus liées au jeu plutôt que des informations réelles, telles que le nom d'utilisateur, l'heure, la date du copyright, etc.</text>
+	</string>
 	
 	<!--
     Milspec PDA

@@ -1,0 +1,25 @@
+local error = "st_unknown_error"
+local SINGLETON = nil
+function get_ui(error_text)
+	error = error_text or "st_unknown_error"
+	SINGLETON = SINGLETON or pda_error_tab()
+	SINGLETON:Reset()
+	return SINGLETON
+end
+
+class "pda_error_tab" (CUIScriptWnd)
+function pda_error_tab:__init() super()
+    self:InitControls()
+end
+
+function pda_error_tab:InitControls()
+    self:SetWndRect(Frect():set(0,0,1024,768))
+	local xml               = CScriptXmlInit()
+	xml:ParseFile("pda_errors.xml")
+	self.text 			= xml:InitTextWnd("text_center", self)
+	self.text:SetText(game.translate_string(error))
+end
+
+function pda_error_tab:Reset()
+	self.text:SetText(game.translate_string(error))
+end

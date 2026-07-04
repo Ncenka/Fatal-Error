@@ -246,6 +246,12 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Maximum device shutdown time. Must be greater than the Minimum shutdown time.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
+		<text>Immersive BIOS</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
+		<text>Changes BIOS screen to represent more in-game information rather that IRL information, such as username, time, copyright date, etc.</text>
+	</string>
 	
 	<!--
     Milspec PDA

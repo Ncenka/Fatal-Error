@@ -52,7 +52,7 @@ function create_overrides_fatal_error_v1()
 		end
 		
 		if section == "eptBlocked" then
-			return ui_pda_blocked_tab.get_ui()
+			return ui_pda_error_tab.get_ui("st_pda_blocked")
 			
 		elseif section == "eptBios" then
 			return ui_pda_bios_tab.get_ui()
@@ -64,7 +64,7 @@ function create_overrides_fatal_error_v1()
 			return ui_pda_bsod_tab.get_ui()
 			
 		elseif section == "eptBroken" then
-			return ui_pda_broken_tab.get_ui()
+			return ui_pda_error_tab.get_ui("st_pda_error_603")
 		
 		elseif section == "eptMonolith" then
 			return ui_pda_monolitch_tab.get_ui()
@@ -74,28 +74,28 @@ function create_overrides_fatal_error_v1()
 			
 		elseif section == "eptTaskboard" then
 			if ini_sys:r_bool_ex(pda:section(),"tab_taskboard") == false then
-				return ui_pda_no_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_tab")
 			else
 				return ui_pda_taskboard_tab.get_ui()
 			end
 			
 		elseif section == "eptInteractive" then
 			if ini_sys:r_bool_ex(pda:section(),"tab_interactive") == false then
-				return ui_pda_no_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_tab")
 			else
 				return pda_inter_gui.start_PDAX()
 			end
 			
 		elseif section == "eptRelations" then
 			if ini_sys:r_bool_ex(pda:section(),"tab_relations") == false then
-				return ui_pda_no_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_tab")
 			else
 				return ui_pda_relations_tab.get_ui()
 			end
 		
 		elseif section == "eptContacts" then
 			if ini_sys:r_bool_ex(pda:section(),"tab_contacts") == false then
-				return ui_pda_no_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_tab")
 			else
 				if _G.WARFARE then
 					return ui_pda_warfare_tab.get_ui()
@@ -106,7 +106,7 @@ function create_overrides_fatal_error_v1()
 			
 		elseif section == "eptRanking" then
 			if ini_sys:r_bool_ex(pda:section(),"tab_ranking") == false then
-				return ui_pda_no_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_tab")
 			end
 
 		elseif section == "eptMilitaryDatabase" then
@@ -117,10 +117,10 @@ function create_overrides_fatal_error_v1()
 				return ui_pda_no_map_tab.get_ui()
 				
 			elseif 
-				not (pda:has_upgrade("up_secona_pda") or overclock)
+				not (pda:has_upgrade("up_secona_pda") or fe_utils.is_overclocked(pda))
 				and (NO_MAP_ZONES_UNDERGROUND[level.name()]) 
 			then
-				return ui_pda_no_map_underground_tab.get_ui()
+				return ui_pda_error_tab.get_ui("st_pda_no_map")
 				
 			elseif db.actor:object("artifact_signature_locator") then
 				return z_artifact_signature_locator.locator_script(section)

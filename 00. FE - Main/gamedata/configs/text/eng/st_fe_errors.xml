@@ -8,10 +8,10 @@
 	<string id="st_pda_no_map">
 		<text>NO SIGNAL</text>
 	</string>
-	<string id="st_pda_no">
+	<string id="st_pda_no_tab">
 		<text>ERROR: THIS FEATURE IS NOT AVAILABLE ON THIS PDA MODEL.</text>
 	</string>
-	<string id="st_blocked">
+	<string id="st_pda_blocked">
 		<text>FATAL ERROR: USER INTERFACE IS NOT AVAILABLE</text>
 	</string>
 	<string id="st_pda_monolitch_hackers">
