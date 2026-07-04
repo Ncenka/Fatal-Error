@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
 	<string id="st_pda_error_603">
-		<text>�������� �������: ��� ������� 603 - �������������� �����в�</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: КОД ПОМИЛКИ 603 - ПЕРЕЗАВАНТАЖТЕ ПРИСТРІЙ</text>
 	</string>
 	<string id="st_pda_error_map">
-		<text>�������� �������: ����������� ���� ����������</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: СУПУТНИКОВА МАПА НЕДОСТУПНА</text>
 	</string>
 	<string id="st_pda_no_map">
-		<text>����� �������</text>
+		<text>НЕМАЄ СИГНАЛУ</text>
 	</string>
 	<string id="st_pda_no_tab">
-		<text>�������: ���� ����ֲ� ���������� �� ��Ͳ� ����˲ ���</text>
+		<text>ПОМИЛКА: ДАНА ФУНКЦІЯ НЕДОСТУПНА НА ДАНІЙ МОДЕЛІ КПК</text>
 	</string>
 	<string id="st_pda_blocked">
-		<text>�������� �������: �������������� ��������� �����������</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: КОРИСТУВАЦЬКИЙ ІНТЕРФЕЙС НЕДОСТУПНИЙ</text>
 	</string>
 	<string id="st_pda_monolitch_hackers">
-		<text>�������� �������: ����ֲ� SET_ACTIVE_SUBDIALOG(SECTION) ���������� \n��²����� ��������������� ������: MONOLITH_TRACKING.SCRIPT \n��²����� ��������������� �����: SEND_LOCAL_POS �� MONOLITH_ALPHA_SQUAD \n!������� !������� !������� !������� !������� !������� !������� \n��²���� �������������� ��²��������: �� ����˲�! ���� ���� �������, ����'��! \n!������� !������� !������� !������� !������� !������� !�������</text>
+		<text>FATAL ERROR: FUNCTION SET_ACTIVE_SUBDIALOG(SECTION) NOT AVAILABLE \nUNKNOWN UNAUTHORIZED ACCESS: MONOLITH_TRACKING.SCRIPT \nUNKNOWN UNAUTHORIZED REQUEST: SEND_LOCAL_POS TO MONOLITH_ALPHA_SQUAD \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR \nUNKNOWN UNAUTHORIZED MESSAGE: ЗА МОНОЛІТ! ТЕБЕ БУДЕ ЗНИЩЕНО, ЧЕРВ'ЯК! \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR</text>
 	</string>
 </string_table>
  

@@ -1,7 +1,7 @@
-local error = "st_unknown_error"
+local error = "st_pda_unknown_error"
 local SINGLETON = nil
 function get_ui(error_text)
-	error = error_text or "st_unknown_error"
+	error = error_text or "st_pda_unknown_error"
 	SINGLETON = SINGLETON or pda_error_tab()
 	SINGLETON:Reset()
 	return SINGLETON
