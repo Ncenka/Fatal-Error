@@ -18,7 +18,6 @@ function pda_monolitch_hackers_tab:InitControls()
 	self.picture:InitTexture ("ui\\ui_noise")
 	self.text 			= xml:InitTextWnd("text_center", self)
 	self.text:SetText(game.translate_string("st_pda_monolitch_hackers"))
-    self.text:SetTextColor(GetARGB(255, 255, 255, 0))
 end
 
 function pda_monolitch_hackers_tab:Update()

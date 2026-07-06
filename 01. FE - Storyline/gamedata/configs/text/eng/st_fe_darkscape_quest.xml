@@ -185,6 +185,24 @@
 	<string id="fe_darkscape_cases_9">
 		<text>See ya!</text>
 	</string>
+	<string id="fe_darkscape_end_0">
+		<text>Well guys, everyone's going their own way, but I'm heading to the Bar, gotta celebrate the loot.</text>
+	</string>
+	<string id="fe_darkscape_end_1">
+		<text>Not sure they'll let a fuck-up like you in, but I'm heading there too, the barman had a job offer. Des, you with us?</text>
+	</string>
+	<string id="fe_darkscape_end_2">
+		<text>Nah, Sultan offered me a spot in a crew on Jupiter, carrying packages, promises crazy money - and hey, am I some sucker to turn that down?</text>
+	</string>
+	<string id="fe_darkscape_end_3">
+		<text>Alright Des, take care.</text>
+	</string>
+	<string id="fe_darkscape_end_4">
+		<text>Later.</text>
+	</string>
+	<string id="fe_darkscape_end_5">
+		<text>See ya!</text>
+	</string>
 	<string id="st_fe_speak_to_senya">
 		<text>I should talk to Senya Snap first.</text>
 	</string>

@@ -14,6 +14,11 @@ function set_broken(obj, val)
 	    item_device.dev_items[obj:id()].is_broken = true
         obj:set_device_enabled(false)
         play_shutdown_sound()
+
+        if not obj:section():find("_pda") then
+            set_damage(obj, 2)
+        end
+
         if db.actor:item_in_slot(8) and db.actor:item_in_slot(8):id() == obj:id() then
             ui_pda_radio_tab.action_radio_stop()
             ui_pda_radio_tab.action_plyr_stop()
@@ -22,15 +27,11 @@ function set_broken(obj, val)
         item_device.dev_items[obj:id()].is_broken = false
         news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
         obj:set_device_enabled(true)
+    elseif val == 3 then
+        item_device.dev_items[obj:id()].is_broken = false
+        obj:set_device_enabled(true)
     end
     
-end
-
-function set_bsod(obj, val)
-    if not failsafe(obj) then return end -- failsafe
-    if not val then val = false end -- failsafe
-
-    item_device.dev_items[obj:id()].is_bsod = val
 end
 
 function set_screen_damage(obj, val)
@@ -38,12 +39,12 @@ function set_screen_damage(obj, val)
 
     local damage
     if val == 1 then
-       damage = get_damage(obj) + 1
-       if damage > 5 then
+        damage = get_damage(obj) + 1
+        if damage > 5 then
             set_broken(obj, 1)
         end
-       damage = clamp(damage, 0, 5)
-       utils_obj.play_sound("material\\glass\\glass_fall03hl")
+        damage = clamp(damage, 0, 5)
+        utils_obj.play_sound("material\\glass\\glass_fall03hl")
     elseif val == 2 then
         damage = get_damage(obj)
     else
@@ -67,16 +68,36 @@ function set_damage(obj, val)
     local damage
     if val == 1 then
        damage = get_damage(obj) + 1
+       if damage > 5 then
+            damage = 0
+            set_broken(obj, 1)
+        end
        damage = clamp(damage, 0, 5)
        play_shutdown_sound()
     elseif val == 2 then
         damage = 0
+    elseif val == 3 then
+        if is_broken(obj) then
+            damage = 5
+            set_broken(obj, 3)
+        else
+            damage = get_damage(obj) -1
+            damage = clamp(damage, 0, 5)
+        end
+        news_manager.send_tip(db.actor, game.translate_string("st_device_partially_fix"), nil, default, 10000)
     else
         damage = 0
         news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
     end
     item_device.dev_items[obj:id()].damage = damage
 
+end
+
+function set_bsod(obj, val)
+    if not failsafe(obj) then return end -- failsafe
+    if not val then val = false end -- failsafe
+
+    item_device.dev_items[obj:id()].is_bsod = val
 end
 
 function set_pda_xml(obj)
@@ -163,6 +184,7 @@ end
 function get_surge_psi(obj)
     if not failsafe(obj) then return 0 end -- failsafe
     if obj:has_upgrade("up_firste_pda") then return 0 end
+    if ini_sys:r_bool_ex(obj:section(),"can_break") == false then return 0 end
     
     local surge_psi = 0
 	if GetEvent("surge", "state") then
@@ -265,6 +287,7 @@ end
 
 function ffi_message(title, message, type, info)
     printf("!FE: Calling FFI! Title: s%, Message: s%, Type: s%, Info: s%", title, message, type, info)
+    if true then return end
     if db.actor:has_info(info) then return end -- show message only once.
 
     give_info(info)

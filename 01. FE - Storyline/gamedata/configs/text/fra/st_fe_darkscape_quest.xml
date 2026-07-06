@@ -192,6 +192,24 @@ Dernière révision: 19 septembre 2025
 	<string id="fe_darkscape_cases_9">
 		<text>À plus!</text>
 	</string>
+	<string id="fe_darkscape_end_0">
+		<text>Bon les gars, chacun sa route, mais moi je vais au Bar, faut arroser le butin.</text>
+	</string>
+	<string id="fe_darkscape_end_1">
+		<text>Je suis pas sûr qu'ils laissent entrer un abruti comme toi, mais j'y vais aussi, le barman m'a proposé un taf. Des, tu viens avec nous ?</text>
+	</string>
+	<string id="fe_darkscape_end_2">
+		<text>Nan, Sultan m'a proposé d'aller sur Jupiter avec son équipe, porter des colis, il promet du fric à la pelle - et moi, je suis pas un con pour refuser, non ?</text>
+	</string>
+	<string id="fe_darkscape_end_3">
+		<text>D'accord Des, à plus.</text>
+	</string>
+	<string id="fe_darkscape_end_4">
+		<text>À la prochaine.</text>
+	</string>
+	<string id="fe_darkscape_end_5">
+		<text>Salut!</text>
+	</string>
 	<string id="st_fe_speak_to_senya">
 		<text>Je devrais parler d'abord à Senya Snap.</text>
 	</string>

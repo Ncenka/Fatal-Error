@@ -214,7 +214,7 @@ function break_device(damage_type, upgrade)
         local obj = available_devices[math.random(1, #available_devices)]
 		local sec = obj:section()
 		local chance
-		local is_device
+		local is_device = false
 
 		if sec:find("_pda") then
 			local tier = fe_utils.get_pda_tier(obj)
@@ -235,11 +235,8 @@ function break_device(damage_type, upgrade)
         
         if math.random(0, 100) < (radiation_scale * chance) then
 
-			if is_device and 75 > math.random(0, 100) and fe_utils.get_damage(obj) < 5 then
+			if is_device and 75 > math.random(0, 100) then
 				fe_utils.set_damage(obj, 1)
-			elseif is_device then
-				fe_utils.set_broken(obj, 1)
-				fe_utils.set_damage(obj, 2)
 			else
 				fe_utils.set_broken(obj, 1)
 			end
@@ -378,22 +375,57 @@ end
 -- Drag Drop
 ----------------------------------------------------------------------------------------------------
 
-function pda_repair_kit(obj_b, obj_d, slot_from, slot_to)
+function repair_device(obj_b, obj_d, slot_from, slot_to)
 
-	local tool = obj_b:section()
-	local is_broken_or_damaged = fe_utils.is_broken(obj_d) or fe_utils.get_damage(obj_d) > 0
-
-	if is_broken_or_damaged and tool:find("tool_fix_pda") then
-		if fe_utils.is_broken(obj_d) then
-			fe_utils.set_broken(obj_d, 2)
-		elseif obj_d:section():find("pda") then
-			fe_utils.set_screen_damage(obj_d, 3)
-		else
-			fe_utils.set_damage(obj_d, 3)
-		end
-		alife_release(obj_b)
-		actor_effects.play_item_fx("craft_dummy")
-	end
+    local tool = obj_b:section()
+    local is_device = obj_d:section():find("device_") or obj_d:section():find("detector_")
+    local is_pda = obj_d:section():find("_pda") or obj_d:section():find("itm_pda_")
+    
+	-- Just make sure NPC PDAs can be repaired
+    if not (is_device or obj_d:section():find("itm_pda_")) then return end
+    
+    local is_broken = fe_utils.is_broken(obj_d)
+    local damage = fe_utils.get_damage(obj_d)
+    
+    if tool:find("tool_fix_pda") then
+        if is_pda then
+            if is_broken then
+                fe_utils.set_broken(obj_d, 2)
+                alife_release(obj_b)
+                actor_effects.play_item_fx("craft_dummy")
+                return
+            elseif damage > 0 then
+                fe_utils.set_screen_damage(obj_d, 3)
+                alife_release(obj_b)
+                actor_effects.play_item_fx("craft_dummy")
+                return
+            end
+        else
+            if is_broken or damage > 0 then
+                fe_utils.set_damage(obj_d, 2)
+				fe_utils.set_broken(obj_d, 2)
+                alife_release(obj_b)
+                actor_effects.play_item_fx("craft_dummy")
+                return
+            end
+        end
+        
+    elseif tool:find("tool_cheap_fix_pda") then
+        if is_pda then
+            if is_broken then
+                fe_utils.set_broken(obj_d, 2)
+                alife_release(obj_b)
+                actor_effects.play_item_fx("craft_dummy")
+                return
+            end
+        else
+            if is_broken or damage > 0 then
+                fe_utils.set_damage(obj_d, 3)
+                alife_release(obj_b)
+                actor_effects.play_item_fx("craft_dummy")
+            end
+        end
+    end
 end
 
 function geiger_check_device(obj_b, obj_d, slot_from, slot_to)
@@ -449,12 +481,11 @@ function actor_on_before_hit(s_hit, bone_id)
 		and not fe_utils.is_broken(head_device)
 		and math.random(0, 100) < SETTINGS.other.break_head_device
 	then
-		if 75 > math.random(0 ,100) and fe_utils.get_damage(head_device) < 5 then
+		if 75 > math.random(0 ,100) then
 			fe_utils.set_damage(head_device, 1)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		else
 			fe_utils.set_broken(head_device, 1)
-			fe_utils.set_damage(head_device, 2)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		end
 	end
@@ -771,10 +802,10 @@ function process_shutdown()
 			cache_obj_id = obj:id() 
 		end
 
-		local radiation_chance = not obj:has_upgrade("up_firsta_pda") and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
+		local radiation_chance = not (obj:has_upgrade("up_firsta_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
 		local damage_chance = fe_utils.get_damage(obj) * 10
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
-		local electra_chance = not obj:has_upgrade("up_firstc_pda") and ELECTRA_GLITCH_VALUE * 50 or 0
+		local electra_chance = not (obj:has_upgrade("up_firstc_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and ELECTRA_GLITCH_VALUE * 50 or 0
 		local final_chance = math.floor(radiation_chance + damage_chance + surge_psi_chance + electra_chance + SETTINGS.other.devices_unreliability)
 		
 		if math.random(0, 100) < final_chance then
@@ -902,7 +933,7 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
 	RegisterScriptCallback("actor_on_first_update", on_option_change)
 
-	RegisterScriptCallback("ActorMenu_on_item_drag_drop", pda_repair_kit)
+	RegisterScriptCallback("ActorMenu_on_item_drag_drop", repair_device)
 	RegisterScriptCallback("ActorMenu_on_item_drag_drop", geiger_check_device)
 
 	RegisterScriptCallback("save_state", save_state)

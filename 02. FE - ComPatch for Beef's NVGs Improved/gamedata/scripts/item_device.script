@@ -968,11 +968,11 @@ end
 
 function device_binder:process_glitch()
 
-	local radiation_glitch = not self.object:has_upgrade("up_firsta_pda") and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
+	local radiation_glitch = not (self.object:has_upgrade("up_firsta_pda") or ini_sys:r_bool_ex(self.object:section(),"can_break") == false) and clamp(fatal_error_mcm.RADIATION_AMOUNT, 0, 10) or 0
 	local damage_glitch = fe_utils.get_damage(self.object) * 0.1
 	local overclock_glitch = fe_utils.is_overclocked(self.object) and 0.15 or 0 
 	local surge_psi_glitch = fe_utils.get_surge_psi(self.object)
-	local electra_glitch = not self.object:has_upgrade("up_firstc_pda") and fatal_error_mcm.ELECTRA_GLITCH_VALUE or 0
+	local electra_glitch = not (self.object:has_upgrade("up_firstc_pda") or ini_sys:r_bool_ex(self.object:section(),"can_break") == false) and fatal_error_mcm.ELECTRA_GLITCH_VALUE or 0
 	local final_glitch
 
 	final_glitch = (radiation_glitch * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale) + electra_glitch + damage_glitch + (fatal_error_mcm.SETTINGS.other.devices_unreliability / 100) + overclock_glitch + surge_psi_glitch

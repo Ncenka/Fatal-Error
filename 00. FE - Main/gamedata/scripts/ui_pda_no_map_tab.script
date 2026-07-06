@@ -17,5 +17,4 @@ function pda_no_map_tab:InitControls()
 	self.picture:InitTexture ("ui\\ui_noise")
 	self.text 			= xml:InitTextWnd("text_center", self)
 	self.text:SetText(game.translate_string("st_pda_error_map"))
-    self.text:SetTextColor(GetARGB(255, 255, 255, 0))
 end

@@ -284,6 +284,22 @@ can_trade						= true
 remove_after_use				= false
 tier							= 2
 
+[tool_cheap_fix_pda]:tool_fix_pda
+inv_name			            = st_tool_cheap_fix_pda
+inv_name_short			        = st_tool_cheap_fix_pda
+description			            = st_tool_cheap_fix_pda_desc
+
+icons_texture	                = ui\actor_items\fe_icons
+inv_grid_width                  = 2
+inv_grid_height                 = 1
+inv_grid_x                      = 5
+inv_grid_y                      = 0
+cost			                = 2500
+inv_weight   	                = 1
+
+workshop_tool					= false
+tier							= 1
+
 ;;--==========================< Batteries >=============================--
 
 ![batteries_dead]
@@ -396,3 +412,13 @@ can_break                       = true
 
 ![device_glowstick]
 upgrades					    =
+
+![wg_gps]
+upgrades                                               = up_gr_firstab_pda
+installed_upgrades                                      =            
+upgrade_scheme                                           = upgrade_scheme_pda
+
+![wg_compass]
+upgrades                                               = up_gr_firstab_pda
+installed_upgrades                                      =            
+upgrade_scheme                                           = upgrade_scheme_pda
