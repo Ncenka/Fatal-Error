@@ -7,12 +7,26 @@ F.R.I.T.E.S | Thundard
 Dernière révision: 19 septembre 2025
 -->
 
-<string id="st_tool_fix_pda">
-		<text>Kit de réparation d'appareils</text>
+	<string id="st_tool_fix_pda">
+		<text>Kit de pi?ces de rechange pour appareils</text>
 	</string>
 	<string id="st_tool_fix_pda_desc">
-		<text>Une petite boîte contenant divers tournevis, résistances, transistors, condensateurs et fil de cuivre permettant de remplacer les composants défectueux de n'importe quel appareil et de rétablir entièrement sa fonctionnalité.\n \n
-		%c[ui_gray_3]PROPRIÉTÉS:\n
+		<text>Une petite bo?te contenant des tournevis, des r?sistances, des transistors, des condensateurs et du fil de cuivre, permettant de remplacer les composants d?fectueux de tout appareil et de r?tablir son bon fonctionnement.\n \n
+		%c[ui_gray_3]CARACT?RISTIQUES :\n
+		%c[d_blue] • %c[ui_gray_2] restaure enti?rement le fonctionnement des appareils\n
+		%c[d_blue] • %c[ui_gray_2] faites glisser sur un appareil cass? ou endommag? pour l'utiliser\n
+		</text>
+	</string>
+	<string id="st_tool_cheap_fix_pda">
+		<text>Kit de r?paration artisanal pour appareils</text>
+	</string>
+	<string id="st_tool_cheap_fix_pda_desc">
+		<text>Une petite bo?te contenant un nettoyant pour contacts, du ruban conducteur, de la soudure, du fil et quelques composants universels, permettant de restaurer les contacts endommag?s et de r?parer partiellement les appareils ?lectroniques.\n \n
+		%c[ui_gray_3]CARACT?RISTIQUES :\n
+		%c[d_blue] • %c[ui_gray_2] restaure partiellement le fonctionnement des appareils\n
+		%c[d_blue] • %c[ui_gray_2] faites glisser sur un appareil cass? ou endommag? pour l'utiliser\n
+		%c[d_red] • %c[ui_gray_2] ne peut pas ?tre utilis? pour am?liorer des appareils\n
+		%c[d_red] • %c[ui_gray_2] ne peut pas ?tre utilis? pour r?parer les ?crans de PDA\n
 		</text>
 	</string>
 	<string id="st_pda_0_name">

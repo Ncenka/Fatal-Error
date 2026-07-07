@@ -2,6 +2,57 @@ SECURITY_KEY = nil
 CPU = nil
 VERSION = "1.7.9.5"
 
+LEVEL_PASSIVE_GLITCH = {
+	["k00_marsh"]				= 0.01,
+    ["l01_escape"]				= 0.01,
+	["l02_garbage"]				= 0.01,
+    ["y04_pole"]				= 0.01,
+
+    ["l03_agroprom"]			= 0.01,
+    ["l03u_agr_underground"]	= 0.05,
+
+	["l04_darkvalley"]			= 0.01,
+    ["l04u_labx18"]				= 0.05,
+
+    ["l05_bar"]					= 0.015,
+
+    ["k02_trucks_cemetery"]		= 0.025,
+    ["k01_darkscape"]			= 0.025,
+	["l06_rostok"]				= 0.05,
+	["l07_military"]			= 0.05,
+
+	["l08_yantar"]				= 0.05,
+    ["l08u_brainlab"]			= 0.15,
+
+	["l09_deadcity"]			= 0.025,
+	["l10_limansk"]				= 0.075,
+
+	["l10_radar"]				= 0.20,
+    ["l10u_bunker"]				= 0.30,
+
+	["l10_red_forest"]			= 0.20,
+
+	["l11_hospital"]			= 0.15,
+	["l11_pripyat"]				= 0.15,
+    ["pripyat"]					= 0.15,
+    ["labx8"]					= 0.20,
+
+	["l12_stancia"]				= 0.20,
+	["l12_stancia_2"]			= 0.20,
+
+	["l12u_control_monolith"]	= 0.30,
+	["l12u_sarcofag"]			= 0.30,
+	["l13_generators"]			= 0.30,
+	["l13u_warlab"]				= 0.30,
+
+    ["jupiter"]					= 0.10,
+    ["jupiter_underground"]		= 0.15,
+
+	["zaton"]					= 0.10,
+
+    
+}
+
 ----------------------------------------------------------------------------------------------------
 -- Setters
 ----------------------------------------------------------------------------------------------------
@@ -125,6 +176,7 @@ function set_apps(obj)
 
     if mac_mcm.PDA_APPS.app_taskboard then mac_mcm.remove_app("app_taskboard") end 
     if mac_mcm.PDA_APPS.app_interactive then mac_mcm.remove_app("app_interactive") end 
+    if mac_mcm.PDA_APPS.app_interactive then mac_mcm.remove_app("tab_database") end
     local taskboard = ui_pda_taskboard_tab and ini_sys:r_bool_ex(obj:section(),"tab_taskboard")
     local interactive = pda_inter_gui and ini_sys:r_bool_ex(obj:section(),"tab_interactive")
     local database = ini_sys:r_bool_ex(obj:section(),"tab_database")

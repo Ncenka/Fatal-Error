@@ -3,8 +3,22 @@
 		<text>Device Repair kit</text>
 	</string>
 	<string id="st_tool_fix_pda_desc">
-		<text>A small box containing different screwdrivers, resistors, transistors, capacitors and copper wire, which allows you to replace broken components of any device and fully restore its functionality.\n \n
+		<text>A small box containing different screwdrivers, resistors, transistors, capacitors and copper wire, which allows you to replace broken components of any electronic devices and fully restore its functionality.\n \n
 		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] fully restore device functionality\n
+		%c[d_blue] • %c[ui_gray_2] drag and drop onto a broken or damaged device to use\n
+		</text>
+	</string>
+	<string id="st_tool_cheap_fix_pda">
+		<text>Makeshift Device Repair Kit</text>
+	</string>
+	<string id="st_tool_cheap_fix_pda_desc">
+		<text>A small box containing contact cleaner, conductive tape, solder, wire, and a few universal components, which allows you to restore damaged contacts and partially repair electronic devices.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] partially restores device functionality\n
+		%c[d_blue] • %c[ui_gray_2] drag and drop onto a broken or damaged device to use\n
+		%c[d_red] • %c[ui_gray_2] cannot be used for upgrading devices\n
+		%c[d_red] • %c[ui_gray_2] cannot be used to repair PDA screens\n
 		</text>
 	</string>
 	<string id="st_pda_0_name">
