@@ -252,6 +252,21 @@
 	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
 		<text>Змінює екран BIOS для відображення більш ігрової інформації замість реальної, такої як ім'я користувача, час, дата копірайту тощо.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_special">
+    	<text>Особливе</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
+		<text>Приховати контент, пов'язаний з AOEngine</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe_desc">
+		<text>Приховати всі можливі меми, жарти, гриби тощо, пов'язані з AOEngine, під час використання AOEngine.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia">
+		<text>Приховати політично заряджений контент</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
+		<text>Приховати всі можливі символи, прапори, згадки про інші країни, політичні структури та організації.</text>
+	</string>
 	
 	<!--
     Milspec PDA

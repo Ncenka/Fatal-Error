@@ -98,6 +98,9 @@
 	<string id="st_device_fix">
 		<text>The functionality of the device has been restored.</text>
 	</string>
+	<string id="st_device_partially_fix">
+		<text>The functionality of the device has been partially restored.</text>
+	</string>
 	<string id="st_pda_screen_fix">
 		<text>PDA screen has been replaced.</text>
 	</string>

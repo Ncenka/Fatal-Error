@@ -247,10 +247,25 @@
 		<text>Максимальное время неисправности устройства. Должно быть больше, чем Минимальное время неисправности.</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
-    <text>Иммерсивный BIOS</text>
+    	<text>Иммерсивный BIOS</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
 		<text>Изменяет экран BIOS для отображения более игровой информации вместо реальной, такой как имя пользователя, время, дата копирайта и т.д.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special">
+    	<text>Особое</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
+    	<text>Скрыть AOEngine-контент</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe_desc">
+		<text>Скрыть все возможные мемы, приколы, грибы и т.д. связанные с AOEngine при использовании AOEngine.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia">
+    	<text>Скрыть контент с политической предрасположенностью</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
+		<text>Скрыть все возможные символики, флагы, упоминания других стран, политических структур и организаций.</text>
 	</string>
 	
 	<!--

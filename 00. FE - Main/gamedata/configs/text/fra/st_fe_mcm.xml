@@ -252,6 +252,21 @@
 	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
 		<text>Modifie l'écran du BIOS pour afficher des informations plus liées au jeu plutôt que des informations réelles, telles que le nom d'utilisateur, l'heure, la date du copyright, etc.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_special">
+    	<text>Spécial</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
+		<text>Masquer le contenu lié à AOEngine</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_aoe_desc">
+		<text>Masquer tous les mèmes, blagues, champignons, etc. possibles liés à AOEngine lors de l'utilisation d'AOEngine.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia">
+		<text>Masquer le contenu à connotation politique</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
+		<text>Masquer tous les symboles, drapeaux, mentions d'autres pays, structures politiques et organisations.</text>
+	</string>
 	
 	<!--
     Milspec PDA

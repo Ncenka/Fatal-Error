@@ -106,6 +106,9 @@ Dernière révision: 19 septembre 2025
 	<string id="st_device_fix">
 		<text>La fonctionnalité de l'appareil a été restaurée.</text>
 	</string>
+	<string id="st_device_partially_fix">
+		<text>La fonctionnalité de l'appareil a été partiellement restaurée.</text>
+	</string>
 	<string id="st_pda_screen_fix">
 		<text>Écran du PDA remplacé.</text>
 	</string>
