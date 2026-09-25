@@ -516,6 +516,8 @@ function monolith_tab:Set_Data_Decrypted(data)
 		end)
 	end
 
+	local obj = db.actor:active_item()
+
 	CreateTimeEvent("monolithhack", "set_hack_bar", 0, function()
 		self.data_decrypted = z_pda_hacking.lerpup(self.data_decrypted, self.data_decrypted_target, 0.75)
 		self.decrypt_wnd.bar:SetProgressPos(self.data_decrypted)
@@ -525,12 +527,12 @@ function monolith_tab:Set_Data_Decrypted(data)
 			if not self.skey_unlock then
 				fe_utils.invoke("hacked_monolith", 4, function()
 					ui_pda_reboot_tab.OS_LOADING = true
-					fe_utils.reboot_call(20)
+					fe_utils.reboot_call(20, obj)
 					self:Reset()
 				end)
 			else
 				fe_utils.invoke("hacked_monolith", 4, function()
-					fe_utils.reboot_call(5)
+					fe_utils.reboot_call(5, obj)
 					self:Reset()
 				end)
 			end

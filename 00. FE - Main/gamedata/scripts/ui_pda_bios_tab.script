@@ -1,5 +1,7 @@
 local SINGLETON = nil
 local pda
+local pda_id
+local pda_sec
 local pda_int
 local beep
 local taskboard
@@ -260,13 +262,13 @@ function pda_bios_tab:On_boot()
 end
 
 function pda_bios_tab:On_exit()
-    fe_utils.reboot_call(15)
+    fe_utils.reboot_call(15, pda)
 end
 
 function pda_bios_tab:On_safe_mode_exit()
     if not z_pda_hacking then fe_utils.set_bsod(db.actor:active_item(), false) end
     ui_pda_reboot_tab.OS_LOADING = true
-    fe_utils.reboot_call(30)
+    fe_utils.reboot_call(30, pda)
 end
 
 function pda_bios_tab:On_beep_button()
@@ -282,7 +284,6 @@ function pda_bios_tab:On_beep_button()
 end
 
 function pda_bios_tab:On_razgon_button()
-    local pda_id = pda:id()
     if item_device.dev_items[pda_id].is_overclocked == true then
         item_device.dev_items[pda_id].is_overclocked = false
         self.razgon_razgon:SetText("[Disabled]")
@@ -296,7 +297,6 @@ end
 function pda_bios_tab:On_interface_button()
     if not pda:has_upgrade("up_thirda_pda") then return end
     
-    local pda_id = pda:id()
     xr_sound.set_sound_play(AC_ID, "pda_alarm")
     
     local interface_cycle = {

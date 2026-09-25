@@ -81,7 +81,7 @@ function create_overrides_fatal_error_v2()
 		
 		-- Glitch factor
 		if IsItem("device",sec) then
-			local glitch_factor = ini_sys:r_float_ex(sec,"glitch_factor")
+			local glitch_factor = ((obj and obj:has_upgrade("up_fourta_pda")) and ini_sys:r_float_ex(sec,"glitch_factor") - 0.90 or ini_sys:r_float_ex(sec,"glitch_factor"))
 			if glitch_factor then	
 				_str = _str .. utils_xml.get_color("d_purple") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. game.translate_string("st_glitch_factor") .. " " .. utils_xml.get_color("ui_gray_1") .. (2 - glitch_factor) * 50 .. "% \\n"
 			end

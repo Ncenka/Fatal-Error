@@ -216,7 +216,7 @@ function on_item_drag_dropped(obj_b, obj_d, slot_from, slot_to)
 		end
 
 		if sec_d:find("_pda") then
-			fe_utils.reboot_call(10)
+			fe_utils.reboot_call(10, obj_d)
 		end
 		
 		alife_release(obj_b)

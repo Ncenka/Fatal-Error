@@ -525,13 +525,13 @@ function bsod_tab:Set_Data_Decrypted(data)
 				fe_utils.invoke("hacked_bsod", 4, function()
 					ui_pda_reboot_tab.OS_LOADING = true
 					fe_utils.set_bsod(obj, false)
-					fe_utils.reboot_call(20)
+					fe_utils.reboot_call(20, obj)
 					self:Reset()
 				end)
 			else
 				fe_utils.invoke("hacked_bsod", 4, function()
 					fe_utils.set_bsod(obj, false)
-					fe_utils.reboot_call(1)
+					fe_utils.reboot_call(2, obj)
 					self:Reset()
 				end)
 			end

@@ -594,7 +594,7 @@ function reboot_action(dik)
 		if obj then
 			local sec = obj:section()
 			if sec:find("_pda") and obj:condition() > 0.05 and not fe_utils.is_broken(obj) then
-				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time)
+				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time) * (1 - (fe_utils.get_pda_tier(obj) - 1 ) * 0.1)
 				alife_process_item(sec, obj:id(), {cond = obj:condition() - 0.01})
 				utils_obj.play_sound("device\\pda\\pda_dead")
 				obj:play_hud_motion("anm_empty", true, 1, 1, 0)
@@ -802,13 +802,13 @@ function process_shutdown()
 			cache_obj_id = obj:id() 
 		end
 
-		local radiation_chance = not (obj:has_upgrade("up_firsta_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
+		local radiation_chance = clamp(fe_utils.get_radiation(obj), 0, 10) * 5
 		local damage_chance = fe_utils.get_damage(obj) * 10
-		local overclock_glitch = fe_utils.is_overclocked(obj) and 10 or 0
+		local overclock_glitch = fe_utils.is_overclocked(obj) and 5 or 0
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
-		local electra_chance = not (obj:has_upgrade("up_firstc_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and ELECTRA_GLITCH_VALUE * 50 or 0
-		local passive_glitch = SETTINGS.other.devices_unreliability + (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
-		local final_chance = math.floor((radiation_chance + damage_chance + overclock_glitch + surge_psi_chance + electra_chance + passive_glitch) * ini_sys:r_float_ex(obj:section(),"glitch_factor"))
+		local electra_chance = fe_utils.get_electra(obj) * 50
+		local passive_glitch = SETTINGS.other.devices_unreliability --+ (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
+		local final_chance = math.floor((radiation_chance + damage_chance + overclock_glitch + surge_psi_chance + electra_chance + passive_glitch) * (obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")))
 		
 		if math.random(0, 100) < final_chance then
 			obj:set_device_enabled(false)

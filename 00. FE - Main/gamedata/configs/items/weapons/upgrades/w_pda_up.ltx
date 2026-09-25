@@ -21,6 +21,10 @@ inv_weight										= +0.1
 [up_sect_thirda_pda]
 cost                                            = 5000
 
+[up_sect_fourta_pda]
+cost                                            = 15000
+inv_weight										= +0.1
+
 ;----------------------------------------------------------------------
 
 [up_firsta_pda]
@@ -147,6 +151,28 @@ name                    = st_interface_upgrade
 description             = st_interface_upgrade_descr
 icon                    = ui_inGame2_upgrade_outfit_durability_2
 
+;---------------------------------------------------------------------
+
+[up_fourta_pda]
+scheme_index            = 0, 0
+known                   = 1
+effects                 =
+section                 = up_sect_fourta_pda
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           =
+
+property                = prop_reliability
+
+name                    = st_glitch_upgrade
+description             = st_glitch_upgrade_descr
+icon                    = ui_inGame2_upgrade_outfit_durability_1
+
 ;----------------------------------------------------------------------
 
 [up_gr_firstab_pda]
@@ -166,3 +192,6 @@ elements                = up_seconc_pda
 
 [up_gr_thirdab_pda]
 elements                = up_thirda_pda
+
+[up_gr_fourtab_pda]
+elements                = up_fourta_pda
