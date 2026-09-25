@@ -784,7 +784,7 @@ function process_shutdown()
 		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)
 	end
 
-	if obj and not fe_utils.is_broken(obj) and obj:condition() > 0.05 and not (z_pda_hacking and check_encrypted(obj)) then
+	if obj and not obj:section():find("glowstick") and not fe_utils.is_broken(obj) and obj:condition() > 0.05 and not (z_pda_hacking and check_encrypted(obj)) then
 
 		if not cache_obj then 
 			cache_obj = obj 
@@ -804,9 +804,11 @@ function process_shutdown()
 
 		local radiation_chance = not (obj:has_upgrade("up_firsta_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and clamp(RADIATION_AMOUNT, 0, 10) * 5 or 0
 		local damage_chance = fe_utils.get_damage(obj) * 10
+		local overclock_glitch = fe_utils.is_overclocked(obj) and 10 or 0
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
 		local electra_chance = not (obj:has_upgrade("up_firstc_pda") or ini_sys:r_bool_ex(obj:section(),"can_break") == false) and ELECTRA_GLITCH_VALUE * 50 or 0
-		local final_chance = math.floor(radiation_chance + damage_chance + surge_psi_chance + electra_chance + SETTINGS.other.devices_unreliability)
+		local passive_glitch = SETTINGS.other.devices_unreliability + (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
+		local final_chance = math.floor((radiation_chance + damage_chance + overclock_glitch + surge_psi_chance + electra_chance + passive_glitch) * ini_sys:r_float_ex(obj:section(),"glitch_factor"))
 		
 		if math.random(0, 100) < final_chance then
 			obj:set_device_enabled(false)

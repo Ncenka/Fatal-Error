@@ -188,16 +188,6 @@ DO NOT work with G.A.M.M.A and DO NOT work without "New PDA 3D Models".</descrip
 								<type name="Optional"/> 
 							</typeDescriptor> 
 						</plugin> 
-						<plugin name="Powered Exoskeletons"> 
-							<description></description> 
-							<image path="fomod\images\10.jpg" /> 
-							<files> 
-								<folder source="fomod\02. FE - ComPatch for Powered Exoskeletons" destination="" priority="0" /> 
-							</files> 
-							<typeDescriptor> 
-								<type name="Optional"/> 
-							</typeDescriptor> 
-						</plugin> 
 						<plugin name="Beef's NVGs Improved"> 
 							<description></description> 
 							<image path="fomod\images\13.jpg" /> 

@@ -7,7 +7,6 @@ struct v2p
 };
 
 // Основные параметры
-#define EFFECTS_MULTIPLIER 1.40 // Общий множитель интенсивности эффектов
 #define SCANLINE_THRESHOLD 0.45 // Порог активации движущейся линии (0-1)
 #define ARTIFACT_THRESHOLD 0.20 // Порог активации артефактов (0-1)
 #define STATIC_AMOUNT 0.15     // Базовое количество статического шума
@@ -91,7 +90,7 @@ float3 glitchClassic(float2 tc, float intensity)
 float4 main(v2p I): SV_Target
 {
     // Рассчитываем итоговую интенсивность эффектов
-    float effectsIntensity = pda_params.y * EFFECTS_MULTIPLIER;
+    float effectsIntensity = pda_params.y;
 	
 	// Применяем искажение только если интенсивность выше порога
     float2 finalUV = scanlineDistortion(I.tc0, timers.x, pda_params.y);

@@ -78,6 +78,14 @@ function create_overrides_fatal_error_v2()
 				_str = _str .. utils_xml.get_color("d_purple") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. game.translate_string("st_amper") .. " " .. utils_xml.get_color("ui_gray_1") .. amper_amount .." ".. unit .. " \\n"
 			end
 		end
+		
+		-- Glitch factor
+		if IsItem("device",sec) then
+			local glitch_factor = ini_sys:r_float_ex(sec,"glitch_factor")
+			if glitch_factor then	
+				_str = _str .. utils_xml.get_color("d_purple") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. game.translate_string("st_glitch_factor") .. " " .. utils_xml.get_color("ui_gray_1") .. (2 - glitch_factor) * 50 .. "% \\n"
+			end
+		end
 
 		-- Interactive
 		if IsItem("device",sec) then
@@ -112,6 +120,15 @@ function create_overrides_fatal_error_v2()
 			if cartography == false and tasks_placeable_waypoints then
 				local unit = game.translate_string("st_cartography_unavaible")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
+			end
+		end
+
+		-- Database
+		if IsItem("device",sec) then
+			local tab_database = ini_sys:r_bool_ex(sec,"tab_database")
+			if tab_database == true then
+				local unit = game.translate_string("st_database_avaible")
+				_str = _str .. utils_xml.get_color("d_purple") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end
 
