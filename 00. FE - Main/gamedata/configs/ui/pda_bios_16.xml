@@ -20,11 +20,6 @@
 			<texture>bios_button</texture>		
 			<text align="c" vert_align="c" font="letterica18">Boot</text>
 		</boot>
-
-		<debug x="133" y="70" width="50" height="30" stretch="1">
-			<texture>bios_button</texture>		
-			<text align="c" vert_align="c" font="letterica18">Debug</text>
-		</debug>
 		
 		<button_1 x="36" y="115" width="518" height="30" stretch="1">
 			<texture>bios_button_colors</texture>
@@ -155,10 +150,6 @@
 		<interface_interface x="400" y="540" width="150" height="768" stretch="1">
 			<text complex_mode="1" font="letterica18"/>
 		</interface_interface>
-
-		<debug_text x="40" y="105" width="745" height="300" stretch="1">
-			<text complex_mode="1" font="letterica16"/>
-		</debug_text>
 		
 		<hint x="558" y="150" width="230" height="700" stretch="0">
 			<text complex_mode="1" font="letterica18" a="255" r="100" g="200" b="255"/>
