@@ -334,7 +334,7 @@ function pda_bios_tab:Reset()
     if immersive_bios then
         hint_text.text1_l_bios = "Available random-access memory."
         self.bios_text1_l:SetText("Installed Physical Memory (RAM):")
-        self.bios_text1_r:SetText("[" .. 2^(fe_utils.get_pda_tier(pda) - 1) .. " GB]")
+        self.bios_text1_r:SetText("[" .. 2^(fe_utils.get_device_tier(pda) - 1) .. " GB]")
     else
         self.bios_text1_l:SetText("System Time:")
         self.bios_text1_r:SetText("[" .. os.date("%H:%M:%S") .. "]")

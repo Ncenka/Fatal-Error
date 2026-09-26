@@ -215,7 +215,7 @@ function break_device(damage_type, upgrade)
 		local chance
 
 		if obj:section():find("_pda") then
-			local tier = fe_utils.get_pda_tier(obj)
+			local tier = fe_utils.get_device_tier(obj)
         	chance = SETTINGS.pda[damage_type][tier]
 		else
 			chance = SETTINGS.devices[damage_type]
@@ -404,7 +404,7 @@ function repair_device(obj_b, obj_d, slot_from, slot_to)
 			if is_broken then
 				fe_utils.set_s_cond(obj_d, 0.1) -- barely working again
 			else
-				fe_utils.set_s_cond(obj_d, fe_utils.get_s_cond(obj_d) + 0.2)
+				fe_utils.set_s_cond(obj_d, fe_utils.get_s_cond(obj_d) + 0.5 / fe_utils.get_device_tier(obj_d))
 			end
 			news_manager.send_tip(db.actor, game.translate_string("st_device_partially_fix"), nil, default, 10000)
 			alife_release(obj_b)
@@ -535,7 +535,7 @@ function pda_break_bsod()
 		if #available_devices > 0 then
 
 			local pda = available_devices[math.random(1, #available_devices)]
-			local tier = fe_utils.get_pda_tier(pda)
+			local tier = fe_utils.get_device_tier(pda)
 			local chance = SETTINGS.pda.bsod[tier]
 				
 			if fe_utils.is_overclocked(pda) then
@@ -580,7 +580,7 @@ function reboot_action(dik)
 		if obj then
 			local sec = obj:section()
 			if sec:find("_pda") and obj:condition() > 0.05 and not fe_utils.is_broken(obj) then
-				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time) * (1 - (fe_utils.get_pda_tier(obj) - 1 ) * 0.1)
+				REBOOT = math.random(SETTINGS.other.reboot_min_time, SETTINGS.other.reboot_max_time) * (1 - (fe_utils.get_device_tier(obj) - 1 ) * 0.1)
 				alife_process_item(sec, obj:id(), {cond = obj:condition() - 0.01})
 				utils_obj.play_sound("device\\pda\\pda_dead")
 				obj:play_hud_motion("anm_empty", true, 1, 1, 0)

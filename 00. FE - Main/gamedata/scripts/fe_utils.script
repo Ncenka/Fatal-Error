@@ -1,10 +1,7 @@
 SECURITY_KEY = nil
 CPU = nil
 VERSION = "1.7.9.5"
-
--- s_cond is a 0..1 float representing overall device condition (1 = pristine, 0 = destroyed).
--- A device is considered broken once its s_cond drops to this threshold or below.
-S_COND_BROKEN_THRESHOLD = 0.05
+S_COND_BROKEN = 0.05
 
 LEVEL_PASSIVE_GLITCH = {
 	["k00_marsh"]				= 0.01,
@@ -66,7 +63,7 @@ function set_s_cond(obj, val)
 	local was_broken = is_broken(obj)
 	val = clamp(val, 0, 1)
 	item_device.dev_items[obj:id()].s_cond = val
-	local now_broken = val <= S_COND_BROKEN_THRESHOLD
+	local now_broken = val <= S_COND_BROKEN
 
 	if now_broken and not was_broken then
 		-- device just broke
@@ -187,7 +184,7 @@ end
 
 function is_broken(obj)
 	if not failsafe(obj) then return false end -- failsafe
-	return get_s_cond(obj) <= S_COND_BROKEN_THRESHOLD
+	return get_s_cond(obj) <= S_COND_BROKEN
 end
 
 function is_bsod(obj)
@@ -210,7 +207,7 @@ function get_screen_damage(obj)
     return item_device.dev_items[obj:id()].screen_damage or 0
 end
 
-function get_pda_tier(obj)
+function get_device_tier(obj)
     if not failsafe(obj) then return 5 end -- failsafe
     if ini_sys:r_float_ex(obj:section(),"tier") <= 5 then
         return ini_sys:r_float_ex(obj:section(),"tier")
@@ -361,7 +358,7 @@ function failsafe(obj)
 end
 
 function reboot_call(seconds, obj)
-	fatal_error_mcm.REBOOT = seconds * (1 - (get_pda_tier(obj) - 1 ) * 0.1)
+	fatal_error_mcm.REBOOT = seconds * (1 - (get_device_tier(obj) - 1 ) * 0.1)
 	fatal_error_mcm.process_pda_call()	
 end
 
