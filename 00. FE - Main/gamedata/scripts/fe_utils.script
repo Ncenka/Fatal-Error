@@ -168,7 +168,7 @@ end
 -- Issers\Getters
 ----------------------------------------------------------------------------------------------------
 
-function get_glitch(obj, bool)
+function get_glitch(obj)
 
     local radiation_glitch = clamp(get_radiation(obj), 0, 10) * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale
     local damage_glitch = (1 - get_s_cond(obj)) * 0.5
@@ -200,12 +200,12 @@ end
 
 function get_s_cond(obj)
     if not failsafe(obj) then return 1 end -- failsafe
-    return item_device.dev_items[obj:id()].s_cond
+    return item_device.dev_items[obj:id()].s_cond or 0
 end
 
 function get_screen_damage(obj)
     if not failsafe(obj) then return 0 end -- failsafe
-    return item_device.dev_items[obj:id()].screen_damage
+    return item_device.dev_items[obj:id()].screen_damage or 0
 end
 
 function get_device_tier(obj)
