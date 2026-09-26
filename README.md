@@ -1,5 +1,3 @@
-Moddb link: https://www.moddb.com/mods/stalker-anomaly/addons/fatal-error-by-ncenka
-
 <center>
 <h2>Developer got conscripted 24.10.2025 - do not expect any help, fixes, updates, etc. until November 2026. If you reading this past November 2026 consider addon falling under Creative Commons License and author never be active again.</h2>
 <p></p>
