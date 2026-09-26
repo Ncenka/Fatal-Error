@@ -3,7 +3,7 @@ CPU = nil
 VERSION = "1.7.9.5"
 S_COND_BROKEN = 0.05
 
-LEVEL_PASSIVE_GLITCH = {
+SETTINGS_LOCATIONS = {
 	["k00_marsh"]				= 0.01,
     ["l01_escape"]				= 0.01,
 	["l02_garbage"]				= 0.01,
@@ -175,7 +175,7 @@ function get_glitch(obj, bool)
     local overclock_glitch = is_overclocked(obj) and 0.15 or 0 
     local surge_psi_glitch = get_surge_psi(obj)
     local electra_glitch = get_electra(obj)
-    local passive_glitch = fatal_error_mcm.SETTINGS.other.devices_unreliability / 100 + (LEVEL_PASSIVE_GLITCH[level.name()] or 0)
+    local passive_glitch = fatal_error_mcm.SETTINGS.other.passive_glitch + (fatal_error_mcm.SETTINGS_LOCATIONS[level.name()] or 0)
     local final_glitch = (radiation_glitch * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale) + electra_glitch + damage_glitch + passive_glitch + overclock_glitch + surge_psi_glitch
     final_glitch = final_glitch * (obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor"))
 	
