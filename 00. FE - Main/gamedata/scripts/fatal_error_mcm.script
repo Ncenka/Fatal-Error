@@ -15,7 +15,10 @@ SETTINGS = {
 
 	other = {
 		devices_unreliability = 1,
+		passive_glitch = 0.01,
 		damage_chance = 2,
+		min_s_cond_damage = 25,
+		max_s_cond_damage = 50,
 		break_head_device = 5,
 		reboot_min_time = 30,
 		reboot_max_time = 60,
@@ -114,6 +117,7 @@ function on_mcm_load()
                 sh = true,
                 gr = {
                     {id = "devices_unreliability", type = "track", val = 2, min = 0, max = 100, step = 1, def = 1},
+					{id = "passive_glitch", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.01},
                     {id = "emission_delay", type = "track", val = 2, min = 10, max = 120, step = 10, def = 60},
                     {id = "radiation_delay", type = "track", val = 2, min = 1, max = 60, step = 1, def = 1},
                     {id = "radiation_glitch_scale", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.1},
@@ -121,8 +125,8 @@ function on_mcm_load()
                     {id = "radiation_amount_lower", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.01},
                     {id = "radiation_amount_to_fry", type = "track", val = 2, min = 1, max = 5, step = 0.5, def = 1},
                     {id = "chance_for_pda_to_damage", type = "track", val = 2, min = 0, max = 100, step = 1, def = 2},
-                    {id = "min_s_cond_damage", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.25},
-                    {id = "max_s_cond_damage", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.50},
+                    {id = "min_s_cond_damage", type = "track", val = 2, min = 0, max = 100, step = 1, def = 25},
+                    {id = "max_s_cond_damage", type = "track", val = 2, min = 0, max = 100, step = 1, def = 50},
                     {id = "chance_for_device_to_break", type = "track", val = 2, min = 0, max = 100, step = 1, def = 5},
                     {id = "reboot_time_min", type = "track", val = 2, min = 0, max = 600, step = 10, def = 30},
                     {id = "reboot_time_max", type = "track", val = 2, min = 0, max = 600, step = 10, def = 60},
@@ -183,40 +187,6 @@ function on_option_change()
     SETTINGS.other.beep_radius = ui_mcm.get("fatal_error/fe_other/beep_radius")
     SETTINGS.reboot_key = ui_mcm.get("fatal_error/fe_other/reboot_key")
 
-    SETTINGS_LOCATIONS["k00_marsh"] = ui_mcm.get("fatal_error/fe_locations/location_k00_marsh")
-    SETTINGS_LOCATIONS["l01_escape"] = ui_mcm.get("fatal_error/fe_locations/location_l01_escape")
-    SETTINGS_LOCATIONS["l02_garbage"] = ui_mcm.get("fatal_error/fe_locations/location_l02_garbage")
-    SETTINGS_LOCATIONS["y04_pole"] = ui_mcm.get("fatal_error/fe_locations/location_y04_pole")
-    SETTINGS_LOCATIONS["l03_agroprom"] = ui_mcm.get("fatal_error/fe_locations/location_l03_agroprom")
-    SETTINGS_LOCATIONS["l03u_agr_underground"] = ui_mcm.get("fatal_error/fe_locations/location_l03u_agr_underground")
-    SETTINGS_LOCATIONS["l04_darkvalley"] = ui_mcm.get("fatal_error/fe_locations/location_l04_darkvalley")
-    SETTINGS_LOCATIONS["l04u_labx18"] = ui_mcm.get("fatal_error/fe_locations/location_l04u_labx18")
-    SETTINGS_LOCATIONS["l05_bar"] = ui_mcm.get("fatal_error/fe_locations/location_l05_bar")
-    SETTINGS_LOCATIONS["k02_trucks_cemetery"] = ui_mcm.get("fatal_error/fe_locations/location_k02_trucks_cemetery")
-    SETTINGS_LOCATIONS["k01_darkscape"] = ui_mcm.get("fatal_error/fe_locations/location_k01_darkscape")
-    SETTINGS_LOCATIONS["l06_rostok"] = ui_mcm.get("fatal_error/fe_locations/location_l06_rostok")
-    SETTINGS_LOCATIONS["l07_military"] = ui_mcm.get("fatal_error/fe_locations/location_l07_military")
-    SETTINGS_LOCATIONS["l08_yantar"] = ui_mcm.get("fatal_error/fe_locations/location_l08_yantar")
-    SETTINGS_LOCATIONS["l08u_brainlab"] = ui_mcm.get("fatal_error/fe_locations/location_l08u_brainlab")
-    SETTINGS_LOCATIONS["l09_deadcity"] = ui_mcm.get("fatal_error/fe_locations/location_l09_deadcity")
-    SETTINGS_LOCATIONS["l10_limansk"] = ui_mcm.get("fatal_error/fe_locations/location_l10_limansk")
-    SETTINGS_LOCATIONS["l10_radar"] = ui_mcm.get("fatal_error/fe_locations/location_l10_radar")
-    SETTINGS_LOCATIONS["l10u_bunker"] = ui_mcm.get("fatal_error/fe_locations/location_l10u_bunker")
-    SETTINGS_LOCATIONS["l10_red_forest"] = ui_mcm.get("fatal_error/fe_locations/location_l10_red_forest")
-    SETTINGS_LOCATIONS["l11_hospital"] = ui_mcm.get("fatal_error/fe_locations/location_l11_hospital")
-    SETTINGS_LOCATIONS["l11_pripyat"] = ui_mcm.get("fatal_error/fe_locations/location_l11_pripyat")
-    SETTINGS_LOCATIONS["pripyat"] = ui_mcm.get("fatal_error/fe_locations/location_pripyat")
-    SETTINGS_LOCATIONS["labx8"] = ui_mcm.get("fatal_error/fe_locations/location_labx8")
-    SETTINGS_LOCATIONS["l12_stancia"] = ui_mcm.get("fatal_error/fe_locations/location_l12_stancia")
-    SETTINGS_LOCATIONS["l12_stancia_2"] = ui_mcm.get("fatal_error/fe_locations/location_l12_stancia_2")
-    SETTINGS_LOCATIONS["l12u_control_monolith"] = ui_mcm.get("fatal_error/fe_locations/location_l12u_control_monolith")
-    SETTINGS_LOCATIONS["l12u_sarcofag"] = ui_mcm.get("fatal_error/fe_locations/location_l12u_sarcofag")
-    SETTINGS_LOCATIONS["l13_generators"] = ui_mcm.get("fatal_error/fe_locations/location_l13_generators")
-    SETTINGS_LOCATIONS["l13u_warlab"] = ui_mcm.get("fatal_error/fe_locations/location_l13u_warlab")
-    SETTINGS_LOCATIONS["jupiter"] = ui_mcm.get("fatal_error/fe_locations/location_jupiter")
-    SETTINGS_LOCATIONS["jupiter_underground"] = ui_mcm.get("fatal_error/fe_locations/location_jupiter_underground")
-    SETTINGS_LOCATIONS["zaton"] = ui_mcm.get("fatal_error/fe_locations/location_zaton")
-
     SETTINGS.light_reboot = ui_mcm.get("fatal_error/fe_special/light_reboot")
 	SETTINGS.immersive_bios = ui_mcm.get("fatal_error/fe_special/immersive_bios")
 	SETTINGS.censor_aoe = ui_mcm.get("fatal_error/fe_special/censor_aoe")
@@ -274,7 +244,7 @@ function break_device(damage_type, upgrade)
 			if 75 > math.random(0, 100) then
 				local min_damage = math.min(SETTINGS.other.min_s_cond_damage, SETTINGS.other.max_s_cond_damage)
                 local max_damage = math.max(SETTINGS.other.min_s_cond_damage, SETTINGS.other.max_s_cond_damage)
-                local dmg = min_damage + (math.random() * (max_damage - min_damage))
+                local dmg = math.random (min_damage,max_damage) / 100
 				fe_utils.set_s_cond(obj, fe_utils.get_s_cond(obj) - dmg)
 			else
 				fe_utils.set_s_cond(obj, 0)
@@ -508,7 +478,9 @@ function actor_on_before_hit(s_hit, bone_id)
 		and math.random(0, 100) < SETTINGS.other.break_head_device
 	then
 		if 75 > math.random(0 ,100) then
-			local dmg = 0.25 + (math.random() * 0.25) -- random damage between 0.25 and 0.50
+			local min_damage = math.min(SETTINGS.other.min_s_cond_damage, SETTINGS.other.max_s_cond_damage)
+            local max_damage = math.max(SETTINGS.other.min_s_cond_damage, SETTINGS.other.max_s_cond_damage)
+            local dmg = math.random (min_damage,max_damage) / 100
 			fe_utils.set_s_cond(head_device, fe_utils.get_s_cond(head_device) - dmg)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		else
@@ -834,7 +806,7 @@ function process_shutdown()
 		local overclock_glitch = fe_utils.is_overclocked(obj) and 5 or 0
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
 		local electra_chance = fe_utils.get_electra(obj) * 50
-		local passive_glitch = SETTINGS.other.devices_unreliability --+ (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
+		local passive_glitch = SETTINGS.other.devices_unreliability + SETTINGS.other.passive_glitch * 100 --+ (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
 		local final_chance = math.floor((radiation_chance + damage_chance + overclock_glitch + surge_psi_chance + electra_chance + passive_glitch) * (obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")))
 		
 		if math.random(0, 100) < final_chance then
