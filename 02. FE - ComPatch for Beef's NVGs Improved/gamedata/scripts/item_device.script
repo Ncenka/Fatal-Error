@@ -835,7 +835,7 @@ function device_binder:update(delta)
 				
 				-- Light flicker on event for flashlights
 				if (self.type == "FLASH") then
-					if dev_items[obj:id()].damage > 0 then
+					if fe_utils.get_s_cond(obj) < 1 then
 						self:process_flicker(true)
 					else
 						self:process_flicker()
@@ -958,7 +958,7 @@ function device_binder:process_torch(id, section, condition)
 	
 -- Torch light flicker on event
 	if self.object:torch_enabled() then
-		if dev_items[id].damage > 0 then
+		if fe_utils.get_s_cond(self.object) < 1 then
 			self:process_flicker(true)
 		else
 			self:process_flicker()

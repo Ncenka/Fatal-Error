@@ -170,14 +170,15 @@ end
 
 function get_glitch(obj, bool)
 
-    local radiation_glitch = clamp(get_radiation(obj), 0, 10)
+    local radiation_glitch = clamp(get_radiation(obj), 0, 10) * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale
     local damage_glitch = (1 - get_s_cond(obj)) * 0.5
+    local screen_damage_glitch = get_screen_damage(obj) * 0.1
     local overclock_glitch = is_overclocked(obj) and 0.15 or 0 
     local surge_psi_glitch = get_surge_psi(obj)
     local electra_glitch = get_electra(obj)
     local passive_glitch = fatal_error_mcm.SETTINGS.other.passive_glitch + (LEVEL_PASSIVE_GLITCH[level.name()] or 0)
-    local final_glitch = (radiation_glitch * fatal_error_mcm.SETTINGS.other.radiation.glitch_scale) + electra_glitch + damage_glitch + passive_glitch + overclock_glitch + surge_psi_glitch
-    final_glitch = final_glitch * (obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor"))
+    local glitch_factor = obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")
+    local final_glitch = (radiation_glitch + damage_glitch + screen_damage_glitch + overclock_glitch + surge_psi_glitch + electra_glitch + passive_glitch) * glitch_factor
 	
     return final_glitch
 end
@@ -204,7 +205,7 @@ end
 
 function get_screen_damage(obj)
     if not failsafe(obj) then return 0 end -- failsafe
-    return item_device.dev_items[obj:id()].screen_damage or 0
+    return item_device.dev_items[obj:id()].screen_damage
 end
 
 function get_device_tier(obj)

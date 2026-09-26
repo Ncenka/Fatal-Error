@@ -211,13 +211,13 @@
 		<text>Base passive glitch added to PDA glitchiness.</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage">
-		<text>Minimum device damage</text>
+		<text>Minimum device damage (%)</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage_desc">
 		<text>Minimum amount of damage dealt to device by a partial device break.</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage">
-		<text>Maximum device damage</text>
+		<text>Maximum device damage (%)</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage_desc">
 		<text>Maximum amount of damage dealt to device by a partial device break.</text>

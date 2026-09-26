@@ -808,9 +808,9 @@ function device_binder:update(delta)
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
-		if dev_items[id] and fe_utils.get_s_cond(obj) <= fe_utils.S_COND_BROKEN and obj:is_device_enabled() == true then
+		if dev_items[id] and fe_utils.is_broken(obj) == true and obj:is_device_enabled() == true then
 			obj:set_device_enabled(false)
-		elseif dev_items[id] and fe_utils.get_s_cond(obj) > fe_utils.S_COND_BROKEN and obj:is_device_enabled() == false then
+		elseif dev_items[id] and fe_utils.is_broken(obj) == false and obj:is_device_enabled() == false then
 			obj:set_device_enabled(true)
 		end
 		

@@ -809,11 +809,13 @@ function process_shutdown()
 
 		local radiation_chance = clamp(fe_utils.get_radiation(obj), 0, 10) * 5
 		local damage_chance = (1 - fe_utils.get_s_cond(obj)) * 50
-		local overclock_glitch = fe_utils.is_overclocked(obj) and 5 or 0
+		local screen_damage_chance = fe_utils.get_screen_damage(obj) * 10
+		local overclock_chance = fe_utils.is_overclocked(obj) and 5 or 0
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
 		local electra_chance = fe_utils.get_electra(obj) * 50
-		local passive_glitch = SETTINGS.other.devices_unreliability + SETTINGS.other.passive_glitch * 100 --+ (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
-		local final_chance = math.floor((radiation_chance + damage_chance + overclock_glitch + surge_psi_chance + electra_chance + passive_glitch) * (obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")))
+		local passive_chance = SETTINGS.other.devices_unreliability + SETTINGS.other.passive_glitch * 10 --+ (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * 10 or 0)
+		local glitch_factor = obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")
+		local final_chance = math.floor((radiation_chance + damage_chance + screen_damage_chance + overclock_chance + surge_psi_chance + electra_chance + passive_chance) * glitch_factor)
 		
 		if math.random(0, 100) < final_chance then
 			obj:set_device_enabled(false)
