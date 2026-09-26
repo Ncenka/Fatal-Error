@@ -139,7 +139,7 @@ function create_overrides_fatal_error_v2()
 		end
 		
 		-- Device Damaged
-		if IsItem("device",sec) and fe_utils.get_damage(obj) > 0 then
+		if IsItem("device",sec) and fe_utils.get_screen_damage(obj) > 0 then
 			local unit = game.translate_string("st_damaged")			
 			_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 		end
@@ -159,7 +159,7 @@ function create_overrides_fatal_error_v2()
 			_str = _str .. " " .. unit 
 		end
 		
-		if IsItem("device",sec) and fe_utils.get_damage(obj) > 0 then
+		if IsItem("device",sec) and fe_utils.get_screen_damage(obj) > 0 then
 			local unit = game.translate_string("st_damaged_header")			
 			_str = _str .. " " .. unit 
 		end
@@ -173,6 +173,24 @@ function create_overrides_fatal_error_v2()
 	
 		return fe_override_two(obj, sec, str)
 	end
+
+	local fe_override_three = ui_item.build_desc_header
+	ui_item.build_desc_header = function (obj, sec, str)
+
+		local _str = ""
+
+		-- Device condition
+		if IsItem("device",sec) then
+			local con = math.ceil(fe_utils.get_s_cond(obj) * 100)
+			local clr = utils_xml.get_color_con(con)
+			_str = clr .. " • " .. utils_xml.get_color("ui_gray_1") .. game.translate_string("st_condition") .. ": " .. clr .. tostring(con) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")
+		end
+
+		str = _str .. str
+
+		return fe_override_three(obj, sec, str)
+	end
+
 end
 
 function on_game_start()

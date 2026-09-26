@@ -470,7 +470,7 @@ function bsod_tab:HackFailed()
 	end)
 
 	CreateTimeEvent("bsodhack", "setfail", 2, function()
-		fe_utils.set_broken(obj, 1)
+		fe_utils.set_s_cond(obj, 0)
 		return true
 	end)
 	CreateTimeEvent("bsodhack", "set_fail", 3, function()

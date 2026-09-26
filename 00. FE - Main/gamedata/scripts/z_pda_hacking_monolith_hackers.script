@@ -469,7 +469,7 @@ function monolith_tab:HackFailed()
 	end)
 
 	CreateTimeEvent("monolithhack", "setfail", 2, function()
-		fe_utils.set_broken(obj, 1)
+		fe_utils.set_s_cond(obj, 0)
 		return true
 	end)
 	CreateTimeEvent("monolithhack", "set_fail", 3, function()

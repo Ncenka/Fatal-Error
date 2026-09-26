@@ -210,12 +210,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break_desc">
 		<text>Шанс того, что после получения физического урона в голову девайс на голове сломается.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot">
-		<text>Оптимизированная перезагрузка КПК</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot_desc">
-		<text>Если у вас есть фризы во время перезагрузки или слабый ПК включите эту опцию.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_other_beep_radius">
 		<text>Радиус "Бипалки" КПК</text>
 	</string>
@@ -246,12 +240,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Максимальное время неисправности устройства. Должно быть больше, чем Минимальное время неисправности.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
-    	<text>Иммерсивный BIOS</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
-		<text>Изменяет экран BIOS для отображения более игровой информации вместо реальной, такой как имя пользователя, время, дата копирайта и т.д.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_special">
     	<text>Особое</text>
 	</string>
@@ -266,6 +254,18 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
 		<text>Скрыть все возможные символики, флагы, упоминания других стран, политических структур и организаций.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot">
+		<text>Оптимизированная перезагрузка КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot_desc">
+		<text>Если у вас есть фризы во время перезагрузки или слабый ПК включите эту опцию.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios">
+    	<text>Иммерсивный BIOS</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
+		<text>Изменяет экран BIOS для отображения более игровой информации вместо реальной, такой как имя пользователя, время, дата копирайта и т.д.</text>
 	</string>
 	
 	<!--

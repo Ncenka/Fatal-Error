@@ -210,12 +210,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break_desc">
 		<text>Шанс того, що після отримання фізичного пошкодження в голову пристрій на голові зламається.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot">
-		<text>Оптимізоване перезавантаження КПК</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot_desc">
-		<text>Якщо у вас є фризи під час перезавантаження або слабкий ПК, увімкніть цю опцію.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_other_beep_radius">
 		<text>Радіус "Біпалки" КПК</text>
 	</string>
@@ -246,12 +240,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Максимальний час несправності пристрою. Має бути більшим, ніж Мінімальний час несправності.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
-		<text>Імерсивний BIOS</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
-		<text>Змінює екран BIOS для відображення більш ігрової інформації замість реальної, такої як ім'я користувача, час, дата копірайту тощо.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_special">
     	<text>Особливе</text>
 	</string>
@@ -266,6 +254,18 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
 		<text>Приховати всі можливі символи, прапори, згадки про інші країни, політичні структури та організації.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot">
+		<text>Оптимізоване перезавантаження КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot_desc">
+		<text>Якщо у вас є фризи під час перезавантаження або слабкий ПК, увімкніть цю опцію.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios">
+		<text>Імерсивний BIOS</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
+		<text>Змінює екран BIOS для відображення більш ігрової інформації замість реальної, такої як ім'я користувача, час, дата копірайту тощо.</text>
 	</string>
 	
 	<!--

@@ -210,12 +210,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break_desc">
 		<text>The chance for Head Device to get broken after receiving physical damage to the head.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot">
-		<text>Light Reboot Mode</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot_desc">
-		<text>If you have friezes or weak PC enable this option.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_other_beep_radius">
 		<text>PDA "Beep" radius</text>
 	</string>
@@ -246,12 +240,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Maximum device shutdown time. Must be greater than the Minimum shutdown time.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios">
-		<text>Immersive BIOS</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
-		<text>Changes BIOS screen to represent more in-game information rather that IRL information, such as username, time, copyright date, etc.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_special">
  		<text>Special</text>
 	</string>
@@ -266,6 +254,18 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
 		<text>Hide all possible symbols, flags, references to other countries, political structures, and organizations.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot">
+		<text>Light Reboot Mode</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot_desc">
+		<text>If you have friezes or weak PC enable this option.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios">
+		<text>Immersive BIOS</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
+		<text>Changes BIOS screen to represent more in-game information rather that IRL information, such as username, time, copyright date, etc.</text>
 	</string>
 	
 	<!--

@@ -391,8 +391,8 @@ function pda_bios_tab:Reset()
 end
 
 function actor_on_first_update()
-    immersive_bios = fatal_error_mcm.SETTINGS.other.immersive_bios
-    year = fatal_error_mcm.SETTINGS.other.immersive_bios and "2018" or "2026"
+    immersive_bios = fatal_error_mcm.SETTINGS.immersive_bios
+    year = fatal_error_mcm.SETTINGS.immersive_bios and "2018" or "2026"
 end
 
 function on_game_start()

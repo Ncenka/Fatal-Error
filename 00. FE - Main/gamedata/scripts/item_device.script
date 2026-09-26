@@ -754,21 +754,21 @@ function device_binder:__init(obj) super(obj)
 	self.first_update = nil
 	if not dev_items[obj:id()] then
 		dev_items[obj:id()] = {
-			is_broken = false,
+			s_cond = 1,
 			is_bsod = false,
 			is_overclocked = false,
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
-			damage = 0,
+			screen_damage = 0,
 		}
 		
 		if obj:section():find("itm_pda") then
-			dev_items[obj:id()].damage = math.random(0,5)
-			if math.random(0, 100) < 10 then dev_items[obj:id()].is_broken = true end
+			dev_items[obj:id()].s_cond = math.random()
+			dev_items[obj:id()].screen_damage = math.random(0,5)
 			if math.random(0, 100) < 10 then dev_items[obj:id()].is_bsod = true end
 			if math.random(0, 100) < 10 then dev_items[obj:id()].is_overclocked = true end
 
-		elseif ini_sys:r_float_ex(obj:section(),"damage") then
-			dev_items[obj:id()].damage = ini_sys:r_float_ex(obj:section(),"damage")
+		elseif ini_sys:r_float_ex(obj:section(),"s_cond") then
+			dev_items[obj:id()].s_cond = ini_sys:r_float_ex(obj:section(),"s_cond")
 		end
 
 	end
@@ -808,9 +808,9 @@ function device_binder:update(delta)
 			fe_utils.set_screen_damage(obj, 2)
 		end
 
-		if dev_items[id] and fe_utils.is_broken(obj) == true and obj:is_device_enabled() == true then
+		if dev_items[id] and fe_utils.get_s_cond(obj) <= fe_utils.S_COND_BROKEN_THRESHOLD and obj:is_device_enabled() == true then
 			obj:set_device_enabled(false)
-		elseif dev_items[id] and fe_utils.is_broken(obj) == false and obj:is_device_enabled() == false then
+		elseif dev_items[id] and fe_utils.get_s_cond(obj) > fe_utils.S_COND_BROKEN_THRESHOLD and obj:is_device_enabled() == false then
 			obj:set_device_enabled(true)
 		end
 		
@@ -854,7 +854,7 @@ function device_binder:update(delta)
 				
 				-- Light flicker on event for flashlights
 				if (self.type == "FLASH") then
-					if dev_items[obj:id()].damage > 0 then
+					if fe_utils.get_s_cond(obj) < 1 then
 						self:process_flicker(true)
 					else
 						self:process_flicker()
@@ -977,7 +977,7 @@ function device_binder:process_torch(id, section, condition)
 	
 -- Torch light flicker on event
 	if self.object:torch_enabled() then
-		if dev_items[id].damage > 0 then
+		if fe_utils.get_s_cond(self.object) < 1 then
 			self:process_flicker(true)
 		else
 			self:process_flicker()

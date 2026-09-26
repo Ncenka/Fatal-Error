@@ -22,8 +22,6 @@ SETTINGS = {
 		shutdown_min_time = 5,
 		shutdown_max_time = 10,
 		beep_radius = 50,
-		light_reboot = false,
-		immersive_bios = false,
         radiation = {
             amount_to_fry = 1,
             glitch_scale = 0.1,
@@ -34,7 +32,9 @@ SETTINGS = {
 	reboot_key = DIK_keys.DIK_M,
 
 	censor_aoe = false,
-	censor_insignia = false
+	censor_insignia = false,
+	light_reboot = false,
+	immersive_bios = false
 }
 
 local delays = {
@@ -128,8 +128,6 @@ function on_mcm_load()
                     {id = "shutdown_max_time", type = "track", val = 2, min = 0, max = 60, step = 1, def = 10},
                     {id = "beep_radius", type = "track", val = 2, min = 5, max = 100, step = 1, def = 50},
                     {id = "reboot_key", type = "key_bind", val = 2, def = DIK_keys.DIK_M},
-                    {id = "light_reboot", type = "check", val = 1, def = false},
-					{id = "immersive_bios", type = "check", val = 1, def = false},
                 }
             },
 			{
@@ -137,7 +135,9 @@ function on_mcm_load()
                 sh = true,
                 gr = {
 					{id = "censor_aoe", type = "check", val = 1, def = false},
-					{id = "censor_insignia", type = "check", val = 1, def = false}
+					{id = "censor_insignia", type = "check", val = 1, def = false},
+					{id = "light_reboot", type = "check", val = 1, def = false},
+					{id = "immersive_bios", type = "check", val = 1, def = false}
 				}
 			}
         }
@@ -177,9 +177,9 @@ function on_option_change()
     SETTINGS.other.shutdown_max_time = ui_mcm.get("fatal_error/fe_other/shutdown_max_time")
     SETTINGS.other.beep_radius = ui_mcm.get("fatal_error/fe_other/beep_radius")
     SETTINGS.reboot_key = ui_mcm.get("fatal_error/fe_other/reboot_key")
-    SETTINGS.other.light_reboot = ui_mcm.get("fatal_error/fe_other/light_reboot")
-	SETTINGS.other.immersive_bios = ui_mcm.get("fatal_error/fe_other/immersive_bios")
 
+    SETTINGS.light_reboot = ui_mcm.get("fatal_error/fe_special/light_reboot")
+	SETTINGS.immersive_bios = ui_mcm.get("fatal_error/fe_special/immersive_bios")
 	SETTINGS.censor_aoe = ui_mcm.get("fatal_error/fe_special/censor_aoe")
 	SETTINGS.censor_insignia = ui_mcm.get("fatal_error/fe_special/censor_insignia")
 	
@@ -212,16 +212,13 @@ function break_device(damage_type, upgrade)
     if #available_devices > 0 then
 
         local obj = available_devices[math.random(1, #available_devices)]
-		local sec = obj:section()
 		local chance
-		local is_device = false
 
-		if sec:find("_pda") then
+		if obj:section():find("_pda") then
 			local tier = fe_utils.get_pda_tier(obj)
         	chance = SETTINGS.pda[damage_type][tier]
 		else
 			chance = SETTINGS.devices[damage_type]
-			is_device = true
 		end
 
 		if fe_utils.is_overclocked(obj) then
@@ -235,10 +232,11 @@ function break_device(damage_type, upgrade)
         
         if math.random(0, 100) < (radiation_scale * chance) then
 
-			if is_device and 75 > math.random(0, 100) then
-				fe_utils.set_damage(obj, 1)
+			if 75 > math.random(0, 100) then
+				local dmg = 0.25 + (math.random() * 0.25) -- random damage between 0.25 and 0.50
+				fe_utils.set_s_cond(obj, fe_utils.get_s_cond(obj) - dmg)
 			else
-				fe_utils.set_broken(obj, 1)
+				fe_utils.set_s_cond(obj, 0)
 			end
 				
 			if damage_type == "radiation" then
@@ -261,7 +259,8 @@ function fix_pda_check_pda()
 end
 
 function fix_pda(cost, first_speaker, second_speaker)
-	fe_utils.set_broken(db.actor:item_in_slot(8), 2)
+	fe_utils.set_s_cond(db.actor:item_in_slot(8), 1)
+	news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, cost)
 	RADIATION_AMOUNT = 0
 end
@@ -280,7 +279,7 @@ function fix_pda_bsod_check_money()
 end
 
 function fix_pda_screen_check()
-	return fe_utils.get_damage(db.actor:item_in_slot(8)) > 0
+	return fe_utils.get_screen_damage(db.actor:item_in_slot(8)) > 0
 end
 
 function fix_pda_screen(first_speaker, second_speaker)
@@ -379,52 +378,38 @@ function repair_device(obj_b, obj_d, slot_from, slot_to)
 
     local tool = obj_b:section()
     local is_device = obj_d:section():find("device_") or obj_d:section():find("detector_")
-    local is_pda = obj_d:section():find("_pda") or obj_d:section():find("itm_pda_")
     
 	-- Just make sure NPC PDAs can be repaired
     if not (is_device or obj_d:section():find("itm_pda_")) then return end
     
     local is_broken = fe_utils.is_broken(obj_d)
-    local damage = fe_utils.get_damage(obj_d)
+    local screen_damage = fe_utils.get_screen_damage(obj_d)
     
     if tool:find("tool_fix_pda") then
-        if is_pda then
-            if is_broken then
-                fe_utils.set_broken(obj_d, 2)
-                alife_release(obj_b)
-                actor_effects.play_item_fx("craft_dummy")
-                return
-            elseif damage > 0 then
-                fe_utils.set_screen_damage(obj_d, 3)
-                alife_release(obj_b)
-                actor_effects.play_item_fx("craft_dummy")
-                return
-            end
-        else
-            if is_broken or damage > 0 then
-                fe_utils.set_damage(obj_d, 2)
-				fe_utils.set_broken(obj_d, 2)
-                alife_release(obj_b)
-                actor_effects.play_item_fx("craft_dummy")
-                return
-            end
-        end
+		if fe_utils.get_s_cond(obj_d) < 1 then
+			fe_utils.set_s_cond(obj_d, 1)
+			news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
+			alife_release(obj_b)
+			actor_effects.play_item_fx("craft_dummy")
+			return
+		elseif screen_damage > 0 then
+			fe_utils.set_screen_damage(obj_d, 3)
+			alife_release(obj_b)
+			actor_effects.play_item_fx("craft_dummy")
+			return
+		end
         
     elseif tool:find("tool_cheap_fix_pda") then
-        if is_pda then
-            if is_broken then
-                fe_utils.set_broken(obj_d, 2)
-                alife_release(obj_b)
-                actor_effects.play_item_fx("craft_dummy")
-                return
-            end
-        else
-            if is_broken or damage > 0 then
-                fe_utils.set_damage(obj_d, 3)
-                alife_release(obj_b)
-                actor_effects.play_item_fx("craft_dummy")
-            end
-        end
+		if fe_utils.get_s_cond(obj_d) < 1 then
+			if is_broken then
+				fe_utils.set_s_cond(obj_d, 0.1) -- barely working again
+			else
+				fe_utils.set_s_cond(obj_d, fe_utils.get_s_cond(obj_d) + 0.2)
+			end
+			news_manager.send_tip(db.actor, game.translate_string("st_device_partially_fix"), nil, default, 10000)
+			alife_release(obj_b)
+			actor_effects.play_item_fx("craft_dummy")
+		end
     end
 end
 
@@ -482,10 +467,11 @@ function actor_on_before_hit(s_hit, bone_id)
 		and math.random(0, 100) < SETTINGS.other.break_head_device
 	then
 		if 75 > math.random(0 ,100) then
-			fe_utils.set_damage(head_device, 1)
+			local dmg = 0.25 + (math.random() * 0.25) -- random damage between 0.25 and 0.50
+			fe_utils.set_s_cond(head_device, fe_utils.get_s_cond(head_device) - dmg)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		else
-			fe_utils.set_broken(head_device, 1)
+			fe_utils.set_s_cond(head_device, 0)
 			utils_obj.play_sound("material\\glass\\glass_fall03hl")
 		end
 	end
@@ -505,7 +491,7 @@ function actor_on_before_hit(s_hit, bone_id)
 
 		if #available_devices > 0 then
         	local pda = available_devices[math.random(1, #available_devices)]
-			if fe_utils.get_damage(pda) < 5 and (test_trigger == 1 and tg > test_delay) then
+			if fe_utils.get_screen_damage(pda) < 5 and (test_trigger == 1 and tg > test_delay) then
 				fe_utils.set_screen_damage(pda, 1)
 				test_trigger = 0 --Fucking ensure PDAs don't multiply!
 			end
@@ -803,7 +789,7 @@ function process_shutdown()
 		end
 
 		local radiation_chance = clamp(fe_utils.get_radiation(obj), 0, 10) * 5
-		local damage_chance = fe_utils.get_damage(obj) * 10
+		local damage_chance = (1 - fe_utils.get_s_cond(obj)) * 50
 		local overclock_glitch = fe_utils.is_overclocked(obj) and 5 or 0
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
 		local electra_chance = fe_utils.get_electra(obj) * 50

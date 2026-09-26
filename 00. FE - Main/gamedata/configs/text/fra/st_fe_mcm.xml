@@ -210,12 +210,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break_desc">
 		<text>Chance que le dispositif tête casse après un choc physique reçu à la tête.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot">
-		<text>Mode reboot léger</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_light_reboot_desc">
-		<text>Si tu as des freezes ou un PC faible, active cette option.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_other_beep_radius">
 		<text>Rayon du bip du PDA</text>
 	</string>
@@ -246,12 +240,6 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Temps maximal de défaut de l'appareil. Doit être supérieur au Temps minimal de défaut.</text>
 	</string>
-	 <string id="ui_mcm_fatal_error_fe_other_immersive_bios">
-		<text>BIOS Immersif</text>
-	</string>
-	<string id="ui_mcm_fatal_error_fe_other_immersive_bios_desc">
-		<text>Modifie l'écran du BIOS pour afficher des informations plus liées au jeu plutôt que des informations réelles, telles que le nom d'utilisateur, l'heure, la date du copyright, etc.</text>
-	</string>
 	<string id="ui_mcm_fatal_error_fe_special">
     	<text>Spécial</text>
 	</string>
@@ -266,6 +254,18 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_insignia_desc">
 		<text>Masquer tous les symboles, drapeaux, mentions d'autres pays, structures politiques et organisations.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot">
+		<text>Mode reboot léger</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_light_reboot_desc">
+		<text>Si tu as des freezes ou un PC faible, active cette option.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios">
+		<text>BIOS Immersif</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
+		<text>Modifie l'écran du BIOS pour afficher des informations plus liées au jeu plutôt que des informations réelles, telles que le nom d'utilisateur, l'heure, la date du copyright, etc.</text>
 	</string>
 	
 	<!--

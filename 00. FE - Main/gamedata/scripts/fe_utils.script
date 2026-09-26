@@ -2,6 +2,10 @@ SECURITY_KEY = nil
 CPU = nil
 VERSION = "1.7.9.5"
 
+-- s_cond is a 0..1 float representing overall device condition (1 = pristine, 0 = destroyed).
+-- A device is considered broken once its s_cond drops to this threshold or below.
+S_COND_BROKEN_THRESHOLD = 0.05
+
 LEVEL_PASSIVE_GLITCH = {
 	["k00_marsh"]				= 0.01,
     ["l01_escape"]				= 0.01,
@@ -55,32 +59,28 @@ LEVEL_PASSIVE_GLITCH = {
 -- Setters
 ----------------------------------------------------------------------------------------------------
 
-function set_broken(obj, val) 
+function set_s_cond(obj, val)
 	if not failsafe(obj) then return end -- failsafe
-    if not val then val = 2 end -- failsafe
+	if not val then val = 1 end -- failsafe
 
-    if val == 1 then
-	    item_device.dev_items[obj:id()].is_broken = true
-        obj:set_device_enabled(false)
-        play_shutdown_sound()
+	local was_broken = is_broken(obj)
+	val = clamp(val, 0, 1)
+	item_device.dev_items[obj:id()].s_cond = val
+	local now_broken = val <= S_COND_BROKEN_THRESHOLD
 
-        if not obj:section():find("_pda") then
-            set_damage(obj, 2)
-        end
+	if now_broken and not was_broken then
+		-- device just broke
+		obj:set_device_enabled(false)
+		play_shutdown_sound()
 
-        if db.actor:item_in_slot(8) and db.actor:item_in_slot(8):id() == obj:id() then
-            ui_pda_radio_tab.action_radio_stop()
-            ui_pda_radio_tab.action_plyr_stop()
-        end
-    elseif val == 2 then
-        item_device.dev_items[obj:id()].is_broken = false
-        news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
-        obj:set_device_enabled(true)
-    elseif val == 3 then
-        item_device.dev_items[obj:id()].is_broken = false
-        obj:set_device_enabled(true)
-    end
-    
+		if db.actor:item_in_slot(8) and db.actor:item_in_slot(8):id() == obj:id() then
+			ui_pda_radio_tab.action_radio_stop()
+			ui_pda_radio_tab.action_plyr_stop()
+		end
+	elseif (not now_broken) and was_broken then
+		-- device just got fixed
+		obj:set_device_enabled(true)
+	end
 end
 
 function set_screen_damage(obj, val)
@@ -88,14 +88,15 @@ function set_screen_damage(obj, val)
 
     local damage
     if val == 1 then
-        damage = get_damage(obj) + 1
+        damage = get_screen_damage(obj) + 1
         if damage > 5 then
-            set_broken(obj, 1)
+            damage = 5
+            set_s_cond(obj, 0) -- screen shattered badly enough to take the whole device out
         end
         damage = clamp(damage, 0, 5)
         utils_obj.play_sound("material\\glass\\glass_fall03hl")
     elseif val == 2 then
-        damage = get_damage(obj)
+        damage = get_screen_damage(obj)
     else
         damage = 0
         news_manager.send_tip(db.actor, game.translate_string("st_pda_screen_fix"), nil, default, 10000)
@@ -103,42 +104,10 @@ function set_screen_damage(obj, val)
 
     if damage == 0 then
         obj:set_shader(1, "pda_screen", "item\\item_pda2\\item_pda_glass", true)
-        item_device.dev_items[obj:id()].damage = 0
     else
         obj:set_shader(1, "pda_screen", "item\\item_pda2\\item_pda_glass_damage" .. damage, true)
-        item_device.dev_items[obj:id()].damage = damage
     end
-
-end
-
-function set_damage(obj, val)
-    if not failsafe(obj) then return end -- failsafe
-    
-    local damage
-    if val == 1 then
-       damage = get_damage(obj) + 1
-       if damage > 5 then
-            damage = 0
-            set_broken(obj, 1)
-        end
-       damage = clamp(damage, 0, 5)
-       play_shutdown_sound()
-    elseif val == 2 then
-        damage = 0
-    elseif val == 3 then
-        if is_broken(obj) then
-            damage = 5
-            set_broken(obj, 3)
-        else
-            damage = get_damage(obj) -1
-            damage = clamp(damage, 0, 5)
-        end
-        news_manager.send_tip(db.actor, game.translate_string("st_device_partially_fix"), nil, default, 10000)
-    else
-        damage = 0
-        news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
-    end
-    item_device.dev_items[obj:id()].damage = damage
+    item_device.dev_items[obj:id()].screen_damage = damage
 
 end
 
@@ -205,7 +174,7 @@ end
 function get_glitch(obj, bool)
 
     local radiation_glitch = clamp(get_radiation(obj), 0, 10)
-    local damage_glitch = get_damage(obj) * 0.1
+    local damage_glitch = (1 - get_s_cond(obj)) * 0.5
     local overclock_glitch = is_overclocked(obj) and 0.15 or 0 
     local surge_psi_glitch = get_surge_psi(obj)
     local electra_glitch = get_electra(obj)
@@ -218,7 +187,7 @@ end
 
 function is_broken(obj)
 	if not failsafe(obj) then return false end -- failsafe
-	return item_device.dev_items[obj:id()].is_broken
+	return get_s_cond(obj) <= S_COND_BROKEN_THRESHOLD
 end
 
 function is_bsod(obj)
@@ -231,9 +200,14 @@ function is_overclocked(obj)
 	return item_device.dev_items[obj:id()].is_overclocked
 end
 
-function get_damage(obj)
+function get_s_cond(obj)
+    if not failsafe(obj) then return 1 end -- failsafe
+    return item_device.dev_items[obj:id()].s_cond
+end
+
+function get_screen_damage(obj)
     if not failsafe(obj) then return 0 end -- failsafe
-    return item_device.dev_items[obj:id()].damage
+    return item_device.dev_items[obj:id()].screen_damage or 0
 end
 
 function get_pda_tier(obj)
