@@ -137,6 +137,12 @@ function on_mcm_load()
                 }
             },
 			{
+                id = "fe_locations",
+                sh = true,
+                gr = {
+				}
+			},
+			{
                 id = "fe_special",
                 sh = true,
                 gr = {
