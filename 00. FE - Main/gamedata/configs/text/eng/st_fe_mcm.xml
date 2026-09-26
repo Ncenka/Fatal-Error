@@ -204,6 +204,24 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_pda_to_damage_desc">
 		<text>The chance for PDA to get damaged after receiving physical damage.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch">
+		<text>Passive PDA glitch</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch_desc">
+		<text>Base passive glitch added to PDA glitchiness. Location modifiers are configured separately.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage">
+		<text>Minimum device damage</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage_desc">
+		<text>Minimum amount of s_cond damage dealt by a partial device break.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage">
+		<text>Maximum device damage</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage_desc">
+		<text>Maximum amount of s_cond damage dealt by a partial device break.</text>
+	</string>
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break">
 		<text>Chance for Head Device to get broken (%)</text>
 	</string>
@@ -240,6 +258,204 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Maximum device shutdown time. Must be greater than the Minimum shutdown time.</text>
 	</string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k00_marsh">
+        <text>k00 marsh</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k00_marsh_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l01_escape">
+        <text>l01 escape</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l01_escape_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l02_garbage">
+        <text>l02 garbage</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l02_garbage_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_y04_pole">
+        <text>y04 pole</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_y04_pole_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l03_agroprom">
+        <text>l03 agroprom</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l03_agroprom_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l03u_agr_underground">
+        <text>l03u agr underground</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l03u_agr_underground_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l04_darkvalley">
+        <text>l04 darkvalley</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l04_darkvalley_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l04u_labx18">
+        <text>l04u labx18</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l04u_labx18_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l05_bar">
+        <text>l05 bar</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l05_bar_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k02_trucks_cemetery">
+        <text>k02 trucks cemetery</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k02_trucks_cemetery_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k01_darkscape">
+        <text>k01 darkscape</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_k01_darkscape_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l06_rostok">
+        <text>l06 rostok</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l06_rostok_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l07_military">
+        <text>l07 military</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l07_military_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l08_yantar">
+        <text>l08 yantar</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l08_yantar_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l08u_brainlab">
+        <text>l08u brainlab</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l08u_brainlab_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l09_deadcity">
+        <text>l09 deadcity</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l09_deadcity_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_limansk">
+        <text>l10 limansk</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_limansk_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_radar">
+        <text>l10 radar</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_radar_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10u_bunker">
+        <text>l10u bunker</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10u_bunker_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_red_forest">
+        <text>l10 red forest</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l10_red_forest_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l11_hospital">
+        <text>l11 hospital</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l11_hospital_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l11_pripyat">
+        <text>l11 pripyat</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l11_pripyat_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_pripyat">
+        <text>pripyat</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_pripyat_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_labx8">
+        <text>labx8</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_labx8_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12_stancia">
+        <text>l12 stancia</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12_stancia_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12_stancia_2">
+        <text>l12 stancia 2</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12_stancia_2_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12u_control_monolith">
+        <text>l12u control monolith</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12u_control_monolith_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12u_sarcofag">
+        <text>l12u sarcofag</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l12u_sarcofag_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l13_generators">
+        <text>l13 generators</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l13_generators_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l13u_warlab">
+        <text>l13u warlab</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_l13u_warlab_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_jupiter">
+        <text>jupiter</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_jupiter_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_jupiter_underground">
+        <text>jupiter underground</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_jupiter_underground_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_zaton">
+        <text>zaton</text>
+    </string>
+    <string id="ui_mcm_fatal_error_fe_locations_location_zaton_desc">
+        <text>Passive glitch modifier for this location.</text>
+    </string>
 	<string id="ui_mcm_fatal_error_fe_special">
  		<text>Special</text>
 	</string>
