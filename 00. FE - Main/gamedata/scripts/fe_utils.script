@@ -159,9 +159,22 @@ function set_apps(obj)
     end
 
     if database == true then
-        mac_mcm.add_app("app_military_database", 
+
+        local western_factions = {
+		    ["isg"] = true,
+		    ["killer"] = true,
+        }
+
+        if western_factions[get_actor_true_community()] then
+            mac_mcm.add_app("app_military_database", 
+            {name = "st_database", texture = "nato_database", tab = "eptMilitaryDatabase"}
+            ) 
+        else
+            mac_mcm.add_app("app_military_database", 
             {name = "st_database", texture = "afu_database", tab = "eptMilitaryDatabase"}
-        ) 
+            ) 
+        end
+
     end
 
 end

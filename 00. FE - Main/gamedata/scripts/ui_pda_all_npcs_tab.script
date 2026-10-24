@@ -67,10 +67,10 @@ function pda_all_npcs_tab:InitControls()
         self.bottom_text = xml:InitTextWnd("picture_base:bottom_text", self)
 
         self.insignia = xml:InitStatic("picture_base:insignia",self)
-        self.insignia:InitTexture("ui\\afu_green")
+        self.insignia:InitTexture("ui\\insignia_database" .. faction_color)
 
         self.insignia_2 = xml:InitStatic("picture_base:insignia_2",self)
-        self.insignia_2:InitTexture("ui\\afu_green")
+        self.insignia_2:InitTexture("ui\\insignia_database" .. faction_color)
 
         if faction_color == "_blue" then
             self.bottom_text:SetText("S.P.E.C.T.R. Development Team")
@@ -140,9 +140,9 @@ function pda_all_npcs_tab:InitControls()
         self.reset_button:Show(false)
         self.rank_filter_button:Show(false)
         self.rep_filter_button:Show(false)
-        self.bottom_text:Show(false)
-        self.insignia:Show(false)
-        self.insignia_2:Show(false)
+        if self.bottom_text then self.bottom_text:Show(false) end
+        if self.insignia then self.insignia:Show(false) end
+        if self.insignia_2 then self.insignia_2:Show(false) end
 
         self.upper_text:SetText(gts("st_pda_error_no_access"))
         self.upper_text:SetTextColor(GetARGB(255, 255, 255, 0))
