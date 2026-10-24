@@ -3,6 +3,9 @@
 	<string id="st_pda_error_603">
 		<text>тюрюкэмюъ ньхайю: йнд ньхайх 603 - оепегюцпсгхре сярпниярбн</text>
 	</string>
+	<string id="st_pda_error_no_access">
+		<text>ньхайю: днярсо гюопеы╗м</text>
+	</string>
 	<string id="st_pda_error_map">
 		<text>тюрюкэмюъ ньхайю: яосрмхйнбюъ йюпрю меднярсомю</text>
 	</string>

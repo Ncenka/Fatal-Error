@@ -54,7 +54,7 @@ function pda_all_npcs_tab:InitControls()
     self.upper_text = xml:InitTextWnd("picture_base:upper_text", self)
 
     if faction_color == "_blue" then
-        self.upper_text:TextControl():SetText("Database S.T.A.L.K.E.R ")
+        self.upper_text:SetText("Database S.T.A.L.K.E.R ")
     end
 
     if not fatal_error_mcm.SETTINGS.censor_insignia then
@@ -68,7 +68,7 @@ function pda_all_npcs_tab:InitControls()
         self.insignia_2:InitTexture("ui\\afu_green")
 
         if faction_color == "_blue" then
-            self.bottom_text:TextControl():SetText("S.P.E.C.T.R. Development Team")
+            self.bottom_text:SetText("S.P.E.C.T.R. Development Team")
         end
 
     end
@@ -127,6 +127,22 @@ function pda_all_npcs_tab:InitControls()
     
     self.npc_items = {}
     self.all_npcs = {}
+
+    if DATABASE_ACCESS == false then
+        self.picture_base:Show(false)
+        self.database:Show(false)
+        self.scroll_view:Show(false)
+        self.filter_button:Show(false)
+        self.reset_button:Show(false)
+        self.rank_filter_button:Show(false)
+        self.rep_filter_button:Show(false)
+        if self.bottom_text then self.bottom_text:Show(false) end
+        if self.insignia then self.insignia:Show(false) end
+        if self.insignia_2 then self.insignia_2:Show(false) end
+
+        self.upper_text:SetText(gts("st_pda_error_no_access"))
+        self.upper_text:SetTextColor(GetARGB(255, 255, 255, 0))
+    end
 end
 
 function pda_all_npcs_tab:InitCallbacks()
@@ -259,6 +275,8 @@ function pda_all_npcs_tab:ApplyFilter()
 end
 
 function pda_all_npcs_tab:Reset()
+    if DATABASE_ACCESS == false then return end
+
     for _, item in ipairs(self.npc_items) do
         self.scroll_view:RemoveWindow(item)
     end
@@ -399,6 +417,7 @@ function ui_all_npc_item:__init(parent, obj, index, id)
 end
 
 function on_tracking_key_press(dik)
+    if DATABASE_ACCESS == false then return end
     if dik ~= DIK_keys.MOUSE_1 then return end
     if hovered_npc == nil then return end
     if not db.actor:item_in_slot(8) then return end
