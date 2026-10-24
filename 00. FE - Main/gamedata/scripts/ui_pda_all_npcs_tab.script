@@ -140,9 +140,9 @@ function pda_all_npcs_tab:InitControls()
         self.reset_button:Show(false)
         self.rank_filter_button:Show(false)
         self.rep_filter_button:Show(false)
-        if self.bottom_text then self.bottom_text:Show(false) end
-        if self.insignia then self.insignia:Show(false) end
-        if self.insignia_2 then self.insignia_2:Show(false) end
+        self.bottom_text:Show(false)
+        self.insignia:Show(false)
+        self.insignia_2:Show(false)
 
         self.upper_text:SetText(gts("st_pda_error_no_access"))
         self.upper_text:SetTextColor(GetARGB(255, 255, 255, 0))
