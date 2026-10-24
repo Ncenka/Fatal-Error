@@ -1,10 +1,9 @@
 if not z_pda_hacking then return end
-if DATABASE_ACCESS ~= false then return end
 
 script_table = {}
 local gc = game.translate_string
 local parse_keys = utils_data.parse_string_keys
-local all_npc_tab = pda_all_npcs_tab
+local all_npc_tab = ui_pda_all_npcs_tab.pda_all_npcs_tab
 
 name_key = {
 	["CommandUp"] = "cmdup",
@@ -38,8 +37,11 @@ colors_argb = {
 
 -- Override Reset to add hacking functionality
 local base_all_npc_reset = all_npc_tab.Reset
-function pda_all_npcs_tab:Reset()
+function all_npc_tab:Reset()
 	base_all_npc_reset(self)
+
+	if ui_pda_all_npcs_tab.DATABASE_ACCESS == true then return end
+
 	-- Reset hack components
 	if self.form_hack then
 		self.form_hack:Show(false)
@@ -76,7 +78,7 @@ function pda_all_npcs_tab:Reset()
 	self:InitHackUI(best_hack_device)
 end
 
-function pda_all_npcs_tab:InitHackUI(best_hack_device)
+function all_npc_tab:InitHackUI(best_hack_device)
 	local obj = db.actor:item_in_slot(8)
 	if not obj then return end
 	if not self.hack_xml then
@@ -92,7 +94,6 @@ function pda_all_npcs_tab:InitHackUI(best_hack_device)
 	self:AddCallback("hack_button", ui_events.BUTTON_CLICKED, self.Start_Hack, self)
 	self.hack_button:InitTexture("bios_button")
 	self.hack_button:Show(true)
-
 
 	self.cmds_remaining = best_hack_device.commands
 	self.encryption_strength_base = 100
@@ -196,7 +197,7 @@ function pda_all_npcs_tab:InitHackUI(best_hack_device)
 	self.decrypt_wnd.rarity_title = self.decrypt_wnd.rarity_title or
 	self.hack_xml:InitStatic("form:decrypt_wnd:rarity_title", self.decrypt_wnd)
 	self.decrypt_wnd.rarity_title:TextControl():SetFont(get_font("large"))
-	self.decrypt_wnd.rarity_title:TextControl():SetText(gc("monolith") ..
+	self.decrypt_wnd.rarity_title:TextControl():SetText(gc("army") ..
 	", " .. gc(ini_sys:r_string_ex(obj:section(), "inv_name_short")))
 
 	self.decrypt_wnd.decrypted = self.decrypt_wnd.decrypted or
@@ -237,7 +238,7 @@ function pda_all_npcs_tab:InitHackUI(best_hack_device)
 end
 
 base_update = all_npc_tab.Update
-function pda_all_npcs_tab:Update()
+function all_npc_tab:Update()
 	base_update(self)
 
 	if not (self.form_hack and self.form_hack:IsShown()) then return end
@@ -286,7 +287,7 @@ function pda_all_npcs_tab:Update()
 	end
 end
 
-function pda_all_npcs_tab:OnSelectScript()
+function all_npc_tab:OnSelectScript()
 	if self.data_decrypted_target >= 100 then return end
 	if self.scripts_to_add > 0 then return end
 	if self.loaded_script and self.loaded_script.name == self.hack_script_list:GetSelectedItem().name then return end
@@ -334,7 +335,7 @@ function pda_all_npcs_tab:OnSelectScript()
 	self:Write_Terminal(text)
 end
 
-function pda_all_npcs_tab:OnSelectCommand()
+function all_npc_tab:OnSelectCommand()
 	if self.data_decrypted_target >= 100 then return end
 	local item = self.command_list:GetSelectedItem()
 	if item.name ~= "CommandUp" and self.cmds_remaining <= 0 then return end
@@ -415,13 +416,13 @@ function pda_all_npcs_tab:OnSelectCommand()
 	end
 end
 
-function pda_all_npcs_tab:Start_Hack()
+function all_npc_tab:Start_Hack()
 	self.hack_button:Show(false)
 	self.form_hack:Show(true)
 	self.hack_script_list:Show(true)
 end
 
-function pda_all_npcs_tab:Change_Commands(change)
+function all_npc_tab:Change_Commands(change)
 	if change < 0 then
 		self.cmd_wnd.number:SetText(self.cmds_remaining .. " -1")
 		self.cmds_remaining = self.cmds_remaining + change
@@ -451,7 +452,7 @@ function pda_all_npcs_tab:Change_Commands(change)
 	end
 end
 
-function pda_all_npcs_tab:HackFailed()
+function all_npc_tab:HackFailed()
 	self.script_wnd:Show(false)
 	self.hack_script_list:Show(false)
 	self.cmd_list_wnd:Show(false)
@@ -479,7 +480,7 @@ function pda_all_npcs_tab:HackFailed()
 	end)
 end
 
-function pda_all_npcs_tab:Write_Terminal(text)
+function all_npc_tab:Write_Terminal(text)
 	self.terminal_scroll:RemoveWindow(self.terminal.text_wnd)
 	self.terminal_scroll:Clear()
 
@@ -501,11 +502,17 @@ function pda_all_npcs_tab:Write_Terminal(text)
 	self.terminal_scroll:ScrollToEnd()
 end
 
-function pda_all_npcs_tab:Set_Data_Decrypted(data)
+function all_npc_tab:Set_Data_Decrypted(data)
 	self.data_decrypted_target = clamp(data, self.data_decrypted_target, 100)
 	if self.data_decrypted_target == 100 then
 		self.script_wnd:Show(false)
 		self.hack_script_list:Show(false)
+		fe_utils.invoke("unlocknpc_all", 1, function()
+			self.dark_overlay:SetTextureColor(GetARGB(255, 0, 0, 0))
+			self.dark_overlay:Show(true)
+			self.snd_beep:play(db.actor, 0, sound_object.s2d)
+			fatal_error_mcm.ELECTRA_GLITCH_VALUE = 1
+		end)
 	end
 
 	local obj = db.actor:active_item()
@@ -516,13 +523,11 @@ function pda_all_npcs_tab:Set_Data_Decrypted(data)
 		self.decrypt_wnd.decrypted.pct_bg:TextControl():SetText(round_idp(self.data_decrypted, 1) .. "%")
 
 		if self.data_decrypted >= 100 then
-			DATABASE_ACCESS = true
-			drop_singleton()
+			ui_pda_all_npcs_tab.DATABASE_ACCESS = true
+			ui_pda_all_npcs_tab.drop_singleton()
 			self:Reset()
-			ActorMenu.get_pda_menu():SetActiveSubdialog("eptLauncher")
-			CreateTimeEvent("allnpchack", "reload_database", 0.1, function()
+			fe_utils.invoke("hackednpc_all", 3, function()
 				ActorMenu.get_pda_menu():SetActiveSubdialog("eptMilitaryDatabase")
-				return true
 			end)
 			return true
 		elseif self.data_decrypted >= self.data_decrypted_target then
@@ -531,7 +536,7 @@ function pda_all_npcs_tab:Set_Data_Decrypted(data)
 	end)
 end
 
-function pda_all_npcs_tab:Change_Encryption(change)
+function all_npc_tab:Change_Encryption(change)
 	self.encryption_strength = self.encryption_strength - change
 
 	CreateTimeEvent("allnpchack", "set_encrypt", 0, function()
@@ -544,7 +549,7 @@ function pda_all_npcs_tab:Change_Encryption(change)
 	end)
 end
 
-function pda_all_npcs_tab:Generate_Scripts(count)
+function all_npc_tab:Generate_Scripts(count)
 	self.scripts_to_add = self.scripts_to_add + count
 	CreateTimeEvent("allnpchack", "genscript", 0.1, function()
 		local index = math.random(#script_table)
