@@ -34,6 +34,11 @@ function get_ui()
     return SINGLETON
 end
 
+-- in theory should be used once to fully reload interface after DATABASE_ACCESS = true
+function drop_singleton()
+    SINGLETON = nil
+end
+
 class "pda_all_npcs_tab" (CUIScriptWnd)
 
 function pda_all_npcs_tab:__init() 
