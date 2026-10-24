@@ -1,3 +1,5 @@
+DATABASE_ACCESS = false
+
 local gts = game.translate_string
 
 local SINGLETON = nil
@@ -51,6 +53,10 @@ function pda_all_npcs_tab:InitControls()
 
     self.upper_text = xml:InitTextWnd("picture_base:upper_text", self)
 
+    if faction_color == "_blue" then
+        self.upper_text:TextControl():SetText("Database S.T.A.L.K.E.R ")
+    end
+
     if not fatal_error_mcm.SETTINGS.censor_insignia then
 
         self.bottom_text = xml:InitTextWnd("picture_base:bottom_text", self)
@@ -60,6 +66,10 @@ function pda_all_npcs_tab:InitControls()
 
         self.insignia_2 = xml:InitStatic("picture_base:insignia_2",self)
         self.insignia_2:InitTexture("ui\\afu_green")
+
+        if faction_color == "_blue" then
+            self.bottom_text:TextControl():SetText("S.P.E.C.T.R. Development Team")
+        end
 
     end
     
@@ -513,10 +523,12 @@ end
 
 local function save_state(m_data)
 	m_data.target_id = target_id
+    m_data.DATABASE_ACCESS = DATABASE_ACCESS
 end
 
 local function load_state(m_data)
 	target_id = m_data.target_id
+    DATABASE_ACCESS = m_data.DATABASE_ACCESS
 end
 
 ---------------------------< FE >---------------------------

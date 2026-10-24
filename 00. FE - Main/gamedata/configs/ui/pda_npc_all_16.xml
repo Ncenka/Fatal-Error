@@ -3,7 +3,7 @@
     
     <picture_base x="15" y="0" width="800" height="750" stretch="1">
         <upper_text x="0" y="55" width="800" height="750" stretch="1">
-            <text complex_mode="1" align="c" font="letterica25">Military database "S.T.A.L.K.E.R"</text>
+            <text complex_mode="1" align="c" font="letterica25">Military database S.T.A.L.K.E.R</text>
         </upper_text>
 
         <bottom_text x="0" y="695" width="819" height="768" stretch="1">
