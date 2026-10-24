@@ -152,6 +152,8 @@ function create_overrides_fatal_error_v2()
 	local fe_override_two = ui_item.build_name_first
     ui_item.build_name_first = function (obj, sec, str)
 	
+		str = tostring(str or "")
+
 		local _str = ""
 		
 		if IsItem("device",sec) and fe_utils.is_broken(obj) then

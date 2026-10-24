@@ -855,7 +855,7 @@ function device_binder:update(delta)
 				-- Light flicker on event for flashlights
 				if (self.type == "FLASH") then
 					if fe_utils.get_s_cond(obj) < 1 then
-						self:process_flicker(true)
+						self:process_flicker(true, fe_utils.get_s_cond(obj))
 					else
 						self:process_flicker()
 					end
@@ -978,7 +978,7 @@ function device_binder:process_torch(id, section, condition)
 -- Torch light flicker on event
 	if self.object:torch_enabled() then
 		if fe_utils.get_s_cond(self.object) < 1 then
-			self:process_flicker(true)
+			self:process_flicker(true, fe_utils.get_s_cond(self.object))
 		else
 			self:process_flicker()
 		end
@@ -996,11 +996,12 @@ function device_binder:process_glitch()
 	end
 end
 
-function device_binder:process_flicker(force)
+function device_binder:process_flicker(force, damage)
 	local flicker = level_environment.get_light_flicker()
-	if force then
-		flicker = force
-	end
+
+	if force then flicker = force end
+	if not damage then damage = 1 end
+
 	if (self.flicker == nil) then
 		self.flicker = false
 	end
@@ -1008,13 +1009,11 @@ function device_binder:process_flicker(force)
 		--print_dbg("[%s] flicker: %s", self.object:name(), flicker)
 		if flicker then
 			local ca = "light_flicker"
-			local on_off_chance = math.random(25,50)
+			local on_off_chance = math.random(25 * damage, 50 * damage)
 			local on_off_time 	= math.random(0.3,0.9)
 			local fps = math.random(20,30)
 			self.object:set_color_animator(ca,true,on_off_chance,on_off_time,fps)
-			--printf("~ Torch set anim")
 		else
-			--printf("~ Torch reset anim")
 			self.object:reset_color_animator() 
 		end
 	end

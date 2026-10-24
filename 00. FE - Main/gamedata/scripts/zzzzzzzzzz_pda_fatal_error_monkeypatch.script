@@ -39,7 +39,7 @@ function create_overrides_fatal_error_v1()
 			base_elevation = 19
 		end
 		
-		base_elevation = base_elevation - overclock
+		base_elevation = base_elevation - overclock - fatal_error_mcm.SETTINGS.locs.signal_boost
 		
 		if not pda:has_upgrade("up_secona_pda") and (NO_MAP_ZONES[level.name()]) then
 			if base_elevation < actor_elevation.y and message == 0 then
@@ -118,6 +118,7 @@ function create_overrides_fatal_error_v1()
 				
 			elseif 
 				not (pda:has_upgrade("up_secona_pda") or fe_utils.is_overclocked(pda))
+				and fatal_error_mcm.SETTINGS.locs.undgr_no_signal
 				and (NO_MAP_ZONES_UNDERGROUND[level.name()]) 
 			then
 				return ui_pda_error_tab.get_ui("st_pda_no_map")
