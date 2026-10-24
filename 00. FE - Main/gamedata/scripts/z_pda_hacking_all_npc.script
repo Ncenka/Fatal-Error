@@ -506,15 +506,6 @@ function pda_all_npcs_tab:Set_Data_Decrypted(data)
 	if self.data_decrypted_target == 100 then
 		self.script_wnd:Show(false)
 		self.hack_script_list:Show(false)
-		if fatal_error_mcm.MONOLITH_HACKERS[level.name()] then
-			fatal_error_mcm.MONOLITH_HACKERS[level.name()] = false
-		end
-		fe_utils.invoke("unlockmonolith", 1, function()
-			self.dark_overlay:SetTextureColor(GetARGB(255, 0, 0, 0))
-			self.dark_overlay:Show(true)
-			self.snd_beep:play(db.actor, 0, sound_object.s2d)
-			news_manager.send_tip(db.actor, gc("st_fe_mon_jam_dis") .. " " .. gc(level.name()) .. ".", nil, default, 10000)
-		end)
 	end
 
 	local obj = db.actor:active_item()
@@ -528,6 +519,11 @@ function pda_all_npcs_tab:Set_Data_Decrypted(data)
 			DATABASE_ACCESS = true
 			drop_singleton()
 			self:Reset()
+			ActorMenu.get_pda_menu():SetActiveSubdialog("eptLauncher")
+			CreateTimeEvent("allnpchack", "reload_database", 0.1, function()
+				ActorMenu.get_pda_menu():SetActiveSubdialog("eptMilitaryDatabase")
+				return true
+			end)
 			return true
 		elseif self.data_decrypted >= self.data_decrypted_target then
 			return true
