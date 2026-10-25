@@ -189,55 +189,56 @@
 	
 		<phrase_list>			
 			<phrase id="0">
-				<text>have_cool_pda</text>
+				<text>pda_database_0</text>
 				<next>1</next>
 			</phrase>
 				
 			<phrase id="1">
-				<text>want_to_unlock_database</text>
+				<text>pda_database_1</text>
 				<next>2</next>
 				<next>3</next>
 			</phrase>
 				
 			<phrase id="2">
-				<text>yes</text>
+				<text>pda_database_2</text>
 				<next>4</next>
 				<next>5</next>
 			</phrase>
 			<phrase id="3">
-				<text>no</text>
+				<text>pda_database_3</text>
 				<next>8</next>
 			</phrase>
 
 			<phrase id="4">
-				<text>ok_pay_50k</text>
-				<precondition>dialogs.is_actor_experienced</precondition>
+				<text>pda_database_4</text>
+				<precondition>fatal_error_mcm.is_actor_very_experienced</precondition>
 				<next>6</next>
 				<next>7</next>
 			</phrase>
 
 			<phrase id="5">
-				<text>not_enouth_expi</text>
+				<text>pda_database_5</text>
+				<precondition>fatal_error_mcm.not_is_actor_very_experienced</precondition>
 			</phrase>
 
 			<phrase id="6">
-				<precondition>fatal_error_mcm.check_money_50k</precondition>
-				<text>here_is_the_money</text>
+				<precondition>fatal_error_mcm.check_money_100k</precondition>
+				<text>pda_database_6</text>
 				<action>fatal_error_mcm.unlock_database</action>
 				<next>9</next>
 			</phrase>
 
 			<phrase id="7">
-				<text>ya_bomzh</text>
+				<text>pda_database_7</text>
 				<next>8</next>
 			</phrase>
 
 			<phrase id="8">
-				<text>ladno_davai</text>
+				<text>pda_database_8</text>
 			</phrase>
 
 			<phrase id="9">
-				<text>zaebis_database_unlock</text>
+				<text>pda_database_9</text>
 			</phrase>
 				
 				

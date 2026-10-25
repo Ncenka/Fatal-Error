@@ -387,8 +387,8 @@ function check_money_25k()
 	return mlr_utils.have_money(25000)
 end
 
-function check_money_50k()
-	return mlr_utils.have_money(50000)
+function check_money_100k()
+	return mlr_utils.have_money(100000)
 end
 
 function decypher_getac(first_speaker, second_speaker)
@@ -417,8 +417,18 @@ end
 function unlock_database(first_speaker, second_speaker)
 	ui_pda_all_npcs_tab.DATABASE_ACCESS = true
 	ui_pda_all_npcs_tab.drop_singleton()
-	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 50000)
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 100000)
+	game_statistics.increment_reputation(-5000)
 	news_manager.send_tip(db.actor, game.translate_string("st_database_unlock"), nil, default, 10000)
+end
+
+function is_actor_very_experienced()
+	local rank = ranks.get_obj_rank_name(db.actor)
+	return rank == "master" or rank == "legend"
+end
+
+function not_is_actor_very_experienced()
+	return not is_actor_very_experienced()
 end
 
 ----------------------------------------------------------------------------------------------------
