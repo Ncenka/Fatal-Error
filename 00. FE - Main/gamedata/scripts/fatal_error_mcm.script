@@ -387,6 +387,10 @@ function check_money_25k()
 	return mlr_utils.have_money(25000)
 end
 
+function check_money_50k()
+	return mlr_utils.have_money(50000)
+end
+
 function decypher_getac(first_speaker, second_speaker)
 
 	local pda = db.actor:object("itm_pda_getac")
@@ -404,6 +408,17 @@ function getac_sell(first_speaker, second_speaker)
 	alife_release(pda)
 	news_manager.relocate_item(db.actor, "out", pda:section())
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 10000)
+end
+
+function has_pda_with_database()
+	return db.actor:item_in_slot(8) and ini_sys:r_bool_ex(db.actor:item_in_slot(8):section(),"tab_database") and ui_pda_all_npcs_tab.DATABASE_ACCESS == false
+end
+
+function unlock_database(first_speaker, second_speaker)
+	ui_pda_all_npcs_tab.DATABASE_ACCESS = true
+	ui_pda_all_npcs_tab.drop_singleton()
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 50000)
+	news_manager.send_tip(db.actor, game.translate_string("st_database_unlock"), nil, default, 10000)
 end
 
 ----------------------------------------------------------------------------------------------------

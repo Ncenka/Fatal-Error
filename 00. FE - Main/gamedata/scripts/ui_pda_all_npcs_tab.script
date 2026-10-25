@@ -73,7 +73,7 @@ function pda_all_npcs_tab:InitControls()
         self.insignia_2:InitTexture("ui\\insignia_database" .. faction_color)
 
         if faction_color == "_blue" then
-            self.bottom_text:SetText("S.P.E.C.T.R. Development Team")
+            self.bottom_text:SetText("North Atlantic Treaty Organization")
         end
 
     end

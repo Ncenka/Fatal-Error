@@ -102,6 +102,9 @@
 	<string id="st_device_partially_fix">
 		<text>Работоспособность устройства частично восстановлена.</text>
 	</string>
+	<string id="st_database_unlock">
+		<text>Получен доступ к базе данных.</text>
+	</string>
 	<string id="st_pda_screen_fix">
 		<text>Экран КПК заменён.</text>
 	</string>

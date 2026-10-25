@@ -16,6 +16,11 @@ function on_game_start()
             "pri_monolith_monolith_mechanic_stalker",
             "mechanic_army_yan_mlr"
         }
+
+        local informants = {
+            "bar_informator_mlr",
+            "zat_b30_owl_stalker_trader"
+        }
         
         for _, mechanic_id in ipairs(mechanics) do
             if character_id == mechanic_id then
@@ -23,5 +28,12 @@ function on_game_start()
                 local res2 = dialog_list:add("pda_decypher")
             end
         end
+
+        for _, informant_id in ipairs(informants) do
+            if character_id == informant_id then
+                dialog_list:add("pda_database")
+            end
+        end
+
     end)
 end

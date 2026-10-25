@@ -183,4 +183,65 @@
 				
 		</phrase_list>
 	</dialog>
+
+	<dialog id="pda_database">
+	<precondition>fatal_error_mcm.has_pda_with_database</precondition>
+	
+		<phrase_list>			
+			<phrase id="0">
+				<text>have_cool_pda</text>
+				<next>1</next>
+			</phrase>
+				
+			<phrase id="1">
+				<text>want_to_unlock_database</text>
+				<next>2</next>
+				<next>3</next>
+			</phrase>
+				
+			<phrase id="2">
+				<text>yes</text>
+				<next>4</next>
+				<next>5</next>
+			</phrase>
+			<phrase id="3">
+				<text>no</text>
+				<next>8</next>
+			</phrase>
+
+			<phrase id="4">
+				<text>ok_pay_50k</text>
+				<precondition>dialogs.is_actor_experienced</precondition>
+				<next>6</next>
+				<next>7</next>
+			</phrase>
+
+			<phrase id="5">
+				<text>not_enouth_expi</text>
+			</phrase>
+
+			<phrase id="6">
+				<precondition>fatal_error_mcm.check_money_50k</precondition>
+				<text>here_is_the_money</text>
+				<action>fatal_error_mcm.unlock_database</action>
+				<next>9</next>
+			</phrase>
+
+			<phrase id="7">
+				<text>ya_bomzh</text>
+				<next>8</next>
+			</phrase>
+
+			<phrase id="8">
+				<text>ladno_davai</text>
+			</phrase>
+
+			<phrase id="9">
+				<text>zaebis_database_unlock</text>
+			</phrase>
+				
+				
+		</phrase_list>
+	</dialog>
+
 </game_dialogs>
