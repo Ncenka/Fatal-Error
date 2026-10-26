@@ -204,6 +204,24 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_pda_to_damage_desc">
 		<text>Probabilité que le PDA subisse des dégâts après un choc physique.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch">
+		<text>Glitch passif du PDA</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch_desc">
+		<text>Glitch passif du PDA qui s'ajoute au glitch total.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage">
+		<text>Dégâts minimaux de l'appareil (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage_desc">
+		<text>Quantité minimale de dégâts que l'appareil peut subir lors d'une détérioration partielle.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage">
+		<text>Dégâts maximaux de l'appareil (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage_desc">
+		<text>Quantité maximale de dégâts que l'appareil peut subir lors d'une détérioration partielle.</text>
+	</string>
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break">
 		<text>Chance de casse du dispositif tête (%)</text>
 	</string>
@@ -240,7 +258,7 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Temps maximal de défaut de l'appareil. Doit être supérieur au Temps minimal de défaut.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_special">
+	<string id="ui_mcm_menu_fe_special">
     	<text>Spécial</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
@@ -266,6 +284,39 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
 		<text>Modifie l'écran du BIOS pour afficher des informations plus liées au jeu plutôt que des informations réelles, telles que le nom d'utilisateur, l'heure, la date du copyright, etc.</text>
+	</string>
+	<string id="ui_mcm_menu_fe_locs">
+		<text>Emplacements</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale">
+		<text>Multiplicateur de glitch des emplacements</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale_desc">
+		<text>Multiplie la quantité de glitch générée par les emplacements par cette valeur. 0 - les glitchs liés aux emplacements sont désactivés.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal">
+		<text>Erreur « Aucun signal » dans les emplacements souterrains</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal_desc">
+		<text>Permet d'activer ou de désactiver l'erreur « Aucun signal » dans les emplacements souterrains.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers">
+		<text>Erreur dans les zones contrôlées par le Monolithe</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers_desc">
+		<text>Permet d'activer ou de désactiver l'erreur dans les zones contrôlées par le Monolithe.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors">
+		<text>Erreurs secrètes des emplacements</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors_desc">
+		<text>Permet d'activer ou de désactiver certaines erreurs secrètes.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost">
+		<text>Amplification du signal (m.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost_desc">
+		<text>Augmente la portée de votre signal de cette distance en mètres dans les emplacements en surface affectés par l'erreur « Aucun signal » (vous pouvez ainsi « capter » le signal à une altitude plus basse).</text>
 	</string>
 	
 	<!--

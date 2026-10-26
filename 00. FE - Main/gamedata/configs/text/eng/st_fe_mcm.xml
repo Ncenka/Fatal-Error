@@ -258,7 +258,7 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Maximum device shutdown time. Must be greater than the Minimum shutdown time.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_special">
+	<string id="ui_mcm_menu_fe_special">
  		<text>Special</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
@@ -284,6 +284,39 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
 		<text>Changes BIOS screen to represent more in-game information rather that IRL information, such as username, time, copyright date, etc.</text>
+	</string>
+	<string id="ui_mcm_menu_fe_locs">
+		<text>Locations</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale">
+		<text>Location Glitch Multiplier</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale_desc">
+		<text>Multiplies the amount of glitch caused by locations by this value. 0 - location glitches are disabled.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal">
+		<text>"No Signal" Error in Underground Locations</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal_desc">
+		<text>Allows you to enable or disable the "No Signal" error in underground locations.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers">
+		<text>Error in Monolith-Controlled Locations</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers_desc">
+		<text>Allows you to enable or disable the error in areas controlled by the Monolith.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors">
+		<text>Secret Location Errors</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors_desc">
+		<text>Allows you to enable or disable certain secret errors.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost">
+		<text>Signal Boost (m.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost_desc">
+		<text>Boosts your signal by this many meters in above-ground locations affected by the "No Signal" error (i.e. you can "catch" a signal at a lower altitude).</text>
 	</string>
 	
 	<!--

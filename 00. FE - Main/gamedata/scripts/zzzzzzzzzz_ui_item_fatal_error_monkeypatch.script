@@ -91,7 +91,7 @@ function create_overrides_fatal_error_v2()
 		if IsItem("device",sec) then
 			local tab_interactive = ini_sys:r_bool_ex(sec,"tab_interactive")
 			if tab_interactive == false and pda_inter_gui then
-				local unit = game.translate_string("st_interactive_unavaible")
+				local unit = game.translate_string("st_interactive_unavailable")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end
@@ -100,7 +100,7 @@ function create_overrides_fatal_error_v2()
 		if IsItem("device",sec) then
 			local tab_taskboard = ini_sys:r_bool_ex(sec,"tab_taskboard")
 			if tab_taskboard == false and ui_pda_taskboard_tab then
-				local unit = game.translate_string("st_taskboard_unavaible")
+				local unit = game.translate_string("st_taskboard_unavailable")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end
@@ -109,7 +109,7 @@ function create_overrides_fatal_error_v2()
 		if IsItem("device",sec) then
 			local autocomplete = ini_sys:r_bool_ex(sec,"autocomplete")
 			if autocomplete == false and autocomplete_tasks_utils then
-				local unit = game.translate_string("st_autocomplete_unavaible")
+				local unit = game.translate_string("st_autocomplete_unavailable")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end
@@ -118,7 +118,7 @@ function create_overrides_fatal_error_v2()
 		if IsItem("device",sec) then
 			local cartography = ini_sys:r_bool_ex(sec,"cartography")
 			if cartography == false and tasks_placeable_waypoints then
-				local unit = game.translate_string("st_cartography_unavaible")
+				local unit = game.translate_string("st_cartography_unavailable")
 				_str = _str .. utils_xml.get_color("d_red") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end
@@ -127,7 +127,7 @@ function create_overrides_fatal_error_v2()
 		if IsItem("device",sec) then
 			local tab_database = ini_sys:r_bool_ex(sec,"tab_database")
 			if tab_database == true then
-				local unit = game.translate_string("st_database_avaible")
+				local unit = game.translate_string("st_database_available")
 				_str = _str .. utils_xml.get_color("d_purple") .. "  • " .. utils_xml.get_color("ui_gray_2") .. " " .. unit .. " \\n"
 			end
 		end

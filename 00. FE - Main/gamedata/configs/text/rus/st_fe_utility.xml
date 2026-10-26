@@ -90,20 +90,30 @@
 	<string id="st_fe_mon_jam_dis">
 		<text>Глушилка «Монолита» отключена в локации:</text>
 	</string>
-	<string id="st_interactive_unavaible">
+	<string id="st_interactive_unavailable">
 		<text>функция "Интерактив" недоступна</text>
 	</string>
-	<string id="st_taskboard_unavaible">
+	<string id="st_taskboard_unavailable">
 		<text>функция "Объявления" недоступна</text>
 	</string>
-	<string id="st_autocomplete_unavaible">
+	<string id="st_autocomplete_unavailable">
 		<text>не поддерживает электронные денежные переводы</text>
 	</string>
-	<string id="st_cartography_unavaible">
+	<string id="st_cartography_unavailable">
 		<text>не поддерживает продвинутые картографические функции</text>
 	</string>
 	<string id="st_pda_gen">
 		<text>поколение:</text>
+	</string>
+	<string id="st_glitch_factor">
+		<text>устойчивость к помехам:</text>
+	</string>
+	<string id="st_database_available">
+		<text>есть военная база данных</text>
+	</string>
+
+	<string id="st_database">
+		<text>База данных</text>
 	</string>
 	
 	<string id="st_any">

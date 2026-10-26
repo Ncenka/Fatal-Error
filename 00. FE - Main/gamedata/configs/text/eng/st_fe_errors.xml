@@ -2,6 +2,9 @@
 	<string id="st_pda_error_603">
 		<text>FATAL ERROR: ERROR CODE 603 - REBOOT THE DEVICE</text>
 	</string>
+	<string id="st_pda_error_no_access">
+		<text>ERROR: ACCESS DENIED</text>
+	</string>
 	<string id="st_pda_error_map">
 		<text>FATAL ERROR: SATELLITE IMAGE NOT AVAILABLE</text>
 	</string>

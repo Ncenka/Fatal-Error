@@ -89,21 +89,32 @@
 	<string id="st_fe_mon_jam_dis">
 		<text>The Monolith jammer is disabled in the location:</text>
 	</string>
-	<string id="st_interactive_unavaible">
+	<string id="st_interactive_unavailable">
 		<text>"Interactive" feature is not available</text>
 	</string>
-	<string id="st_taskboard_unavaible">
+	<string id="st_taskboard_unavailable">
 		<text>"Taskboard" feature is not available</text>
 	</string>
-	<string id="st_autocomplete_unavaible">
+	<string id="st_autocomplete_unavailable">
 		<text>does not support electronic money transfers</text>
 	</string>
-	<string id="st_cartography_unavaible">
+	<string id="st_cartography_unavailable">
 		<text>does not support advanced cartography functions</text>
 	</string>
 	<string id="st_pda_gen">
 		<text>generation:</text>
 	</string>
+	<string id="st_glitch_factor">
+    	<text>glitch resistance:</text>
+	</string>
+	<string id="st_database_available">
+		<text>military database available</text>
+	</string>
+
+	<string id="st_database">
+		<text>Database</text>
+	</string>
+
 	<string id="st_any">
 		<text>Any</text>
 	</string>

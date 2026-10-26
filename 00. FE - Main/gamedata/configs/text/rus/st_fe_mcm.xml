@@ -204,6 +204,24 @@
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_pda_to_damage_desc">
 		<text>Шанс того, что после получения физического урона ваш КПК будет повреждён.</text>
 	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch">
+		<text>Пассивный глитч КПК</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_passive_glitch_desc">
+		<text>Пассивный глитч КПК, который добавляется к остальному глитчу.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage">
+		<text>Минимальный урон устройству (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_min_s_cond_damage_desc">
+		<text>Минимальное количество урона, которое устройство может получить про частичном повреждении.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage">
+		<text>Максимальный урон устройству (%)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_other_max_s_cond_damage_desc">
+		<text>Максимальное количество урона, которое устройство может получить про частичном повреждении.</text>
+	</string>
 	<string id="ui_mcm_fatal_error_fe_other_chance_for_device_to_break">
 		<text>Шанс сломать устройство на голове (%)</text>
 	</string>
@@ -240,7 +258,7 @@
 	<string id="ui_mcm_fatal_error_fe_other_shutdown_max_time_desc">
 		<text>Максимальное время неисправности устройства. Должно быть больше, чем Минимальное время неисправности.</text>
 	</string>
-	<string id="ui_mcm_fatal_error_fe_special">
+	<string id="ui_mcm_menu_fe_special">
     	<text>Особое</text>
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_censor_aoe">
@@ -266,6 +284,39 @@
 	</string>
 	<string id="ui_mcm_fatal_error_fe_special_immersive_bios_desc">
 		<text>Изменяет экран BIOS для отображения более игровой информации вместо реальной, такой как имя пользователя, время, дата копирайта и т.д.</text>
+	</string>
+	<string id="ui_mcm_menu_fe_locs">
+    	<text>Локации</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale">
+    	<text>Множитель глитча от локаций</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_loc_glitch_scale_desc">
+    	<text>Умножает количество глитча от локаций на это количество. 0 - глитч от локаций отключен.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal">
+    	<text>Ошибка "Нет сигнала" в подземных локациях</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_undgr_no_signal_desc">
+    	<text>Позволяет включить или выключить ошибку "Нет сигнала" в подземных локациях</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers">
+    	<text>Ошибка на локациях под контролем Монолита</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_monolith_hackers_desc">
+    	<text>Позволяет включить или выключить ошибку на территории, подконтрольной Монолиту.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors">
+    	<text>Секретные ошибки на локациях</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_secret_errors_desc">
+    	<text>Позволяет включить или выключить некоторые секретные ошибки.</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost">
+    	<text>Усиление сигнала (м.)</text>
+	</string>
+	<string id="ui_mcm_fatal_error_fe_locs_signal_boost_desc">
+    	<text>Усиливает ваш сигнал на надземных локациях с ошибкой "Нет сигнала" на это количество метров (т.е. можно "споймать" сигнал на меньшей высоте)</text>
 	</string>
 	
 	<!--

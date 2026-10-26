@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
 	<string id="st_pda_error_603">
-		<text>Р¤РђРўРђР›Р¬РќРђ РџРћРњРР›РљРђ: РљРћР” РџРћРњРР›РљР 603 - РџР•Р Р•Р—РђР’РђРќРўРђР–РўР• РџР РРЎРўР Р†Р™</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: КОД ПОМИЛКИ 603 - ПЕРЕЗАВАНТАЖТЕ ПРИСТРІЙ</text>
+	</string>
+	<string id="st_pda_error_no_access">
+		<text>ПОМИЛКА: ДОСТУП ЗАБОРОНЕНО</text>
 	</string>
 	<string id="st_pda_error_map">
-		<text>Р¤РђРўРђР›Р¬РќРђ РџРћРњРР›РљРђ: РЎРЈРџРЈРўРќРРљРћР’Рђ РњРђРџРђ РќР•Р”РћРЎРўРЈРџРќРђ</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: СУПУТНИКОВА МАПА НЕДОСТУПНА</text>
 	</string>
 	<string id="st_pda_no_map">
-		<text>РќР•РњРђР„ РЎРР“РќРђР›РЈ</text>
+		<text>НЕМАЄ СИГНАЛУ</text>
 	</string>
 	<string id="st_pda_no_tab">
-		<text>РџРћРњРР›РљРђ: Р”РђРќРђ Р¤РЈРќРљР¦Р†РЇ РќР•Р”РћРЎРўРЈРџРќРђ РќРђ Р”РђРќР†Р™ РњРћР”Р•Р›Р† РљРџРљ</text>
+		<text>ПОМИЛКА: ДАНА ФУНКЦІЯ НЕДОСТУПНА НА ДАНІЙ МОДЕЛІ КПК</text>
 	</string>
 	<string id="st_pda_blocked">
-		<text>Р¤РђРўРђР›Р¬РќРђ РџРћРњРР›РљРђ: РљРћР РРЎРўРЈР’РђР¦Р¬РљРР™ Р†РќРўР•Р Р¤Р•Р™РЎ РќР•Р”РћРЎРўРЈРџРќРР™</text>
+		<text>ФАТАЛЬНА ПОМИЛКА: КОРИСТУВАЦЬКИЙ ІНТЕРФЕЙС НЕДОСТУПНИЙ</text>
 	</string>
 	<string id="st_pda_monolitch_hackers">
-		<text>FATAL ERROR: FUNCTION SET_ACTIVE_SUBDIALOG(SECTION) NOT AVAILABLE \nUNKNOWN UNAUTHORIZED ACCESS: MONOLITH_TRACKING.SCRIPT \nUNKNOWN UNAUTHORIZED REQUEST: SEND_LOCAL_POS TO MONOLITH_ALPHA_SQUAD \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR \nUNKNOWN UNAUTHORIZED MESSAGE: Р—Рђ РњРћРќРћР›Р†Рў! РўР•Р‘Р• Р‘РЈР”Р• Р—РќРР©Р•РќРћ, Р§Р•Р Р’'РЇРљ! \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR</text>
+		<text>FATAL ERROR: FUNCTION SET_ACTIVE_SUBDIALOG(SECTION) NOT AVAILABLE \nUNKNOWN UNAUTHORIZED ACCESS: MONOLITH_TRACKING.SCRIPT \nUNKNOWN UNAUTHORIZED REQUEST: SEND_LOCAL_POS TO MONOLITH_ALPHA_SQUAD \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR \nUNKNOWN UNAUTHORIZED MESSAGE: ЗА МОНОЛІТ! ТЕБЕ БУДЕ ЗНИЩЕНО, ЧЕРВ'ЯК! \n!ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR !ERROR</text>
 	</string>
 </string_table>
  
