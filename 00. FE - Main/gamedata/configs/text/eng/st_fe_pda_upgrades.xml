@@ -1,4 +1,34 @@
 <string_table>
+	<string id="pda_database_0">
+		<text>I've got a strange app on my PDA called "Database", but whenever I open it, all I get is a message saying access denied. You know anything about it?</text>
+	</string>
+	<string id="pda_database_1">
+		<text>Alright, let me take a look... Hmm... Yeah, I've seen this app before. It was developed for the military to track information about stalkers. I've seen a similar app on some mercs' PDAs. They say someone hacked the military version and simply "leaked" it to everyone else after making a few changes... It's a powerful tool, even a scary one. Personally, I still don't know how it collects data — does someone enter it all manually, or maybe it's artificial intelligence? I'm guessing you want access to it?</text>
+	</string>
+	<string id="pda_database_2">
+		<text>Well... Yeah, I thought that was obvious.</text>
+	</string>
+	<string id="pda_database_3">
+		<text>Actually, no — I was just curious about what kind of app it was.</text>
+	</string>
+	<string id="pda_database_4">
+		<text>I've heard a lot about you, stalker, so I think we can work something out... For a symbolic fee of 100,000 rubles.</text>
+	</string>
+	<string id="pda_database_5">
+		<text>No. This app is far too dangerous to hand out access left and right. What if you get killed by some riffraff in the Cordon or the Garbage, and that scum gets access to your PDA? No, stalker, you're still too green to get your hands on a tool like this. Come back when you've got a lot more experience. \n%c[d_orange][Required rank: "Master" or "Legend"]</text>
+	</string>
+	<string id="pda_database_6">
+		<text>Alright, here's the money. \n%c[d_orange][100,000 rubles]</text>
+	</string>
+	<string id="pda_database_7">
+		<text>Sheesh, those are some "symbolic" prices you've got there. I think I'll sleep on it for now...</text>
+	</string>
+	<string id="pda_database_8">
+		<text>Suit yourself, stalker. If you change your mind, come see me.</text>
+	</string>
+	<string id="pda_database_9">
+		<text>Excellent, then it's a deal... I'll send a message to a "trusted" contact to have your account added to the app's "whitelist". Just don't forget that this app is... Very dangerous.</text>
+	</string>
 	<string id="pda_decypher_0">
 		<text>Found an interesting PDA here, but it's encrypted - wanna take a look?</text>
 	</string>

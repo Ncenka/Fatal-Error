@@ -2,12 +2,37 @@
 
 <string_table>
 
-<!--
-F.R.I.T.E.S | Thundard
-Dernière révision: 19 septembre 2025
--->
-
-<string id="pda_decypher_0">
+	<string id="pda_database_0">
+		<text>J'ai une application bizarre sur mon PDA, appelée « Base de données », mais quand je l'ouvre, un message m'indique que l'accès est refusé. Tu sais ce que c'est ?</text>
+	</string>
+	<string id="pda_database_1">
+		<text>Bon, voyons ça... Hmm... Oui, je connais cette application. Elle a été développée pour l'armée afin de suivre les informations sur les stalkers. J'ai vu une application similaire sur les PDA de certains mercenaires. On raconte que quelqu'un a piraté la version militaire et l'a simplement « divulguée » aux autres après l'avoir un peu modifiée... C'est un outil puissant, presque effrayant. Personnellement, je ne sais toujours pas comment elle collecte les données : quelqu'un les saisit manuellement, ou c'est peut-être une intelligence artificielle. J'imagine que tu veux y accéder ?</text>
+	</string>
+	<string id="pda_database_2">
+		<text>Eh bien... Oui, ça me semblait évident.</text>
+	</string>
+	<string id="pda_database_3">
+		<text>En fait, non. Je voulais juste savoir de quelle application il s'agissait.</text>
+	</string>
+	<string id="pda_database_4">
+		<text>J'ai beaucoup entendu parler de toi, stalker, alors je pense qu'on peut s'arranger... Pour la somme symbolique de 100 000 roubles.</text>
+	</string>
+	<string id="pda_database_5">
+		<text>Non. Cette application est bien trop dangereuse pour en distribuer l'accès à tout-va. Et si tu te fais descendre par une bande de vauriens au Cordon ou à la Décharge, et que cette racaille met la main sur ton PDA ? Non, stalker, tu es encore trop novice pour avoir un outil pareil entre les mains. Reviens quand tu auras beaucoup plus d'expérience. \n%c[d_orange][Rang requis : « Maître » ou « Légende »]</text>
+	</string>
+	<string id="pda_database_6">
+		<text>Très bien, voilà l'argent. \n%c[d_orange][100.000 roubles]</text>
+	</string>
+	<string id="pda_database_7">
+		<text>Eh ben, tes prix « symboliques » sont sacrément élevés. Je vais prendre le temps d'y réfléchir...</text>
+	</string>
+	<string id="pda_database_8">
+		<text>Comme tu veux, stalker. Si tu changes d'avis, passe me voir.</text>
+	</string>
+	<string id="pda_database_9">
+		<text>Parfait, marché conclu... Je vais envoyer un message à une personne « de confiance » pour faire ajouter ton compte à la « liste blanche » de l'application. Mais n'oublie surtout pas que cette application est... Très dangereuse.</text>
+	</string>
+	<string id="pda_decypher_0">
 		<text>J'ai trouvé un PDA intéressant ici, mais il est crypté - tu veux jeter un oeil?</text>
 	</string>
 	<string id="pda_decypher_1">
