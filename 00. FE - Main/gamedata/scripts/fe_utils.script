@@ -215,7 +215,7 @@ end
 
 function get_s_cond(obj)
     if not failsafe(obj) then return 1 end -- failsafe
-    return item_device.dev_items[obj:id()].s_cond or 0
+    return item_device.dev_items[obj:id()].s_cond or 1
 end
 
 function get_screen_damage(obj)

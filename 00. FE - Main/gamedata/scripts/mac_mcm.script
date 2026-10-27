@@ -46,11 +46,13 @@ PDA_APPS = {
 ----------------------------------------------------------------------------------------------------
 
 LAUNCHER_KEY = DIK_keys.DIK_RCONTROL
+local big_icons
 
 function on_mcm_load()
 	options = { 
 		id = "pda_apps", sh = true, gr= {
 			{ id = "launcher_key", type = "key_bind", val = 2, def = DIK_keys.DIK_RCONTROL},
+            { id = "big_icons", type = "check", val = 1, def = false},
 		}
 	}
 	return options
@@ -58,6 +60,7 @@ end
 
 function on_option_change()
 	LAUNCHER_KEY = ui_mcm.get("pda_apps/launcher_key")
+    big_icons = ui_mcm.get("pda_apps/big_icons")
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -171,12 +174,16 @@ function pda_laucher_tab:InitControls()
 	self.text = {}
 	self.apps_ids = {}
 
+    local icon_size = big_icons and 2 or 1
+
     local app_index = 1
-    local apps_per_row = 10
+    local apps_per_row = 10 / icon_size
+
     local start_x = 50
     local start_y = 100
-    local spacing_x = 75
-    local spacing_y = 80
+
+    local spacing_x = 75 * icon_size
+    local spacing_y = 80 * icon_size
 
     for app_id, app_data in pairs(PDA_APPS) do
 
@@ -186,15 +193,21 @@ function pda_laucher_tab:InitControls()
         local pos_x = start_x + col * spacing_x
         local pos_y = start_y + row * spacing_y
         
-        self.apps[app_index] 		= xml:Init3tButton("app_base", self)
-        self.apps[app_index]:InitTexture (app_data.texture)
-		self.text[app_index] = xml:InitTextWnd("app_base:text", self)
-        self.text[app_index]:SetTextAlignment(2)
-		self.apps_ids[app_index] = app_id
+        self.apps[app_index] 		= xml:Init3tButton("app_base" .. icon_size, self)
+		self.text[app_index]        = xml:InitTextWnd("app_base" .. icon_size .. ":text", self)
+        self.apps[app_index]        :InitTexture (app_data.texture)
+        self.text[app_index]        :SetTextAlignment(2)
+		self.apps_ids[app_index]    = app_id
         self:Register(self.apps[app_index], "app_" .. app_id)
 
         self.apps[app_index]:SetWndPos(vector2():set(pos_x, pos_y))
-        self.text[app_index]:SetWndPos(vector2():set(pos_x, pos_y + 50))
+        self.text[app_index]:SetWndPos(vector2():set(pos_x, pos_y + 50 * icon_size))
+
+        if big_icons then
+            self.text[app_index]:SetFont(GetFontLetterica25())
+        else
+            self.text[app_index]:SetFont(GetFontLetterica16Russian())
+        end
         
         app_index = app_index + 1
     end
@@ -211,6 +224,7 @@ function pda_laucher_tab:OnAppClicked()
     local app_id = self.apps_ids[selected_app]
     local app_data = PDA_APPS[app_id]
     ActorMenu.get_pda_menu():SetActiveSubdialog(app_data.tab)
+    ActorMenu.get_pda_menu():GetTabControl():ResetTab()
 end
 
 function pda_laucher_tab:Update()
@@ -286,6 +300,6 @@ function on_game_start()
 
     if get_aoe_version then return end
 
-    assert(get_modded_exes_version() > 20250823, game.translate_string("st_mac_modded_exes"))
+    assert(get_modded_exes_version() > 20260000, game.translate_string("st_mac_modded_exes"))
 
 end

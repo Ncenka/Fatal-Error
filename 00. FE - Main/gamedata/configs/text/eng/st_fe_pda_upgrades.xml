@@ -3,13 +3,13 @@
 		<text>I've got a strange app on my PDA called "Database", but whenever I open it, all I get is a message saying access denied. You know anything about it?</text>
 	</string>
 	<string id="pda_database_1">
-		<text>Alright, let me take a look... Hmm... Yeah, I've seen this app before. It was developed for the military to track information about stalkers. I've seen a similar app on some mercs' PDAs. They say someone hacked the military version and simply "leaked" it to everyone else after making a few changes... It's a powerful tool, even a scary one. Personally, I still don't know how it collects data — does someone enter it all manually, or maybe it's artificial intelligence? I'm guessing you want access to it?</text>
+		<text>Alright, let me take a look... Hmm... Yeah, I've seen this app before. It was developed for the military to track information about stalkers. I've seen a similar app on some mercs' PDAs. They say someone hacked the military version and simply "leaked" it to everyone else after making a few changes... It's a powerful tool, even a scary one. Personally, I still don't know how it collects data ï¿½ does someone enter it all manually, or maybe it's artificial intelligence? I'm guessing you want access to it?</text>
 	</string>
 	<string id="pda_database_2">
 		<text>Well... Yeah, I thought that was obvious.</text>
 	</string>
 	<string id="pda_database_3">
-		<text>Actually, no — I was just curious about what kind of app it was.</text>
+		<text>Actually, no ï¿½ I was just curious about what kind of app it was.</text>
 	</string>
 	<string id="pda_database_4">
 		<text>I've heard a lot about you, stalker, so I think we can work something out... For a symbolic fee of 100,000 rubles.</text>
@@ -33,25 +33,25 @@
 		<text>Found an interesting PDA here, but it's encrypted - wanna take a look?</text>
 	</string>
 	<string id="pda_decypher_1">
-		<text>Let me see... Hmm... The "Milspec" label doesn’t bode well... I recognize the model - it’s a GETAC. A terrible PDA for the Zone. I can’t decipher it - no idea what kind of protection system the Chinese cooked up, and I’ve never heard of anyone cracking it. So, here’s the deal: I know a way to reflash it - with complete data loss, of course - it’ll cost you 25,000 rubles since the process isn’t easy and requires... let’s say, "special" skills. Oh, and I’m also willing to buy it from you for 10,000 rubles - it’s full of high-quality components.</text>
+		<text>Let me see... Hmm... The "Milspec" label doesnï¿½t bode well... I recognize the model - itï¿½s a GETAC. A terrible PDA for the Zone. I canï¿½t decipher it - no idea what kind of protection system the Chinese cooked up, and Iï¿½ve never heard of anyone cracking it. So, hereï¿½s the deal: I know a way to reflash it - with complete data loss, of course - itï¿½ll cost you 25,000 rubles since the process isnï¿½t easy and requires... letï¿½s say, "special" skills. Oh, and Iï¿½m also willing to buy it from you for 10,000 rubles - itï¿½s full of high-quality components.</text>
 	</string>
 	<string id="pda_decypher_2">
-		<text>Here’s the money. \n%c[d_orange][25,000 rubles]</text>
+		<text>Hereï¿½s the money. \n%c[d_orange][25,000 rubles]</text>
 	</string>
 	<string id="pda_decypher_3">
-		<text>Nice, perfect... Alright, plugging in my special flash drive... Rebooting... Resetting BIOS to factory defaults, wiping the memory... Booting in safe mode... All done - here you go. No idea why you need this PDA, but if it breaks - don’t even come to me for repairs.</text>
+		<text>Nice, perfect... Alright, plugging in my special flash drive... Rebooting... Resetting BIOS to factory defaults, wiping the memory... Booting in safe mode... All done - here you go. No idea why you need this PDA, but if it breaks - donï¿½t even come to me for repairs.</text>
 	</string>
 	<string id="pda_decypher_4">
-		<text>You know what - I’ll ask about it later.</text>
+		<text>You know what - Iï¿½ll ask about it later.</text>
 	</string>
 	<string id="pda_decypher_5">
 		<text>Yeah, okay then...</text>
 	</string>
 	<string id="pda_decypher_6">
-		<text>Take it - I don’t really need it.</text>
+		<text>Take it - I donï¿½t really need it.</text>
 	</string>
 	<string id="pda_decypher_7">
-		<text>Smart choice! Here’s your money.</text>
+		<text>Smart choice! Hereï¿½s your money.</text>
 	</string>
 	<string id="pda_start_1">
 		<text>I have a couple of questions about the PDA...</text>
@@ -130,6 +130,9 @@
 	</string>
 	<string id="st_device_partially_fix">
 		<text>The functionality of the device has been partially restored.</text>
+	</string>
+	<string id="st_database_unlock">
+		<text>Database access granted.</text>
 	</string>
 	<string id="st_pda_screen_fix">
 		<text>PDA screen has been replaced.</text>

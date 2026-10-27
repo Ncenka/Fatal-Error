@@ -17,7 +17,8 @@ function pda_reboot_tab:InitControls()
 	local xml               = CScriptXmlInit()
 	xml:ParseFile("pda_errors.xml")
 	
-	self.picture			= xml:InitStatic("picture_base",self)
+	self.picture = xml:InitStatic("picture_base",self)
+	self.picture:InitTexture ("ui\\reboot\\pda_reboot")
 	
 	self.settings = xml:Init3tButton("btn_settings", self)
 	self:Register(self.settings, "btn_settings")
@@ -28,7 +29,6 @@ function pda_reboot_tab:InitCallbacks()
 end
 
 function pda_reboot_tab:Reset()
-	self.picture:InitTexture ("ui\\reboot\\pda_reboot")
 	if OS_LOADING == true then
 		self.picture:InitTexture ("ui\\os_loading\\os_loading")
 		sound_object("device\\pda_bsod_restored"):play_no_feedback(db.actor, sound_object.s3d, 0, db.actor:position(), 1.0, 1.0)
@@ -40,6 +40,8 @@ function pda_reboot_tab:Reset()
 		return
 	elseif fatal_error_mcm.SETTINGS.light_reboot == true then
 		self.picture:InitTexture ("ui\\reboot\\light_reboot")
+	else
+		self.picture:InitTexture ("ui\\reboot\\pda_reboot")
 	end
 	self.settings:Show(true)
 end

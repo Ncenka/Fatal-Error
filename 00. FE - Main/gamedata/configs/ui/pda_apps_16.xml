@@ -1,7 +1,11 @@
 <w>
 
-	<app_base x="50" y="50" width="50" height="50" stretch="1">
+	<app_base1 x="50" y="50" width="50" height="50" stretch="0">
 		<text width="50" height="100" align="c" font="letterica18"/>
-	</app_base>
+	</app_base1>
+
+	<app_base2 x="50" y="50" width="100" height="100" stretch="0">
+		<text width="100" height="100" align="c" font="letterica18"/>
+	</app_base2>
 
 </w>

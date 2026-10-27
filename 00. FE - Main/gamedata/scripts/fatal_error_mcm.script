@@ -690,7 +690,7 @@ function process_pda_call()
 	level.map_remove_object_spot(0, "actor_location")
 	level.map_remove_object_spot(0, "actor_location_p")
 	process_companion_icons(false)
-	local show_player = ini_sys:r_float_ex(pda:section(),"show_player")
+	local show_player = ini_sys:r_float_ex(pda:section(),"show_player") or 3
 	if overclock then show_player = 3 end
 	if show_player >= 1 then level.map_add_object_spot(0, "actor_location", "disable_hint") end
 	if show_player >= 2 then level.map_add_object_spot(0, "actor_location_p", "disable_hint") end
@@ -855,7 +855,7 @@ function process_shutdown()
 		local surge_psi_chance = fe_utils.get_surge_psi(obj) * 10
 		local electra_chance = fe_utils.get_electra(obj) * 50
 		local passive_chance = SETTINGS.other.devices_unreliability + SETTINGS.other.passive_glitch * 10 + (fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] and fe_utils.LEVEL_PASSIVE_GLITCH[level.name()] * SETTINGS.locs.loc_glitch_scale * 10 or 0)
-		local glitch_factor = obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor")
+		local glitch_factor = obj:has_upgrade("up_fourta_pda") and ini_sys:r_float_ex(obj:section(),"glitch_factor") - 0.90 or ini_sys:r_float_ex(obj:section(),"glitch_factor") or 0
 		local final_chance = math.floor((radiation_chance + damage_chance + screen_damage_chance + overclock_chance + surge_psi_chance + electra_chance + passive_chance) * glitch_factor)
 		
 		if math.random(0, 100) < final_chance then

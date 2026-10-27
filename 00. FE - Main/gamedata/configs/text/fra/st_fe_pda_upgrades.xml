@@ -134,6 +134,9 @@
 	<string id="st_device_partially_fix">
 		<text>La fonctionnalité de l'appareil a été partiellement restaurée.</text>
 	</string>
+	<string id="st_database_unlock">
+		<text>Accès à la base de données accordé.</text>
+	</string>
 	<string id="st_pda_screen_fix">
 		<text>Écran du PDA remplacé.</text>
 	</string>

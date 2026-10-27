@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="ui_mcm_menu_pda_apps">
+		<text>MAC</text>
+	</string>
+	<string id="ui_mcm_pda_apps_launcher_key">
+		<text>Повернутися до Лаунчера</text>
+	</string>
+	<string id="ui_mcm_pda_apps_launcher_key_desc">
+		<text>Кнопка, натискання якої повертає вас на головний екран Лаунчера. Може бути корисною, якщо після відкриття програми зникають кнопки вгорі.</text>
+	</string>
+	<string id="ui_mcm_pda_apps_big_icons">
+		<text>Великі значки програм</text>
+	</string>
+	<string id="ui_mcm_pda_apps_big_icons_desc">
+		<text>Увімкніть цю опцію, щоб значки програм у Лаунчері були великими.</text>
+	</string>
+	<string id="pda_btn_launcher">
+		<text>Лаунчер</text>
+	</string>
+	<string id="st_mac_modded_exes">
+		<text>Якщо ви це читаєте, це означає, що ваша версія Modded Exes застаріла й несумісна з доповненням Mod App Creator. Mod App Creator потребує версії Modded Exes від 1 січня 2026 року (2026.1.1) або новішої. Якщо ви використовуєте AOEngine, попросіть v2v3v4 оновити AOEngine до останньої версії Modded Exes.</text>
+	</string>
+</string_table>

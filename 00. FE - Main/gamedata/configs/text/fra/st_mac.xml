@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="ui_mcm_menu_pda_apps">
+		<text>MAC</text>
+	</string>
+	<string id="ui_mcm_pda_apps_launcher_key">
+		<text>Retourner au Launcher</text>
+	</string>
+	<string id="ui_mcm_pda_apps_launcher_key_desc">
+		<text>Bouton permettant de revenir à l'écran principal du Launcher lorsqu'il est pressé. Cela peut être utile si les boutons en haut disparaissent après l'ouverture d'une application.</text>
+	</string>
+	<string id="ui_mcm_pda_apps_big_icons">
+		<text>Grandes icônes des applications</text>
+	</string>
+	<string id="ui_mcm_pda_apps_big_icons_desc">
+		<text>Activez cette option pour afficher de grandes icônes d'applications dans le Launcher.</text>
+	</string>
+	<string id="pda_btn_launcher">
+		<text>Launcher</text>
+	</string>
+	<string id="st_mac_modded_exes">
+		<text>Si vous lisez ce message, cela signifie que votre version de Modded Exes est obsolète et incompatible avec l'extension Mod App Creator. Mod App Creator nécessite la version 2026.1.1 de Modded Exes, publiée le 1er janvier 2026, ou une version plus récente. Si vous utilisez AOEngine, demandez à v2v3v4 de mettre à jour AOEngine vers la dernière version de Modded Exes.</text>
+	</string>
+</string_table>
