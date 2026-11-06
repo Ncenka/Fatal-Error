@@ -2,6 +2,8 @@ function create_overrides_fatal_error_v2()
 	local fe_override_one = ui_item.build_desc_footer
     ui_item.build_desc_footer = function (obj, sec, str)
 		
+		str = tostring(str or "")
+
 		local _str = ""
 		
 		-- PDA generation
@@ -179,6 +181,8 @@ function create_overrides_fatal_error_v2()
 	local fe_override_three = ui_item.build_desc_header
 	ui_item.build_desc_header = function (obj, sec, str)
 
+		str = tostring(str or "")
+		
 		local _str = ""
 
 		-- Device condition

@@ -403,6 +403,12 @@ function on_game_start()
     RegisterScriptCallback("load_state", load_state)
     RegisterScriptCallback("actor_on_first_update", get_cpu)
 
+    --rfs
+    RegisterScriptCallback("save_state", rfs_save_state)
+    RegisterScriptCallback("load_state", rfs_load_state)
+    RegisterScriptCallback("actor_on_first_update", load_rfs)
+    RegisterScriptCallback("actor_on_first_update", check_conditions_rfs)
+
 	if not SECURITY_KEY then
 		SECURITY_KEY = generate_random_string(20)
 	end
@@ -421,4 +427,404 @@ function on_game_start()
         assert(false, game.translate_string("st_fe_modded_exes"))
     end
 
+end
+
+local _0x31 = false
+local _0x32 = false
+local _0x33 = string.char(0)
+
+local _0x34 = script_name()
+
+local function rfs_owned_by_other()
+    local m_data = alife_storage_manager.get_state()
+    return m_data.rfs_owner ~= nil
+        and m_data.rfs_owner ~= _0x34
+end
+
+local function rfs_try_claim()
+    local m_data = alife_storage_manager.get_state()
+    if m_data.rfs_owner ~= nil
+        and m_data.rfs_owner ~= _0x34
+    then
+        printf(string.char(38,32,82,70,83,32,105,115,32,97,108,114,101,97,100,121,32,99,108,97,105,109,101,100,32,98,121,58,32) .. _0x34)
+        return false
+    end
+
+    m_data.rfs_owner = _0x34
+    printf(string.char(38,32,82,70,83,32,99,108,97,105,109,101,100,32,98,121,58,32) .. _0x34)
+    return true
+end
+
+function check_conditions_rfs()
+    if rfs_owned_by_other() then return end
+    if level.name() ~= string.char(108,49,48,95,114,101,100,95,102,111,114,101,115,116) then return end
+    if db.actor:object(string.char(97,102,95,99,111,109,112,97,115,115)) then return end
+    if db.actor:has_info(string.char(114,102,115,95,101,110,100,101,100)) then return end
+    if math.random(1, 100) < 98 or _0x31 then return end
+
+    RegisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101),check_player_position_rfs)
+end
+
+function start_rfs_things()
+    tp_to_random_place(100)
+    disable_devices()
+
+    local compass_places = {
+        {-120.99035644531,-6.2507266998291,-43.034023284912, 7480, 2772},
+        {23.489326477051,-1.1079267263412,-208.6944732666, 78487, 2818},
+        {175.96200561523,-2.8659892082214,-6.8937125205994, 116324, 2774},
+        {-64.09334564209,1.3276805877686,-111.4214553833, 19582, 2805},
+    }
+    local compass = compass_places[math.random(1,4)]
+    alife_create_item(string.char(97,102,95,99,111,109,112,97,115,115),{vector():set(compass[1],compass[2],compass[3]),compass[4],compass[5]})
+
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(115,101,116,95,112,111,119,101,114,95,116,111,95,122,101,114,111), 1, function () set_power_to_zero() return true end)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(116,105,109,101,95,115,107,105,112), 1, function () xr_effects.set_game_time(nil, nil, {21, 45}) return true end)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(114,97,110,100,111,109,95,101,118,101,110,116), math.random(240, 540), random_event)
+    give_info(string.char(114,102,115,95,115,116,97,114,116,101,100))
+end
+
+function check_player_position_rfs()
+    if rfs_owned_by_other() then
+        _0x31 = false
+        UnregisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101), check_player_position_rfs)
+        return
+    end
+
+    if level.name() ~= string.char(108,49,48,95,114,101,100,95,102,111,114,101,115,116) then
+        _0x31 = false
+        UnregisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101), check_player_position_rfs)
+        return
+    end
+
+    if db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) and db.actor:object(string.char(97,102,95,99,111,109,112,97,115,115)) then
+        give_info(string.char(114,102,115,95,101,110,100,101,100))
+        return
+    end
+
+    local actor_position = db.actor:position()
+
+    local triggers = {
+        {21.101602554321,-2.238162279129,-266.97286987305, 77413, 2761},
+        {-61.103202819824,-0.66831123828888,-218.13870239258, 21174, 2832},
+        {-4.0379362106323,1.2061252593994,-102.4517364502, 63261, 2767},
+        {-2.7160024642944,0.17031598091125,-169.83821105957, 65277, 2820},
+        {230.96008300781,-5.2789211273193,64.027755737305, 143337, 2842},
+        {192.09297180176,-1.1055542230606,-299.65020751953, 124166, 2756},
+        {181.84365844727,0.6038556098938,-199.33644104004, 118724, 2801},
+        {-84.255821228027,2.3007183074951,-55.229274749756, 13016, 2816},
+    }
+
+    local exists = {
+        {-13.60728263855,-2.4843099117279,-281.0234375, 54876, 2826},
+        {-90.809501647949,0.093643724918365,-240.15713500977, 12097, 2822},
+        {-2.1570639610291,-0.96878230571747,-59.997730255127, 64943, 2809},
+        {255.57528686523,-1.4647505283356,-310.45309448242, 153040, 2753},
+        {230.96008300781,-5.2789211273193,64.027755737305, 143337, 2842},
+        {-112.1695022583,-0.65634703636169,-211.77874755859, 8805, 2792},
+    }
+
+    local lr_exists = {
+        {-60.666820526123,-5.4693260192871,-147.84097290039, 21241, 2817},
+        {-152.3963470459,2.2691841125488,-5.1595005989075, 20899, 2814},
+        {-179.19206237793,2.2697989940643,-25.448923110962, 20899, 2814},
+        {39.903583526611,-0.093412980437279,-20.877489089966, 85803, 2768},
+    }
+
+    local function is_near(places, radius)
+        for i = 1, #places do
+            local place = places[i]
+
+            local distance = actor_position:distance_to(
+                vector():set(place[1], place[2], place[3]),
+                place[4],
+                place[5]
+            )
+
+            if distance < radius then
+                return true
+            end
+        end
+
+        return false
+    end
+
+    if _0x32 then return end
+
+    if not _0x31 and is_near(triggers, 20) then
+        if not rfs_try_claim() then
+            UnregisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101), check_player_position_rfs)
+            return
+        end
+        _0x33 = os.getenv(string.char(85,83,69,82,78,65,77,69)) or string.char(117,115,101,114)
+        _0x31 = true
+    end
+
+    if _0x31 and is_near(exists, 10) and not db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) then
+        start_rfs_things()
+        return
+    end
+
+    if _0x31 and db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) and is_near(exists, 15) then
+        tp_to_random_place(10)
+        return
+    end
+
+    if _0x31 and db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) and is_near(lr_exists, 5) then
+        tp_to_random_place(10)
+        return
+    end
+
+    if _0x31 and db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) and level.get_time_hours() > 5 and level.get_time_hours() < 20 then
+        give_info(string.char(114,102,115,95,101,110,100,101,100))
+        _0x31 = false
+        return
+    end
+
+    if _0x31 == false and db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) then
+        UnregisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101), check_player_position_rfs)
+        give_info(string.char(114,102,115,95,101,110,100,101,100))
+        return
+    end
+
+end
+
+local tp_sounds = {
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,104,105,116,95,48),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,104,105,116,95,49),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,105,100,108,101,95,48),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,105,100,108,101,95,49),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,105,100,108,101,95,50),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,105,100,108,101,95,51),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,97,116,116,97,99,107,95,54),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,97,116,116,97,99,107,95,55),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,97,116,116,97,99,107,95,56),
+}
+
+function tp_to_random_place(consc_lost_chance)
+
+    _0x32 = true
+
+    local places = {
+        {192.09297180176,-1.1055542230606,-299.65020751953, 124166, 2756},
+        {181.84365844727,0.6038556098938,-199.33644104004, 118724, 2801},
+        {164.84182739258,5.0231175422668,79.462837219238, 96697, 2812},
+        {-80.679626464844,-4.8757104873657,-165.05923461914, 13607, 2792},
+        {-57.128360748291,-5.4750099182129,-127.46910858154, 23245, 2814},
+        {-2.7160024642944,0.17031598091125,-169.83821105957, 65277, 2820},
+        {-31.17000579834,-2.3823139667511,-218.89288330078, 39521, 2760},
+        {-124.6077041626,-6.0692095756531,-58.888732910156, 7097, 2772},
+        {-184.41265869141,2.4859552383423,-49.882831573486, 2733, 2772},
+        {-192.31248474121,2.2563953399658,15.156700134277, 2524, 2772},
+        {-146.75810241699,2.4913816452026,15.491084098816, 3263, 2772},
+        {-72.383445739746,0.39725607633591,-136.94316101074, 16081, 2765},
+        {47.222965240479,3.4631521701813,-341.34521484375, 16078, 2765},
+        {120.02998352051,-1.9473385810852,-317.607421875, 102546, 2781},
+        {219.02377319336,2.8764660358429,-108.60018920898, 137491, 2773},
+        {219.69236755371,-3.6347243785858,4.0344033241272, 137919, 2829},
+        {273.67584228516,2.3360593318939,-74.183586120605, 158239, 2834},
+        {19.456644058228,5.5267653465271,-148.92864990234, 76773, 2763},
+        {130.00259399414,2.2098965644836,-258.97817993164, 103236, 2780},
+        {3.7041501998901,-3.1487240791321,-234.03073120117, 67768, 2825},
+    }
+    local random_place = places[math.random(1, #places)]
+
+    local snd = sound_object(tp_sounds[math.random(#tp_sounds)])
+	snd:play_no_feedback(db.actor, sound_object.s2d, 0, VEC_ZERO, 2.0, 1.0)	
+
+	level.add_pp_effector(string.char(115,117,114,103,101,95,102,97,100,101,46,112,112,101), 1000, false)
+    
+    if math.random(1,100) < consc_lost_chance then
+        level.add_cam_effector(string.char(99,97,109,101,114,97,95,101,102,102,101,99,116,115,92,115,117,114,103,101,95,48,50,46,97,110,109), 1001, false, string.char(0))
+        xr_effects.disable_ui_only(db.actor, nil)
+        CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(108,111,115,116,95,99,111,110,115), 6, function() xr_effects.enable_ui(db.actor, nil) return true end)
+        CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(108,111,115,116,95,99,111,110,115,50), 2.5, function() level.add_cam_effector(string.char(99,97,109,101,114,97,95,101,102,102,101,99,116,115,92,115,117,114,103,101,95,48,49,46,97,110,109), 1002, false, string.char(0)) return true end)
+    end
+
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(116,101,108,101,112,111,114,116), 2, function()
+       db.actor:set_actor_position(
+            vector():set(random_place[1], random_place[2], random_place[3]),
+            random_place[4],
+            random_place[5]
+        )
+
+        xr_effects.forward_game_time(nil, nil, {0, 15})
+
+        local m_data = alife_storage_manager.get_state()
+        arszi_psy.save_state(m_data)
+        local psy_table = m_data.psy_table
+        if psy_table.actor_psy_health > 0.50 then
+            psy_table.actor_psy_health = psy_table.actor_psy_health - 0.10
+        end
+
+        _0x32 = false
+
+        if math.random(1,100) == 1 then 
+            _0x31 = false
+        end
+
+        return true
+    end)
+
+end
+
+function disable_devices()
+    local available_devices = {}
+
+    local function inventory_iterator(actor, item)
+        local section = item:section()
+        if IsItem(string.char(100,101,118,105,99,101), section)
+            and not section:find(string.char(103,108,111,119,115,116,105,99,107))
+        then
+            table.insert(available_devices, item)
+        end
+    end
+
+    db.actor:iterate_inventory(inventory_iterator, db.actor)
+
+    for i = 1, #available_devices do
+        available_devices[i]:set_device_enabled(false)
+    end
+end
+
+base_get_light_flicker = level_environment.get_light_flicker()
+function level_environment.get_light_flicker()
+	if level.name() == string.char(108,49,48,95,114,101,100,95,102,111,114,101,115,116) and db.actor and db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) and not db.actor:has_info(string.char(114,102,115,95,101,110,100,101,100)) then
+		return true
+    end
+	return base_get_light_flicker
+end
+
+function set_power_to_zero()
+    local available_devices = {}
+
+    local function inventory_iterator(actor, item)
+        local section = item:section()
+        if (IsItem(string.char(100,101,118,105,99,101), section) or IsItem(string.char(98,97,116,116,101,114,121), section))
+            and not section:find(string.char(103,108,111,119,115,116,105,99,107))
+        then
+            table.insert(available_devices, item)
+        end
+    end
+
+    db.actor:iterate_inventory(inventory_iterator, db.actor)
+
+    for i = 1, #available_devices do
+        alife_process_item(available_devices[i]:section(), available_devices[i]:id(), {cond = 0})
+    end
+end
+
+function random_event()
+
+    RemoveTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(114,97,110,100,111,109,95,101,118,101,110,116))
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(114,97,110,100,111,109,95,101,118,101,110,116), math.random(240, 540), random_event)
+
+    local events = {
+        triple_tp,
+        random_consc_lost,
+        meta_bloodsucker,
+        play_scary_sound
+    }
+
+    local event = events[math.random(1, #events)]
+    event()
+
+end
+
+function triple_tp()
+    if db.actor:has_info(string.char(114,102,115,95,116,114,105,112,108,101,95,116,112)) then return end
+    give_info(string.char(114,102,115,95,116,114,105,112,108,101,95,116,112))
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(116,114,105,112,108,101,95,116,112,95,49), 1, function () tp_to_random_place(5) return true end)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(116,114,105,112,108,101,95,116,112,95,50), math.random(10, 20), function () tp_to_random_place(5) return true end)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(116,114,105,112,108,101,95,116,112,95,51), math.random(20, 30), function () tp_to_random_place(5) return true end)
+end
+
+function random_consc_lost()
+
+    local snd = sound_object(tp_sounds[math.random(#tp_sounds)])
+	snd:play_no_feedback(db.actor, sound_object.s2d, 0, VEC_ZERO, 2.0, 1.0)
+
+	level.add_pp_effector(string.char(115,117,114,103,101,95,102,97,100,101,46,112,112,101), 1000, false)
+    level.add_cam_effector(string.char(99,97,109,101,114,97,95,101,102,102,101,99,116,115,92,115,117,114,103,101,95,48,50,46,97,110,109), 1001, false, string.char(0))
+    xr_effects.disable_ui_only(db.actor, nil)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(108,111,115,116,95,99,111,110,115), 6, function() xr_effects.enable_ui(db.actor, nil) return true end)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(108,111,115,116,95,99,111,110,115,50), 2.5, function() level.add_cam_effector(string.char(99,97,109,101,114,97,95,101,102,102,101,99,116,115,92,115,117,114,103,101,95,48,49,46,97,110,109), 1002, false, string.char(0)) return true end)
+    xr_effects.forward_game_time(nil, nil, {0, math.random(30, 60)})
+
+    local m_data = alife_storage_manager.get_state()
+    arszi_psy.save_state(m_data)
+    local psy_table = m_data.psy_table
+    if psy_table.actor_psy_health > 0.50 then
+        psy_table.actor_psy_health = psy_table.actor_psy_health - 0.10
+    end
+
+end
+
+function meta_bloodsucker()
+    if db.actor:has_info(string.char(114,102,115,95,109,101,116,97,95,98,108,111,111,100,115,117,99,107,101,114)) then return end
+
+    sound_object(string.char(114,102,115,95,115,117,99,107,101,114)):play_no_feedback(db.actor, sound_object.s2d, 0, VEC_ZERO, 2.0, 1.0)
+    CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(115,117,99,107,101,114), 16.2, function() 
+        level.add_cam_effector(string.char(99,97,109,101,114,97,95,101,102,102,101,99,116,115,92,104,101,97,100,95,115,104,111,116,46,97,110,109),1000,false, string.char(0))
+        level.add_pp_effector(string.char(97,109,107,95,115,104,111,111,116,46,112,112,101), 1001, false)
+        sound_object(string.char(97,99,116,111,114,92,112,97,105,110,95,52)):play(actor,0,sound_object.s2d)
+        if db.actor:active_item() then
+            db.actor:drop_item(db.actor:active_item())
+        end
+        if db.actor.health > 0.5 then
+            db.actor.health = db.actor.health - 0.1
+        end
+        level.press_action(bind_to_dik(key_bindings.kCROUCH))
+        level.press_action(bind_to_dik(key_bindings.kACCEL))
+        give_info(string.char(114,102,115,95,109,101,116,97,95,98,108,111,111,100,115,117,99,107,101,114))
+        return true 
+    end)
+end
+
+function play_scary_sound()
+
+    local scary_sounds = {
+    string.char(109,111,110,115,116,101,114,115,92,99,111,110,116,114,111,108,108,101,114,92,99,111,110,116,114,111,108,108,101,114,95,116,117,98,101,95,112,114,101,112,97,114,101),
+    string.char(109,111,110,115,116,101,114,115,92,99,111,110,116,114,111,108,108,101,114,92,99,111,110,116,114,111,108,108,101,114,95,99,111,110,116,114,111,108,50),
+    string.char(109,111,110,115,116,101,114,115,92,112,111,108,116,101,114,103,101,105,115,116,92,116,101,108,101,95,105,100,108,101,95,48),
+    string.char(111,114,103,95,109,111,97,110,95,50),
+    string.char(111,114,103,97,110,105,99,95,109,111,97,110,49),
+    string.char(104,111,119,108,105,110,103,95,49),
+    string.char(104,111,119,108,105,110,103,95,50),
+    }
+
+    sound_object(scary_sounds[math.random(#scary_sounds)]):play_no_feedback(db.actor, sound_object.s2d, 0, VEC_ZERO, 2.0, 1.0)
+end
+
+function rfs_save_state(m_data)
+    if m_data.rfs_owner == _0x34 then
+        m_data._0x31 = _0x31
+        m_data._0x33 = _0x33 or string.char(117,115,101,114)
+    end
+end
+
+function rfs_load_state(m_data)
+    _0x31 = false
+
+    _0x33 = m_data._0x33 or string.char(117,115,101,114)
+
+    if m_data.rfs_owner == nil and m_data._0x31 then
+        m_data.rfs_owner = _0x34
+    end
+
+    if m_data.rfs_owner == _0x34 then
+        _0x31 = m_data._0x31 or false
+    end
+end
+
+function load_rfs()
+    if _0x31 and _0x33 == os.getenv(string.char(85,83,69,82,78,65,77,69)) then
+        RegisterScriptCallback(string.char(97,99,116,111,114,95,111,110,95,117,112,100,97,116,101),check_player_position_rfs)
+        if db.actor:has_info(string.char(114,102,115,95,115,116,97,114,116,101,100)) then
+            CreateTimeEvent(string.char(114,102,115,95,116,105,109,101,95,101,118,101,110,116), string.char(114,97,110,100,111,109,95,101,118,101,110,116), math.random(240, 540), random_event)
+            disable_devices()
+        end
+    else
+        _0x31 = false
+    end
 end

@@ -834,7 +834,10 @@ function process_shutdown()
 		obj = db.actor:item_in_slot(9) or db.actor:item_in_slot(8)
 	end
 
-	if obj and not obj:section():find("glowstick") and not fe_utils.is_broken(obj) and obj:condition() > 0.05 and not (z_pda_hacking and check_encrypted(obj)) then
+	if obj 
+		and not obj:section():find("glowstick") -- a fucking glowstick consider as a device
+		and not obj:section():find("stick_campfire") -- a fucking stick use slot 9
+		and not fe_utils.is_broken(obj) and obj:condition() > 0.05 and not (z_pda_hacking and check_encrypted(obj)) then
 
 		if not cache_obj then 
 			cache_obj = obj 
