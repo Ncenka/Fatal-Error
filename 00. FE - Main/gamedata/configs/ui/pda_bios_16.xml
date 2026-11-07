@@ -150,6 +150,17 @@
 		<interface_interface x="400" y="540" width="150" height="768" stretch="1">
 			<text complex_mode="1" font="letterica18"/>
 		</interface_interface>
+
+		<test_button x="36" y="580" width="518" height="45" stretch="1">
+			<texture>bios_button_colors</texture>
+		</test_button>
+		<test_track x="400" y="585" width="145" height="20" stretch="1"/>
+		<test x="50" y="585" width="819" height="768" stretch="1">
+			<text complex_mode="1" font="letterica18" a="255" r="100" g="200" b="255">Screen Brightness:</text>
+		</test>
+		<test_test x="400" y="600" width="150" height="768" stretch="1">
+			<text complex_mode="1" font="letterica18" a="255" r="100" g="200" b="255"/>
+		</test_test>
 		
 		<hint x="558" y="150" width="230" height="700" stretch="0">
 			<text complex_mode="1" font="letterica18" a="255" r="100" g="200" b="255"/>

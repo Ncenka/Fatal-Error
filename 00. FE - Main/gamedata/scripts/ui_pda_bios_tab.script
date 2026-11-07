@@ -7,6 +7,7 @@ local beep
 local taskboard
 local interact
 local interface
+local brightness = 100
 local color
 local immersive_bios = false
 local year = "2026"
@@ -27,6 +28,7 @@ local hint_text = {
     interact = "PDA Interactive addon status and PDA compatibility.",
     razgon = "WARNING: Overclocking this device may result in:\\n \\n   1. Increased power consumption\\n   2. System instability\\n   3. Potential hardware damage \\n \\nPotential benefits:\\n \\n   1. Improved signal processing\\n   2. Protection from Fatal Errors",
     interface = "PDA User Interface XML File. Software update required to install custom User Interface.",
+    test = "Current PDA screen brightness. Can be adjusted.",
 
     -- Boot tab hints
     text1_l_boot = "Save all configuration changes and exit BIOS to start the operating system with selected settings.",
@@ -136,6 +138,15 @@ function pda_bios_tab:InitControls()
     self:Register(self.interface_button, "interface_button")
     self.interface = xml:InitTextWnd("bios:interface", self)
     self.interface_interface = xml:InitTextWnd("bios:interface_interface", self)
+
+    self.test_button = xml:Init3tButton("bios:test_button", self)
+    self.test_track = xml:InitTrackBar("bios:test_track", self)
+	self.test_track:SetOptFBounds(10, 100)
+    self.test_track:SetStep(1)
+	self.test_track:SetFValue(100)
+    self:Register(self.test_track, "test_track")
+    self.test = xml:InitTextWnd("bios:test", self)
+    self.test_test = xml:InitTextWnd("bios:test_test", self)
     
     self.hint = xml:InitTextWnd("bios:hint", self)
     self.help = xml:InitTextWnd("bios:help", self)
@@ -155,6 +166,8 @@ function pda_bios_tab:InitControls()
         self.interact_button, self.interact, self.interact_interact,
         self.razgon_button, self.razgon, self.razgon_razgon,
         self.interface_button, self.interface, self.interface_interface,
+
+        self.test_button, self.test_track, self.test, self.test_test,
     }
     
     self.boot_controls = {
@@ -218,6 +231,7 @@ function pda_bios_tab:Update()
             { button = self.interact_button, id = "interact" },
             { button = self.razgon_button, id = "razgon" },
             { button = self.interface_button, id = "interface" },
+            { button = self.test_button, id = "test" },
         }
     else -- boot
         elements = {
@@ -238,6 +252,12 @@ function pda_bios_tab:Update()
     
     if not hint_shown then
         self.hint:Show(false)
+    end
+
+    if math.floor(pda:GetPdaBrightness() * 100 + 0.5) ~= self.test_track:GetFValue() then
+        brightness = self.test_track:GetFValue()
+        pda:SetPdaBrightness(brightness * 0.01)
+        self.test_test:SetText("[" .. brightness .. "]")
     end
     
     CUIScriptWnd.Update(self)
@@ -381,7 +401,9 @@ function pda_bios_tab:Reset()
     pda_int = string.upper(pda_int)
     self.interface_interface:SetText("[" .. pda_int .. "]" .. " \\n" .. interface)
     self.interface_interface:SetTextColor(GetARGB(color[1], color[2], color[3], color[4]))
-    
+
+    self.test_test:SetText("[" .. brightness .. "]")
+
     -- Boot tab data
     self.boot_text1_l:SetText("Save & Default Boot")
     self.boot_text2_l:SetText("Save & Safe Mode Boot")

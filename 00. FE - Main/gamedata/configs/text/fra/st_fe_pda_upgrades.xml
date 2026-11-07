@@ -176,5 +176,10 @@
 	<string id="st_interface_upgrade_descr">
 		<text>Tous les PDAs sont livrés avec une configuration de personnalisation prédéfinie qui ne peut pas être modifiée par défaut. Mais les techniciens et stalkers ont vite trouvé la faille: pour débloquer tous les paramètres, il suffit de changer une seule valeur dans le firmware du PDA de "false" à "true".</text>
 	</string>
-
+	<string id="st_glitch_upgrade">
+		<text>Matrice d'écran améliorée</text>
+	</string>
+	<string id="st_glitch_upgrade_descr">
+		<text>Dans les conditions extrêmes de la Zone, de nombreux appareils dotés de diverses technologies d'affichage d'image à l'écran commencent à "bugger" et à produire d'autres artefacts graphiques - le problème est partiellement résolu en installant un écran de meilleure qualité.</text>
+	</string>
 </string_table>

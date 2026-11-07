@@ -173,4 +173,10 @@
 	<string id="st_interface_upgrade_descr">
 		<text>All PDAs come with a predefined personalization configuration that cannot be altered by default. However, technicians and stalkers long ago discovered a way to bypass this restriction: to unlock all parameters, it is sufficient to change just one value in the PDA's firmware from false to true.</text>
 	</string>
+	<string id="st_glitch_upgrade">
+		<text>Improved Screen Matrix</text>
+	</string>
+	<string id="st_glitch_upgrade_descr">
+		<text>In the extreme conditions of the Zone, many devices with various screen display technologies begin to "glitch" and produce other graphical artifacts - the problem is partially solved by installing a higher quality screen.</text>
+	</string>
 </string_table>
