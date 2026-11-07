@@ -103,6 +103,89 @@ function update_geiger(item)
 end
 
 ----------------------------------------------------------------------
+-- inventory_upgrades + ui_inventory
+----------------------------------------------------------------------
+
+local base_func1 = ui_inventory.UIInventory.RMode_OnRepair
+function ui_inventory.UIInventory:RMode_OnRepair()
+	
+	if not self.upgr.id then return end
+	local obj = level.object_by_id(self.upgr.id)
+	if not obj then return end
+	
+	local sec = obj:section()
+
+	if not IsItem("device", sec) then 
+		base_func1(self)
+		return
+	end
+	
+	if db.actor:money() > get_price(sec, fe_utils.get_s_cond(obj)) then
+		self.message_box:InitMessageBox("message_box_yes_no")
+	else
+		self.message_box:InitMessageBox("message_box_ok")
+	end
+	self.message_box:SetText(question_repair_item(sec, fe_utils.get_s_cond(obj)))
+	self.message_box:ShowDialog(true)
+end
+
+local base_func2 = ui_inventory.UIInventory.RMode_RepairYes
+function ui_inventory.UIInventory:RMode_RepairYes()
+	self:Print(nil, "RMode_RepairYes")
+	if (not self.upgr.id) then
+		return
+	end
+	
+	local obj = level.object_by_id(self.upgr.id)
+	if (not obj) then
+		return
+	end
+
+	if not IsItem("device", obj:section()) then 
+		base_func2(self)
+		return
+	end
+
+	local cost = ini_sys:r_u32(obj:section(), "cost")
+	local price = math.floor(cost * 0.75 * (1 - fe_utils.get_s_cond(obj)))
+	db.actor:give_money(-price)
+
+	fe_utils.set_s_cond(obj, 1)
+	
+	self:On_Item_Update()
+	
+	-- Repair button state goes off (cause full repaired)
+	self.npc_up_repair:Enable(false)
+end
+
+local base_func3 = inventory_upgrades.can_repair_item
+function inventory_upgrades.can_repair_item(sec, cond, mechanic)
+	
+	if IsItem("device", sec) then 
+		return true
+	else
+		return base_func3(sec, cond, mechanic)
+	end
+	
+end
+
+function get_price(sec, cond)
+	local cost = ini_sys:r_u32(sec, "cost")
+	return math.floor(cost * 0.75 * (1 - cond))
+end
+
+function question_repair_item(sec, cond) 
+
+	local price = get_price(sec, cond)
+	
+	if db.actor:money() < price then
+		return game.translate_string("st_upgr_cost")..": "..price.." RU\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-db.actor:money().." RU"
+	end
+	
+	return game.translate_string("st_upgr_cost").." "..price.." RU. "..game.translate_string("ui_st_inv_repair").."?"
+end
+
+----------------------------------------------------------------------
 -- item_parts
 ----------------------------------------------------------------------
 function item_parts.timer_disassembly_item(npc_id, parts_tbl, sec, con, name)
