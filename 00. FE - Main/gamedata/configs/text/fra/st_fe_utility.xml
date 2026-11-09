@@ -32,9 +32,6 @@
 	<string id="st_mah">
 		<text>mAh</text>
 	</string>
-	<string id="st_broken">
-		<text>cassé, réparable</text>
-	</string>
 	<string id="st_show_map_squads_faction">
 		<text>affiche la position des groupes alliés à ta faction</text>
 	</string>
@@ -55,9 +52,6 @@
 	</string>
 	<string id="st_can_break">
 		<text>incassable</text>
-	</string>
-	<string id="st_broken_header">
-		<text>(Cassé)</text>
 	</string>
 	<string id="st_damaged">
 		<text>endommagé, réparable</text>

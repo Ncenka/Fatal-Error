@@ -30,9 +30,6 @@
 	<string id="st_mah">
 		<text>мА·ч</text>
 	</string>
-	<string id="st_broken">
-		<text>сломано, подлежит ремонту</text>
-	</string>
 	<string id="st_show_map_squads_faction">
 		<text>отображает местоположение отрядов фракции игрока</text>
 	</string>
@@ -53,9 +50,6 @@
 	</string>
 	<string id="st_can_break">
 		<text>не может сломаться</text>
-	</string>
-	<string id="st_broken_header">
-		<text>(Сломанный)</text>
 	</string>
 	<string id="st_damaged">
 		<text>повреждено, подлежит ремонту</text>

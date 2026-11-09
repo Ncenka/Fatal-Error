@@ -574,7 +574,7 @@ function drain_device(obj, sec, loss, loss_add)
 		factor = factor + 10
 	end
 	
-	loss = loss * factor
+	loss = loss * fe_utils.brightness_power_multiplier(fe_utils.get_brightness(obj)) * factor
 	loss = loss / amper_amount
 	
 	local cond_n = cond - loss
@@ -759,10 +759,12 @@ function device_binder:__init(obj) super(obj)
 			is_overclocked = false,
 			interface = ini_sys:r_string_ex(obj:section(),"interface") or nil,
 			screen_damage = 0,
+			brightness = 1.0,
 		}
 		
 		if obj:section():find("itm_pda") then
 			dev_items[obj:id()].s_cond = math.random()
+			dev_items[obj:id()].brightness = 0.10 + math.random() * (1.5 - 0.10)
 			dev_items[obj:id()].screen_damage = math.random(0,5)
 			if math.random(0, 100) < 10 then dev_items[obj:id()].is_bsod = true end
 			if math.random(0, 100) < 10 then dev_items[obj:id()].is_overclocked = true end
@@ -806,6 +808,7 @@ function device_binder:update(delta)
 
 		if sec:find("_pda") or sec:find("pda_") then
 			fe_utils.set_screen_damage(obj, 2)
+			fe_utils.set_brightness(obj, fe_utils.get_brightness(obj))
 		end
 
 		if dev_items[id] and fe_utils.is_broken(obj) == true and obj:is_device_enabled() == true then

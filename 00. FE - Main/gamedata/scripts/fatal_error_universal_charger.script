@@ -5,6 +5,9 @@ local function universal_charge_handler(obj_b, obj_d, slot_from, slot_to)
     local charger, target
     local sec_b = obj_b:section()
     local sec_d = obj_d:section()
+
+    -- don't try to charge glowstick
+    if sec_b:find("glowstick") or sec_d:find("glowstick") then return end
 	
     -- Проверяем первый вариант: батарея -> зарядное устройство
     if IsItem("battery",sec_b) and ini_sys:r_bool_ex(sec_d,"is_upd") == true then

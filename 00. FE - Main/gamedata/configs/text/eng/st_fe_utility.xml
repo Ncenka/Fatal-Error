@@ -29,9 +29,6 @@
 	<string id="st_mah">
 		<text>mAh</text>
 	</string>
-		<string id="st_broken">
-		<text>broken, can be repaired</text>
-	</string>
 	<string id="st_show_map_squads_faction">
 		<text>shows location of nearby squads from your faction</text>
 	</string>
@@ -52,9 +49,6 @@
 	</string>
 	<string id="st_can_break">
 		<text>cannot break</text>
-	</string>
-	<string id="st_broken_header">
-		<text>(Broken)</text>
 	</string>
 	<string id="st_damaged">
 		<text>damaged, can be repaired</text>

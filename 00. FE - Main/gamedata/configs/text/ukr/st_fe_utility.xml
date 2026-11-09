@@ -28,9 +28,6 @@
 	<string id="st_mah">
 		<text>мј/г</text>
 	</string>
-	<string id="st_broken">
-		<text>ламаЇтьс€, п≥дл€гаЇ ремонту</text>
-	</string>
 	<string id="st_show_map_squads_faction">
 		<text>в≥дображаЇ м≥сцеположенн€ загон≥в фракц≥њ гравц€</text>
 	</string>
@@ -51,9 +48,6 @@
 	</string>
 	<string id="st_can_break">
 		<text>не може зламатис€</text>
-	</string>
-	<string id="st_broken_header">
-		<text>(«ламаний)</text>
 	</string>
 	<string id="st_damaged">
 		<text>пошкоджено, п≥дл€гаЇ ремонту</text>

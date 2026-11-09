@@ -42,6 +42,12 @@ SETTINGS = {
 		signal_boost = 0
 	},
 
+	prices = {
+		fix_cond_factor = 0.5,
+		fix_screen = 5000,
+		fix_bsod = 2500,
+	},
+
 	censor_aoe = false,
 	censor_insignia = false,
 	light_reboot = false,
@@ -120,7 +126,27 @@ function on_mcm_load()
                     {id = "devices_radiation", type = "track", val = 2, min = 0, max = 1, step = 0.01, def = 0.10}
                 }
             },
-            {
+			{
+                id = "fe_locs",
+                sh = true,
+                gr = {
+					{id = "loc_glitch_scale", type = "track", val = 2, min = 0, max = 5, step = 0.01, def = 1},
+					{id = "undgr_no_signal", type = "check", val = 1, def = true},
+					{id = "monolith_hackers", type = "check", val = 1, def = true},
+					{id = "secret_errors", type = "check", val = 1, def = true},
+					{id = "signal_boost", type = "track", val = 2, min = 0, max = 20, step = 1, def = 0},
+				}
+			},
+			{
+                id = "fe_prices",
+                sh = true,
+                gr = {
+					{id = "fix_cond_factor", type = "track", val = 2, min = 0.1, max = 2, step = 0.01, def = 0.5},
+					{id = "fix_screen", type = "track", val = 2, min = 500, max = 25000, step = 500, def = 5000},
+					{id = "fix_bsod", type = "track", val = 2, min = 500, max = 10000, step = 500, def = 2500},
+				}
+			},
+			{
                 id = "fe_other",
                 sh = true,
                 gr = {
@@ -144,17 +170,6 @@ function on_mcm_load()
                     {id = "reboot_key", type = "key_bind", val = 2, def = DIK_keys.DIK_M},
                 }
             },
-			{
-                id = "fe_locs",
-                sh = true,
-                gr = {
-					{id = "loc_glitch_scale", type = "track", val = 2, min = 0, max = 5, step = 0.01, def = 1},
-					{id = "undgr_no_signal", type = "check", val = 1, def = true},
-					{id = "monolith_hackers", type = "check", val = 1, def = true},
-					{id = "secret_errors", type = "check", val = 1, def = true},
-					{id = "signal_boost", type = "track", val = 2, min = 0, max = 20, step = 1, def = 0},
-				}
-			},
 			{
                 id = "fe_special",
                 sh = true,
@@ -185,11 +200,21 @@ function on_option_change()
     SETTINGS.devices.emission = ui_mcm.get("fatal_error/fe_devices/devices_emission")
     SETTINGS.devices.electra = ui_mcm.get("fatal_error/fe_devices/devices_electra")
     SETTINGS.devices.radiation = ui_mcm.get("fatal_error/fe_devices/devices_radiation")
-    
-    delays.emission = ui_mcm.get("fatal_error/fe_other/emission_delay")
+
+	SETTINGS.locs.loc_glitch_scale = ui_mcm.get("fatal_error/fe_locs/loc_glitch_scale")
+	SETTINGS.locs.undgr_no_signal = ui_mcm.get("fatal_error/fe_locs/undgr_no_signal")
+	SETTINGS.locs.monolith_hackers = ui_mcm.get("fatal_error/fe_locs/monolith_hackers")
+	SETTINGS.locs.secret_errors = ui_mcm.get("fatal_error/fe_locs/secret_errors")
+	SETTINGS.locs.signal_boost = ui_mcm.get("fatal_error/fe_locs/signal_boost")
+
+	SETTINGS.prices.fix_cond_factor = ui_mcm.get("fatal_error/fe_prices/fix_cond_factor")
+	SETTINGS.prices.fix_bsod = ui_mcm.get("fatal_error/fe_prices/fix_bsod")
+	SETTINGS.prices.fix_screen = ui_mcm.get("fatal_error/fe_prices/fix_screen")
+
+	delays.emission = ui_mcm.get("fatal_error/fe_other/emission_delay")
     delays.radiation = ui_mcm.get("fatal_error/fe_other/radiation_delay")
-    
-    SETTINGS.other.devices_unreliability = ui_mcm.get("fatal_error/fe_other/devices_unreliability")
+
+	SETTINGS.other.devices_unreliability = ui_mcm.get("fatal_error/fe_other/devices_unreliability")
     SETTINGS.other.passive_glitch = ui_mcm.get("fatal_error/fe_other/passive_glitch")
     SETTINGS.other.radiation.glitch_scale = ui_mcm.get("fatal_error/fe_other/radiation_glitch_scale")
     SETTINGS.other.radiation.amount_to_fry = ui_mcm.get("fatal_error/fe_other/radiation_amount_to_fry")
@@ -205,12 +230,6 @@ function on_option_change()
     SETTINGS.other.shutdown_max_time = ui_mcm.get("fatal_error/fe_other/shutdown_max_time")
     SETTINGS.other.beep_radius = ui_mcm.get("fatal_error/fe_other/beep_radius")
     SETTINGS.reboot_key = ui_mcm.get("fatal_error/fe_other/reboot_key")
-
-	SETTINGS.locs.loc_glitch_scale = ui_mcm.get("fatal_error/fe_locs/loc_glitch_scale")
-	SETTINGS.locs.undgr_no_signal = ui_mcm.get("fatal_error/fe_locs/undgr_no_signal")
-	SETTINGS.locs.monolith_hackers = ui_mcm.get("fatal_error/fe_locs/monolith_hackers")
-	SETTINGS.locs.secret_errors = ui_mcm.get("fatal_error/fe_locs/secret_errors")
-	SETTINGS.locs.signal_boost = ui_mcm.get("fatal_error/fe_locs/signal_boost")
 
     SETTINGS.light_reboot = ui_mcm.get("fatal_error/fe_special/light_reboot")
 	SETTINGS.immersive_bios = ui_mcm.get("fatal_error/fe_special/immersive_bios")
@@ -283,101 +302,8 @@ function break_device(damage_type, upgrade)
 end
 
 ----------------------------------------------------------------------------------------------------
--- PDA Repairs
+-- PDA Dialogs
 ----------------------------------------------------------------------------------------------------
-
-function check_pda()
-	return db.actor:item_in_slot(8)
-end
-
-function fix_pda_check_pda()
-	return fe_utils.is_broken(db.actor:item_in_slot(8))
-end
-
-function fix_pda(cost, first_speaker, second_speaker)
-	fe_utils.set_s_cond(db.actor:item_in_slot(8), 1)
-	news_manager.send_tip(db.actor, game.translate_string("st_device_fix"), nil, default, 10000)
-	dialogs.relocate_money_from_actor(first_speaker, second_speaker, cost)
-	RADIATION_AMOUNT = 0
-end
-
-function fix_pda_check_bsod()
-	return fe_utils.is_bsod(db.actor:item_in_slot(8))
-end
-
-function fix_pda_bsod(first_speaker, second_speaker)
-	fe_utils.set_bsod(db.actor:item_in_slot(8), false)
-	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 2500)
-end
-
-function fix_pda_bsod_check_money()
-	return mlr_utils.have_money(2500)
-end
-
-function fix_pda_screen_check()
-	return fe_utils.get_screen_damage(db.actor:item_in_slot(8)) > 0
-end
-
-function fix_pda_screen(first_speaker, second_speaker)
-	fe_utils.set_screen_damage(db.actor:item_in_slot(8), 3)
-	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 5000)
-end
-
-function fix_pda_screen_check_money()
-	return mlr_utils.have_money(5000)
-end
-
-function fix_pda_0_check_money()
-	local pda = db.actor:item_in_slot(8)
-	if pda:section():find("device_pda_0") then
-		return mlr_utils.have_money(5000) and fe_utils.is_broken(pda)
-	else
-		return mlr_utils.have_item("always_true", 1)
-	end
-end
-
-function fix_pda_1_check_money()
-	local pda = db.actor:item_in_slot(8)
-	if pda:section():find("device_pda_1") then
-		return mlr_utils.have_money(10000) and fe_utils.is_broken(pda)
-	else
-		return mlr_utils.have_item("always_true", 1)
-	end
-end
-
-function fix_pda_2_check_money()
-	local pda = db.actor:item_in_slot(8)
-	if pda:section():find("device_pda_2") then
-		return mlr_utils.have_money(20000) and fe_utils.is_broken(pda)
-	else
-		return mlr_utils.have_item("always_true", 1)
-	end
-end
-
-function fix_pda_3_check_money()
-	local pda = db.actor:item_in_slot(8)
-	if pda:section():find("device_pda_3") then
-		return mlr_utils.have_money(40000) and fe_utils.is_broken(pda)
-	else
-		return mlr_utils.have_item("always_true", 1)
-	end
-end
-
-function fix_pda0_give_money(first_speaker, second_speaker)
-	fix_pda(5000, first_speaker, second_speaker)
-end
-
-function fix_pda1_give_money(first_speaker, second_speaker)
-	fix_pda(10000, first_speaker, second_speaker)
-end
-
-function fix_pda2_give_money(first_speaker, second_speaker) 
-	fix_pda(20000, first_speaker, second_speaker)
-end
-
-function fix_pda3_give_money(first_speaker, second_speaker) 
-	fix_pda(40000, first_speaker, second_speaker)
-end
 
 function has_getac()
 	return mlr_utils.have_item("itm_pda_getac", 1)
@@ -444,7 +370,8 @@ function repair_device(obj_b, obj_d, slot_from, slot_to)
     if not (is_device 
 		or obj_d:section():find("itm_pda_")
 		or obj_d:section():find("wg_compass") 
-		or obj_d:section():find("wg_gps")) 
+		or obj_d:section():find("wg_gps")
+		or not obj_d:section():find("glowstick")) 
 	then return end
     
     local is_broken = fe_utils.is_broken(obj_d)

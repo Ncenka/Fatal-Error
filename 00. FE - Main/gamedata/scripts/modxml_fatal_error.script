@@ -24,8 +24,7 @@ function on_game_start()
         
         for _, mechanic_id in ipairs(mechanics) do
             if character_id == mechanic_id then
-                local res1 = dialog_list:add("pda_upgrade")
-                local res2 = dialog_list:add("pda_decypher")
+                dialog_list:add("pda_upgrade")
             end
         end
 

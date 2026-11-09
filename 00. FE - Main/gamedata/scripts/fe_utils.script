@@ -1,6 +1,6 @@
 SECURITY_KEY = nil
 CPU = nil
-VERSION = "1.7.9.5"
+VERSION = "1.7.9.6"
 S_COND_BROKEN = 0.05
 
 LEVEL_PASSIVE_GLITCH = {
@@ -134,6 +134,15 @@ function set_pda_xml(obj)
 
 end
 
+function set_brightness(obj, val)
+    if not failsafe(obj) then return end -- failsafe
+    if not val then val = 1 end -- failsafe
+
+    item_device.dev_items[obj:id()].brightness = val
+    obj:SetPdaBrightness(val)
+
+end
+
 local cache_obj
 function set_apps(obj)
     if not failsafe(obj) then return end -- failsafe
@@ -213,6 +222,11 @@ function is_overclocked(obj)
 	return item_device.dev_items[obj:id()].is_overclocked
 end
 
+function get_brightness(obj)
+    if not failsafe(obj) then return 1 end -- failsafe
+    return item_device.dev_items[obj:id()].brightness or 1
+end
+
 function get_s_cond(obj)
     if not failsafe(obj) then return 1 end -- failsafe
     return item_device.dev_items[obj:id()].s_cond or 1
@@ -268,8 +282,28 @@ function get_radiation(obj)
 end
 
 ----------------------------------------------------------------------------------------------------
--- Utilities
+-- Utilities / Random stuff
 ----------------------------------------------------------------------------------------------------
+
+-- i used AI to do this shit cuz im very bad at math. Yes, its specificaly non-liniar
+-- brightness в диапазоне [0.10, 1.5]
+-- Возвращает множитель энергопотребления
+function brightness_power_multiplier(brightness)
+    brightness = clamp(brightness, 0.10, 1.5)
+    -- Нормируем отклонение от 1.0 в диапазон [-1, 1]
+    --   при 0.10 -> -1, при 1.0 -> 0, при 1.5 -> +1
+    local delta
+    if brightness >= 1.0 then
+        delta = (brightness - 1.0) / 0.5      -- [0 .. 1]
+    else
+        delta = (brightness - 1.0) / 0.9      -- [-1 .. 0]
+    end
+    -- Нелинейность: знак сохраняем, модуль возводим в степень
+    -- p > 1 -> более "пологий" у нуля, резче у краёв
+    local p = 1.5
+    local shaped = (delta >= 0) and (delta ^ p) or -((-delta) ^ p)
+    return 1.0 + 0.25 * shaped
+end
 
 function get_cpu()
     local fs = getFS()
