@@ -7,7 +7,6 @@ struct v2p
 };
 
 // Основные параметры
-#define EFFECTS_MULTIPLIER 1.00 // Общий множитель интенсивности эффектов
 #define STATIC_AMOUNT 0.50     // Базовое количество статического шума
 
 sampler2D s_pdascreen;
@@ -22,7 +21,7 @@ float3 staticNoise(float2 uv) {
 float4 main(v2p I): COLOR
 {
     // Рассчитываем итоговую интенсивность эффектов
-    float effectsIntensity = pda_params.y * EFFECTS_MULTIPLIER;
+    float effectsIntensity = pda_params.y;
     
     // Получаем оригинальное изображение
     float4 original = tex2D(s_pdascreen, I.tc0);

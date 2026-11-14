@@ -11,7 +11,6 @@ float cheap_rand(float2 uv) {
 }
 
 // Основные параметры
-#define EFFECTS_MULTIPLIER 1.40 // Общий множитель интенсивности эффектов
 #define ARTIFACT_THRESHOLD 0.20  // Порог активации артефактов (0-1)
 #define ARTIFACT_CHANCE 0.99     // Шанс появления артефактов (тем меньше, тем чаще)
 
@@ -62,7 +61,7 @@ float3 glitchClassic(float2 tc, float intensity)
 float4 main(v2p I): COLOR
 {
     // Рассчитываем итоговую интенсивность эффектов
-    float effectsIntensity = pda_params.y * EFFECTS_MULTIPLIER;
+    float effectsIntensity = pda_params.y;
     
     // Берем оригинальное изображение
     float4 original = tex2D(s_pdascreen, I.tc0);
