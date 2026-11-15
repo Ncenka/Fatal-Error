@@ -189,7 +189,7 @@ function set_apps(obj)
 end
 
 ----------------------------------------------------------------------------------------------------
--- Issers\Getters
+-- Issers\Getters\Havers
 ----------------------------------------------------------------------------------------------------
 
 function get_glitch(obj)
@@ -205,6 +205,12 @@ function get_glitch(obj)
     local final_glitch = (radiation_glitch + damage_glitch + screen_damage_glitch + overclock_glitch + surge_psi_glitch + electra_glitch + passive_glitch) * glitch_factor
 	
     return final_glitch
+end
+
+-- battery inside a device exist only on paper for now
+function have_battery(obj)
+    if not failsafe(obj) then return true end -- failsafe
+    return obj:condition() > 0.0001
 end
 
 function is_broken(obj)

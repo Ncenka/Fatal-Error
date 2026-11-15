@@ -1,4 +1,4 @@
--- Used DeepSeek to write about 75% of this code
+-- Used DeepSeek to write about 70% of this code
 local function universal_charge_handler(obj_b, obj_d, slot_from, slot_to)
 
     -- Определяем, что является батареей/устройством, а что - зарядным устройством
@@ -35,7 +35,7 @@ local function universal_charge_handler(obj_b, obj_d, slot_from, slot_to)
         target_sec = battery
         
         -- Проверяем, есть ли батарея в устройстве
-        if target:condition() <= 0.0001 and battery ~= "none" then
+        if battery ~= "none" and not fe_utils.have_battery(obj) then
 			news_manager.send_tip(db.actor, game.translate_string("st_no_batt"), nil, default, 3000)
             return
         end

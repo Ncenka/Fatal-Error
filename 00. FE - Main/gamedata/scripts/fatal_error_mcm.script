@@ -251,7 +251,6 @@ function break_device(damage_type, upgrade)
         if IsItem("device",section)
 			and not fe_utils.is_broken(item)
 			and ini_sys:r_bool_ex(section,"can_break") == true
-			and not section:find("glowstick")
 		then
             local has_upgrade = item:has_upgrade(upgrade)
             if not has_upgrade then
@@ -277,6 +276,10 @@ function break_device(damage_type, upgrade)
 		if fe_utils.is_overclocked(obj) then
            	chance = chance * 2
         end
+
+		if not fe_utils.have_battery(obj) then
+			chance = chance * 0.50
+		end
         
         local radiation_scale = 1
         if damage_type == "radiation" then
