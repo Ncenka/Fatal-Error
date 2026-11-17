@@ -1,3 +1,240 @@
+local fe_darkscape_start = {
+    fe_darkscape_start_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_start_1",
+        "fe_start_darkscape_start_0",
+        "stalker",
+        10000
+    },
+    fe_darkscape_start_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_start_2",
+        "fe_start_darkscape_start_1",
+        "renegade",
+        10000
+    },
+    fe_darkscape_start_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_start_3",
+        "fe_start_darkscape_start_2",
+        "bandit",
+        10000
+    }
+}
+
+local fe_darkscape_enter = {
+    fe_darkscape_enter_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_1",
+        "fe_start_darkscape_0",
+        "renegade",
+        10000
+    },
+    fe_darkscape_enter_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_2",
+        "fe_start_darkscape_1",
+        "bandit",
+        10000
+    },
+    fe_darkscape_enter_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_start_darkscape_3",
+        "fe_start_darkscape_2",
+        "stalker",
+        10000
+    }
+}
+
+local fe_darkscape_merc_alert = {
+
+    fe_darkscape_merc_alert_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_1",
+        "fe_darkscape_merc_alert_1",
+        "killer",
+        10000
+    },
+
+    fe_darkscape_merc_alert_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_2",
+        "fe_darkscape_merc_alert_2",
+        "isg",
+        10000
+    }
+
+}
+
+local fe_darkscape_merc_joke = {
+
+    fe_darkscape_merc_joke_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_joke_1",
+        "fe_darkscape_merc_joke_0",
+        "killer",
+        10000
+    },
+
+    fe_darkscape_merc_joke_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_joke_2",
+        "fe_darkscape_merc_joke_1",
+        "isg",
+        10000
+    }
+
+}
+
+local fe_darkscape_merc_dialog = {
+
+    fe_darkscape_merc_dialog_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_1",
+        "fe_darkscape_merc_dialog_0",
+        "killer",
+        10000
+    },
+
+    fe_darkscape_merc_dialog_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_2",
+        "fe_darkscape_merc_dialog_1",
+        "isg",
+        10000
+    },
+
+    fe_darkscape_merc_dialog_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_3",
+        "fe_darkscape_merc_dialog_2",
+        "killer",
+        10000
+    },
+
+    fe_darkscape_merc_dialog_4 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_4",
+        "fe_darkscape_merc_dialog_3",
+        "killer",
+        10000
+    },
+
+    fe_darkscape_merc_dialog_5 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_5",
+        "fe_darkscape_merc_dialog_4",
+        "isg",
+        10000
+    }
+
+}
+
+local fe_darkscape_stalker_camp = {
+    fe_darkscape_stalker_camp_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_stalker_camp_1",
+        "fe_darkscape_phrase_stalker_camp_0",
+        "bandit",
+        10000
+    },
+    fe_darkscape_stalker_camp_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_stalker_camp_2",
+        "fe_darkscape_phrase_stalker_camp_1",
+        "stalker",
+        10000
+    }
+}
+
+local fe_darkscape_hill = {
+    fe_darkscape_hill_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_hill",
+        "fe_darkscape_hill_0",
+        "renegade",
+        10000
+    }
+}
+
+local fe_darkscape_bridge = {
+    fe_darkscape_bridge_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_bridge_1",
+        "fe_darkscape_phrase_bridge_0",
+        "renegade",
+        10000
+    },
+    fe_darkscape_bridge_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_bridge_2",
+        "fe_darkscape_phrase_bridge_1",
+        "bandit",
+        10000
+    },
+    fe_darkscape_bridge_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_bridge_3",
+        "fe_darkscape_phrase_bridge_2",
+        "stalker",
+        10000
+    }
+}
+
+local fe_darkscape_all_dead = {
+    fe_darkscape_all_dead_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_all_dead_1",
+        "fe_darkscape_phrase_merc_dead_0",
+        "renegade",
+        10000
+    },
+    fe_darkscape_all_dead_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_all_dead_2",
+        "fe_darkscape_phrase_merc_dead_1",
+        "bandit",
+        10000
+    },
+    fe_darkscape_all_dead_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_all_dead_3",
+        "fe_darkscape_phrase_merc_dead_2",
+        "stalker",
+        10000
+    }
+}
+
+local fe_darkscape_john = {
+    fe_darkscape_john_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_john_1",
+        "fe_darkscape_merc_john_0",
+        "killer",
+        10000
+    },
+    fe_darkscape_john_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_john_2",
+        "fe_darkscape_merc_john_1",
+        "bandit",
+        10000
+    },
+    fe_darkscape_john_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_john_3",
+        "fe_darkscape_merc_john_2",
+        "renegade",
+        10000
+    }
+}
+
+local fe_darkscape_battle = {
+    fe_darkscape_battle_1 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_battle_1",
+        "fe_darkscape_merc_battle_0",
+        "isg",
+        10000
+    },
+    fe_darkscape_battle_2 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_battle_2",
+        "fe_darkscape_merc_battle_1",
+        "bandit",
+        10000
+    },
+    fe_darkscape_battle_3 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_battle_3",
+        "fe_darkscape_merc_battle_2",
+        "renegade",
+        10000
+    },
+    fe_darkscape_battle_4 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_battle_4",
+        "fe_darkscape_merc_battle_3",
+        "stalker",
+        10000
+    },
+    fe_darkscape_battle_5 = {
+        "characters_voice\\scenario\\fe_storyline\\fe_darkscape_battle_5",
+        "fe_darkscape_merc_battle_4",
+        "killer",
+        10000
+    }
+}
+
 ----------------------------------------------------------------------------------------------------
 -- Other
 ----------------------------------------------------------------------------------------------------
@@ -13,7 +250,6 @@ function on_game_start()
 end
 
 function ensure_correct_logic()
-	RemoveTimeEvent("fe_time_event", "ensure_correct_logic")
 	local squad
 	if level.name() == "l13_generators" and db.actor:has_info("fe_player_take_pda") then
 		squad = get_story_squad("fe_senya_snap_squad")
@@ -75,7 +311,6 @@ end
 -- Darkscape Quest
 ----------------------------------------------------------------------------------------------------
 
---add not to enable
 function test()
 	if xr_conditions.actor_week_in_zone(nil, nil, {2}) and not db.actor:has_info("fe_darkscape_quest_started") then
 		fe_utils.invoke("start_darkscape_quest_dialog", 30, function() start_darkscape_quest_dialog() end)
@@ -84,6 +319,7 @@ end
 
 function fe_give_darkscape_quests_2()
 	mlr_utils.give_task('fe_darkscape_quests_2')
+	play_voiced_dialog(fe_darkscape_start)
 end
 
 function start_darkscape()
@@ -91,7 +327,7 @@ function start_darkscape()
 		give_info("fe_darkscape_preparation")
 		give_info("fe_darkscape_processed")
 		xr_effects.set_game_time(nil, nil, {22, 00})
-		CreateTimeEvent("fe_time_event", "story", 3, start_darkscape_dialog)
+		fe_utils.invoke("fe_darkscape_enter", 2, function() play_voiced_dialog(fe_darkscape_enter) end)
 		RegisterScriptCallback("actor_on_update",check_player_position_darkscape)
 		RegisterScriptCallback("actor_on_first_update",no_going_back_during_quest)
 		RegisterScriptCallback("actor_on_sleep",no_sleeping_during_quest)
@@ -123,11 +359,6 @@ function fail_darkscape_quest()
 	end
 end
 
-function start_darkscape_dialog()
-	RemoveTimeEvent("fe_time_event", "story")
-	give_info("fe_darkscape_phrase_4")
-end
-
 function check_player_position_darkscape()
 
 	if not db.actor:has_info("fe_darkscape_processed") then return end
@@ -138,16 +369,25 @@ function check_player_position_darkscape()
     local dist_to_stalker_camp = actor_position:distance_to(vector():set(250.25144958496,-0.5378931760788,-186.53036499023),669165,1405)
     local dist_to_bridge = actor_position:distance_to(vector():set(397.08514404297,-3.0326669216156,286.26284790039),861292,1400)
 
+	if db.actor:has_info("fe_darkscape_merc_dead") and not db.actor:has_info("fe_darkscape_merc_dead_end") then
+		give_info("fe_darkscape_merc_dead_end")
+		disable_info("fe_darkscape_turn_off_torches")
+		play_voiced_dialog(fe_darkscape_all_dead)
+	end
+
     if actor_position.y > 20 and not db.actor:has_info("fe_darkscape_phrase_elevation_end") then
-        give_info("fe_darkscape_phrase_elevation")
+        give_info("fe_darkscape_phrase_elevation_end")
+		play_voiced_dialog(fe_darkscape_hill)
     end
 
     if dist_to_stalker_camp < 100 and not db.actor:has_info("fe_darkscape_phrase_stalker_camp_end") then
-        give_info("fe_darkscape_phrase_stalker_camp_0")
+        give_info("fe_darkscape_phrase_stalker_camp_end")
+		play_voiced_dialog(fe_darkscape_stalker_camp)
     end
 
 	if dist_to_bridge < 25 and not db.actor:has_info("fe_darkscape_merc_battle_end") then
-        give_info("fe_darkscape_merc_battle_0")
+		play_voiced_dialog(fe_darkscape_battle)
+        give_info("fe_darkscape_merc_battle_end")
     end
 
 	if dist_to_bridge < 200 and not db.actor:has_info("fe_darkscape_spawn_cases") then
@@ -159,27 +399,31 @@ function check_player_position_darkscape()
 	end
 
     if dist_to_bridge < 250 and not db.actor:has_info("fe_darkscape_phrase_bridge_end") then
-        give_info("fe_darkscape_phrase_bridge_0")
+		play_voiced_dialog(fe_darkscape_bridge)
+		give_info("fe_darkscape_turn_off_torches")
+        give_info("fe_darkscape_phrase_bridge_end")
     end
 
 	if dist_to_bridge < 350 and not db.actor:has_info("fe_darkscape_merc_alert_end") then
-        give_info("fe_darkscape_merc_alert_end")
-		CreateTimeEvent("fe_time_event", "fe_darkscape_merc_alert_1", 1, fe_darkscape_merc_alert_1)
+		give_info("fe_darkscape_merc_alert_end")
+		play_voiced_dialog(fe_darkscape_merc_alert)
     end
 
     if dist_to_bridge < 450 and not db.actor:has_info("fe_darkscape_merc_john_end") then
-        give_info("fe_darkscape_merc_john_0")
+        give_info("fe_darkscape_merc_john_end")
+		play_voiced_dialog(fe_darkscape_john)
     end
 	
 	if dist_to_bridge < 750 and not db.actor:has_info("fe_darkscape_merc_joke_end") then
         give_info("fe_darkscape_merc_joke_end")
-		CreateTimeEvent("fe_time_event", "fe_darkscape_merc_joke_1", 1, fe_darkscape_merc_joke_1)
+		play_voiced_dialog(fe_darkscape_merc_joke)
     end
 	
 	if dist_to_bridge < 1000 and not db.actor:has_info("fe_darkscape_merc_dialog_end") then
         give_info("fe_darkscape_merc_dialog_end")
-		CreateTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_1", 1, fe_darkscape_merc_dialog_1)
+		play_voiced_dialog(fe_darkscape_merc_dialog)
     end
+
 end
 
 function create_overrides_fes_v1()
@@ -277,38 +521,8 @@ function start_darkscape_quest_dialog()
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_start"), nil, "renegade", 40000)
 	mlr_utils.give_task('fe_darkscape_quests_1')
 	if level.name() == "l01_escape" then
-		CreateTimeEvent("fe_time_event", "ensure_correct_logic", 2, ensure_correct_logic)
+		fe_utils.invoke("ensure_correct_logic", 2, function() ensure_correct_logic() end)
 	end
-end
-
-function fe_darkscape_merc_alert_1()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_alert_1")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_1')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_alert_2", 12, fe_darkscape_merc_alert_2)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_alert_0"), nil, "killer", 14000)
-end
-
-function fe_darkscape_merc_alert_2()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_alert_2")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_2')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_alert_1"), nil, "isg", 7000)
-end
-
-function fe_darkscape_merc_joke_1()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_joke_1")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_joke_1')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_joke_2", 7, fe_darkscape_merc_joke_2)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_joke_0"), nil, "killer", 10000)
-end
-
-function fe_darkscape_merc_joke_2()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_joke_2")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_joke_2')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_joke_1"), nil, "isg", 10000)
 end
 
 function fail_darkscape_quest_dialog()
@@ -316,45 +530,6 @@ function fail_darkscape_quest_dialog()
 	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_fail_radio')
 	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_fail"), nil, "renegade", 10000)
-end
-
-function fe_darkscape_merc_dialog_1()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_1")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_1')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_2", 6, fe_darkscape_merc_dialog_2)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_dialog_0"), nil, "killer", 10000)
-end
-
-function fe_darkscape_merc_dialog_2()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_2")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_2')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_3", 12, fe_darkscape_merc_dialog_3)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_dialog_1"), nil, "isg", 14000)
-end
-
-function fe_darkscape_merc_dialog_3()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_3")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_3')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_4", 6, fe_darkscape_merc_dialog_4)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_dialog_2"), nil, "killer", 8000)
-end
-
-function fe_darkscape_merc_dialog_4()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_4")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_4')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	CreateTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_5", 9, fe_darkscape_merc_dialog_5)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_dialog_3"), nil, "killer", 14000)
-end
-
-function fe_darkscape_merc_dialog_5()
-	RemoveTimeEvent("fe_time_event", "fe_darkscape_merc_dialog_5")
-	local sound = sound_object('characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_dialog_5')
-	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
-	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_merc_dialog_4"), nil, "isg", 6000)
 end
 
 function fe_darkscape_end_1()
@@ -409,6 +584,7 @@ function fe_darkscape_end_6()
 	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_end_5"), nil, "stalker", 5000)
 end
+
 ----------------------------------------------------------------------------------------------------
 -- Dialogs Checks and Effects
 ----------------------------------------------------------------------------------------------------
@@ -654,3 +830,82 @@ function open_case_action(obj)
 		alife_release(obj)
 	end
 end	
+
+----------------------------------------------------------------------------------------------------
+-- Utility
+----------------------------------------------------------------------------------------------------
+
+-- AI - play voiced dialogs one by one
+local fe_voiced_dialog_counter = 0
+function play_voiced_dialog(dialog)
+
+    if type(dialog) ~= "table" then return end
+
+    local keys = {}
+
+    -- Получаем все ключи диалога
+    for key, line in pairs(dialog) do
+        if type(line) == "table" then
+            table.insert(keys, key)
+        end
+    end
+
+    -- Сортируем ключи по числовому окончанию (_1, _2, _3...)
+    table.sort(keys, function(a, b)
+        local a_num = tonumber(tostring(a):match("(%d+)$")) or math.huge
+        local b_num = tonumber(tostring(b):match("(%d+)$")) or math.huge
+
+        if a_num == b_num then
+            return tostring(a) < tostring(b)
+        end
+
+        return a_num < b_num
+    end)
+
+    if #keys == 0 then return end
+
+    -- Уникальный идентификатор события для каждой последовательности
+    fe_voiced_dialog_counter = fe_voiced_dialog_counter + 1
+    local event_name = "fe_voiced_dialog_" .. tostring(fe_voiced_dialog_counter)
+
+    local current_line = 1
+
+    local function play_next_line()
+
+        RemoveTimeEvent("fe_time_event", event_name)
+
+        local line = dialog[keys[current_line]]
+
+        if not line then return end
+
+        local sound = sound_object(line[1])
+        local sound_length = sound:length()
+
+        -- Воспроизводим аудио
+        sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
+
+        -- Показываем субтитры
+        news_manager.send_tip(
+            db.actor,
+            game.translate_string(line[2]),
+            nil,
+            line[3],
+            line[4]
+        )
+
+        current_line = current_line + 1
+
+        -- Планируем воспроизведение следующей реплики
+        if keys[current_line] then
+            CreateTimeEvent(
+                "fe_time_event",
+                event_name,
+                sound_length / 1000 + 1,
+                play_next_line
+            )
+        end
+    end
+
+    -- Запускаем первую реплику
+    play_next_line()
+end

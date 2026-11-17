@@ -28,7 +28,6 @@
 			<phrase id="3">
 				<text>fe_start_darkscape_danilla_3</text>
 				<give_info>fe_start_darkscape_danilla</give_info>
-				<give_info>fe_darkscape_phrase_0</give_info>
 				<action>dialogs_axr_companion.become_actor_companion</action>
 				<action>fatal_error_quest.fe_give_darkscape_quests_2</action>
 				<action>dialogs.break_dialog</action>

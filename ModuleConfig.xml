@@ -227,19 +227,6 @@ DO NOT work with G.A.M.M.A and DO NOT work without "New PDA 3D Models".</descrip
 		</installStep> 
 		<installStep name="Community Patches [Don't maintained by author]"> 
 			<optionalFileGroups order="Explicit"> 
-				<group name="Storyline" type="SelectAny"> 
-					<plugins order="Explicit"> 
-						<plugin name="Disabled Storyline Enabler"> 
-							<description>ITS NOT FINISHED. WILL BE AUTOMATICALLY STARTED ON LOADING SAVE. CAN CAUSE CRASHES.</description> 
-							<files> 
-								<folder source="fomod\04. FE - Manual Install Patches [DO NOT CHECK IN BAIN]\FE Disabled Storyline Enabler" destination="" priority="1" /> 
-							</files> 
-							<typeDescriptor> 
-								<type name="Optional"/> 
-							</typeDescriptor> 
-						</plugin> 
-					</plugins> 
-				</group> 
 				<group name="G.A.M.M.A." type="SelectAny"> 
 					<plugins order="Explicit"> 
 						<plugin name="PDA Reanimated Patch by Flawless Sparklemoon"> 
