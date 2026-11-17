@@ -44,14 +44,14 @@ local fe_darkscape_merc_alert = {
 
     fe_darkscape_merc_alert_1 = {
         "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_1",
-        "fe_darkscape_merc_alert_1",
+        "fe_darkscape_merc_alert_0",
         "killer",
         10000
     },
 
     fe_darkscape_merc_alert_2 = {
         "characters_voice\\scenario\\fe_storyline\\fe_darkscape_merc_alert_2",
-        "fe_darkscape_merc_alert_2",
+        "fe_darkscape_merc_alert_1",
         "isg",
         10000
     }

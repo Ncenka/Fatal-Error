@@ -129,10 +129,10 @@
 	<string id="fe_darkscape_start">
 		<text>Так блять... Сука, оно залагало! Раз-раз блять, звук идёт? А, похуй. Это... Сталкер, здарова, це Сеня Подкидной, помнишь меня? Ты мне от Данилы Экстремиста посылку приносил. Не помнишь? Да и похуй. Короче, слухай, есть вариант жоска поднять бабла, прям ваще - ты с нами? Мы будет ждать тебя на Кордоне, возле тунэле... Блять, туннеля в Лощину - поспеши конкретно, мы тебя вечно ждать не будем! И это, фонарик возьми, или ПНВ, если богатый дохера, ночью работать будем.</text>
 	</string>
-	<string id="fe_darkscape_merc_alert_1">
+	<string id="fe_darkscape_merc_alert_0">
 		<text>Flash! Alpha, we have four unknown PDA signals approaching our position from Cordon area, the deal is compromised, prepare for contact!</text>
 	</string>
-	<string id="fe_darkscape_merc_alert_2">
+	<string id="fe_darkscape_merc_alert_1">
 		<text>Roger that Alpha! All Bravo units prepare for combat! </text>
 	</string>
 	<string id="fe_darkscape_merc_battle_0">
