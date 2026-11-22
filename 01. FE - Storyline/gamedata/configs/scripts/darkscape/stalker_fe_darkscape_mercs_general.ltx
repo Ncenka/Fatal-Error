@@ -6,15 +6,15 @@ hp_fight = 0 | false
 hp_cover = 0 | false
 
 [death]
-on_info = {=killed_by_actor} %+fe_darkscape_merc_battle_0%
+on_info = {=killed_by_actor} %+fe_darkscape_merc_battle_end%
 
 [hit]
-on_info = {=hit_by_actor} %+fe_darkscape_merc_battle_0%
+on_info = {=hit_by_actor} %+fe_darkscape_merc_battle_end%
  
 [beh@mercs]
 invulnerable = {-fe_darkscape_phrase_bridge_end} true, false
 target = waypoint
 show_spot = false
 wounded = wounded
-combat_ignore_cond = {=is_enemy_actor -fe_darkscape_merc_battle_0} true, {=check_enemy_name(fe_denis_toothless_exp:fe_danila_extremist_exp:fe_senya_snap_exp) -fe_darkscape_merc_battle_0} true, false
-on_actor_dist_le = 35 | %+fe_darkscape_merc_battle_0%
+combat_ignore_cond = {=is_enemy_actor -fe_darkscape_merc_battle_end} true, {=check_enemy_name(fe_denis_toothless_exp:fe_danila_extremist_exp:fe_senya_snap_exp) -fe_darkscape_merc_battle_end} true, false
+on_actor_dist_le = 35 | %+fe_darkscape_merc_battle_end%

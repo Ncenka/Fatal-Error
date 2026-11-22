@@ -77,10 +77,10 @@ condlist_0 = {+fe_start_darkscape_danilla} complete, {+fe_refused_darkscape_dani
 icon = ui_inGame2_Sdelka
 prior = 0
 storyline = false
-target = fe_darkscape_merc_1_1 {-fe_darkscape_merc_battle_0}, fe_darkscape_merc_squad {-fe_darkscape_merc_dead}, fe_senya_snap_exp {-fe_darkscape_cases_kill_everyone =actor_has_item(fe_case_with_nomad) =actor_has_item(fe_case_with_m24) =actor_has_item(fe_case_with_artefacts) =actor_has_item(fe_case_with_money)}, fe_darkscape_raid_squad {+fe_darkscape_cases_kill_everyone}
+target = fe_darkscape_merc_1_1 {-fe_darkscape_merc_battle_end}, fe_darkscape_merc_squad {-fe_darkscape_merc_dead}, fe_senya_snap_exp {-fe_darkscape_cases_kill_everyone =actor_has_item(fe_case_with_nomad) =actor_has_item(fe_case_with_m24) =actor_has_item(fe_case_with_artefacts) =actor_has_item(fe_case_with_money)}, fe_darkscape_raid_squad {+fe_darkscape_cases_kill_everyone}
 
-title = fe_darkscape_quests_2_title_0 {-fe_darkscape_merc_battle_0}, fe_darkscape_quests_2_title_1 {-fe_darkscape_merc_dead}, fe_darkscape_quests_2_title_3 {=actor_has_item(fe_case_with_nomad) =actor_has_item(fe_case_with_m24) =actor_has_item(fe_case_with_artefacts) =actor_has_item(fe_case_with_money) -fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_title_2 {-fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_title_4
-descr = fe_darkscape_quests_2_descr_0 {-fe_darkscape_merc_battle_0}, fe_darkscape_quests_2_descr_1 {-fe_darkscape_merc_dead}, fe_darkscape_quests_2_descr_2 {-fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_descr_3 {+fe_darkscape_cases_kill_everyone}
+title = fe_darkscape_quests_2_title_0 {-fe_darkscape_merc_battle_end}, fe_darkscape_quests_2_title_1 {-fe_darkscape_merc_dead}, fe_darkscape_quests_2_title_3 {=actor_has_item(fe_case_with_nomad) =actor_has_item(fe_case_with_m24) =actor_has_item(fe_case_with_artefacts) =actor_has_item(fe_case_with_money) -fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_title_2 {-fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_title_4
+descr = fe_darkscape_quests_2_descr_0 {-fe_darkscape_merc_battle_end}, fe_darkscape_quests_2_descr_1 {-fe_darkscape_merc_dead}, fe_darkscape_quests_2_descr_2 {-fe_darkscape_cases_kill_everyone}, fe_darkscape_quests_2_descr_3 {+fe_darkscape_cases_kill_everyone}
 
 on_init = %=clear_smart_terrain(ds_ptr) =create_squad(fe_darkscape_merc_squad:ds_ptr)%
 on_fail = %=remove_squad(fe_darkscape_raid_squad) =remove_squad(fe_darkscape_merc_squad) -fe_darkscape_processed%

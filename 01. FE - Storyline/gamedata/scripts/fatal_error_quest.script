@@ -369,25 +369,26 @@ function check_player_position_darkscape()
     local dist_to_stalker_camp = actor_position:distance_to(vector():set(250.25144958496,-0.5378931760788,-186.53036499023),669165,1405)
     local dist_to_bridge = actor_position:distance_to(vector():set(397.08514404297,-3.0326669216156,286.26284790039),861292,1400)
 
-	if db.actor:has_info("fe_darkscape_merc_dead") and not db.actor:has_info("fe_darkscape_merc_dead_end") then
-		give_info("fe_darkscape_merc_dead_end")
+	if db.actor:has_info("fe_darkscape_merc_dead") and not db.actor:has_info("fe_darkscape_all_dead") then
+		give_info("fe_darkscape_all_dead")
 		disable_info("fe_darkscape_turn_off_torches")
 		play_voiced_dialog(fe_darkscape_all_dead)
 	end
 
-    if actor_position.y > 20 and not db.actor:has_info("fe_darkscape_phrase_elevation_end") then
-        give_info("fe_darkscape_phrase_elevation_end")
+    if actor_position.y > 20 and not db.actor:has_info("fe_darkscape_hill") then
+        give_info("fe_darkscape_hill")
 		play_voiced_dialog(fe_darkscape_hill)
     end
 
-    if dist_to_stalker_camp < 100 and not db.actor:has_info("fe_darkscape_phrase_stalker_camp_end") then
-        give_info("fe_darkscape_phrase_stalker_camp_end")
+    if dist_to_stalker_camp < 100 and not db.actor:has_info("fe_darkscape_stalker_camp") then
+        give_info("fe_darkscape_stalker_camp")
 		play_voiced_dialog(fe_darkscape_stalker_camp)
     end
 
-	if dist_to_bridge < 25 and not db.actor:has_info("fe_darkscape_merc_battle_end") then
+	if (dist_to_bridge < 25 or db.actor:has_info("fe_darkscape_merc_battle_end")) and not db.actor:has_info("fe_darkscape_merc_battle_end2") then
 		play_voiced_dialog(fe_darkscape_battle)
-        give_info("fe_darkscape_merc_battle_end")
+		give_info("fe_darkscape_merc_battle_end")
+        give_info("fe_darkscape_merc_battle_end2") -- workaround for voiced dialog
     end
 
 	if dist_to_bridge < 200 and not db.actor:has_info("fe_darkscape_spawn_cases") then
@@ -404,23 +405,23 @@ function check_player_position_darkscape()
         give_info("fe_darkscape_phrase_bridge_end")
     end
 
-	if dist_to_bridge < 350 and not db.actor:has_info("fe_darkscape_merc_alert_end") then
-		give_info("fe_darkscape_merc_alert_end")
+	if dist_to_bridge < 350 and not db.actor:has_info("fe_darkscape_merc_alert") then
+		give_info("fe_darkscape_merc_alert")
 		play_voiced_dialog(fe_darkscape_merc_alert)
     end
 
-    if dist_to_bridge < 450 and not db.actor:has_info("fe_darkscape_merc_john_end") then
-        give_info("fe_darkscape_merc_john_end")
+    if dist_to_bridge < 450 and not db.actor:has_info("fe_darkscape_john") then
+        give_info("fe_darkscape_john")
 		play_voiced_dialog(fe_darkscape_john)
     end
 	
-	if dist_to_bridge < 750 and not db.actor:has_info("fe_darkscape_merc_joke_end") then
-        give_info("fe_darkscape_merc_joke_end")
+	if dist_to_bridge < 750 and not db.actor:has_info("fe_darkscape_merc_joke") then
+        give_info("fe_darkscape_merc_joke")
 		play_voiced_dialog(fe_darkscape_merc_joke)
     end
 	
-	if dist_to_bridge < 1000 and not db.actor:has_info("fe_darkscape_merc_dialog_end") then
-        give_info("fe_darkscape_merc_dialog_end")
+	if dist_to_bridge < 1000 and not db.actor:has_info("fe_darkscape_merc_dialog") then
+        give_info("fe_darkscape_merc_dialog")
 		play_voiced_dialog(fe_darkscape_merc_dialog)
     end
 
@@ -539,6 +540,15 @@ function fe_darkscape_end_1()
 	CreateTimeEvent("fe_time_event", "fe_darkscape_end_2", 8, fe_darkscape_end_2)
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_end_0"), nil, "renegade", 10000)
 
+	-- local squad = get_story_squad("fe_darkscape_raid_squad")
+	-- if squad then
+	-- 	for k in squad:squad_members() do
+	-- 		if db.storage[k.id] ~= nil then
+	-- 			alife_release_id(k:id())
+	-- 		end
+	-- 	end
+	-- end
+
 	if get_story_squad("fe_darkscape_raid_squad") then
 		xr_effects.remove_squad(nil,nil,{"fe_darkscape_raid_squad"})
 		fe_utils.ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_storyline") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "fe_darkscape_raid_squad_error")
@@ -590,8 +600,18 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function darkscape_delete_raid_squad(actor, npc)
-	local squad = get_story_squad("fe_darkscape_raid_squad")
-	axr_companions.release_special_squad(squad)
+	local squad = get_object_squad(npc)
+	--axr_companions.release_special_squad(squad)
+
+	level.add_pp_effector("fade_in_out.ppe", 1000, false)
+	if squad then
+		for k in squad:squad_members() do
+			if db.storage[k.id] ~= nil then
+				alife_release_id(k:id())
+			end
+		end
+	end
+
 	CreateTimeEvent("fe_time_event", "fe_darkscape_end_1", 5, fe_darkscape_end_1)
 end
 
