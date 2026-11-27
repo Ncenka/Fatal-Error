@@ -539,21 +539,6 @@ function fe_darkscape_end_1()
 	sound:play_no_feedback(db.actor, 0, 0, VEC_ZERO, 1.0, 1.0)
 	CreateTimeEvent("fe_time_event", "fe_darkscape_end_2", 8, fe_darkscape_end_2)
 	news_manager.send_tip(db.actor, game.translate_string("fe_darkscape_end_0"), nil, "renegade", 10000)
-
-	-- local squad = get_story_squad("fe_darkscape_raid_squad")
-	-- if squad then
-	-- 	for k in squad:squad_members() do
-	-- 		if db.storage[k.id] ~= nil then
-	-- 			alife_release_id(k:id())
-	-- 		end
-	-- 	end
-	-- end
-
-	if get_story_squad("fe_darkscape_raid_squad") then
-		xr_effects.remove_squad(nil,nil,{"fe_darkscape_raid_squad"})
-		fe_utils.ffi_message("Fatal Error Addon", game.translate_string("st_fe_error") .. " " .. game.translate_string("st_fe_error_storyline") .. " " .. game.translate_string("st_fe_error_end"), 0x00000030, "fe_darkscape_raid_squad_error")
-	end
-
 end
 
 function fe_darkscape_end_2()
@@ -599,18 +584,18 @@ end
 -- Dialogs Checks and Effects
 ----------------------------------------------------------------------------------------------------
 
+-- There is really much trouble for removing them - i mean, with certain combo of companions addons
 function darkscape_delete_raid_squad(actor, npc)
 	local squad = get_object_squad(npc)
-	--axr_companions.release_special_squad(squad)
-
 	level.add_pp_effector("fade_in_out.ppe", 1000, false)
-	if squad then
-		for k in squad:squad_members() do
-			if db.storage[k.id] ~= nil then
-				alife_release_id(k:id())
+
+	fe_utils.invoke("fe_darkscape_end", 0.5, 
+		function() 
+			if squad then
+				alife_release(npc)
+				xr_effects.remove_squad(nil,nil,{"fe_darkscape_raid_squad"})
 			end
-		end
-	end
+		end)
 
 	CreateTimeEvent("fe_time_event", "fe_darkscape_end_1", 5, fe_darkscape_end_1)
 end

@@ -121,6 +121,8 @@
 				<text>fe_darkscape_cases_9</text>
 				<give_info>fe_darkscape_cases</give_info>
 				<give_info>fe_darkscape_cases_peace</give_info>
+				<action>dialogs_axr_companion.remove_companions_from_squad</action>
+				<action>dialogs.break_dialog</action>
 				<action>fatal_error_quest.darkscape_delete_raid_squad</action>
 			</phrase>
 				
